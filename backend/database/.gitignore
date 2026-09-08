@@ -1,0 +1,2 @@
+# Giữ tệp .gitignore và cho phép đưa dữ liệu database lên Git
+!.gitignore

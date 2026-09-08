@@ -1,0 +1,102 @@
+[
+  {
+    "id": "tp-ninh-binh",
+    "name": "Thành phố Ninh Bình",
+    "type": "Thành phố",
+    "center": [20.2506, 105.9745],
+    "wards": [
+      "Phường Bích Đào", "Phường Đông Thành", "Phường Nam Bình", "Phường Nam Thành",
+      "Phường Ninh Khánh", "Phường Ninh Phong", "Phường Ninh Sơn", "Phường Phúc Thành",
+      "Phường Tân Thành", "Phường Thanh Bình", "Phường Vân Giang", "Xã Ninh Nhất",
+      "Xã Ninh Phúc", "Xã Ninh Tiến"
+    ]
+  },
+  {
+    "id": "tp-tam-diep",
+    "name": "Thành phố Tam Điệp",
+    "type": "Thành phố",
+    "center": [20.1528, 105.9036],
+    "wards": [
+      "Phường Bắc Sơn", "Phường Nam Sơn", "Phường Tân Bình", "Phường Tây Sơn",
+      "Phường Trung Sơn", "Phường Yên Bình", "Xã Đông Sơn", "Xã Quang Sơn", "Xã Yên Sơn"
+    ]
+  },
+  {
+    "id": "h-hoa-lu",
+    "name": "Huyện Hoa Lư",
+    "type": "Huyện",
+    "center": [20.2742, 105.9328],
+    "wards": [
+      "Thị trấn Thiên Tôn", "Xã Ninh An", "Xã Ninh Giang", "Xã Ninh Hải",
+      "Xã Ninh Hòa", "Xã Ninh Khang", "Xã Ninh Mỹ", "Xã Ninh Thắng",
+      "Xã Ninh Vân", "Xã Ninh Xuân", "Xã Trường Yên"
+    ]
+  },
+  {
+    "id": "h-gia-vien",
+    "name": "Huyện Gia Viễn",
+    "type": "Huyện",
+    "center": [20.3444, 105.9083],
+    "wards": [
+      "Thị trấn Me", "Xã Gia Hòa", "Xã Gia Hưng", "Xã Gia Lập",
+      "Xã Gia Minh", "Xã Gia Phong", "Xã Gia Phú", "Xã Gia Sinh",
+      "Xã Gia Tân", "Xã Gia Thắng", "Xã Gia Thanh", "Xã Gia Thịnh",
+      "Xã Gia Trấn", "Xã Gia Trung", "Xã Gia Vượng", "Xã Gia Xuân"
+    ]
+  },
+  {
+    "id": "h-nho-quan",
+    "name": "Huyện Nho Quan",
+    "type": "Huyện",
+    "center": [20.3167, 105.7500],
+    "wards": [
+      "Thị trấn Nho Quan", "Xã Cúc Phương", "Xã Đồng Phong", "Xã Đức Long",
+      "Xã Gia Lâm", "Xã Gia Sơn", "Xã Gia Thủy", "Xã Gia Tường",
+      "Xã Kỳ Phú", "Xã Lạc Vân", "Xã Lạng Phong", "Xã Phú Long",
+      "Xã Phú Lộc", "Xã Phú Sơn", "Xã Quảng Lạc", "Xã Quỳnh Lưu",
+      "Xã Sơn Hà", "Xã Sơn Lai", "Xã Sơn Thành", "Xã Thạch Bình",
+      "Xã Thanh Lạc", "Xã Thượng Hòa", "Xã Văn Phong", "Xã Văn Phú",
+      "Xã Văn Phương", "Xã Xích Thổ", "Xã Yên Quang"
+    ]
+  },
+  {
+    "id": "h-yen-khanh",
+    "name": "Huyện Yên Khánh",
+    "type": "Huyện",
+    "center": [20.2167, 106.0833],
+    "wards": [
+      "Thị trấn Yên Ninh", "Xã Khánh An", "Xã Khánh Cư", "Xã Khánh Cường",
+      "Xã Khánh Hải", "Xã Khánh Hòa", "Xã Khánh Hội", "Xã Khánh Hồng",
+      "Xã Khánh Lợi", "Xã Khánh Mậu", "Xã Khánh Nhạc", "Xã Khánh Ninh",
+      "Xã Khánh Phú", "Xã Khánh Thành", "Xã Khánh Thiện", "Xã Khánh Tiên",
+      "Xã Khánh Trung", "Xã Khánh Vân"
+    ]
+  },
+  {
+    "id": "h-yen-mo",
+    "name": "Huyện Yên Mô",
+    "type": "Huyện",
+    "center": [20.1417, 106.0167],
+    "wards": [
+      "Thị trấn Yên Thịnh", "Xã Khánh Dương", "Xã Khánh Thịnh", "Xã Khánh Thượng",
+      "Xã Mai Sơn", "Xã Yên Đồng", "Xã Yên Hòa", "Xã Yên Lâm",
+      "Xã Yên Mạc", "Xã Yên Mỹ", "Xã Yên Nhân", "Xã Yên Phong",
+      "Xã Yên Thái", "Xã Yên Thắng", "Xã Yên Thành", "Xã Yên Từ"
+    ]
+  },
+  {
+    "id": "h-kim-son",
+    "name": "Huyện Kim Sơn",
+    "type": "Huyện",
+    "center": [20.0667, 106.1000],
+    "wards": [
+      "Thị trấn Phát Diệm", "Thị trấn Bình Minh", "Xã Ân Hòa", "Xã Chất Bình",
+      "Xã Cồn Thoi", "Xã Định Hóa", "Xã Đồng Hướng", "Xã Hồi Ninh",
+      "Xã Hùng Tiến", "Xã Kim Chính", "Xã Kim Định", "Xã Kim Đông",
+      "Xã Kim Hải", "Xã Kim Mỹ", "Xã Kim Tân", "Xã Kim Trung",
+      "Xã Lai Thành", "Xã Lưu Phương", "Xã Như Hòa", "Xã Quang Thiện",
+      "Xã Rạng Đông", "Xã Tân Thành", "Xã Thượng Kiệm", "Xã Tiến Hải",
+      "Xã Xuân Chính", "Xã Xuân Thiện"
+    ]
+  }
+]

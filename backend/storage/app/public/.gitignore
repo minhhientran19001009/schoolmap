@@ -1,0 +1,2 @@
+# Giữ tệp .gitignore và cho phép đưa toàn bộ hình ảnh, tệp đính kèm lên Git
+!.gitignore

@@ -1,0 +1,1172 @@
+{
+  "provinceCode": "37",
+  "provinceName": "Tỉnh Ninh Bình",
+  "totalWards": 129,
+  "statisticsByType": {
+    "Phường": 32,
+    "Xã": 97
+  },
+  "wards": [
+    {
+      "code": "13285",
+      "name": "Phủ Lý",
+      "fullName": "Phường Phủ Lý",
+      "unitType": "Phường",
+      "postalCode": "18128",
+      "areaKm2": 11.84,
+      "codeName": "phu_ly"
+    },
+    {
+      "code": "13291",
+      "name": "Phù Vân",
+      "fullName": "Phường Phù Vân",
+      "unitType": "Phường",
+      "postalCode": "18113",
+      "areaKm2": 19.34,
+      "codeName": "phu_van"
+    },
+    {
+      "code": "13318",
+      "name": "Châu Sơn",
+      "fullName": "Phường Châu Sơn",
+      "unitType": "Phường",
+      "postalCode": "18115",
+      "areaKm2": 17.45,
+      "codeName": "chau_son"
+    },
+    {
+      "code": "13324",
+      "name": "Duy Tiên",
+      "fullName": "Phường Duy Tiên",
+      "unitType": "Phường",
+      "postalCode": "18224",
+      "areaKm2": 28.93,
+      "codeName": "duy_tien"
+    },
+    {
+      "code": "13330",
+      "name": "Duy Tân",
+      "fullName": "Phường Duy Tân",
+      "unitType": "Phường",
+      "postalCode": "18225",
+      "areaKm2": 28.86,
+      "codeName": "duy_tan"
+    },
+    {
+      "code": "13336",
+      "name": "Duy Hà",
+      "fullName": "Phường Duy Hà",
+      "unitType": "Phường",
+      "postalCode": "18226",
+      "areaKm2": 15.46,
+      "codeName": "duy_ha"
+    },
+    {
+      "code": "13348",
+      "name": "Đồng Văn",
+      "fullName": "Phường Đồng Văn",
+      "unitType": "Phường",
+      "postalCode": "18216",
+      "areaKm2": 18.88,
+      "codeName": "dong_van"
+    },
+    {
+      "code": "13363",
+      "name": "Tiên Sơn",
+      "fullName": "Phường Tiên Sơn",
+      "unitType": "Phường",
+      "postalCode": "18219",
+      "areaKm2": 23.96,
+      "codeName": "tien_son"
+    },
+    {
+      "code": "13366",
+      "name": "Hà Nam",
+      "fullName": "Phường Hà Nam",
+      "unitType": "Phường",
+      "postalCode": "18127",
+      "areaKm2": 29.98,
+      "codeName": "ha_nam"
+    },
+    {
+      "code": "13384",
+      "name": "Kim Bảng",
+      "fullName": "Phường Kim Bảng",
+      "unitType": "Phường",
+      "postalCode": "18327",
+      "areaKm2": 15.22,
+      "codeName": "kim_bang"
+    },
+    {
+      "code": "13393",
+      "name": "Lê Hồ",
+      "fullName": "Phường Lê Hồ",
+      "unitType": "Phường",
+      "postalCode": "18313",
+      "areaKm2": 22.27,
+      "codeName": "le_ho"
+    },
+    {
+      "code": "13396",
+      "name": "Nguyễn Úy",
+      "fullName": "Phường Nguyễn Úy",
+      "unitType": "Phường",
+      "postalCode": "18314",
+      "areaKm2": 24.21,
+      "codeName": "nguyen_uy"
+    },
+    {
+      "code": "13402",
+      "name": "Kim Thanh",
+      "fullName": "Phường Kim Thanh",
+      "unitType": "Phường",
+      "postalCode": "18326",
+      "areaKm2": 13.49,
+      "codeName": "kim_thanh"
+    },
+    {
+      "code": "13420",
+      "name": "Tam Chúc",
+      "fullName": "Phường Tam Chúc",
+      "unitType": "Phường",
+      "postalCode": "18324",
+      "areaKm2": 46.56,
+      "codeName": "tam_chuc"
+    },
+    {
+      "code": "13435",
+      "name": "Lý Thường Kiệt",
+      "fullName": "Phường Lý Thường Kiệt",
+      "unitType": "Phường",
+      "postalCode": "18325",
+      "areaKm2": 53.66,
+      "codeName": "ly_thuong_kiet"
+    },
+    {
+      "code": "13444",
+      "name": "Liêm Tuyền",
+      "fullName": "Phường Liêm Tuyền",
+      "unitType": "Phường",
+      "postalCode": "18129",
+      "areaKm2": 21.44,
+      "codeName": "liem_tuyen"
+    },
+    {
+      "code": "13456",
+      "name": "Liêm Hà",
+      "fullName": "Xã Liêm Hà",
+      "unitType": "Xã",
+      "postalCode": "18423",
+      "areaKm2": 20.95,
+      "codeName": "liem_ha"
+    },
+    {
+      "code": "13474",
+      "name": "Tân Thanh",
+      "fullName": "Xã Tân Thanh",
+      "unitType": "Xã",
+      "postalCode": "18421",
+      "areaKm2": 36.35,
+      "codeName": "tan_thanh"
+    },
+    {
+      "code": "13483",
+      "name": "Thanh Bình",
+      "fullName": "Xã Thanh Bình",
+      "unitType": "Xã",
+      "postalCode": "18424",
+      "areaKm2": 23.85,
+      "codeName": "thanh_binh"
+    },
+    {
+      "code": "13489",
+      "name": "Thanh Lâm",
+      "fullName": "Xã Thanh Lâm",
+      "unitType": "Xã",
+      "postalCode": "18425",
+      "areaKm2": 52.91,
+      "codeName": "thanh_lam"
+    },
+    {
+      "code": "13495",
+      "name": "Thanh Liêm",
+      "fullName": "Xã Thanh Liêm",
+      "unitType": "Xã",
+      "postalCode": "18426",
+      "areaKm2": 23.27,
+      "codeName": "thanh_liem"
+    },
+    {
+      "code": "13501",
+      "name": "Bình Mỹ",
+      "fullName": "Xã Bình Mỹ",
+      "unitType": "Xã",
+      "postalCode": "18506",
+      "areaKm2": 30.28,
+      "codeName": "binh_my"
+    },
+    {
+      "code": "13504",
+      "name": "Bình Lục",
+      "fullName": "Xã Bình Lục",
+      "unitType": "Xã",
+      "postalCode": "18525",
+      "areaKm2": 23.97,
+      "codeName": "binh_luc"
+    },
+    {
+      "code": "13531",
+      "name": "Bình Giang",
+      "fullName": "Xã Bình Giang",
+      "unitType": "Xã",
+      "postalCode": "18526",
+      "areaKm2": 24.15,
+      "codeName": "binh_giang"
+    },
+    {
+      "code": "13540",
+      "name": "Bình An",
+      "fullName": "Xã Bình An",
+      "unitType": "Xã",
+      "postalCode": "18508",
+      "areaKm2": 37.76,
+      "codeName": "binh_an"
+    },
+    {
+      "code": "13558",
+      "name": "Bình Sơn",
+      "fullName": "Xã Bình Sơn",
+      "unitType": "Xã",
+      "postalCode": "18527",
+      "areaKm2": 28.06,
+      "codeName": "binh_son"
+    },
+    {
+      "code": "13573",
+      "name": "Lý Nhân",
+      "fullName": "Xã Lý Nhân",
+      "unitType": "Xã",
+      "postalCode": "18629",
+      "areaKm2": 18.38,
+      "codeName": "ly_nhan"
+    },
+    {
+      "code": "13579",
+      "name": "Bắc Lý",
+      "fullName": "Xã Bắc Lý",
+      "unitType": "Xã",
+      "postalCode": "18609",
+      "areaKm2": 31.17,
+      "codeName": "bac_ly"
+    },
+    {
+      "code": "13591",
+      "name": "Nam Xang",
+      "fullName": "Xã Nam Xang",
+      "unitType": "Xã",
+      "postalCode": "18630",
+      "areaKm2": 22.7,
+      "codeName": "nam_xang"
+    },
+    {
+      "code": "13594",
+      "name": "Trần Thương",
+      "fullName": "Xã Trần Thương",
+      "unitType": "Xã",
+      "postalCode": "18631",
+      "areaKm2": 26.32,
+      "codeName": "tran_thuong"
+    },
+    {
+      "code": "13597",
+      "name": "Vĩnh Trụ",
+      "fullName": "Xã Vĩnh Trụ",
+      "unitType": "Xã",
+      "postalCode": "18606",
+      "areaKm2": 17.59,
+      "codeName": "vinh_tru"
+    },
+    {
+      "code": "13609",
+      "name": "Nhân Hà",
+      "fullName": "Xã Nhân Hà",
+      "unitType": "Xã",
+      "postalCode": "18632",
+      "areaKm2": 23.98,
+      "codeName": "nhan_ha"
+    },
+    {
+      "code": "13627",
+      "name": "Nam Lý",
+      "fullName": "Xã Nam Lý",
+      "unitType": "Xã",
+      "postalCode": "18633",
+      "areaKm2": 28.69,
+      "codeName": "nam_ly"
+    },
+    {
+      "code": "13669",
+      "name": "Nam Định",
+      "fullName": "Phường Nam Định",
+      "unitType": "Phường",
+      "postalCode": "07131",
+      "areaKm2": 19.91,
+      "codeName": "nam_dinh"
+    },
+    {
+      "code": "13684",
+      "name": "Thiên Trường",
+      "fullName": "Phường Thiên Trường",
+      "unitType": "Phường",
+      "postalCode": "07139",
+      "areaKm2": 20.53,
+      "codeName": "thien_truong"
+    },
+    {
+      "code": "13693",
+      "name": "Đông A",
+      "fullName": "Phường Đông A",
+      "unitType": "Phường",
+      "postalCode": "07133",
+      "areaKm2": 22.07,
+      "codeName": "dong_a"
+    },
+    {
+      "code": "13699",
+      "name": "Thành Nam",
+      "fullName": "Phường Thành Nam",
+      "unitType": "Phường",
+      "postalCode": "07135",
+      "areaKm2": 16.03,
+      "codeName": "thanh_nam"
+    },
+    {
+      "code": "13708",
+      "name": "Mỹ Lộc",
+      "fullName": "Phường Mỹ Lộc",
+      "unitType": "Phường",
+      "postalCode": "07137",
+      "areaKm2": 35.54,
+      "codeName": "my_loc"
+    },
+    {
+      "code": "13741",
+      "name": "Vụ Bản",
+      "fullName": "Xã Vụ Bản",
+      "unitType": "Xã",
+      "postalCode": "07274",
+      "areaKm2": 21.56,
+      "codeName": "vu_ban"
+    },
+    {
+      "code": "13750",
+      "name": "Minh Tân",
+      "fullName": "Xã Minh Tân",
+      "unitType": "Xã",
+      "postalCode": "07272",
+      "areaKm2": 33.09,
+      "codeName": "minh_tan"
+    },
+    {
+      "code": "13753",
+      "name": "Hiển Khánh",
+      "fullName": "Xã Hiển Khánh",
+      "unitType": "Xã",
+      "postalCode": "07268",
+      "areaKm2": 30.24,
+      "codeName": "hien_khanh"
+    },
+    {
+      "code": "13777",
+      "name": "Trường Thi",
+      "fullName": "Phường Trường Thi",
+      "unitType": "Phường",
+      "postalCode": "07119",
+      "areaKm2": 31.5,
+      "codeName": "truong_thi"
+    },
+    {
+      "code": "13786",
+      "name": "Liên Minh",
+      "fullName": "Xã Liên Minh",
+      "unitType": "Xã",
+      "postalCode": "07258",
+      "areaKm2": 31.05,
+      "codeName": "lien_minh"
+    },
+    {
+      "code": "13795",
+      "name": "Ý Yên",
+      "fullName": "Xã Ý Yên",
+      "unitType": "Xã",
+      "postalCode": "07338",
+      "areaKm2": 46.73,
+      "codeName": "y_yen"
+    },
+    {
+      "code": "13807",
+      "name": "Tân Minh",
+      "fullName": "Xã Tân Minh",
+      "unitType": "Xã",
+      "postalCode": "07309",
+      "areaKm2": 44.65,
+      "codeName": "tan_minh"
+    },
+    {
+      "code": "13822",
+      "name": "Phong Doanh",
+      "fullName": "Xã Phong Doanh",
+      "unitType": "Xã",
+      "postalCode": "07341",
+      "areaKm2": 34.98,
+      "codeName": "phong_doanh"
+    },
+    {
+      "code": "13834",
+      "name": "Vũ Dương",
+      "fullName": "Xã Vũ Dương",
+      "unitType": "Xã",
+      "postalCode": "07340",
+      "areaKm2": 30.59,
+      "codeName": "vu_duong"
+    },
+    {
+      "code": "13864",
+      "name": "Vạn Thắng",
+      "fullName": "Xã Vạn Thắng",
+      "unitType": "Xã",
+      "postalCode": "07339",
+      "areaKm2": 26.22,
+      "codeName": "van_thang"
+    },
+    {
+      "code": "13870",
+      "name": "Yên Cường",
+      "fullName": "Xã Yên Cường",
+      "unitType": "Xã",
+      "postalCode": "07331",
+      "areaKm2": 32.44,
+      "codeName": "yen_cuong"
+    },
+    {
+      "code": "13879",
+      "name": "Yên Đồng",
+      "fullName": "Xã Yên Đồng",
+      "unitType": "Xã",
+      "postalCode": "07328",
+      "areaKm2": 30.53,
+      "codeName": "yen_dong"
+    },
+    {
+      "code": "13891",
+      "name": "Nghĩa Hưng",
+      "fullName": "Xã Nghĩa Hưng",
+      "unitType": "Xã",
+      "postalCode": "07431",
+      "areaKm2": 26.31,
+      "codeName": "nghia_hung"
+    },
+    {
+      "code": "13894",
+      "name": "Rạng Đông",
+      "fullName": "Xã Rạng Đông",
+      "unitType": "Xã",
+      "postalCode": "07421",
+      "areaKm2": 32.39,
+      "codeName": "rang_dong"
+    },
+    {
+      "code": "13900",
+      "name": "Đồng Thịnh",
+      "fullName": "Xã Đồng Thịnh",
+      "unitType": "Xã",
+      "postalCode": "07408",
+      "areaKm2": 30.45,
+      "codeName": "dong_thinh"
+    },
+    {
+      "code": "13918",
+      "name": "Nghĩa Sơn",
+      "fullName": "Xã Nghĩa Sơn",
+      "unitType": "Xã",
+      "postalCode": "07414",
+      "areaKm2": 26.83,
+      "codeName": "nghia_son"
+    },
+    {
+      "code": "13927",
+      "name": "Hồng Phong",
+      "fullName": "Xã Hồng Phong",
+      "unitType": "Xã",
+      "postalCode": "07432",
+      "areaKm2": 29.21,
+      "codeName": "hong_phong"
+    },
+    {
+      "code": "13939",
+      "name": "Quỹ Nhất",
+      "fullName": "Xã Quỹ Nhất",
+      "unitType": "Xã",
+      "postalCode": "07417",
+      "areaKm2": 32.7,
+      "codeName": "quy_nhat"
+    },
+    {
+      "code": "13957",
+      "name": "Nghĩa Lâm",
+      "fullName": "Xã Nghĩa Lâm",
+      "unitType": "Xã",
+      "postalCode": "07423",
+      "areaKm2": 28.1,
+      "codeName": "nghia_lam"
+    },
+    {
+      "code": "13966",
+      "name": "Nam Trực",
+      "fullName": "Xã Nam Trực",
+      "unitType": "Xã",
+      "postalCode": "07526",
+      "areaKm2": 20.47,
+      "codeName": "nam_truc"
+    },
+    {
+      "code": "13972",
+      "name": "Vị Khê",
+      "fullName": "Phường Vị Khê",
+      "unitType": "Phường",
+      "postalCode": "07134",
+      "areaKm2": 25.27,
+      "codeName": "vi_khe"
+    },
+    {
+      "code": "13984",
+      "name": "Hồng Quang",
+      "fullName": "Phường Hồng Quang",
+      "unitType": "Phường",
+      "postalCode": "07515",
+      "areaKm2": 27.53,
+      "codeName": "hong_quang"
+    },
+    {
+      "code": "13987",
+      "name": "Nam Hồng",
+      "fullName": "Xã Nam Hồng",
+      "unitType": "Xã",
+      "postalCode": "07509",
+      "areaKm2": 28.81,
+      "codeName": "nam_hong"
+    },
+    {
+      "code": "14005",
+      "name": "Nam Ninh",
+      "fullName": "Xã Nam Ninh",
+      "unitType": "Xã",
+      "postalCode": "07529",
+      "areaKm2": 25.8,
+      "codeName": "nam_ninh"
+    },
+    {
+      "code": "14011",
+      "name": "Nam Minh",
+      "fullName": "Xã Nam Minh",
+      "unitType": "Xã",
+      "postalCode": "07527",
+      "areaKm2": 24.79,
+      "codeName": "nam_minh"
+    },
+    {
+      "code": "14014",
+      "name": "Nam Đồng",
+      "fullName": "Xã Nam Đồng",
+      "unitType": "Xã",
+      "postalCode": "07528",
+      "areaKm2": 23.42,
+      "codeName": "nam_dong"
+    },
+    {
+      "code": "14026",
+      "name": "Cổ Lễ",
+      "fullName": "Xã Cổ Lễ",
+      "unitType": "Xã",
+      "postalCode": "07606",
+      "areaKm2": 18.33,
+      "codeName": "co_le"
+    },
+    {
+      "code": "14038",
+      "name": "Ninh Giang",
+      "fullName": "Xã Ninh Giang",
+      "unitType": "Xã",
+      "postalCode": "07627",
+      "areaKm2": 23.69,
+      "codeName": "ninh_giang"
+    },
+    {
+      "code": "14053",
+      "name": "Trực Ninh",
+      "fullName": "Xã Trực Ninh",
+      "unitType": "Xã",
+      "postalCode": "07628",
+      "areaKm2": 17.26,
+      "codeName": "truc_ninh"
+    },
+    {
+      "code": "14056",
+      "name": "Cát Thành",
+      "fullName": "Xã Cát Thành",
+      "unitType": "Xã",
+      "postalCode": "07622",
+      "areaKm2": 23.07,
+      "codeName": "cat_thanh"
+    },
+    {
+      "code": "14062",
+      "name": "Quang Hưng",
+      "fullName": "Xã Quang Hưng",
+      "unitType": "Xã",
+      "postalCode": "07629",
+      "areaKm2": 15.89,
+      "codeName": "quang_hung"
+    },
+    {
+      "code": "14071",
+      "name": "Minh Thái",
+      "fullName": "Xã Minh Thái",
+      "unitType": "Xã",
+      "postalCode": "07630",
+      "areaKm2": 23.44,
+      "codeName": "minh_thai"
+    },
+    {
+      "code": "14077",
+      "name": "Ninh Cường",
+      "fullName": "Xã Ninh Cường",
+      "unitType": "Xã",
+      "postalCode": "07617",
+      "areaKm2": 22.28,
+      "codeName": "ninh_cuong"
+    },
+    {
+      "code": "14089",
+      "name": "Xuân Trường",
+      "fullName": "Xã Xuân Trường",
+      "unitType": "Xã",
+      "postalCode": "07706",
+      "areaKm2": 33.29,
+      "codeName": "xuan_truong"
+    },
+    {
+      "code": "14095",
+      "name": "Xuân Hồng",
+      "fullName": "Xã Xuân Hồng",
+      "unitType": "Xã",
+      "postalCode": "07721",
+      "areaKm2": 27.61,
+      "codeName": "xuan_hong"
+    },
+    {
+      "code": "14104",
+      "name": "Xuân Giang",
+      "fullName": "Xã Xuân Giang",
+      "unitType": "Xã",
+      "postalCode": "07716",
+      "areaKm2": 32.04,
+      "codeName": "xuan_giang"
+    },
+    {
+      "code": "14122",
+      "name": "Xuân Hưng",
+      "fullName": "Xã Xuân Hưng",
+      "unitType": "Xã",
+      "postalCode": "07726",
+      "areaKm2": 23.17,
+      "codeName": "xuan_hung"
+    },
+    {
+      "code": "14161",
+      "name": "Giao Minh",
+      "fullName": "Xã Giao Minh",
+      "unitType": "Xã",
+      "postalCode": "07828",
+      "areaKm2": 27.74,
+      "codeName": "giao_minh"
+    },
+    {
+      "code": "14167",
+      "name": "Giao Thuỷ",
+      "fullName": "Xã Giao Thuỷ",
+      "unitType": "Xã",
+      "postalCode": "07806",
+      "areaKm2": 23.52,
+      "codeName": "giao_thuy"
+    },
+    {
+      "code": "14179",
+      "name": "Giao Hưng",
+      "fullName": "Xã Giao Hưng",
+      "unitType": "Xã",
+      "postalCode": "07831",
+      "areaKm2": 21.74,
+      "codeName": "giao_hung"
+    },
+    {
+      "code": "14182",
+      "name": "Giao Hoà",
+      "fullName": "Xã Giao Hoà",
+      "unitType": "Xã",
+      "postalCode": "07829",
+      "areaKm2": 29.62,
+      "codeName": "giao_hoa"
+    },
+    {
+      "code": "14194",
+      "name": "Giao Bình",
+      "fullName": "Xã Giao Bình",
+      "unitType": "Xã",
+      "postalCode": "07832",
+      "areaKm2": 21.75,
+      "codeName": "giao_binh"
+    },
+    {
+      "code": "14203",
+      "name": "Giao Phúc",
+      "fullName": "Xã Giao Phúc",
+      "unitType": "Xã",
+      "postalCode": "07830",
+      "areaKm2": 19.47,
+      "codeName": "giao_phuc"
+    },
+    {
+      "code": "14212",
+      "name": "Giao Ninh",
+      "fullName": "Xã Giao Ninh",
+      "unitType": "Xã",
+      "postalCode": "07833",
+      "areaKm2": 25.81,
+      "codeName": "giao_ninh"
+    },
+    {
+      "code": "14215",
+      "name": "Hải Hậu",
+      "fullName": "Xã Hải Hậu",
+      "unitType": "Xã",
+      "postalCode": "07941",
+      "areaKm2": 23.87,
+      "codeName": "hai_hau"
+    },
+    {
+      "code": "14218",
+      "name": "Hải Tiến",
+      "fullName": "Xã Hải Tiến",
+      "unitType": "Xã",
+      "postalCode": "07942",
+      "areaKm2": 24.19,
+      "codeName": "hai_tien"
+    },
+    {
+      "code": "14221",
+      "name": "Hải Thịnh",
+      "fullName": "Xã Hải Thịnh",
+      "unitType": "Xã",
+      "postalCode": "07943",
+      "areaKm2": 32.92,
+      "codeName": "hai_thinh"
+    },
+    {
+      "code": "14236",
+      "name": "Hải Anh",
+      "fullName": "Xã Hải Anh",
+      "unitType": "Xã",
+      "postalCode": "07915",
+      "areaKm2": 26.13,
+      "codeName": "hai_anh"
+    },
+    {
+      "code": "14248",
+      "name": "Hải Hưng",
+      "fullName": "Xã Hải Hưng",
+      "unitType": "Xã",
+      "postalCode": "07912",
+      "areaKm2": 39.89,
+      "codeName": "hai_hung"
+    },
+    {
+      "code": "14281",
+      "name": "Hải An",
+      "fullName": "Xã Hải An",
+      "unitType": "Xã",
+      "postalCode": "07920",
+      "areaKm2": 25.19,
+      "codeName": "hai_an"
+    },
+    {
+      "code": "14287",
+      "name": "Hải Quang",
+      "fullName": "Xã Hải Quang",
+      "unitType": "Xã",
+      "postalCode": "07937",
+      "areaKm2": 24.68,
+      "codeName": "hai_quang"
+    },
+    {
+      "code": "14308",
+      "name": "Hải Xuân",
+      "fullName": "Xã Hải Xuân",
+      "unitType": "Xã",
+      "postalCode": "07929",
+      "areaKm2": 31.27,
+      "codeName": "hai_xuan"
+    },
+    {
+      "code": "14329",
+      "name": "Hoa Lư",
+      "fullName": "Phường Hoa Lư",
+      "unitType": "Phường",
+      "postalCode": "08120",
+      "areaKm2": 53.72,
+      "codeName": "hoa_lu"
+    },
+    {
+      "code": "14359",
+      "name": "Nam Hoa Lư",
+      "fullName": "Phường Nam Hoa Lư",
+      "unitType": "Phường",
+      "postalCode": "08123",
+      "areaKm2": 54.3,
+      "codeName": "nam_hoa_lu"
+    },
+    {
+      "code": "14362",
+      "name": "Tam Điệp",
+      "fullName": "Phường Tam Điệp",
+      "unitType": "Phường",
+      "postalCode": "08515",
+      "areaKm2": 41.2,
+      "codeName": "tam_diep"
+    },
+    {
+      "code": "14365",
+      "name": "Trung Sơn",
+      "fullName": "Phường Trung Sơn",
+      "unitType": "Phường",
+      "postalCode": "08507",
+      "areaKm2": 38.15,
+      "codeName": "trung_son"
+    },
+    {
+      "code": "14371",
+      "name": "Yên Sơn",
+      "fullName": "Phường Yên Sơn",
+      "unitType": "Phường",
+      "postalCode": "08510",
+      "areaKm2": 35.86,
+      "codeName": "yen_son"
+    },
+    {
+      "code": "14389",
+      "name": "Gia Lâm",
+      "fullName": "Xã Gia Lâm",
+      "unitType": "Xã",
+      "postalCode": "08412",
+      "areaKm2": 37.61,
+      "codeName": "gia_lam"
+    },
+    {
+      "code": "14401",
+      "name": "Gia Tường",
+      "fullName": "Xã Gia Tường",
+      "unitType": "Xã",
+      "postalCode": "08410",
+      "areaKm2": 27.09,
+      "codeName": "gia_tuong"
+    },
+    {
+      "code": "14404",
+      "name": "Cúc Phương",
+      "fullName": "Xã Cúc Phương",
+      "unitType": "Xã",
+      "postalCode": "08429",
+      "areaKm2": 132.68,
+      "codeName": "cuc_phuong"
+    },
+    {
+      "code": "14407",
+      "name": "Phú Sơn",
+      "fullName": "Xã Phú Sơn",
+      "unitType": "Xã",
+      "postalCode": "08416",
+      "areaKm2": 41.12,
+      "codeName": "phu_son"
+    },
+    {
+      "code": "14428",
+      "name": "Nho Quan",
+      "fullName": "Xã Nho Quan",
+      "unitType": "Xã",
+      "postalCode": "08406",
+      "areaKm2": 32.62,
+      "codeName": "nho_quan"
+    },
+    {
+      "code": "14434",
+      "name": "Thanh Sơn",
+      "fullName": "Xã Thanh Sơn",
+      "unitType": "Xã",
+      "postalCode": "08421",
+      "areaKm2": 35.69,
+      "codeName": "thanh_son"
+    },
+    {
+      "code": "14452",
+      "name": "Quỳnh Lưu",
+      "fullName": "Xã Quỳnh Lưu",
+      "unitType": "Xã",
+      "postalCode": "08425",
+      "areaKm2": 26.49,
+      "codeName": "quynh_luu"
+    },
+    {
+      "code": "14458",
+      "name": "Phú Long",
+      "fullName": "Xã Phú Long",
+      "unitType": "Xã",
+      "postalCode": "08431",
+      "areaKm2": 74.79,
+      "codeName": "phu_long"
+    },
+    {
+      "code": "14464",
+      "name": "Gia Viễn",
+      "fullName": "Xã Gia Viễn",
+      "unitType": "Xã",
+      "postalCode": "08327",
+      "areaKm2": 39.8,
+      "codeName": "gia_vien"
+    },
+    {
+      "code": "14482",
+      "name": "Gia Hưng",
+      "fullName": "Xã Gia Hưng",
+      "unitType": "Xã",
+      "postalCode": "08312",
+      "areaKm2": 28.37,
+      "codeName": "gia_hung"
+    },
+    {
+      "code": "14488",
+      "name": "Gia Vân",
+      "fullName": "Xã Gia Vân",
+      "unitType": "Xã",
+      "postalCode": "08310",
+      "areaKm2": 26.94,
+      "codeName": "gia_van"
+    },
+    {
+      "code": "14494",
+      "name": "Gia Trấn",
+      "fullName": "Xã Gia Trấn",
+      "unitType": "Xã",
+      "postalCode": "08308",
+      "areaKm2": 18.76,
+      "codeName": "gia_tran"
+    },
+    {
+      "code": "14500",
+      "name": "Đại Hoàng",
+      "fullName": "Xã Đại Hoàng",
+      "unitType": "Xã",
+      "postalCode": "08328",
+      "areaKm2": 23.75,
+      "codeName": "dai_hoang"
+    },
+    {
+      "code": "14524",
+      "name": "Gia Phong",
+      "fullName": "Xã Gia Phong",
+      "unitType": "Xã",
+      "postalCode": "08325",
+      "areaKm2": 18.53,
+      "codeName": "gia_phong"
+    },
+    {
+      "code": "14533",
+      "name": "Tây Hoa Lư",
+      "fullName": "Phường Tây Hoa Lư",
+      "unitType": "Phường",
+      "postalCode": "08122",
+      "areaKm2": 84.96,
+      "codeName": "tay_hoa_lu"
+    },
+    {
+      "code": "14560",
+      "name": "Yên Khánh",
+      "fullName": "Xã Yên Khánh",
+      "unitType": "Xã",
+      "postalCode": "08825",
+      "areaKm2": 29.88,
+      "codeName": "yen_khanh"
+    },
+    {
+      "code": "14563",
+      "name": "Khánh Thiện",
+      "fullName": "Xã Khánh Thiện",
+      "unitType": "Xã",
+      "postalCode": "08808",
+      "areaKm2": 24.51,
+      "codeName": "khanh_thien"
+    },
+    {
+      "code": "14566",
+      "name": "Đông Hoa Lư",
+      "fullName": "Phường Đông Hoa Lư",
+      "unitType": "Phường",
+      "postalCode": "08121",
+      "areaKm2": 25.62,
+      "codeName": "dong_hoa_lu"
+    },
+    {
+      "code": "14608",
+      "name": "Khánh Trung",
+      "fullName": "Xã Khánh Trung",
+      "unitType": "Xã",
+      "postalCode": "08818",
+      "areaKm2": 26.42,
+      "codeName": "khanh_trung"
+    },
+    {
+      "code": "14611",
+      "name": "Khánh Nhạc",
+      "fullName": "Xã Khánh Nhạc",
+      "unitType": "Xã",
+      "postalCode": "08821",
+      "areaKm2": 19.58,
+      "codeName": "khanh_nhac"
+    },
+    {
+      "code": "14614",
+      "name": "Khánh Hội",
+      "fullName": "Xã Khánh Hội",
+      "unitType": "Xã",
+      "postalCode": "08819",
+      "areaKm2": 22.89,
+      "codeName": "khanh_hoi"
+    },
+    {
+      "code": "14620",
+      "name": "Phát Diệm",
+      "fullName": "Xã Phát Diệm",
+      "unitType": "Xã",
+      "postalCode": "08706",
+      "areaKm2": 23.1,
+      "codeName": "phat_diem"
+    },
+    {
+      "code": "14623",
+      "name": "Bình Minh",
+      "fullName": "Xã Bình Minh",
+      "unitType": "Xã",
+      "postalCode": "08732",
+      "areaKm2": 34.44,
+      "codeName": "binh_minh"
+    },
+    {
+      "code": "14638",
+      "name": "Kim Sơn",
+      "fullName": "Xã Kim Sơn",
+      "unitType": "Xã",
+      "postalCode": "08733",
+      "areaKm2": 17.6,
+      "codeName": "kim_son"
+    },
+    {
+      "code": "14647",
+      "name": "Quang Thiện",
+      "fullName": "Xã Quang Thiện",
+      "unitType": "Xã",
+      "postalCode": "08708",
+      "areaKm2": 20.73,
+      "codeName": "quang_thien"
+    },
+    {
+      "code": "14653",
+      "name": "Chất Bình",
+      "fullName": "Xã Chất Bình",
+      "unitType": "Xã",
+      "postalCode": "08713",
+      "areaKm2": 18.6,
+      "codeName": "chat_binh"
+    },
+    {
+      "code": "14674",
+      "name": "Lai Thành",
+      "fullName": "Xã Lai Thành",
+      "unitType": "Xã",
+      "postalCode": "08723",
+      "areaKm2": 22.07,
+      "codeName": "lai_thanh"
+    },
+    {
+      "code": "14677",
+      "name": "Định Hoá",
+      "fullName": "Xã Định Hoá",
+      "unitType": "Xã",
+      "postalCode": "08724",
+      "areaKm2": 21.44,
+      "codeName": "dinh_hoa"
+    },
+    {
+      "code": "14698",
+      "name": "Kim Đông",
+      "fullName": "Xã Kim Đông",
+      "unitType": "Xã",
+      "postalCode": "08731",
+      "areaKm2": 81.82,
+      "codeName": "kim_dong"
+    },
+    {
+      "code": "14701",
+      "name": "Yên Mô",
+      "fullName": "Xã Yên Mô",
+      "unitType": "Xã",
+      "postalCode": "08623",
+      "areaKm2": 28.6,
+      "codeName": "yen_mo"
+    },
+    {
+      "code": "14725",
+      "name": "Yên Thắng",
+      "fullName": "Phường Yên Thắng",
+      "unitType": "Phường",
+      "postalCode": "08124",
+      "areaKm2": 29.95,
+      "codeName": "yen_thang"
+    },
+    {
+      "code": "14728",
+      "name": "Yên Từ",
+      "fullName": "Xã Yên Từ",
+      "unitType": "Xã",
+      "postalCode": "08615",
+      "areaKm2": 23.98,
+      "codeName": "yen_tu"
+    },
+    {
+      "code": "14743",
+      "name": "Yên Mạc",
+      "fullName": "Xã Yên Mạc",
+      "unitType": "Xã",
+      "postalCode": "08619",
+      "areaKm2": 20.6,
+      "codeName": "yen_mac"
+    },
+    {
+      "code": "14746",
+      "name": "Đồng Thái",
+      "fullName": "Xã Đồng Thái",
+      "unitType": "Xã",
+      "postalCode": "08624",
+      "areaKm2": 47.6,
+      "codeName": "dong_thai"
+    }
+  ]
+}

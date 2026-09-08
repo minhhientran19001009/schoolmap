@@ -1,0 +1,72 @@
+# Dependencies
+node_modules/
+backend/vendor/
+backend/node_modules/
+
+# Production builds
+dist/
+dist-ssr/
+*.local
+backend/public/build/
+backend/public/hot/
+
+# Environment files
+.env
+.env.backup
+.env.production
+backend/.env
+backend/.env.backup
+backend/.env.production
+!.env.example
+!.env.production.example
+!backend/.env.example
+!backend/.env.production.example
+
+# Logs & Framework caches
+*.log
+backend/storage/logs/*.log
+backend/storage/framework/cache/data/*
+backend/storage/framework/sessions/*
+backend/storage/framework/views/*
+backend/storage/framework/testing/*
+backend/storage/app/private/livewire-tmp/*
+backend/storage/*.key
+backend/storage/pail
+backend/bootstrap/cache/*
+!backend/bootstrap/cache/.gitignore
+!backend/storage/framework/**/.gitignore
+!backend/storage/logs/.gitignore
+
+# Symlink (được tạo tự động bằng php artisan storage:link trên server)
+backend/public/storage
+
+# IDE & Editor files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# =========================================================
+# QUY TẮC CHO PHÉP TOÀN BỘ HÌNH ẢNH & DỮ LIỆU LÊN GIT
+# =========================================================
+# Cho phép tất cả hình ảnh tải lên và tài liệu trong storage
+!backend/storage/app/public/**
+!backend/storage/*.png
+!backend/storage/*.jpg
+!backend/storage/*.jpeg
+!backend/storage/*.webp
+
+# Cho phép tất cả dữ liệu database và file SQL
+!database/**
+!backend/database/**
+!*.sql
+
+# Cho phép tất cả dữ liệu JSON / GIS
+!src/data/**
+!*.json
