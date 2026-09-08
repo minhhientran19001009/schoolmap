@@ -15,6 +15,14 @@ class User extends Authenticatable implements FilamentUser
     use HasFactory, Notifiable;
 
     /**
+     * Tên cột password trong DB là password_hash (theo schema.sql)
+     */
+    public function getAuthPasswordName(): string
+    {
+        return 'password_hash';
+    }
+
+    /**
      * Cho phép tài khoản đăng nhập vào Filament Admin trong môi trường Production
      */
     public function canAccessPanel(Panel $panel): bool
@@ -23,14 +31,23 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * Bảng users không có cột updated_at (schema.sql chỉ có created_at)
+     */
+    const UPDATED_AT = null;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'full_name',
+        'username',
         'email',
-        'password',
+        'password_hash',
+        'role',
+        'district_id',
+        'is_active',
     ];
 
     /**
@@ -39,8 +56,7 @@ class User extends Authenticatable implements FilamentUser
      * @var list<string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password_hash',
     ];
 
     /**
@@ -51,8 +67,26 @@ class User extends Authenticatable implements FilamentUser
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password_hash' => 'hashed',
+            'is_active' => 'boolean',
+            'last_login_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Filament cần thuộc tính 'name' để hiển thị tên người dùng
+     */
+    public function getNameAttribute(): string
+    {
+        return $this->full_name ?? $this->username;
+    }
+
+    protected static function booted(): void
+    {
+        static::saving(function ($user) {
+            if (empty($user->username)) {
+                $user->username = explode('@', (string) $user->email)[0] ?: 'admin';
+            }
+        });
     }
 }
