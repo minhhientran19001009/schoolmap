@@ -171,8 +171,9 @@
                 </div>
               </div>
             </div>
-            <div v-else class="text-[11px] text-slate-400 italic text-center py-2">
-              Chương trình đào tạo phổ thông chính quy
+            <div v-else class="text-[11px] text-slate-400 italic text-center py-3 bg-slate-50 rounded-lg border border-dashed border-slate-200">
+              <span v-if="school.education_level === 'gdtx'">Chương trình đào tạo GDTX & Phổ thông</span>
+              <span v-else>Chưa có danh mục ngành đào tạo trong CSDL</span>
             </div>
           </div>
 
@@ -254,7 +255,7 @@
               <div class="p-2.5 bg-blue-50/60 rounded-xl border border-blue-100">
                 <div class="text-[10px] text-blue-600 font-semibold">Tuyển sinh hàng năm</div>
                 <div class="text-base font-black text-blue-800 font-mono mt-0.5">
-                  {{ (school.annual_enrollment || 450).toLocaleString('vi-VN') }}
+                  {{ (school.annual_enrollment ?? 0).toLocaleString('vi-VN') }}
                 </div>
                 <div class="text-[10px] text-slate-400">chỉ tiêu/năm</div>
               </div>
@@ -262,7 +263,7 @@
               <div class="p-2.5 bg-indigo-50/60 rounded-xl border border-indigo-100">
                 <div class="text-[10px] text-indigo-600 font-semibold">Quy mô đang học</div>
                 <div class="text-base font-black text-indigo-800 font-mono mt-0.5">
-                  {{ (school.student_count || 1200).toLocaleString('vi-VN') }}
+                  {{ ((school.student_count || school.current_students) ?? 0).toLocaleString('vi-VN') }}
                 </div>
                 <div class="text-[10px] text-slate-400">học sinh / sinh viên</div>
               </div>
@@ -270,7 +271,7 @@
               <div class="p-2.5 bg-emerald-50/60 rounded-xl border border-emerald-100">
                 <div class="text-[10px] text-emerald-600 font-semibold">Tốt nghiệp hàng năm</div>
                 <div class="text-base font-black text-emerald-800 font-mono mt-0.5">
-                  {{ (school.annual_graduates || 380).toLocaleString('vi-VN') }}
+                  {{ (school.annual_graduates ?? 0).toLocaleString('vi-VN') }}
                 </div>
                 <div class="text-[10px] text-slate-400">ra trường/năm</div>
               </div>
@@ -278,7 +279,7 @@
               <div class="p-2.5 bg-purple-50/60 rounded-xl border border-purple-100">
                 <div class="text-[10px] text-purple-600 font-semibold">Tỷ lệ có việc làm</div>
                 <div class="text-base font-black text-purple-800 font-mono mt-0.5">
-                  {{ school.employment_rate || 92.5 }}%
+                  {{ school.employment_rate !== null && school.employment_rate !== undefined ? school.employment_rate : '—' }}%
                 </div>
                 <div class="text-[10px] text-slate-400">trong 6 tháng đầu</div>
               </div>
@@ -296,7 +297,7 @@
               <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                 <div class="text-[10px] text-slate-500 font-medium">Tổng số GV / Giảng viên</div>
                 <div class="text-base font-black text-slate-800 font-mono mt-0.5">
-                  {{ school.teacher_count || 45 }}
+                  {{ school.teacher_count ?? 0 }}
                 </div>
                 <div class="text-[10px] text-slate-400">người hiện có</div>
               </div>
@@ -304,7 +305,7 @@
               <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-100">
                 <div class="text-[10px] text-slate-500 font-medium">Định biên giao</div>
                 <div class="text-base font-black text-slate-800 font-mono mt-0.5">
-                  {{ school.teacher_quota || (school.teacher_count ? school.teacher_count + 3 : 48) }}
+                  {{ school.teacher_quota ?? 0 }}
                 </div>
                 <div class="text-[10px] text-slate-400">chỉ tiêu phân bổ</div>
               </div>
@@ -334,7 +335,7 @@
               </span>
             </div>
             <div 
-              v-else 
+              v-else-if="school.teacher_quota > 0"
               class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-between text-emerald-800">
               <div class="flex items-center gap-2">
                 <i class="fa-solid fa-circle-check text-emerald-600"></i>
@@ -342,6 +343,17 @@
               </div>
               <span class="font-bold text-xs bg-emerald-200/80 px-2 py-0.5 rounded text-emerald-900">
                 Đủ chỉ tiêu
+              </span>
+            </div>
+            <div 
+              v-else
+              class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-between text-slate-500">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-info text-slate-400"></i>
+                <span class="font-semibold text-[11px]">Định biên: Đang cập nhật</span>
+              </div>
+              <span class="text-[11px] text-slate-400 italic">
+                Chưa có dữ liệu
               </span>
             </div>
           </div>
@@ -363,7 +375,7 @@
                   </div>
                 </div>
                 <div class="font-black text-purple-700 text-sm font-mono">
-                  {{ school.faculty_rank_1 || 10 }}
+                  {{ school.faculty_rank_1 ?? 0 }}
                 </div>
               </div>
 
@@ -376,7 +388,7 @@
                   </div>
                 </div>
                 <div class="font-black text-blue-700 text-sm font-mono">
-                  {{ school.faculty_rank_2 || 20 }}
+                  {{ school.faculty_rank_2 ?? 0 }}
                 </div>
               </div>
 
@@ -389,7 +401,7 @@
                   </div>
                 </div>
                 <div class="font-black text-slate-700 text-sm font-mono">
-                  {{ school.faculty_rank_3 || 45 }}
+                  {{ school.faculty_rank_3 ?? 0 }}
                 </div>
               </div>
             </div>
@@ -406,7 +418,7 @@
               <div class="p-2.5 bg-amber-50/60 rounded-xl border border-amber-100">
                 <div class="text-[10px] text-amber-700 font-semibold">Tiến sĩ (TS)</div>
                 <div class="text-base font-black text-amber-900 font-mono mt-0.5">
-                  {{ school.faculty_doctors || 11 }}
+                  {{ school.faculty_doctors ?? 0 }}
                 </div>
                 <div class="text-[10px] text-amber-600">cán bộ</div>
               </div>
@@ -414,7 +426,7 @@
               <div class="p-2.5 bg-blue-50/60 rounded-xl border border-blue-100">
                 <div class="text-[10px] text-blue-700 font-semibold">Thạc sĩ (ThS)</div>
                 <div class="text-base font-black text-blue-900 font-mono mt-0.5">
-                  {{ school.faculty_masters || 11 }}
+                  {{ school.faculty_masters ?? 0 }}
                 </div>
                 <div class="text-[10px] text-blue-600">cán bộ</div>
               </div>
@@ -422,7 +434,7 @@
               <div class="p-2.5 bg-rose-50/60 rounded-xl border border-rose-100">
                 <div class="text-[10px] text-rose-700 font-semibold">GS / PGS</div>
                 <div class="text-base font-black text-rose-900 font-mono mt-0.5">
-                  {{ school.faculty_professors || 2 }}
+                  {{ school.faculty_professors ?? 0 }}
                 </div>
                 <div class="text-[10px] text-rose-600">chuyên gia</div>
               </div>
@@ -486,7 +498,7 @@
             </div>
 
             <!-- Dots indicator -->
-            <div class="flex items-center justify-center gap-1.5 mt-2.5">
+            <div v-if="featuredEnterprises.length > 1" class="flex items-center justify-center gap-1.5 mt-2.5">
               <span 
                 v-for="(_, i) in featuredEnterprises" 
                 :key="i"
@@ -498,6 +510,7 @@
 
             <!-- Button: Open full modal -->
             <button 
+              v-if="allEnterprises.length > 0"
               @click="isEnterprisesModalOpen = true"
               class="w-full mt-3 py-2 px-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs">
               <i class="fa-solid fa-list-check"></i>
@@ -702,36 +715,38 @@ const levelLabel = computed(() => {
   return props.school?.education_level_name || props.school?.education_level || 'Cơ sở giáo dục'
 })
 
-// Leaders list with fallback
+// Safe parser for JSON or array fields from Database
+function parseArrayField(val) {
+  if (!val) return []
+  if (Array.isArray(val)) return val
+  if (typeof val === 'string') {
+    try {
+      const parsed = JSON.parse(val)
+      return Array.isArray(parsed) ? parsed : []
+    } catch (e) {
+      return []
+    }
+  }
+  return []
+}
+
+// Leaders list directly from DB
 const displayLeaders = computed(() => {
-  if (props.school?.leaders && Array.isArray(props.school.leaders) && props.school.leaders.length > 0) {
-    return props.school.leaders
+  const leaders = parseArrayField(props.school?.leaders)
+  if (leaders.length > 0) {
+    return leaders
   }
   if (props.school?.principal) {
     return [
-      { name: props.school.principal, position: 'Hiệu trưởng' },
-      { name: 'Đang kiện toàn', position: 'Phó Hiệu trưởng' }
-    ]
-  }
-  return [
-    { name: 'Ban Giám hiệu trường', position: 'Lãnh đạo đơn vị' }
-  ]
-})
-
-// Majors list with fallback
-const displayMajors = computed(() => {
-  if (props.school?.training_majors && Array.isArray(props.school.training_majors) && props.school.training_majors.length > 0) {
-    return props.school.training_majors
-  }
-  if (props.school?.education_level === 'cao_dang') {
-    return [
-      { name: 'Công nghệ Kỹ thuật Ô tô', degree_level: 'cao_dang', major_code: '6510216', annual_quota: 300 },
-      { name: 'Điện công nghiệp & Tự động hóa', degree_level: 'cao_dang', major_code: '6520227', annual_quota: 250 },
-      { name: 'Hàn công nghệ cao', degree_level: 'trung_cap', major_code: '5520123', annual_quota: 180 },
-      { name: 'Kỹ thuật Máy lạnh & Điều hòa', degree_level: 'so_cap', major_code: '4520202', annual_quota: 120 }
+      { name: props.school.principal, position: 'Hiệu trưởng' }
     ]
   }
   return []
+})
+
+// Majors list directly from DB
+const displayMajors = computed(() => {
+  return parseArrayField(props.school?.training_majors)
 })
 
 function formatDegreeLevel(lvl) {
@@ -750,27 +765,29 @@ function getDegreeBadgeColor(lvl) {
 }
 
 function formatArea(area) {
-  if (!area) return '15.000 m²'
+  if (!area) return '—'
   if (area >= 10000) {
     return `${(area / 10000).toFixed(1)} ha`
   }
   return `${area.toLocaleString('vi-VN')} m²`
 }
 
-// Gallery list with fallback images
+// Gallery list directly from DB
 const displayGallery = computed(() => {
-  if (props.school?.gallery && Array.isArray(props.school.gallery) && props.school.gallery.length > 0) {
-    return props.school.gallery.map(img => {
+  const gallery = parseArrayField(props.school?.gallery)
+  if (gallery.length > 0) {
+    return gallery.map(img => {
       if (typeof img === 'string' && (img.startsWith('http') || img.startsWith('/'))) return img
       const storageBase = window.location.origin.includes('localhost:517') ? 'http://localhost:8000' : ''
       return `${storageBase}/storage/${img}`
     })
   }
+  if (props.school?.image_url) {
+    return [props.school.image_url]
+  }
   return [
-    props.school?.image_url || 'https://images.unsplash.com/photo-1562774053-701939374585?w=800&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80'
+    'https://images.unsplash.com/photo-1562774053-701939374585?w=800&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80'
   ]
 })
 
@@ -787,18 +804,9 @@ function prevGalleryImage() {
   currentGalleryIndex.value = (currentGalleryIndex.value - 1 + displayGallery.value.length) % displayGallery.value.length
 }
 
-// Enterprises with fallback
+// Enterprises directly from DB
 const allEnterprises = computed(() => {
-  if (props.school?.partner_enterprises && Array.isArray(props.school.partner_enterprises) && props.school.partner_enterprises.length > 0) {
-    return props.school.partner_enterprises
-  }
-  return [
-    { name: 'Tập đoàn Hyundai Thành Công Ninh Bình', cooperation: 'Hợp tác đào tạo thực tập & tuyển dụng kỹ sư công nghệ ô tô', logo: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=200&auto=format&fit=crop&q=80', is_featured: true },
-    { name: 'Tổng công ty LILAMA Ninh Bình', cooperation: 'Đào tạo kỹ sư cơ khí lắp máy & hàn công nghệ cao', logo: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=200&auto=format&fit=crop&q=80', is_featured: true },
-    { name: 'Công ty TNHH Mcnex Vina Ninh Bình', cooperation: 'Cung ứng nhân lực kỹ thuật điện tử công nghệ cao', logo: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&auto=format&fit=crop&q=80', is_featured: true },
-    { name: 'Tập đoàn Xi măng The Vissai', cooperation: 'Hợp tác vận hành hệ thống điện và máy công nghiệp', logo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&auto=format&fit=crop&q=80', is_featured: true },
-    { name: 'Công ty Doosan Vina Hải Phòng', cooperation: 'Tài trợ xưởng thực hành và tuyển dụng học viên tốt nghiệp', logo: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=200&auto=format&fit=crop&q=80', is_featured: true }
-  ]
+  return parseArrayField(props.school?.partner_enterprises)
 })
 
 const featuredEnterprises = computed(() => {

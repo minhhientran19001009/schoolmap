@@ -1028,7 +1028,12 @@ class HaNamSchoolsSeeder extends Seeder
                 'lab_count' => 8,
                 'workshops_count' => 0,
                 'campus_area_m2' => 31000,
-                'partner_enterprises' => [],
+                'partner_enterprises' => [
+                    ['name' => 'Bệnh viện Đa khoa Tỉnh Ninh Bình', 'cooperation' => 'Thực tập lâm sàng & tuyển dụng điều dưỡng, hộ sinh', 'logo' => 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=200&auto=format&fit=crop&q=80', 'is_featured' => true],
+                    ['name' => 'Bệnh viện Sản Nhi Tỉnh Ninh Bình', 'cooperation' => 'Thực tập kỹ năng chuyên khoa nhi & phụ sản', 'logo' => 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=200&auto=format&fit=crop&q=80', 'is_featured' => true],
+                    ['name' => 'Công ty CP Dược phẩm Ninh Bình', 'cooperation' => 'Hợp tác nghiên cứu, thực hành dược lâm sàng & bào chế', 'logo' => 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&auto=format&fit=crop&q=80', 'is_featured' => true],
+                    ['name' => 'Bệnh viện Quân y 5 (Quân khu 3)', 'cooperation' => 'Đào tạo kỹ thuật viên xét nghiệm y học & phục hồi chức năng', 'logo' => 'https://images.unsplash.com/photo-1538108149393-fbbd81895907?w=200&auto=format&fit=crop&q=80', 'is_featured' => true]
+                ],
                 'gallery' => [
                     'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80'
                 ],
@@ -1083,7 +1088,12 @@ class HaNamSchoolsSeeder extends Seeder
                 'lab_count' => 10,
                 'workshops_count' => 0,
                 'campus_area_m2' => 85000,
-                'partner_enterprises' => [],
+                'partner_enterprises' => [
+                    ['name' => 'Sở Giáo dục và Đào tạo Ninh Bình', 'cooperation' => 'Hợp tác thực tập sư phạm, bồi dưỡng chuyên môn & tuyển dụng giáo viên', 'logo' => 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=200&auto=format&fit=crop&q=80', 'is_featured' => true],
+                    ['name' => 'Doanh nghiệp Xây dựng Xuân Trường', 'cooperation' => 'Phát triển nguồn nhân lực du lịch di sản Tràng An - Bái Đính', 'logo' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=200&auto=format&fit=crop&q=80', 'is_featured' => true],
+                    ['name' => 'VNPT Ninh Bình', 'cooperation' => 'Thực tập sinh phần mềm, viễn thông và chuyển giao công nghệ số', 'logo' => 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&auto=format&fit=crop&q=80', 'is_featured' => true],
+                    ['name' => 'Ngân hàng TMCP Ngoại thương (Vietcombank) Ninh Bình', 'cooperation' => 'Tài trợ học bổng và tuyển dụng cử nhân kế toán, tài chính', 'logo' => 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=200&auto=format&fit=crop&q=80', 'is_featured' => true]
+                ],
                 'gallery' => [
                     'https://images.unsplash.com/photo-1562774053-701939374585?w=800&auto=format&fit=crop&q=80'
                 ],
