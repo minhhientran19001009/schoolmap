@@ -22,6 +22,7 @@ class AdminUserSeeder extends Seeder
         $user->email         = 'admin@gmail.com';
         $user->full_name     = 'Quản trị viên';
         $user->password_hash = Hash::make('12345678');
+        $user->password      = $user->password_hash;
         $user->role          = 'SUPER_ADMIN';
         $user->is_active     = 1;
         $user->save();
