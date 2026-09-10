@@ -35,6 +35,14 @@ class SchoolsTable
                     ->label('Phường / Xã')
                     ->searchable()
                     ->sortable(),
+
+                TextColumn::make('website')
+                    ->label('Website')
+                    ->icon('heroicon-m-globe-alt')
+                    ->url(fn ($record) => $record->website)
+                    ->openUrlInNewTab()
+                    ->placeholder('—')
+                    ->toggleable(),
             ])
             ->filters([
                 SelectFilter::make('educationLevels')

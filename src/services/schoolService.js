@@ -1,11 +1,12 @@
 import { ref } from 'vue'
 import districts from '../data/ninhbinh_districts.json'
 
-export const ALLOWED_LEVELS = ['gdtx', 'cao_dang', 'dai_hoc']
+export const ALLOWED_LEVELS = ['gdtx', 'trung_cap', 'cao_dang', 'dai_hoc']
 
 export const EDUCATION_LEVELS = [
   { id: 'all', label: 'Tất cả cấp học', color: '#1e40af', icon: 'fa-solid fa-graduation-cap' },
   { id: 'gdtx', label: 'GDTX - GDNN', color: '#dc2626', icon: 'fa-solid fa-graduation-cap' },
+  { id: 'trung_cap', label: 'Trung cấp', color: '#f59e0b', icon: 'fa-solid fa-graduation-cap' },
   { id: 'cao_dang', label: 'Cao đẳng', color: '#16a34a', icon: 'fa-solid fa-graduation-cap' },
   { id: 'dai_hoc', label: 'Đại học', color: '#2563eb', icon: 'fa-solid fa-graduation-cap' },
 ]
@@ -31,7 +32,10 @@ export const STATUS_MAP = {
 export const liveSchools = ref([])
 export const isSchoolsLoading = ref(false)
 
+const envBase = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) ? import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, '') : ''
+
 const API_ENDPOINTS = [
+  ...(envBase ? [`${envBase}/api/schools`] : []),
   '/api/schools',
   'http://localhost:8000/api/schools',
   'http://127.0.0.1:8000/api/schools'
@@ -39,7 +43,9 @@ const API_ENDPOINTS = [
 
 async function requestApi(path, options = {}) {
   const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-  const hosts = isLocal ? ['', 'http://localhost:8000', 'http://127.0.0.1:8000'] : ['']
+  const hosts = envBase 
+    ? [envBase, '', 'http://localhost:8000', 'http://127.0.0.1:8000']
+    : (isLocal ? ['', 'http://localhost:8000', 'http://127.0.0.1:8000'] : [''])
   for (const host of hosts) {
     try {
       const url = host ? `${host}${path}` : path

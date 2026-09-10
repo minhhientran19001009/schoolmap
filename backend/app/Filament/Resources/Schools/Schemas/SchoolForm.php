@@ -32,16 +32,25 @@ class SchoolForm
                         Tab::make('Thông tin chung')
                             ->icon(Heroicon::OutlinedBuildingLibrary)
                             ->schema([
-                                Grid::make(2)->schema([
+                                Grid::make(3)->schema([
                                     TextInput::make('name')
                                         ->label('Tên Cơ sở Giáo dục')
                                         ->placeholder('VD: Trường Cao đẳng Cơ giới Ninh Bình')
-                                        ->required(),
+                                        ->required()
+                                        ->columnSpan(['default' => 3, 'lg' => 1]),
 
                                     TextInput::make('phone')
                                         ->label('Số điện thoại liên hệ')
                                         ->tel()
-                                        ->placeholder('VD: 0229 387 1042'),
+                                        ->placeholder('VD: 0229 387 1042')
+                                        ->columnSpan(['default' => 3, 'lg' => 1]),
+
+                                    TextInput::make('website')
+                                        ->label('Trang web / Cổng thông tin điện tử')
+                                        ->url()
+                                        ->placeholder('VD: https://cdyteninhbinh.edu.vn')
+                                        ->prefixIcon('heroicon-m-globe-alt')
+                                        ->columnSpan(['default' => 3, 'lg' => 1]),
                                 ]),
 
                                 Grid::make(2)->schema([

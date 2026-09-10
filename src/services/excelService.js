@@ -158,6 +158,7 @@ export const excelService = {
             else if (level.includes('thcs')) level = 'thcs'
             else if (level.includes('thpt')) level = 'thpt'
             else if (level.includes('gdtx') || level.includes('nghề')) level = 'gdtx'
+            else if (level.includes('trung cấp')) level = 'trung_cap'
             else if (level.includes('cao đẳng')) level = 'cao_dang'
             else if (level.includes('đại học')) level = 'dai_hoc'
 
@@ -177,9 +178,9 @@ export const excelService = {
             }
 
             // RULE 3: Level validation
-            const validLevels = ['gdtx', 'gdnn', 'cao_dang', 'dai_hoc']
+            const validLevels = ['gdtx', 'gdnn', 'trung_cap', 'cao_dang', 'dai_hoc']
             if (!level || !validLevels.includes(level)) {
-              errors.push(`Cấp học "${level}" không hợp lệ (hệ thống chỉ hỗ trợ 3 cấp học: gdtx, cao_dang, dai_hoc)`)
+              errors.push(`Cấp học "${level}" không hợp lệ (hệ thống chỉ hỗ trợ các cấp học: gdtx, trung_cap, cao_dang, dai_hoc)`)
             }
 
             // RULE 4: Lat/Lng validation

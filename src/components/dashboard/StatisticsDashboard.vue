@@ -298,7 +298,7 @@ function initCharts() {
   })
 
   // Chart 3: Scale Comparison
-  const scaleLevels = ['gdtx', 'cao_dang', 'dai_hoc']
+  const scaleLevels = ['gdtx', 'trung_cap', 'cao_dang', 'dai_hoc']
   const scaleLabels = scaleLevels.map(l => LEVEL_MAP[l]?.label)
   const studentsByLevel = scaleLevels.map(l => props.schools.filter(s => s.education_level === l).reduce((acc, s) => acc + (s.student_count || 0), 0))
   const teachersByLevel = scaleLevels.map(l => props.schools.filter(s => s.education_level === l).reduce((acc, s) => acc + (s.teacher_count || 0), 0))

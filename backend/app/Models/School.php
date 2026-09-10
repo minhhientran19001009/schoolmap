@@ -65,7 +65,8 @@ class School extends Model
     {
         static::saving(function ($school) {
             if (empty($school->id)) {
-                $baseId = Str::slug($school->name) ?: 'truong';
+                $slug = Str::slug($school->name) ?: 'truong';
+                $baseId = substr($slug, 0, 40);
                 $candidateId = $baseId . '-' . rand(100, 999);
                 while (static::where('id', $candidateId)->exists()) {
                     $candidateId = $baseId . '-' . rand(1000, 9999);

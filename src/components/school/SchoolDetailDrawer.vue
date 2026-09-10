@@ -98,6 +98,51 @@
         <!-- ============================================================== -->
         <div v-if="activeTab === 'general'" class="space-y-4 animate-in fade-in duration-200">
           
+          <!-- 0. Thông tin liên hệ & Website trường -->
+          <div class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs space-y-2">
+            <div class="font-bold text-slate-800 text-xs flex items-center justify-between">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-address-card text-indigo-600"></i>
+                <span>Thông tin liên hệ & Website</span>
+              </span>
+              <a 
+                v-if="school.website"
+                :href="school.website.startsWith('http') ? school.website : `https://${school.website}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-blue-50 text-blue-700 hover:bg-blue-100 font-semibold text-[11px] transition-colors">
+                <i class="fa-solid fa-globe text-blue-600"></i>
+                <span>Truy cập Website</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+              </a>
+            </div>
+
+            <div class="space-y-1.5 pt-1 text-[11.5px]">
+              <div v-if="school.address" class="flex items-start gap-2 text-slate-600">
+                <i class="fa-solid fa-location-dot text-slate-400 mt-0.5 w-4 text-center flex-shrink-0"></i>
+                <span class="leading-snug">{{ school.address }}</span>
+              </div>
+
+              <div v-if="school.phone" class="flex items-center gap-2 text-slate-600">
+                <i class="fa-solid fa-phone text-slate-400 w-4 text-center flex-shrink-0"></i>
+                <a :href="`tel:${school.phone}`" class="text-blue-700 font-semibold hover:underline">
+                  {{ school.phone }}
+                </a>
+              </div>
+
+              <div v-if="school.website" class="flex items-center gap-2 text-slate-600 truncate">
+                <i class="fa-solid fa-link text-slate-400 w-4 text-center flex-shrink-0"></i>
+                <a 
+                  :href="school.website.startsWith('http') ? school.website : `https://${school.website}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-blue-600 hover:underline truncate">
+                  {{ school.website }}
+                </a>
+              </div>
+            </div>
+          </div>
+
           <!-- 1. Danh sách Ban Giám hiệu, Trưởng khoa -->
           <div class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
             <div class="flex items-center justify-between mb-2.5">

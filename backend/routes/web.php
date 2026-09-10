@@ -25,6 +25,14 @@ Route::get('/api/schools', function () {
         ->header('Access-Control-Allow-Methods', 'GET, OPTIONS');
 });
 
+Route::get('/api/schools/download-template', function (\App\Services\SchoolExcelService $excelService) {
+    return $excelService->downloadTemplate();
+});
+
+Route::get('/api/schools/export-excel', function (\App\Services\SchoolExcelService $excelService) {
+    return $excelService->exportCurrentSchools();
+});
+
 Route::get('/api/schools/{id}', function ($id) {
     $school = School::with('educationLevels')->where('id', $id)->orWhere('code', $id)->first();
     if (!$school) {

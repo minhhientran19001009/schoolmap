@@ -135,20 +135,21 @@ DB_PASSWORD=MatKhauCuaBan@2026   # Mật khẩu bạn đã tạo ở Bước 2
 # Tạo APP_KEY bảo mật
 php artisan key:generate
 
-# Nạp cấu trúc bảng không gian GIS & danh mục 129 Xã/Phường ban đầu
-mysql -u schoolmap_user -p schoolmap_ninhbinh < /var/www/schoolmap/database/schema.sql
+# Nạp toàn bộ Cơ sở dữ liệu chuẩn Ninh Bình (129 Xã/Phường, 23 trường GDNN có tọa độ GPS & Website, phân quyền Admin):
+mysql -u schoolmap_user -p schoolmap_ninhbinh < /var/www/schoolmap/database/schoolmap_ninhbinh_production.sql
 
-# Chạy migration các bảng mở rộng và nạp 19 trường học chuẩn 2025
+# Kiểm tra migration nếu có cập nhật mới
 php artisan migrate --force
-php artisan db:seed --class=HaNamSchoolsSeeder --force
 
-# Tạo tài khoản Quản trị viên đăng nhập Filament Admin
+# (Tùy chọn) Tài khoản Quản trị viên mặc định đã có sẵn trong file SQL:
+# 👉 Email: admin@gmail.com | Mật khẩu: 12345678
+# Hoặc nếu muốn tạo thêm tài khoản Quản trị viên mới:
 php artisan make:filament-user
 
-# Tạo liên kết thư mục ảnh/logo
+# Tạo liên kết thư mục ảnh/tài liệu tải lên
 php artisan storage:link
 
-# Tối ưu hóa Cache
+# Tối ưu hóa Cache hiệu năng cao cho Production
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
@@ -181,7 +182,7 @@ Copy file cấu hình đã chuẩn bị sẵn vào Nginx:
 sudo cp /var/www/schoolmap/nginx-schoolmap.conf /etc/nginx/sites-available/schoolmap
 sudo nano /etc/nginx/sites-available/schoolmap
 ```
-*(Tại dòng `server_name your-domain.com;`, đổi `your-domain.com` thành tên miền của bạn hoặc địa chỉ IP VPS nếu chưa gắn domain).*
+*(Tại dòng `server_name your-domain.com;`, đổi `your-domain.com` thành tên miền của bạn hoặc địa chỉ IP VPS nếu chưa gắn domain. Kiểm tra file socket PHP qua lệnh `ls /var/run/php/` để đảm bảo đúng `php8.2-fpm.sock` hoặc `php8.3-fpm.sock`).*
 
 Kích hoạt trang web và khởi động lại Nginx:
 ```bash
