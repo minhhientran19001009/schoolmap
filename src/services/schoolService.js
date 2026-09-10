@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import districts from '../data/ninhbinh_districts.json'
 
-export const ALLOWED_LEVELS = ['gdtx', 'trung_cap', 'cao_dang', 'dai_hoc']
+export const ALLOWED_LEVELS = ['gdtx', 'trung_cap', 'trung-cap', 'cao_dang', 'cao-dang', 'dai_hoc', 'dai-hoc']
 
 export const EDUCATION_LEVELS = [
   { id: 'all', label: 'Tất cả cấp học', color: '#1e40af', icon: 'fa-solid fa-graduation-cap' },
@@ -13,6 +13,7 @@ export const EDUCATION_LEVELS = [
 
 export const LEVEL_MAP = EDUCATION_LEVELS.reduce((acc, item) => {
   acc[item.id] = item
+  acc[item.id.replace(/_/g, '-')] = item
   return acc
 }, {})
 
@@ -96,7 +97,14 @@ export const schoolService = {
           if (res.ok) {
             const data = await res.json()
             if (Array.isArray(data)) {
-              const filtered = data.filter(s => ALLOWED_LEVELS.includes(s.education_level))
+              const normalized = data.map(s => {
+                if (s.education_level) {
+                  s.education_level = s.education_level.replace(/-/g, '_')
+                }
+                return s
+              })
+              const validLevels = ALLOWED_LEVELS.map(l => l.replace(/-/g, '_'))
+              const filtered = normalized.filter(s => validLevels.includes(s.education_level))
               liveSchools.value = filtered
               isSchoolsLoading.value = false
               return filtered

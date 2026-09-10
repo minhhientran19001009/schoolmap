@@ -795,17 +795,19 @@ const displayMajors = computed(() => {
 })
 
 function formatDegreeLevel(lvl) {
-  if (lvl === 'cao_dang') return 'Cao đẳng'
-  if (lvl === 'trung_cap') return 'Trung cấp'
-  if (lvl === 'so_cap') return 'Sơ cấp'
-  if (lvl === 'dai_hoc') return 'Đại học'
+  const clean = (lvl || '').replace(/-/g, '_')
+  if (clean === 'cao_dang') return 'Cao đẳng'
+  if (clean === 'trung_cap') return 'Trung cấp'
+  if (clean === 'so_cap') return 'Sơ cấp'
+  if (clean === 'dai_hoc') return 'Đại học'
   return 'Chính quy'
 }
 
 function getDegreeBadgeColor(lvl) {
-  if (lvl === 'cao_dang') return 'bg-blue-100 text-blue-800'
-  if (lvl === 'trung_cap') return 'bg-amber-100 text-amber-800'
-  if (lvl === 'so_cap') return 'bg-teal-100 text-teal-800'
+  const clean = (lvl || '').replace(/-/g, '_')
+  if (clean === 'cao_dang') return 'bg-blue-100 text-blue-800'
+  if (clean === 'trung_cap') return 'bg-amber-100 text-amber-800'
+  if (clean === 'so_cap') return 'bg-teal-100 text-teal-800'
   return 'bg-purple-100 text-purple-800'
 }
 

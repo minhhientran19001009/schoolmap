@@ -262,7 +262,9 @@ const filteredSchools = computed(() => {
       (s.address && s.address.toLowerCase().includes(q)) ||
       (s.ward && s.ward.toLowerCase().includes(q))
 
-    const matchLevel = filterStore.level === 'all' || s.education_level === filterStore.level
+    const sLevel = (s.education_level || '').replace(/-/g, '_')
+    const filterLvl = (filterStore.level || 'all').replace(/-/g, '_')
+    const matchLevel = filterLvl === 'all' || sLevel === filterLvl
 
     let matchWard = true
     if (filterStore.ward && filterStore.ward !== 'all') {

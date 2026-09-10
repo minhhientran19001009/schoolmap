@@ -14,7 +14,8 @@ Route::get('/api/schools', function () {
     $data = $schools->map(function ($s) {
         $arr = $s->toArray();
         $firstLevel = $s->educationLevels->first();
-        $arr['education_level'] = $firstLevel?->id ?? $s->education_level_id ?? 'cao_dang';
+        $levelId = $firstLevel?->id ?? $s->education_level_id ?? 'cao_dang';
+        $arr['education_level'] = str_replace('-', '_', $levelId);
         $arr['education_level_name'] = $firstLevel?->name ?? 'Giáo dục';
         $arr['education_levels_list'] = $s->educationLevels->pluck('name')->toArray();
         return $arr;
@@ -40,7 +41,8 @@ Route::get('/api/schools/{id}', function ($id) {
     }
     $arr = $school->toArray();
     $firstLevel = $school->educationLevels->first();
-    $arr['education_level'] = $firstLevel?->id ?? $school->education_level_id ?? 'cao_dang';
+    $levelId = $firstLevel?->id ?? $school->education_level_id ?? 'cao_dang';
+    $arr['education_level'] = str_replace('-', '_', $levelId);
     $arr['education_level_name'] = $firstLevel?->name ?? 'Giáo dục';
     $arr['education_levels_list'] = $school->educationLevels->pluck('name')->toArray();
 
