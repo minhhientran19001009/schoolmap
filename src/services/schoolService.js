@@ -35,11 +35,13 @@ export const isSchoolsLoading = ref(false)
 
 const envBase = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) ? import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, '') : ''
 
+// Production must never probe localhost: it refers to each visitor's device
+// and triggers the browser's local-network permission prompt. Development is
+// already served through Vite's /api proxy, so the same-origin endpoint is
+// sufficient in both environments.
 const API_ENDPOINTS = [
   ...(envBase ? [`${envBase}/api/schools`] : []),
-  '/api/schools',
-  'http://localhost:8000/api/schools',
-  'http://127.0.0.1:8000/api/schools'
+  '/api/schools'
 ]
 
 // Several layouts mount at the same time and may all request the school list.
@@ -48,10 +50,7 @@ let syncPromise = null
 const detailPromises = new Map()
 
 async function requestApi(path, options = {}) {
-  const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-  const hosts = envBase 
-    ? [envBase, '', 'http://localhost:8000', 'http://127.0.0.1:8000']
-    : (isLocal ? ['', 'http://localhost:8000', 'http://127.0.0.1:8000'] : [''])
+  const hosts = envBase ? [envBase, ''] : ['']
   for (const host of hosts) {
     try {
       const url = host ? `${host}${path}` : path

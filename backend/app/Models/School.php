@@ -56,10 +56,6 @@ class School extends Model
         'computer_room_count' => 'integer',
         'lab_count' => 'integer',
         'campus_area_m2' => 'float',
-        'leaders' => 'array',
-        'training_majors' => 'array',
-        'partner_enterprises' => 'array',
-        'gallery' => 'array',
         'last_verified_at' => 'date',
     ];
 
@@ -180,5 +176,180 @@ class School extends Model
     {
         return $this->hasMany(School::class, 'parent_school_id')
             ->orderBy('name');
+    }
+
+    /**
+     * Some historical imports stored a JSON string instead of a JSON array.
+     * Filament Repeaters require an array, so normalize the legacy values at
+     * the model boundary and persist the correct JSON shape on later saves.
+     *
+     * @return array<int, mixed>
+     */
+    private function decodeListAttribute(mixed $value): array
+    {
+        if (is_array($value)) {
+            return array_is_list($value) ? $value : [$value];
+        }
+
+        if (! is_string($value) || trim($value) === '') {
+            return [];
+        }
+
+        $decoded = json_decode($value, true);
+        if (json_last_error() === JSON_ERROR_NONE) {
+            if (is_array($decoded)) {
+                return array_is_list($decoded) ? $decoded : [$decoded];
+            }
+
+            if (is_string($decoded) && trim($decoded) !== '') {
+                return [$decoded];
+            }
+        }
+
+        return [$value];
+    }
+
+    /** @return array<int, string> */
+    private function splitLegacyList(string $value): array
+    {
+        return array_values(array_filter(
+            preg_split('/\s*;\s*|\r?\n/', trim($value)) ?: [],
+            fn (string $item): bool => $item !== '',
+        ));
+    }
+
+    /** @return array<int, array{name: string, position: string}> */
+    public function getLeadersAttribute(mixed $value): array
+    {
+        $leaders = [];
+        foreach ($this->decodeListAttribute($value) as $item) {
+            if (is_array($item) && filled($item['name'] ?? null)) {
+                $leaders[] = [
+                    'name' => trim((string) $item['name']),
+                    'position' => trim((string) ($item['position'] ?? 'Lãnh đạo')),
+                ];
+                continue;
+            }
+
+            if (is_string($item)) {
+                foreach ($this->splitLegacyList($item) as $entry) {
+                    [$position, $name] = array_pad(explode(':', $entry, 2), 2, '');
+                    $name = trim($name ?: $position);
+                    if ($name !== '') {
+                        $leaders[] = [
+                            'name' => $name,
+                            'position' => trim($name === $position ? 'Lãnh đạo' : $position),
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $leaders;
+    }
+
+    public function setLeadersAttribute(mixed $value): void
+    {
+        $this->attributes['leaders'] = empty($value)
+            ? null
+            : json_encode($this->getLeadersAttribute($value), JSON_UNESCAPED_UNICODE);
+    }
+
+    /** @return array<int, array{name: string, degree_level: string, major_code: ?string, annual_quota: int}> */
+    public function getTrainingMajorsAttribute(mixed $value): array
+    {
+        $majors = [];
+        foreach ($this->decodeListAttribute($value) as $item) {
+            if (is_array($item) && filled($item['name'] ?? null)) {
+                $majors[] = [
+                    'name' => trim((string) $item['name']),
+                    'degree_level' => (string) ($item['degree_level'] ?? 'cao_dang'),
+                    'major_code' => filled($item['major_code'] ?? null) ? trim((string) $item['major_code']) : null,
+                    'annual_quota' => max(0, (int) ($item['annual_quota'] ?? 0)),
+                ];
+                continue;
+            }
+
+            if (is_string($item)) {
+                foreach ($this->splitLegacyList($item) as $entry) {
+                    [$name, $quota] = array_pad(explode(':', $entry, 2), 2, '');
+                    $name = trim($name);
+                    if ($name !== '') {
+                        $majors[] = [
+                            'name' => $name,
+                            'degree_level' => 'cao_dang',
+                            'major_code' => null,
+                            'annual_quota' => max(0, (int) preg_replace('/\D+/', '', $quota)),
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $majors;
+    }
+
+    public function setTrainingMajorsAttribute(mixed $value): void
+    {
+        $this->attributes['training_majors'] = empty($value)
+            ? null
+            : json_encode($this->getTrainingMajorsAttribute($value), JSON_UNESCAPED_UNICODE);
+    }
+
+    /** @return array<int, array{name: string, cooperation: string, logo: ?string, is_featured: bool}> */
+    public function getPartnerEnterprisesAttribute(mixed $value): array
+    {
+        $partners = [];
+        foreach ($this->decodeListAttribute($value) as $item) {
+            if (is_array($item) && filled($item['name'] ?? null)) {
+                $partners[] = [
+                    'name' => trim((string) $item['name']),
+                    'cooperation' => trim((string) ($item['cooperation'] ?? '')),
+                    'logo' => filled($item['logo'] ?? null) ? (string) $item['logo'] : null,
+                    'is_featured' => (bool) ($item['is_featured'] ?? true),
+                ];
+                continue;
+            }
+
+            if (is_string($item)) {
+                foreach ($this->splitLegacyList($item) as $entry) {
+                    [$name, $cooperation] = array_pad(explode(':', $entry, 2), 2, '');
+                    $name = trim($name);
+                    if ($name !== '') {
+                        $partners[] = [
+                            'name' => $name,
+                            'cooperation' => trim($cooperation),
+                            'logo' => null,
+                            'is_featured' => true,
+                        ];
+                    }
+                }
+            }
+        }
+
+        return $partners;
+    }
+
+    public function setPartnerEnterprisesAttribute(mixed $value): void
+    {
+        $this->attributes['partner_enterprises'] = empty($value)
+            ? null
+            : json_encode($this->getPartnerEnterprisesAttribute($value), JSON_UNESCAPED_UNICODE);
+    }
+
+    /** @return array<int, string> */
+    public function getGalleryAttribute(mixed $value): array
+    {
+        return array_values(array_filter(
+            $this->decodeListAttribute($value),
+            fn (mixed $item): bool => is_string($item) && trim($item) !== '',
+        ));
+    }
+
+    public function setGalleryAttribute(mixed $value): void
+    {
+        $this->attributes['gallery'] = empty($value)
+            ? null
+            : json_encode($this->getGalleryAttribute($value), JSON_UNESCAPED_UNICODE);
     }
 }

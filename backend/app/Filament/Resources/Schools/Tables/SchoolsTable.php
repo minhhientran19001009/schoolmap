@@ -33,11 +33,6 @@ class SchoolsTable
                     ->color(fn (?string $state): string => $state === 'MAIN' ? 'success' : 'info')
                     ->sortable(),
 
-                TextColumn::make('parentCampus.name')
-                    ->label('Cơ sở chính')
-                    ->placeholder('—')
-                    ->toggleable(),
-
                 TextColumn::make('educationLevels.name')
                     ->label('Cấp học')
                     ->badge()
@@ -49,13 +44,6 @@ class SchoolsTable
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('website')
-                    ->label('Website')
-                    ->icon('heroicon-m-globe-alt')
-                    ->url(fn ($record) => $record->website)
-                    ->openUrlInNewTab()
-                    ->placeholder('—')
-                    ->toggleable(),
             ])
             ->filters([
                 SelectFilter::make('educationLevels')

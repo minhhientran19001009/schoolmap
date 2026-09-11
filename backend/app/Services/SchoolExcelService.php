@@ -24,49 +24,45 @@ class SchoolExcelService
     public const COLUMNS = [
         // TAB 1: THÔNG TIN CHUNG & VỊ TRÍ ĐỊA LÝ
         'A'  => ['header' => 'Tên cơ sở giáo dục (*)', 'width' => 38, 'desc' => 'Bắt buộc. Tên đầy đủ của cơ sở giáo dục'],
-        'B'  => ['header' => 'Cấp học (*)', 'width' => 18, 'desc' => 'Bắt buộc. Chọn từ danh sách xổ xuống (Đại học, Cao đẳng, Trung cấp, GDTX...)'],
-        'C'  => ['header' => 'Xã / Phường', 'width' => 26, 'desc' => 'Chọn từ danh sách xổ xuống (129 xã/phường có sẵn trong sheet Danh_Muc)'],
-        'D'  => ['header' => 'Địa chỉ chi tiết', 'width' => 38, 'desc' => 'Số nhà, tên đường, khu đô thị'],
-        'E'  => ['header' => 'Vĩ độ (Lat)', 'width' => 16, 'desc' => 'Tọa độ GPS thập phân WGS84 (VD: 20.2605)'],
-        'F'  => ['header' => 'Kinh độ (Lng)', 'width' => 16, 'desc' => 'Tọa độ GPS thập phân WGS84 (VD: 105.9750)'],
-        'G'  => ['header' => 'Số điện thoại', 'width' => 18, 'desc' => 'Số hotline hoặc điện thoại bàn liên hệ'],
-        'H'  => ['header' => 'Website trường', 'width' => 30, 'desc' => 'Địa chỉ website hoặc cổng thông tin (VD: https://cdyteninhbinh.edu.vn)'],
+        'B'  => ['header' => 'Mã nhóm / cơ sở chính', 'width' => 24, 'desc' => 'Mã chung cho cơ sở chính và tất cả cơ sở/phân hiệu trực thuộc, ví dụ: NB-CAEE. Để trống nếu địa điểm hoạt động độc lập.'],
+        'C'  => ['header' => 'Tên cơ sở / phân hiệu', 'width' => 26, 'desc' => 'Để trống nếu đây là cơ sở chính. Nhập Cơ sở 1, Cơ sở 2 hoặc Phân hiệu Ninh Bình cho địa điểm còn lại.'],
+        'D'  => ['header' => 'Cấp học (*)', 'width' => 18, 'desc' => 'Bắt buộc. Chọn từ danh sách xổ xuống (Đại học, Cao đẳng, Trung cấp, GDTX...)'],
+        'E'  => ['header' => 'Xã / Phường', 'width' => 26, 'desc' => 'Chọn từ danh sách xổ xuống (129 xã/phường có sẵn trong sheet Danh_Muc)'],
+        'F'  => ['header' => 'Địa chỉ chi tiết', 'width' => 38, 'desc' => 'Số nhà, tên đường, khu đô thị'],
+        'G'  => ['header' => 'Vĩ độ (Lat)', 'width' => 16, 'desc' => 'Tọa độ GPS thập phân WGS84 (VD: 20.2605)'],
+        'H'  => ['header' => 'Kinh độ (Lng)', 'width' => 16, 'desc' => 'Tọa độ GPS thập phân WGS84 (VD: 105.9750)'],
+        'I'  => ['header' => 'Số điện thoại', 'width' => 18, 'desc' => 'Số hotline hoặc điện thoại bàn liên hệ'],
+        'J'  => ['header' => 'Website trường', 'width' => 30, 'desc' => 'Địa chỉ website hoặc cổng thông tin (VD: https://cdyteninhbinh.edu.vn)'],
 
         // TAB 1 (tiếp): CƠ SỞ VẬT CHẤT
-        'I'  => ['header' => 'Diện tích khuôn viên (m²)', 'width' => 24, 'desc' => 'Tổng diện tích mặt bằng khuôn viên trường (m²)'],
-        'J'  => ['header' => 'Số phòng học / Giảng đường', 'width' => 24, 'desc' => 'Tổng số phòng học lý thuyết và giảng đường'],
-        'K'  => ['header' => 'Số xưởng thực hành / Lab', 'width' => 24, 'desc' => 'Tổng số xưởng kỹ thuật, phòng thực hành, phòng thí nghiệm'],
+        'K'  => ['header' => 'Diện tích khuôn viên (m²)', 'width' => 24, 'desc' => 'Tổng diện tích mặt bằng khuôn viên trường (m²)'],
+        'L'  => ['header' => 'Số phòng học / Giảng đường', 'width' => 24, 'desc' => 'Tổng số phòng học lý thuyết và giảng đường'],
+        'M'  => ['header' => 'Số xưởng thực hành / Lab', 'width' => 24, 'desc' => 'Tổng số xưởng kỹ thuật, phòng thực hành, phòng thí nghiệm'],
 
         // TAB 2: BAN GIÁM HIỆU & LÃNH ĐẠO
-        'L'  => ['header' => 'Ban Giám hiệu & Lãnh đạo', 'width' => 45, 'desc' => 'Cú pháp: Chức vụ: Họ tên; Chức vụ 2: Họ tên 2 (VD: Hiệu trưởng: PGS.TS. Vũ Văn Hùng; Phó Hiệu trưởng: TS. Nguyễn Văn A)'],
+        'N'  => ['header' => 'Ban Giám hiệu & Lãnh đạo', 'width' => 45, 'desc' => 'Cú pháp: Chức vụ: Họ tên; Chức vụ 2: Họ tên 2 (VD: Hiệu trưởng: PGS.TS. Vũ Văn Hùng; Phó Hiệu trưởng: TS. Nguyễn Văn A)'],
 
         // TAB 3: ĐÀO TẠO & QUY MÔ SINH VIÊN
-        'M'  => ['header' => 'Tuyển sinh hàng năm', 'width' => 20, 'desc' => 'Chỉ tiêu / số lượng học sinh, sinh viên tuyển sinh mới mỗi năm'],
-        'N'  => ['header' => 'Tổng sinh viên đang học', 'width' => 22, 'desc' => 'Tổng quy mô học sinh/sinh viên đang theo học hiện tại'],
-        'O'  => ['header' => 'Tốt nghiệp hàng năm', 'width' => 20, 'desc' => 'Số lượng học sinh/sinh viên ra trường mỗi năm'],
-        'P'  => ['header' => 'Tỷ lệ có việc làm (%)', 'width' => 20, 'desc' => 'Tỷ lệ sinh viên có việc làm sau tốt nghiệp (VD: 94.5)'],
-        'Q'  => ['header' => 'Ngành đào tạo & Chỉ tiêu', 'width' => 50, 'desc' => 'Cú pháp: Tên ngành:Chỉ tiêu, cách nhau bằng dấu chấm phẩy ;'],
+        'O'  => ['header' => 'Tuyển sinh hàng năm', 'width' => 20, 'desc' => 'Chỉ tiêu / số lượng học sinh, sinh viên tuyển sinh mới mỗi năm'],
+        'P'  => ['header' => 'Tổng sinh viên đang học', 'width' => 22, 'desc' => 'Tổng quy mô học sinh/sinh viên đang theo học hiện tại'],
+        'Q'  => ['header' => 'Tốt nghiệp hàng năm', 'width' => 20, 'desc' => 'Số lượng học sinh/sinh viên ra trường mỗi năm'],
+        'R'  => ['header' => 'Tỷ lệ có việc làm (%)', 'width' => 20, 'desc' => 'Tỷ lệ sinh viên có việc làm sau tốt nghiệp (VD: 94.5)'],
+        'S'  => ['header' => 'Ngành đào tạo & Chỉ tiêu', 'width' => 50, 'desc' => 'Cú pháp: Tên ngành:Chỉ tiêu, cách nhau bằng dấu chấm phẩy ;'],
 
         // TAB 4: GIẢNG VIÊN & ĐỊNH BIÊN
-        'R'  => ['header' => 'Tổng số GV / Giảng viên', 'width' => 22, 'desc' => 'Tổng số cán bộ, giáo viên, giảng viên hiện có'],
-        'S'  => ['header' => 'Định biên được giao', 'width' => 20, 'desc' => 'Tổng chỉ tiêu biên chế Sở / Bộ giao'],
-        'T'  => ['header' => 'Số GV còn thiếu', 'width' => 18, 'desc' => 'Số lượng cán bộ giảng dạy còn thiếu so với định biên'],
-        'U'  => ['header' => 'Số GV dôi dư (thừa)', 'width' => 20, 'desc' => 'Số lượng cán bộ giảng dạy dôi dư (nếu có)'],
-        'V'  => ['header' => 'GV Hạng I (Cao cấp)', 'width' => 22, 'desc' => 'Số giảng viên đạt tiêu chuẩn Hạng I / Loại 1'],
-        'W'  => ['header' => 'GV Hạng II (Chính)', 'width' => 22, 'desc' => 'Số giảng viên đạt tiêu chuẩn Hạng II / Loại 2'],
-        'X'  => ['header' => 'GV Hạng III / Tiêu chuẩn', 'width' => 22, 'desc' => 'Số giảng viên tiêu chuẩn Hạng III'],
-        'Y'  => ['header' => 'Số Tiến sĩ (TS)', 'width' => 18, 'desc' => 'Số lượng cán bộ có học vị Tiến sĩ'],
-        'Z'  => ['header' => 'Số Thạc sĩ (ThS)', 'width' => 18, 'desc' => 'Số lượng cán bộ có học vị Thạc sĩ'],
-        'AA' => ['header' => 'Số GS / PGS', 'width' => 18, 'desc' => 'Số lượng cán bộ có học hàm Giáo sư, Phó Giáo sư'],
+        'T'  => ['header' => 'Tổng số GV / Giảng viên', 'width' => 22, 'desc' => 'Tổng số cán bộ, giáo viên, giảng viên hiện có'],
+        'U'  => ['header' => 'Định biên được giao', 'width' => 20, 'desc' => 'Tổng chỉ tiêu biên chế Sở / Bộ giao'],
+        'V'  => ['header' => 'Số GV còn thiếu', 'width' => 18, 'desc' => 'Số lượng cán bộ giảng dạy còn thiếu so với định biên'],
+        'W'  => ['header' => 'Số GV dôi dư (thừa)', 'width' => 20, 'desc' => 'Số lượng cán bộ giảng dạy dôi dư (nếu có)'],
+        'X'  => ['header' => 'GV Hạng I (Cao cấp)', 'width' => 22, 'desc' => 'Số giảng viên đạt tiêu chuẩn Hạng I / Loại 1'],
+        'Y'  => ['header' => 'GV Hạng II (Chính)', 'width' => 22, 'desc' => 'Số giảng viên đạt tiêu chuẩn Hạng II / Loại 2'],
+        'Z'  => ['header' => 'GV Hạng III / Tiêu chuẩn', 'width' => 22, 'desc' => 'Số giảng viên tiêu chuẩn Hạng III'],
+        'AA' => ['header' => 'Số Tiến sĩ (TS)', 'width' => 18, 'desc' => 'Số lượng cán bộ có học vị Tiến sĩ'],
+        'AB' => ['header' => 'Số Thạc sĩ (ThS)', 'width' => 18, 'desc' => 'Số lượng cán bộ có học vị Thạc sĩ'],
+        'AC' => ['header' => 'Số GS / PGS', 'width' => 18, 'desc' => 'Số lượng cán bộ có học hàm Giáo sư, Phó Giáo sư'],
 
         // TAB 5: DOANH NGHIỆP LIÊN KẾT
-        'AB' => ['header' => 'Doanh nghiệp liên kết', 'width' => 45, 'desc' => 'Cú pháp: Tên DN:Nội dung hợp tác, cách nhau bằng dấu chấm phẩy ;'],
-
-        // QUAN HỆ CƠ SỞ / PHÂN HIỆU
-        'AC' => ['header' => 'Mã cơ sở', 'width' => 18, 'desc' => 'Mã duy nhất của địa điểm. Nên nhập để liên kết cơ sở chính và phân hiệu trong cùng một lần import.'],
-        'AD' => ['header' => 'Loại cơ sở', 'width' => 22, 'desc' => 'Một trong: MAIN (cơ sở chính), CAMPUS (cơ sở trực thuộc), BRANCH (phân hiệu). Để trống mặc định là MAIN.'],
-        'AE' => ['header' => 'Mã cơ sở chính', 'width' => 22, 'desc' => 'Bắt buộc khi Loại cơ sở khác MAIN. Nhập đúng giá trị ở cột Mã cơ sở của cơ sở chính.'],
-        'AF' => ['header' => 'Tên cơ sở / phân hiệu', 'width' => 26, 'desc' => 'Tên ngắn hiển thị trong nhóm, ví dụ: Cơ sở Tam Điệp.'],
+        'AD' => ['header' => 'Doanh nghiệp liên kết', 'width' => 45, 'desc' => 'Cú pháp: Tên DN:Nội dung hợp tác, cách nhau bằng dấu chấm phẩy ;'],
     ];
 
     /**
@@ -75,6 +71,8 @@ class SchoolExcelService
     public const SAMPLE_ROWS = [
         [
             'Trường Đại học Hoa Lư',
+            'NB-HLU',
+            '',
             'Đại học',
             'Phường Hoa Lư',
             'Khu đô thị Xuân Thành, TP. Ninh Bình',
@@ -102,10 +100,11 @@ class SchoolExcelService
             140,
             6,
             'Tập đoàn Hyundai Thành Công:Tuyển dụng kỹ sư & Thực tập; Công ty TNHH Mcnex Vina:Hợp tác R&D vi mạch',
-            'NB-HLU-MAIN', 'MAIN', '', '',
         ],
         [
             'Trường Cao đẳng Cơ điện Xây dựng Việt Xô',
+            'NB-VIETXO',
+            '',
             'Cao đẳng',
             'Phường Trung Sơn',
             'Số 10 Đường Quang Trung, Phường Trung Sơn, TP. Tam Điệp',
@@ -133,10 +132,11 @@ class SchoolExcelService
             92,
             0,
             'Tổng công ty LILAMA:Đào tạo thợ hàn quốc tế; Doanh nghiệp Xây dựng Xuân Trường:Cung ứng kỹ sư thi công',
-            'NB-VIETXO-MAIN', 'MAIN', '', '',
         ],
         [
             'Trung tâm GDNN - GDTX Huyện Kim Bảng',
+            'NB-KIMBANG',
+            '',
             'GDTX',
             'Thị trấn Quế',
             'Thị trấn Quế, Huyện Kim Bảng',
@@ -164,7 +164,6 @@ class SchoolExcelService
             18,
             0,
             'Công ty May Xuất khẩu Kim Bảng:Thực tập nghề may; HTX Cơ khí Quế:Bảo dưỡng cơ khí',
-            'NB-KIMBANG-MAIN', 'MAIN', '', '',
         ]
     ];
 
@@ -242,14 +241,14 @@ class SchoolExcelService
         $sheet->setTitle('Mau_Nhap_Lieu');
 
         // 1. Tiêu đề chính trang tính
-        $sheet->mergeCells('A1:AF1');
+        $sheet->mergeCells('A1:AD1');
         $sheet->setCellValue('A1', 'KHUNG DỮ LIỆU NHẬP DANH SÁCH CƠ SỞ GIÁO DỤC - ĐỒNG BỘ THEO FORM QUẢN TRỊ ADMIN');
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('1E3A8A'));
         $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
         $sheet->getRowDimension(1)->setRowHeight(36);
 
         // 2. Dòng hướng dẫn nhanh
-        $sheet->mergeCells('A2:AF2');
+        $sheet->mergeCells('A2:AD2');
         $sheet->setCellValue('A2', 'Lưu ý: Các cột có dấu (*) là bắt buộc. Cột "Cấp học" và "Xã/Phường" chọn trực tiếp từ danh sách xổ xuống. Có thể xóa các dòng mẫu 4, 5, 6 trước khi nhập.');
         $sheet->getStyle('A2')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('64748B'));
         $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
@@ -292,7 +291,7 @@ class SchoolExcelService
 
         // 4. Thêm các dòng mẫu thực tế (Dòng 4, 5, 6)
         $rowIdx = 4;
-        $centerColumns = ['B', 'E', 'F', 'G', 'P']; // Cấp học, Lat, Lng, Phone, Employment %
+        $centerColumns = ['D', 'G', 'H', 'I', 'R']; // Cấp học, Lat, Lng, Phone, Employment %
         foreach (self::SAMPLE_ROWS as $row) {
             $colLetters = array_keys(self::COLUMNS);
             foreach ($row as $i => $val) {
@@ -328,7 +327,7 @@ class SchoolExcelService
         // =====================================================================
         // DATA VALIDATION: CỘT B (CẤP HỌC) & CỘT C (XÃ/PHƯỜNG) DẠNG SELECT DROPDOWN
         // =====================================================================
-        // Validation cho Cột B: Cấp học (B4:B500)
+        // Validation cho Cột D: Cấp học (D4:D500)
         $validationLevel = new DataValidation();
         $validationLevel->setType(DataValidation::TYPE_LIST);
         $validationLevel->setErrorStyle(DataValidation::STYLE_STOP);
@@ -341,9 +340,9 @@ class SchoolExcelService
         $validationLevel->setPromptTitle('Chọn Cấp học');
         $validationLevel->setPrompt('Bấm vào biểu tượng mũi tên để chọn Cấp học tương ứng.');
         $validationLevel->setFormula1("Danh_Muc!\$A\$2:\$A\$" . ($levelCount + 1));
-        $sheet->setDataValidation('B4:B500', $validationLevel);
+        $sheet->setDataValidation('D4:D500', $validationLevel);
 
-        // Validation cho Cột C: Xã / Phường (C4:C500)
+        // Validation cho Cột E: Xã / Phường (E4:E500)
         $validationWard = new DataValidation();
         $validationWard->setType(DataValidation::TYPE_LIST);
         $validationWard->setErrorStyle(DataValidation::STYLE_STOP);
@@ -356,7 +355,7 @@ class SchoolExcelService
         $validationWard->setPromptTitle('Chọn Xã / Phường');
         $validationWard->setPrompt('Bấm vào biểu tượng mũi tên để chọn Xã/Phường trụ sở.');
         $validationWard->setFormula1("Danh_Muc!\$B\$2:\$B\$" . ($wardCount + 1));
-        $sheet->setDataValidation('C4:C500', $validationWard);
+        $sheet->setDataValidation('E4:E500', $validationWard);
 
         // =====================================================================
         // SHEET 2: HƯỚNG DẪN QUY ƯỚC (Huong_Dan)
@@ -493,14 +492,14 @@ class SchoolExcelService
         $sheet->setTitle('Mau_Nhap_Lieu');
 
         // Tiêu đề chính trang tính
-        $sheet->mergeCells('A1:AF1');
+        $sheet->mergeCells('A1:AD1');
         $sheet->setCellValue('A1', 'DANH SÁCH CƠ SỞ GIÁO DỤC HIỆN CÓ TRÊN HỆ THỐNG (KHUNG CHUẨN 28 CỘT)');
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('1E3A8A'));
         $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
         $sheet->getRowDimension(1)->setRowHeight(36);
 
         // Dòng hướng dẫn nhanh
-        $sheet->mergeCells('A2:AF2');
+        $sheet->mergeCells('A2:AD2');
         $sheet->setCellValue('A2', 'Dữ liệu được xuất tự động từ hệ thống. Bạn có thể bổ sung, sửa đổi thông tin các trường hoặc thêm dòng mới, sau đó dùng chức năng "Nhập từ Excel" để cập nhật lên hệ thống.');
         $sheet->getStyle('A2')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('64748B'));
         $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
@@ -544,8 +543,8 @@ class SchoolExcelService
         $schools = School::with(['educationLevels', 'parentCampus:id,code'])->orderBy('name', 'asc')->get();
 
         $rowIdx = 4;
-        $centerColumns = ['B', 'E', 'F', 'G', 'P'];
-        $numColumns = ['I', 'J', 'K', 'M', 'N', 'O', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA'];
+        $centerColumns = ['D', 'G', 'H', 'I', 'R'];
+        $numColumns = ['K', 'L', 'M', 'O', 'P', 'Q', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'AA', 'AB', 'AC'];
 
         foreach ($schools as $s) {
             // Tên cấp học
@@ -608,37 +607,35 @@ class SchoolExcelService
 
             $rowMap = [
                 'A' => $s->name,
-                'B' => $levelName,
-                'C' => $s->ward,
-                'D' => $s->address,
-                'E' => $s->lat,
-                'F' => $s->lng,
-                'G' => $s->phone,
-                'H' => $s->website,
-                'I' => $s->campus_area_m2,
-                'J' => $s->classroom_count,
-                'K' => $s->workshops_count,
-                'L' => $leadersStr,
-                'M' => $s->annual_enrollment,
-                'N' => $s->student_count,
-                'O' => $s->annual_graduates,
-                'P' => $s->employment_rate,
-                'Q' => $majorsStr,
-                'R' => $s->teacher_count,
-                'S' => $s->teacher_quota,
-                'T' => $s->teachers_shortage,
-                'U' => $s->teachers_surplus,
-                'V' => $s->faculty_rank_1,
-                'W' => $s->faculty_rank_2,
-                'X' => $s->faculty_rank_3,
-                'Y' => $s->faculty_doctors,
-                'Z' => $s->faculty_masters,
-                'AA' => $s->faculty_professors,
-                'AB' => $partnersStr,
-                'AC' => $s->code,
-                'AD' => $s->campus_type ?: 'MAIN',
-                'AE' => $s->parentCampus?->code,
-                'AF' => $s->campus_name,
+                'B' => $s->parentCampus?->code ?? $s->code,
+                'C' => $s->campus_type === 'MAIN' ? null : $s->campus_name,
+                'D' => $levelName,
+                'E' => $s->ward,
+                'F' => $s->address,
+                'G' => $s->lat,
+                'H' => $s->lng,
+                'I' => $s->phone,
+                'J' => $s->website,
+                'K' => $s->campus_area_m2,
+                'L' => $s->classroom_count,
+                'M' => $s->workshops_count,
+                'N' => $leadersStr,
+                'O' => $s->annual_enrollment,
+                'P' => $s->student_count,
+                'Q' => $s->annual_graduates,
+                'R' => $s->employment_rate,
+                'S' => $majorsStr,
+                'T' => $s->teacher_count,
+                'U' => $s->teacher_quota,
+                'V' => $s->teachers_shortage,
+                'W' => $s->teachers_surplus,
+                'X' => $s->faculty_rank_1,
+                'Y' => $s->faculty_rank_2,
+                'Z' => $s->faculty_rank_3,
+                'AA' => $s->faculty_doctors,
+                'AB' => $s->faculty_masters,
+                'AC' => $s->faculty_professors,
+                'AD' => $partnersStr,
             ];
 
             foreach ($rowMap as $col => $val) {
@@ -669,7 +666,7 @@ class SchoolExcelService
             $rowIdx++;
         }
 
-        // Validation cho Cột B: Cấp học (B4:B500)
+        // Validation cho Cột D: Cấp học (D4:D500)
         $validationLevel = new DataValidation();
         $validationLevel->setType(DataValidation::TYPE_LIST);
         $validationLevel->setErrorStyle(DataValidation::STYLE_STOP);
@@ -680,9 +677,9 @@ class SchoolExcelService
         $validationLevel->setErrorTitle('Cấp học không hợp lệ');
         $validationLevel->setError('Vui lòng chọn Cấp học từ danh sách xổ xuống.');
         $validationLevel->setFormula1("Danh_Muc!\$A\$2:\$A\$" . ($levelCount + 1));
-        $sheet->setDataValidation('B4:B500', $validationLevel);
+        $sheet->setDataValidation('D4:D500', $validationLevel);
 
-        // Validation cho Cột C: Xã / Phường (C4:C500)
+        // Validation cho Cột E: Xã / Phường (E4:E500)
         $validationWard = new DataValidation();
         $validationWard->setType(DataValidation::TYPE_LIST);
         $validationWard->setErrorStyle(DataValidation::STYLE_STOP);
@@ -693,7 +690,7 @@ class SchoolExcelService
         $validationWard->setErrorTitle('Xã/Phường không hợp lệ');
         $validationWard->setError('Vui lòng chọn Xã/Phường từ danh sách 129 xã/phường có sẵn.');
         $validationWard->setFormula1("Danh_Muc!\$B\$2:\$B\$" . ($wardCount + 1));
-        $sheet->setDataValidation('C4:C500', $validationWard);
+        $sheet->setDataValidation('E4:E500', $validationWard);
 
         // =====================================================================
         // SHEET 2: HƯỚNG DẪN QUY ƯỚC (Huong_Dan)
@@ -831,23 +828,6 @@ class SchoolExcelService
         return $cachedCentroids[$strippedKey] ?? null;
     }
 
-    private function normalizeCampusType(mixed $value): string
-    {
-        $value = strtoupper(trim((string) $value));
-        if ($value === '') {
-            return 'MAIN';
-        }
-
-        $normalized = Str::upper(Str::ascii($value));
-        foreach (School::campusTypeLabels() as $type => $label) {
-            if ($normalized === $type || $normalized === Str::upper(Str::ascii($label))) {
-                return $type;
-            }
-        }
-
-        throw new \InvalidArgumentException('Loại cơ sở phải là MAIN, CAMPUS hoặc BRANCH.');
-    }
-
     /**
      * Nhập danh sách trường học từ file Excel với cơ chế chống lỗi 100% (Bulletproof Fallbacks)
      */
@@ -917,15 +897,31 @@ class SchoolExcelService
         }
         $offset = $hasWebsiteCol ? 1 : 0;
         $hasCampusColumns = collect($headerRow)
-            ->contains(fn ($header) => str_contains(mb_strtolower((string) $header), 'loại cơ sở'));
-        $codesInFile = collect($dataRows)
-            ->map(fn ($row) => trim((string) ($row[27 + $offset] ?? '')))
-            ->filter()
-            ->flip();
+            ->contains(fn ($header) => str_contains(mb_strtolower((string) $header), 'mã nhóm'));
+        $primaryCodesInFile = $hasCampusColumns
+            ? collect($dataRows)
+                ->filter(function ($row) use ($offset): bool {
+                    $label = trim((string) ($row[2] ?? ''));
+
+                    return $label === '' || mb_strtolower($label) === 'cơ sở chính';
+                })
+                ->map(fn ($row) => trim((string) ($row[1] ?? '')))
+                ->filter()
+                ->flip()
+            : collect();
         $deferredCampusLinks = [];
 
         foreach ($dataRows as $index => $row) {
             $rowNum = $index + 4; // Số dòng thực tế trong Excel
+
+            // The simplified layout keeps the group fields in B-C. Remove
+            // them from this working row so the established field parsing
+            // below retains its stable A-H / I-AB positions.
+            $primaryCode = $hasCampusColumns ? trim((string) ($row[1] ?? '')) : '';
+            $campusName = $hasCampusColumns ? (trim((string) ($row[2] ?? '')) ?: null) : null;
+            if ($hasCampusColumns) {
+                $row = array_merge([$row[0] ?? null], array_slice($row, 3));
+            }
 
             // 1. Tên trường học (Cột A - Bắt buộc)
             $name = trim((string)($row[0] ?? ''));
@@ -1021,26 +1017,29 @@ class SchoolExcelService
                 // 12. Doanh nghiệp liên kết - Phân tích thông minh
                 $partnersList = $this->parsePartnerEnterprisesClean($row[26 + $offset] ?? '');
 
-                // 13. Quan hệ cơ sở / phân hiệu. These fields are appended,
-                // therefore old 27/28-column files remain compatible.
-                $schoolCode = trim((string) ($row[27 + $offset] ?? ''));
-                $campusType = $hasCampusColumns ? $this->normalizeCampusType($row[28 + $offset] ?? '') : null;
-                $parentCode = $hasCampusColumns ? trim((string) ($row[29 + $offset] ?? '')) : '';
-                $campusName = $hasCampusColumns ? (trim((string) ($row[30 + $offset] ?? '')) ?: null) : null;
+                // 13. Quan hệ cơ sở / phân hiệu: users enter only one shared
+                // group code and an optional label. The type is inferred.
+                $isPrimaryCampus = $campusName === null || mb_strtolower($campusName) === 'cơ sở chính';
+                $campusType = $isPrimaryCampus
+                    ? 'MAIN'
+                    : (str_starts_with(mb_strtolower($campusName), 'phân hiệu') ? 'BRANCH' : 'CAMPUS');
 
-                if ($hasCampusColumns && $campusType !== 'MAIN' && $parentCode === '') {
-                    throw new \InvalidArgumentException('Cơ sở trực thuộc/phân hiệu phải có Mã cơ sở chính.');
+                if ($hasCampusColumns && ! $isPrimaryCampus && $primaryCode === '') {
+                    throw new \InvalidArgumentException('Cơ sở trực thuộc/phân hiệu phải có Mã nhóm / cơ sở chính.');
                 }
-                if ($hasCampusColumns && $campusType !== 'MAIN'
-                    && ! $schoolsByCode->has($parentCode) && ! $codesInFile->has($parentCode)) {
-                    throw new \InvalidArgumentException("Không tìm thấy Mã cơ sở chính '{$parentCode}'.");
+                if ($hasCampusColumns && ! $isPrimaryCampus
+                    && ! $schoolsByCode->has($primaryCode) && ! $primaryCodesInFile->has($primaryCode)) {
+                    throw new \InvalidArgumentException("Không tìm thấy Mã nhóm / cơ sở chính '{$primaryCode}'.");
                 }
 
-                // Prefer a stable code; the name is retained as the fallback
-                // for templates created before these additional columns.
-                $school = $schoolCode !== '' ? $schoolsByCode->get($schoolCode) : $schoolsByName->get($name);
-                if ($schoolCode !== '' && $school && $school->name !== $name && $schoolsByName->has($name)) {
-                    throw new \InvalidArgumentException('Mã cơ sở đang thuộc về một bản ghi khác với tên cơ sở trong dòng này.');
+                // A primary row is found by its stable group code. Child rows
+                // retain their individual record code and are matched by name.
+                $school = ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== '')
+                    ? $schoolsByCode->get($primaryCode)
+                    : $schoolsByName->get($name);
+                if ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== ''
+                    && $school && $school->name !== $name && $schoolsByName->has($name)) {
+                    throw new \InvalidArgumentException('Mã nhóm đang thuộc về một cơ sở chính khác.');
                 }
                 $isNew = false;
                 if (!$school) {
@@ -1082,15 +1081,15 @@ class SchoolExcelService
                 $school->faculty_professors = $facultyProfessors;
                 $school->partner_enterprises = !empty($partnersList) ? $partnersList : null;
 
-                if ($schoolCode !== '') {
-                    $school->code = $schoolCode;
+                if ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== '') {
+                    $school->code = $primaryCode;
                 }
                 if ($hasCampusColumns) {
                     // Child rows may precede the primary campus. Persist all
                     // locations first, then resolve their parent in one pass.
                     $school->campus_type = 'MAIN';
                     $school->parent_school_id = null;
-                    $school->campus_name = $campusType === 'MAIN' ? $campusName : null;
+                    $school->campus_name = null;
                 }
 
                 $school->save();
@@ -1100,11 +1099,11 @@ class SchoolExcelService
                 $schoolsByName->put($name, $school);
                 $schoolsByCode->put($school->code, $school);
 
-                if ($hasCampusColumns && $campusType !== 'MAIN') {
+                if ($hasCampusColumns && ! $isPrimaryCampus) {
                     $deferredCampusLinks[] = [
                         'id' => $school->id,
                         'type' => $campusType,
-                        'parent_code' => $parentCode,
+                        'parent_code' => $primaryCode,
                         'name' => $campusName,
                         'row' => $rowNum,
                     ];
