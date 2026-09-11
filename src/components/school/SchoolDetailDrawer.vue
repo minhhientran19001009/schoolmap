@@ -51,6 +51,11 @@
             <span>{{ school.ward || school.district_name || 'Ninh Bình' }}</span>
           </span>
 
+          <!-- Campus Note Badge -->
+          <span v-if="school.campus_note" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-400/25 text-amber-200 border border-amber-300/30">
+            <i class="fa-solid fa-building-flag text-[10px] text-amber-300"></i>
+            <span>{{ school.campus_note }}</span>
+          </span>
         </div>
       </div>
 
@@ -121,6 +126,11 @@
               <div v-if="school.address" class="flex items-start gap-2 text-slate-600">
                 <i class="fa-solid fa-location-dot text-slate-400 mt-0.5 w-4 text-center flex-shrink-0"></i>
                 <span class="leading-snug">{{ school.address }}</span>
+              </div>
+
+              <div v-if="school.campus_note" class="flex items-start gap-2 text-slate-600">
+                <i class="fa-solid fa-building-flag text-amber-500 mt-0.5 w-4 text-center flex-shrink-0"></i>
+                <span class="leading-snug text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/50">{{ school.campus_note }}</span>
               </div>
 
               <div v-if="school.phone" class="flex items-center gap-2 text-slate-600">

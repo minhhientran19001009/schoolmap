@@ -13,7 +13,7 @@ class School extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'code', 'name', 'education_level_id', 'school_type_id', 'special_type', 'district_id',
+        'id', 'code', 'name', 'campus_note', 'education_level_id', 'school_type_id', 'special_type', 'district_id',
         'ward', 'legacy_province', 'address', 'lat', 'lng', 'phone', 'email', 'website',
         'principal', 'leaders', 'training_majors', 'is_national_standard', 'national_standard_level', 'founded_year',
         'student_count', 'annual_enrollment', 'annual_graduates', 'employment_rate',
