@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class School extends Model
 {
@@ -13,7 +14,8 @@ class School extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'code', 'name', 'campus_note', 'education_level_id', 'school_type_id', 'special_type', 'district_id',
+        'id', 'code', 'name', 'campus_note', 'campus_type', 'campus_name', 'parent_school_id',
+        'education_level_id', 'school_type_id', 'special_type', 'district_id',
         'ward', 'legacy_province', 'address', 'lat', 'lng', 'phone', 'email', 'website',
         'principal', 'leaders', 'training_majors', 'is_national_standard', 'national_standard_level', 'founded_year',
         'student_count', 'annual_enrollment', 'annual_graduates', 'employment_rate',
@@ -94,6 +96,8 @@ class School extends Model
                 $school->school_type_id = 'cong_lap';
             }
 
+            $school->normalizeCampusRelationship();
+
             if (empty($school->lat) || empty($school->lng)) {
                 $school->lat = 20.2506;
                 $school->lng = 105.9745;
@@ -101,6 +105,60 @@ class School extends Model
 
             $school->geom = DB::raw("Point({$school->lng}, {$school->lat})");
         });
+    }
+
+    /** @return array<string, string> */
+    public static function campusTypeLabels(): array
+    {
+        return [
+            'MAIN' => 'Cơ sở chính',
+            'CAMPUS' => 'Cơ sở trực thuộc',
+            'BRANCH' => 'Phân hiệu',
+        ];
+    }
+
+    /** Keep the hierarchy to one level and block invalid/cyclic relations. */
+    protected function normalizeCampusRelationship(): void
+    {
+        $types = static::campusTypeLabels();
+        $type = strtoupper((string) ($this->campus_type ?: 'MAIN'));
+
+        if (! array_key_exists($type, $types)) {
+            throw ValidationException::withMessages(['campus_type' => 'Loại cơ sở không hợp lệ.']);
+        }
+
+        $this->campus_type = $type;
+        $this->campus_name = filled($this->campus_name) ? trim((string) $this->campus_name) : null;
+
+        if ($type === 'MAIN') {
+            $this->parent_school_id = null;
+
+            return;
+        }
+
+        $parentId = filled($this->parent_school_id) ? (string) $this->parent_school_id : null;
+        if ($parentId === null) {
+            throw ValidationException::withMessages([
+                'parent_school_id' => 'Cơ sở trực thuộc phải chọn một cơ sở chính.',
+            ]);
+        }
+
+        if ($parentId === (string) $this->getKey()) {
+            throw ValidationException::withMessages([
+                'parent_school_id' => 'Một cơ sở không thể là cơ sở chính của chính nó.',
+            ]);
+        }
+
+        $parent = static::query()->select(['id', 'campus_type', 'parent_school_id'])->find($parentId);
+        if ($parent === null || $parent->campus_type !== 'MAIN' || $parent->parent_school_id !== null) {
+            throw ValidationException::withMessages([
+                'parent_school_id' => 'Chỉ có thể liên kết với một cơ sở chính hợp lệ.',
+            ]);
+        }
+
+        if (blank($this->campus_note)) {
+            $this->campus_note = $this->campus_name ?: $types[$type];
+        }
     }
 
     public function wardRelation()
@@ -111,5 +169,16 @@ class School extends Model
     public function educationLevels()
     {
         return $this->belongsToMany(EducationLevel::class, 'school_education_levels', 'school_id', 'education_level_id');
+    }
+
+    public function parentCampus()
+    {
+        return $this->belongsTo(School::class, 'parent_school_id');
+    }
+
+    public function childCampuses()
+    {
+        return $this->hasMany(School::class, 'parent_school_id')
+            ->orderBy('name');
     }
 }

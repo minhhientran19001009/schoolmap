@@ -14,6 +14,7 @@
       :school="selectedSchool"
       @close="selectedSchool = null"
       @buffer-analyze="handleBufferAnalyze"
+      @view-related-campus="openRelatedCampus"
     />
   </div>
 </template>
@@ -33,8 +34,21 @@ async function loadData() {
   await schoolService.syncFromApi()
 }
 
-function openDetailModal(school) {
+async function openDetailModal(school) {
   selectedSchool.value = school
+
+  // The list endpoint is lightweight; hydrate the drawer lazily with full data.
+  const detail = await schoolService.getDetails(school?.id || school?.code)
+  if (detail && selectedSchool.value?.id === school?.id) {
+    selectedSchool.value = detail
+  }
+}
+
+async function openRelatedCampus(campus) {
+  await openDetailModal(campus)
+  nextTick(() => {
+    mapRef.value?.flyToSchool(campus, false)
+  })
 }
 
 function handleBufferAnalyze(school) {
@@ -43,8 +57,8 @@ function handleBufferAnalyze(school) {
   })
 }
 
-onMounted(() => {
-  loadData()
+onMounted(async () => {
+  await loadData()
 
   // Handle URL query parameters e.g. ?school=37001 or ?buffer=37001
   const params = new URLSearchParams(window.location.search)
@@ -52,7 +66,7 @@ onMounted(() => {
   if (schoolParam) {
     const s = schools.value.find(item => item.id === schoolParam || item.code === schoolParam)
     if (s) {
-      selectedSchool.value = s
+      openDetailModal(s)
       nextTick(() => {
         mapRef.value?.flyToSchool(s)
       })

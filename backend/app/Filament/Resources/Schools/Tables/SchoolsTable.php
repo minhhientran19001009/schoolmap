@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Schools\Tables;
 
+use App\Models\School;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
@@ -24,6 +25,18 @@ class SchoolsTable
                     ->sortable()
                     ->weight('bold')
                     ->wrap(),
+
+                TextColumn::make('campus_type')
+                    ->label('Loại cơ sở')
+                    ->badge()
+                    ->formatStateUsing(fn (?string $state): string => School::campusTypeLabels()[$state ?? 'MAIN'] ?? 'Không xác định')
+                    ->color(fn (?string $state): string => $state === 'MAIN' ? 'success' : 'info')
+                    ->sortable(),
+
+                TextColumn::make('parentCampus.name')
+                    ->label('Cơ sở chính')
+                    ->placeholder('—')
+                    ->toggleable(),
 
                 TextColumn::make('educationLevels.name')
                     ->label('Cấp học')
@@ -48,6 +61,10 @@ class SchoolsTable
                 SelectFilter::make('educationLevels')
                     ->label('Lọc theo Cấp học / Danh mục')
                     ->relationship('educationLevels', 'name'),
+
+                SelectFilter::make('campus_type')
+                    ->label('Lọc theo loại cơ sở')
+                    ->options(School::campusTypeLabels()),
             ])
             ->recordActions([
                 ActionGroup::make([

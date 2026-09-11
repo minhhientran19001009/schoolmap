@@ -211,18 +211,59 @@ let districtChartInstance = null
 let scaleChartInstance = null
 let typeChartInstance = null
 
-// KPI Computations
-const totalSchools = computed(() => props.schools.length)
-const totalStudents = computed(() => props.schools.reduce((acc, s) => acc + (s.student_count || 0), 0))
-const totalTeachers = computed(() => props.schools.reduce((acc, s) => acc + (s.teacher_count || 0), 0))
+// Aggregate the dataset once. The dashboard has several cards/charts, so
+// repeated filter/reduce passes become noticeable as the school count grows.
+const summary = computed(() => {
+  const result = {
+    totalSchools: props.schools.length,
+    totalStudents: 0,
+    totalTeachers: 0,
+    nationalStandardCount: 0,
+    publicCount: 0,
+    byDistrict: new Map(),
+    byLevel: new Map()
+  }
 
-const nationalStandardCount = computed(() => props.schools.filter(s => s.is_national_standard).length)
+  for (const school of props.schools) {
+    result.totalStudents += school.student_count || 0
+    result.totalTeachers += school.teacher_count || 0
+    if (school.is_national_standard) result.nationalStandardCount++
+    if (school.school_type === 'cong_lap' || school.school_type_id === 'cong_lap') result.publicCount++
+
+    const district = result.byDistrict.get(school.district_id) || {
+      total: 0, students: 0, teachers: 0,
+      mam_non: 0, tieu_hoc: 0, thcs: 0, thpt: 0, other: 0
+    }
+    district.total++
+    district.students += school.student_count || 0
+    district.teachers += school.teacher_count || 0
+    if (['mam_non', 'tieu_hoc', 'thcs', 'thpt'].includes(school.education_level)) {
+      district[school.education_level]++
+    } else {
+      district.other++
+    }
+    result.byDistrict.set(school.district_id, district)
+
+    const level = result.byLevel.get(school.education_level) || { students: 0, teachers: 0 }
+    level.students += school.student_count || 0
+    level.teachers += school.teacher_count || 0
+    result.byLevel.set(school.education_level, level)
+  }
+
+  return result
+})
+
+const totalSchools = computed(() => summary.value.totalSchools)
+const totalStudents = computed(() => summary.value.totalStudents)
+const totalTeachers = computed(() => summary.value.totalTeachers)
+
+const nationalStandardCount = computed(() => summary.value.nationalStandardCount)
 const nationalStandardPercent = computed(() => {
   if (!totalSchools.value) return 0
   return Math.round((nationalStandardCount.value / totalSchools.value) * 100)
 })
 
-const publicCount = computed(() => props.schools.filter(s => s.school_type === 'cong_lap').length)
+const publicCount = computed(() => summary.value.publicCount)
 const publicPercent = computed(() => {
   if (!totalSchools.value) return 0
   return Math.round((publicCount.value / totalSchools.value) * 100)
@@ -231,24 +272,27 @@ const publicPercent = computed(() => {
 // District Breakdown Table
 const districtSummary = computed(() => {
   return props.districts.map(d => {
-    const dSchools = props.schools.filter(s => s.district_id === d.id)
+    const dSchools = summary.value.byDistrict.get(d.id) || {
+      total: 0, students: 0, teachers: 0,
+      mam_non: 0, tieu_hoc: 0, thcs: 0, thpt: 0, other: 0
+    }
     return {
       id: d.id,
       name: d.name,
-      total: dSchools.length,
-      mam_non: dSchools.filter(s => s.education_level === 'mam_non').length,
-      tieu_hoc: dSchools.filter(s => s.education_level === 'tieu_hoc').length,
-      thcs: dSchools.filter(s => s.education_level === 'thcs').length,
-      thpt: dSchools.filter(s => s.education_level === 'thpt').length,
-      other: dSchools.filter(s => !['mam_non', 'tieu_hoc', 'thcs', 'thpt'].includes(s.education_level)).length,
-      students: dSchools.reduce((acc, s) => acc + (s.student_count || 0), 0),
-      teachers: dSchools.reduce((acc, s) => acc + (s.teacher_count || 0), 0)
+      ...dSchools
     }
   })
 })
 
 function initCharts() {
   if (!levelChartRef.value) return
+
+  // Re-initialization happens after data loading; dispose old instances first
+  // to prevent detached canvases and duplicate resize handlers.
+  levelChartInstance?.dispose()
+  districtChartInstance?.dispose()
+  scaleChartInstance?.dispose()
+  typeChartInstance?.dispose()
 
   // Chart 1: Donut Level
   const levelCounts = {}
@@ -300,8 +344,8 @@ function initCharts() {
   // Chart 3: Scale Comparison
   const scaleLevels = ['gdtx', 'trung_cap', 'cao_dang', 'dai_hoc']
   const scaleLabels = scaleLevels.map(l => LEVEL_MAP[l]?.label)
-  const studentsByLevel = scaleLevels.map(l => props.schools.filter(s => s.education_level === l).reduce((acc, s) => acc + (s.student_count || 0), 0))
-  const teachersByLevel = scaleLevels.map(l => props.schools.filter(s => s.education_level === l).reduce((acc, s) => acc + (s.teacher_count || 0), 0))
+  const studentsByLevel = scaleLevels.map(l => summary.value.byLevel.get(l)?.students || 0)
+  const teachersByLevel = scaleLevels.map(l => summary.value.byLevel.get(l)?.teachers || 0)
 
   scaleChartInstance = echarts.init(scaleChartRef.value)
   scaleChartInstance.setOption({
@@ -373,5 +417,5 @@ watch(() => props.schools, () => {
   nextTick(() => {
     initCharts()
   })
-}, { deep: true })
+})
 </script>

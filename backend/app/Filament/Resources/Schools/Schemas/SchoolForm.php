@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Schools\Schemas;
 
+use App\Models\School;
 use App\Models\Ward;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Hidden;
@@ -13,6 +14,8 @@ use Filament\Schemas\Components\Grid;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Tabs;
 use Filament\Schemas\Components\Tabs\Tab;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -71,6 +74,47 @@ class SchoolForm
                                         ->placeholder('Chọn Phường / Xã')
                                         ->extraAttributes(['id' => 'school-ward-select']),
                                 ]),
+
+                                Section::make('Quan hệ cơ sở / phân hiệu')
+                                    ->description('Mỗi cơ sở có địa chỉ và tọa độ riêng. Chọn cơ sở chính để nhóm các địa điểm cùng một đơn vị khi hiển thị trên bản đồ.')
+                                    ->schema([
+                                        Grid::make(3)->schema([
+                                            Select::make('campus_type')
+                                                ->label('Loại cơ sở')
+                                                ->options(School::campusTypeLabels())
+                                                ->default('MAIN')
+                                                ->required()
+                                                ->live()
+                                                ->afterStateUpdated(function (Set $set, ?string $state): void {
+                                                    if ($state === 'MAIN') {
+                                                        $set('parent_school_id', null);
+                                                    }
+                                                })
+                                                ->native(false),
+
+                                            Select::make('parent_school_id')
+                                                ->label('Cơ sở chính')
+                                                ->options(fn () => School::query()
+                                                    ->where('campus_type', 'MAIN')
+                                                    ->orderBy('name')
+                                                    ->pluck('name', 'id')
+                                                ->all())
+                                                ->searchable()
+                                                ->preload()
+                                                ->disabled(fn (Get $get): bool => $get('campus_type') === 'MAIN')
+                                                ->dehydrated()
+                                                ->required(fn (Get $get): bool => $get('campus_type') !== 'MAIN')
+                                                ->helperText(fn (Get $get): string => $get('campus_type') === 'MAIN'
+                                                    ? 'Không áp dụng cho cơ sở chính.'
+                                                    : 'Bắt buộc chọn cơ sở chính cho cơ sở trực thuộc hoặc phân hiệu.'),
+
+                                            TextInput::make('campus_name')
+                                                ->label('Tên cơ sở / phân hiệu')
+                                                ->maxLength(150)
+                                                ->placeholder('VD: Cơ sở Tam Điệp'),
+
+                                        ]),
+                                    ]),
 
                                 // Bộ chọn vị trí trên bản đồ Leaflet
                                 View::make('filament.forms.components.location-picker')

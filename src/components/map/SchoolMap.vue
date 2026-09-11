@@ -254,22 +254,28 @@ watch(() => filterStore.ward, (newWard) => {
 
 // Filtered schools computation from filterStore
 const filteredSchools = computed(() => {
+  const q = filterStore.search.toLowerCase().trim()
+  const filterLvl = (filterStore.level || 'all').replace(/-/g, '_')
+  const selectedW = filterStore.ward && filterStore.ward !== 'all'
+    ? filterStore.ward.toLowerCase().trim()
+    : ''
+  const selectedWNorm = selectedW ? normalizeWard(selectedW) : ''
+  const wardAddressRegex = selectedWNorm
+    ? new RegExp(`(^|[,\\s])(xã|phường|thị trấn)\\s+${selectedWNorm}([,\\s]|$)`, 'i')
+    : null
+
   return props.schools.filter(s => {
-    const q = filterStore.search.toLowerCase().trim()
     const matchSearch = !q || 
-      s.name.toLowerCase().includes(q) ||
-      (s.code && s.code.toLowerCase().includes(q)) ||
-      (s.address && s.address.toLowerCase().includes(q)) ||
-      (s.ward && s.ward.toLowerCase().includes(q))
+      (s.name || '').toLowerCase().includes(q) ||
+      (s.code || '').toLowerCase().includes(q) ||
+      (s.address || '').toLowerCase().includes(q) ||
+      (s.ward || '').toLowerCase().includes(q)
 
     const sLevel = (s.education_level || '').replace(/-/g, '_')
-    const filterLvl = (filterStore.level || 'all').replace(/-/g, '_')
     const matchLevel = filterLvl === 'all' || sLevel === filterLvl
 
     let matchWard = true
-    if (filterStore.ward && filterStore.ward !== 'all') {
-      const selectedW = filterStore.ward.toLowerCase().trim()
-      const selectedWNorm = normalizeWard(selectedW)
+    if (selectedWNorm) {
       const sWard = (s.ward || '').toLowerCase().trim()
       const sWardNorm = normalizeWard(sWard)
 
@@ -277,8 +283,7 @@ const filteredSchools = computed(() => {
         matchWard = sWardNorm === selectedWNorm
       } else if (!sWard && s.address) {
         const sAddr = (s.address || '').toLowerCase().trim()
-        const regex = new RegExp(`(^|[,\\s])(xã|phường|thị trấn)\\s+${selectedWNorm}([,\\s]|$)`, 'i')
-        matchWard = regex.test(sAddr)
+        matchWard = wardAddressRegex?.test(sAddr) || false
       } else {
         matchWard = false
       }
@@ -560,11 +565,38 @@ function changeBasemap(type) {
 function renderMarkers(schools) {
   if (!markerClusterGroup) return
 
-  markerClusterGroup.clearLayers()
-  markersMap.clear()
+  const wantedIds = new Set(schools.map(s => s.id))
+  const availableIds = new Set((props.schools || []).map(s => s.id))
+
+  // Keep existing markers and only change the filtered delta. This avoids
+  // rebuilding all Leaflet DOM nodes and popup handlers on every filter input.
+  for (const [id, marker] of markersMap) {
+    if (!wantedIds.has(id)) {
+      markerClusterGroup.removeLayer(marker)
+    }
+    if (!availableIds.has(id)) {
+      markersMap.delete(id)
+    }
+  }
 
   schools.forEach(school => {
     if (!school.lat || !school.lng) return
+
+    const existingMarker = markersMap.get(school.id)
+    if (existingMarker) {
+      // A CRUD refresh replaces school objects. Recreate only changed markers
+      // so updated coordinates/popup content are reflected without rebuilding
+      // markers that are merely being filtered.
+      if (existingMarker.schoolData !== school) {
+        markerClusterGroup.removeLayer(existingMarker)
+        markersMap.delete(school.id)
+      } else {
+        if (!markerClusterGroup.hasLayer(existingMarker)) {
+          markerClusterGroup.addLayer(existingMarker)
+        }
+        return
+      }
+    }
 
     const levelConfig = LEVEL_MAP[school.education_level] || { color: '#64748b', icon: 'fa-solid fa-school' }
     
@@ -805,10 +837,12 @@ function setupPopupEventListeners(school) {
   }, 50)
 }
 
-function flyToSchool(school) {
+function flyToSchool(school, openDetail = true) {
   if (!school.lat || !school.lng || !map) return
   
-  emit('view-detail', school)
+  if (openDetail) {
+    emit('view-detail', school)
+  }
 
   map.flyTo([school.lat, school.lng], 16, {
     duration: 1.2
@@ -909,7 +943,7 @@ function resetBounds() {
 // Watch filtered schools change to re-render markers
 watch(filteredSchools, (newSchools) => {
   renderMarkers(newSchools)
-}, { deep: true })
+})
 
 onMounted(() => {
   window.__openSchoolFromWardPopup = (schoolId) => {

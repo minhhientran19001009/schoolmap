@@ -9,6 +9,7 @@ use App\Filament\Resources\Schools\Schemas\SchoolForm;
 use App\Filament\Resources\Schools\Tables\SchoolsTable;
 use App\Models\School;
 use BackedEnum;
+use Illuminate\Database\Eloquent\Builder;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -34,6 +35,11 @@ class SchoolResource extends Resource
     public static function table(Table $table): Table
     {
         return SchoolsTable::configure($table);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()->with('parentCampus:id,name');
     }
 
     public static function getRelations(): array

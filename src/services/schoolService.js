@@ -42,6 +42,11 @@ const API_ENDPOINTS = [
   'http://127.0.0.1:8000/api/schools'
 ]
 
+// Several layouts mount at the same time and may all request the school list.
+// Reuse the same promise so the database and browser only handle one request.
+let syncPromise = null
+const detailPromises = new Map()
+
 async function requestApi(path, options = {}) {
   const isLocal = typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
   const hosts = envBase 
@@ -87,37 +92,46 @@ export const schoolService = {
 
   // Fetch directly from DB via backend API
   async syncFromApi() {
+    if (syncPromise) return syncPromise
+
     isSchoolsLoading.value = true
-    try {
-      for (const endpoint of API_ENDPOINTS) {
-        try {
-          const res = await fetch(endpoint, {
-            headers: { 'Accept': 'application/json' }
-          })
-          if (res.ok) {
-            const data = await res.json()
-            if (Array.isArray(data)) {
-              const normalized = data.map(s => {
-                if (s.education_level) {
-                  s.education_level = s.education_level.replace(/-/g, '_')
-                }
-                return s
-              })
-              const validLevels = ALLOWED_LEVELS.map(l => l.replace(/-/g, '_'))
-              const filtered = normalized.filter(s => validLevels.includes(s.education_level))
-              liveSchools.value = filtered
-              isSchoolsLoading.value = false
-              return filtered
+    syncPromise = (async () => {
+      try {
+        for (const endpoint of API_ENDPOINTS) {
+          try {
+            const res = await fetch(endpoint, {
+              headers: { 'Accept': 'application/json' }
+            })
+            if (res.ok) {
+              const data = await res.json()
+              if (Array.isArray(data)) {
+                const normalized = data.map(s => {
+                  if (s.education_level) {
+                    s.education_level = s.education_level.replace(/-/g, '_')
+                  }
+                  return s
+                })
+                const validLevels = ALLOWED_LEVELS.map(l => l.replace(/-/g, '_'))
+                const filtered = normalized.filter(s => validLevels.includes(s.education_level))
+                liveSchools.value = filtered
+                return filtered
+              }
             }
+          } catch (err) {
+            // try next endpoint
           }
-        } catch (err) {
-          // try next
         }
+      } finally {
+        isSchoolsLoading.value = false
       }
+      return liveSchools.value
+    })()
+
+    try {
+      return await syncPromise
     } finally {
-      isSchoolsLoading.value = false
+      syncPromise = null
     }
-    return liveSchools.value
   },
 
   getAll() {
@@ -135,6 +149,24 @@ export const schoolService = {
 
   getById(id) {
     return liveSchools.value.find(s => s.id === id || s.code === id) || null
+  },
+
+  // Heavy detail fields are fetched only when a user opens a school profile.
+  async getDetails(id) {
+    if (!id) return null
+    const cacheKey = String(id)
+    if (detailPromises.has(cacheKey)) return await detailPromises.get(cacheKey)
+
+    const promise = requestApi(`/api/schools/${encodeURIComponent(cacheKey)}`)
+    detailPromises.set(cacheKey, promise)
+    try {
+      const detail = await promise
+      if (!detail) detailPromises.delete(cacheKey)
+      return detail
+    } catch (error) {
+      detailPromises.delete(cacheKey)
+      throw error
+    }
   },
 
   async add(school) {
@@ -160,6 +192,7 @@ export const schoolService = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(updateData)
     })
+    detailPromises.delete(String(targetId))
     await this.syncFromApi()
     return res || updateData
   },
@@ -168,6 +201,7 @@ export const schoolService = {
     await requestApi(`/api/schools/${id}`, {
       method: 'DELETE'
     })
+    detailPromises.delete(String(id))
     await this.syncFromApi()
     return true
   },

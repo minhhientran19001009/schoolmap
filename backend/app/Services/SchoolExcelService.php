@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class SchoolExcelService
 {
     /**
-     * Danh sách 28 cột dữ liệu đồng bộ 100% với toàn bộ 5 Tab trong Form Admin (SchoolForm)
+     * Danh sách cột dữ liệu đồng bộ với toàn bộ Form Admin (SchoolForm)
      */
     public const COLUMNS = [
         // TAB 1: THÔNG TIN CHUNG & VỊ TRÍ ĐỊA LÝ
@@ -61,10 +61,16 @@ class SchoolExcelService
 
         // TAB 5: DOANH NGHIỆP LIÊN KẾT
         'AB' => ['header' => 'Doanh nghiệp liên kết', 'width' => 45, 'desc' => 'Cú pháp: Tên DN:Nội dung hợp tác, cách nhau bằng dấu chấm phẩy ;'],
+
+        // QUAN HỆ CƠ SỞ / PHÂN HIỆU
+        'AC' => ['header' => 'Mã cơ sở', 'width' => 18, 'desc' => 'Mã duy nhất của địa điểm. Nên nhập để liên kết cơ sở chính và phân hiệu trong cùng một lần import.'],
+        'AD' => ['header' => 'Loại cơ sở', 'width' => 22, 'desc' => 'Một trong: MAIN (cơ sở chính), CAMPUS (cơ sở trực thuộc), BRANCH (phân hiệu). Để trống mặc định là MAIN.'],
+        'AE' => ['header' => 'Mã cơ sở chính', 'width' => 22, 'desc' => 'Bắt buộc khi Loại cơ sở khác MAIN. Nhập đúng giá trị ở cột Mã cơ sở của cơ sở chính.'],
+        'AF' => ['header' => 'Tên cơ sở / phân hiệu', 'width' => 26, 'desc' => 'Tên ngắn hiển thị trong nhóm, ví dụ: Cơ sở Tam Điệp.'],
     ];
 
     /**
-     * Dữ liệu mẫu hoàn chỉnh 28 cột cho 3 cấp học
+     * Dữ liệu mẫu hoàn chỉnh cho 3 cấp học
      */
     public const SAMPLE_ROWS = [
         [
@@ -95,7 +101,8 @@ class SchoolExcelService
             45,
             140,
             6,
-            'Tập đoàn Hyundai Thành Công:Tuyển dụng kỹ sư & Thực tập; Công ty TNHH Mcnex Vina:Hợp tác R&D vi mạch'
+            'Tập đoàn Hyundai Thành Công:Tuyển dụng kỹ sư & Thực tập; Công ty TNHH Mcnex Vina:Hợp tác R&D vi mạch',
+            'NB-HLU-MAIN', 'MAIN', '', '',
         ],
         [
             'Trường Cao đẳng Cơ điện Xây dựng Việt Xô',
@@ -125,7 +132,8 @@ class SchoolExcelService
             8,
             92,
             0,
-            'Tổng công ty LILAMA:Đào tạo thợ hàn quốc tế; Doanh nghiệp Xây dựng Xuân Trường:Cung ứng kỹ sư thi công'
+            'Tổng công ty LILAMA:Đào tạo thợ hàn quốc tế; Doanh nghiệp Xây dựng Xuân Trường:Cung ứng kỹ sư thi công',
+            'NB-VIETXO-MAIN', 'MAIN', '', '',
         ],
         [
             'Trung tâm GDNN - GDTX Huyện Kim Bảng',
@@ -155,7 +163,8 @@ class SchoolExcelService
             1,
             18,
             0,
-            'Công ty May Xuất khẩu Kim Bảng:Thực tập nghề may; HTX Cơ khí Quế:Bảo dưỡng cơ khí'
+            'Công ty May Xuất khẩu Kim Bảng:Thực tập nghề may; HTX Cơ khí Quế:Bảo dưỡng cơ khí',
+            'NB-KIMBANG-MAIN', 'MAIN', '', '',
         ]
     ];
 
@@ -232,15 +241,15 @@ class SchoolExcelService
         $sheet = $spreadsheet->getSheet(0);
         $sheet->setTitle('Mau_Nhap_Lieu');
 
-        // 1. Tiêu đề chính trang tính (Dòng 1: Gộp từ A1 đến AB1)
-        $sheet->mergeCells('A1:AB1');
+        // 1. Tiêu đề chính trang tính
+        $sheet->mergeCells('A1:AF1');
         $sheet->setCellValue('A1', 'KHUNG DỮ LIỆU NHẬP DANH SÁCH CƠ SỞ GIÁO DỤC - ĐỒNG BỘ THEO FORM QUẢN TRỊ ADMIN');
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('1E3A8A'));
         $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
         $sheet->getRowDimension(1)->setRowHeight(36);
 
-        // 2. Dòng hướng dẫn nhanh (Dòng 2: Gộp từ A2 đến AB2)
-        $sheet->mergeCells('A2:AB2');
+        // 2. Dòng hướng dẫn nhanh
+        $sheet->mergeCells('A2:AF2');
         $sheet->setCellValue('A2', 'Lưu ý: Các cột có dấu (*) là bắt buộc. Cột "Cấp học" và "Xã/Phường" chọn trực tiếp từ danh sách xổ xuống. Có thể xóa các dòng mẫu 4, 5, 6 trước khi nhập.');
         $sheet->getStyle('A2')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('64748B'));
         $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
@@ -483,15 +492,15 @@ class SchoolExcelService
         $sheet = $spreadsheet->getSheet(0);
         $sheet->setTitle('Mau_Nhap_Lieu');
 
-        // Tiêu đề chính trang tính (Dòng 1: Gộp từ A1 đến AB1)
-        $sheet->mergeCells('A1:AB1');
+        // Tiêu đề chính trang tính
+        $sheet->mergeCells('A1:AF1');
         $sheet->setCellValue('A1', 'DANH SÁCH CƠ SỞ GIÁO DỤC HIỆN CÓ TRÊN HỆ THỐNG (KHUNG CHUẨN 28 CỘT)');
         $sheet->getStyle('A1')->getFont()->setBold(true)->setSize(14)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('1E3A8A'));
         $sheet->getStyle('A1')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
         $sheet->getRowDimension(1)->setRowHeight(36);
 
-        // Dòng hướng dẫn nhanh (Dòng 2: Gộp từ A2 đến AB2)
-        $sheet->mergeCells('A2:AB2');
+        // Dòng hướng dẫn nhanh
+        $sheet->mergeCells('A2:AF2');
         $sheet->setCellValue('A2', 'Dữ liệu được xuất tự động từ hệ thống. Bạn có thể bổ sung, sửa đổi thông tin các trường hoặc thêm dòng mới, sau đó dùng chức năng "Nhập từ Excel" để cập nhật lên hệ thống.');
         $sheet->getStyle('A2')->getFont()->setItalic(true)->setSize(10)->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color('64748B'));
         $sheet->getStyle('A2')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
@@ -532,7 +541,7 @@ class SchoolExcelService
         $sheet->getRowDimension(3)->setRowHeight(34);
 
         // Lấy danh sách toàn bộ trường học từ CSDL
-        $schools = School::with('educationLevels')->orderBy('name', 'asc')->get();
+        $schools = School::with(['educationLevels', 'parentCampus:id,code'])->orderBy('name', 'asc')->get();
 
         $rowIdx = 4;
         $centerColumns = ['B', 'E', 'F', 'G', 'P'];
@@ -626,6 +635,10 @@ class SchoolExcelService
                 'Z' => $s->faculty_masters,
                 'AA' => $s->faculty_professors,
                 'AB' => $partnersStr,
+                'AC' => $s->code,
+                'AD' => $s->campus_type ?: 'MAIN',
+                'AE' => $s->parentCampus?->code,
+                'AF' => $s->campus_name,
             ];
 
             foreach ($rowMap as $col => $val) {
@@ -818,6 +831,23 @@ class SchoolExcelService
         return $cachedCentroids[$strippedKey] ?? null;
     }
 
+    private function normalizeCampusType(mixed $value): string
+    {
+        $value = strtoupper(trim((string) $value));
+        if ($value === '') {
+            return 'MAIN';
+        }
+
+        $normalized = Str::upper(Str::ascii($value));
+        foreach (School::campusTypeLabels() as $type => $label) {
+            if ($normalized === $type || $normalized === Str::upper(Str::ascii($label))) {
+                return $type;
+            }
+        }
+
+        throw new \InvalidArgumentException('Loại cơ sở phải là MAIN, CAMPUS hoặc BRANCH.');
+    }
+
     /**
      * Nhập danh sách trường học từ file Excel với cơ chế chống lỗi 100% (Bulletproof Fallbacks)
      */
@@ -858,6 +888,24 @@ class SchoolExcelService
         $updated = 0;
         $skipped = 0;
         $errors = [];
+
+        // Avoid one database lookup per Excel row. Imports commonly contain
+        // hundreds/thousands of rows, so these small in-memory indexes remove
+        // the repeated EducationLevel and School queries from the hot loop.
+        $levelCatalog = EducationLevel::query()
+            ->get(['id', 'name'])
+            ->map(fn ($level) => [
+                'id' => $level->id,
+                'name' => mb_strtolower((string) $level->name),
+            ])
+            ->all();
+        $schools = School::query()
+            ->select(['id', 'name', 'code'])
+            ->get()
+            ->values();
+        $schoolsByName = $schools->keyBy('name');
+        $schoolsByCode = $schools->filter(fn (School $school) => filled($school->code))->keyBy('code');
+
         // Kiểm tra xem file Excel có cột Website hay không (dựa vào header dòng 3)
         $headerRow = $rows[2] ?? [];
         $hasWebsiteCol = false;
@@ -868,6 +916,13 @@ class SchoolExcelService
             }
         }
         $offset = $hasWebsiteCol ? 1 : 0;
+        $hasCampusColumns = collect($headerRow)
+            ->contains(fn ($header) => str_contains(mb_strtolower((string) $header), 'loại cơ sở'));
+        $codesInFile = collect($dataRows)
+            ->map(fn ($row) => trim((string) ($row[27 + $offset] ?? '')))
+            ->filter()
+            ->flip();
+        $deferredCampusLinks = [];
 
         foreach ($dataRows as $index => $row) {
             $rowNum = $index + 4; // Số dòng thực tế trong Excel
@@ -884,16 +939,22 @@ class SchoolExcelService
                 $rawLevel = trim((string)($row[1] ?? ''));
                 $levelId = 'cao_dang';
                 if (!empty($rawLevel)) {
-                    $foundLevel = EducationLevel::where('name', 'like', "%{$rawLevel}%")
-                        ->orWhere('id', Str::slug($rawLevel))
-                        ->first();
+                    $rawLevelLower = mb_strtolower($rawLevel);
+                    $slugLevel = Str::slug($rawLevel);
+                    $foundLevel = null;
+                    foreach ($levelCatalog as $catalogLevel) {
+                        if ($catalogLevel['id'] === $slugLevel || str_contains($catalogLevel['name'], $rawLevelLower)) {
+                            $foundLevel = $catalogLevel;
+                            break;
+                        }
+                    }
                     if ($foundLevel) {
-                        $levelId = $foundLevel->id;
-                    } elseif (str_contains(mb_strtolower($rawLevel), 'đại học') || str_contains(mb_strtolower($rawLevel), 'dai hoc')) {
+                        $levelId = $foundLevel['id'];
+                    } elseif (str_contains($rawLevelLower, 'đại học') || str_contains($rawLevelLower, 'dai hoc')) {
                         $levelId = 'dai_hoc';
-                    } elseif (str_contains(mb_strtolower($rawLevel), 'trung cấp') || str_contains(mb_strtolower($rawLevel), 'trung cap')) {
+                    } elseif (str_contains($rawLevelLower, 'trung cấp') || str_contains($rawLevelLower, 'trung cap')) {
                         $levelId = 'trung_cap';
-                    } elseif (str_contains(mb_strtolower($rawLevel), 'gdtx') || str_contains(mb_strtolower($rawLevel), 'thường xuyên') || str_contains(mb_strtolower($rawLevel), 'nghề')) {
+                    } elseif (str_contains($rawLevelLower, 'gdtx') || str_contains($rawLevelLower, 'thường xuyên') || str_contains($rawLevelLower, 'nghề')) {
                         $levelId = 'gdtx';
                     }
                 }
@@ -960,8 +1021,27 @@ class SchoolExcelService
                 // 12. Doanh nghiệp liên kết - Phân tích thông minh
                 $partnersList = $this->parsePartnerEnterprisesClean($row[26 + $offset] ?? '');
 
-                // Tìm trường đã có trong hệ thống theo Tên, nếu có thì cập nhật, nếu chưa thì tạo mới
-                $school = School::where('name', $name)->first();
+                // 13. Quan hệ cơ sở / phân hiệu. These fields are appended,
+                // therefore old 27/28-column files remain compatible.
+                $schoolCode = trim((string) ($row[27 + $offset] ?? ''));
+                $campusType = $hasCampusColumns ? $this->normalizeCampusType($row[28 + $offset] ?? '') : null;
+                $parentCode = $hasCampusColumns ? trim((string) ($row[29 + $offset] ?? '')) : '';
+                $campusName = $hasCampusColumns ? (trim((string) ($row[30 + $offset] ?? '')) ?: null) : null;
+
+                if ($hasCampusColumns && $campusType !== 'MAIN' && $parentCode === '') {
+                    throw new \InvalidArgumentException('Cơ sở trực thuộc/phân hiệu phải có Mã cơ sở chính.');
+                }
+                if ($hasCampusColumns && $campusType !== 'MAIN'
+                    && ! $schoolsByCode->has($parentCode) && ! $codesInFile->has($parentCode)) {
+                    throw new \InvalidArgumentException("Không tìm thấy Mã cơ sở chính '{$parentCode}'.");
+                }
+
+                // Prefer a stable code; the name is retained as the fallback
+                // for templates created before these additional columns.
+                $school = $schoolCode !== '' ? $schoolsByCode->get($schoolCode) : $schoolsByName->get($name);
+                if ($schoolCode !== '' && $school && $school->name !== $name && $schoolsByName->has($name)) {
+                    throw new \InvalidArgumentException('Mã cơ sở đang thuộc về một bản ghi khác với tên cơ sở trong dòng này.');
+                }
                 $isNew = false;
                 if (!$school) {
                     $school = new School();
@@ -1002,7 +1082,33 @@ class SchoolExcelService
                 $school->faculty_professors = $facultyProfessors;
                 $school->partner_enterprises = !empty($partnersList) ? $partnersList : null;
 
+                if ($schoolCode !== '') {
+                    $school->code = $schoolCode;
+                }
+                if ($hasCampusColumns) {
+                    // Child rows may precede the primary campus. Persist all
+                    // locations first, then resolve their parent in one pass.
+                    $school->campus_type = 'MAIN';
+                    $school->parent_school_id = null;
+                    $school->campus_name = $campusType === 'MAIN' ? $campusName : null;
+                }
+
                 $school->save();
+
+                // Make newly created rows available to later duplicate rows in
+                // the same file without another database round trip.
+                $schoolsByName->put($name, $school);
+                $schoolsByCode->put($school->code, $school);
+
+                if ($hasCampusColumns && $campusType !== 'MAIN') {
+                    $deferredCampusLinks[] = [
+                        'id' => $school->id,
+                        'type' => $campusType,
+                        'parent_code' => $parentCode,
+                        'name' => $campusName,
+                        'row' => $rowNum,
+                    ];
+                }
 
                 // Đồng bộ quan hệ nhiều-nhiều educationLevels
                 if ($levelId) {
@@ -1016,6 +1122,25 @@ class SchoolExcelService
                 }
             } catch (\Throwable $e) {
                 $errors[] = "Dòng {$rowNum} ('{$name}'): " . $e->getMessage();
+            }
+        }
+
+        foreach ($deferredCampusLinks as $link) {
+            try {
+                /** @var School|null $campus */
+                $campus = School::find($link['id']);
+                /** @var School|null $parent */
+                $parent = $schoolsByCode->get($link['parent_code']);
+                if (! $campus || ! $parent) {
+                    throw new \RuntimeException("Không tìm thấy cơ sở chính '{$link['parent_code']}' sau khi nhập.");
+                }
+
+                $campus->campus_type = $link['type'];
+                $campus->parent_school_id = $parent->id;
+                $campus->campus_name = $link['name'];
+                $campus->save();
+            } catch (\Throwable $e) {
+                $errors[] = "Dòng {$link['row']} (quan hệ cơ sở): " . $e->getMessage();
             }
         }
 

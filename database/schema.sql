@@ -83,6 +83,10 @@ CREATE TABLE `schools` (
   `id` VARCHAR(50) NOT NULL,
   `code` VARCHAR(50) NOT NULL UNIQUE COMMENT 'Mã định danh trường học do Bộ GD&ĐT cấp',
   `name` VARCHAR(255) NOT NULL COMMENT 'Tên đầy đủ cơ sở giáo dục',
+  `campus_note` VARCHAR(255) DEFAULT NULL,
+  `campus_type` VARCHAR(20) NOT NULL DEFAULT 'MAIN',
+  `campus_name` VARCHAR(150) DEFAULT NULL,
+  `parent_school_id` VARCHAR(50) DEFAULT NULL,
   `education_level_id` VARCHAR(20) NOT NULL,
   `school_type_id` VARCHAR(20) NOT NULL,
   `district_id` VARCHAR(50) NOT NULL,
@@ -125,6 +129,9 @@ CREATE TABLE `schools` (
   KEY `idx_school_level` (`education_level_id`),
   KEY `idx_school_type` (`school_type_id`),
   KEY `idx_school_status` (`status`),
+  KEY `idx_school_parent_campus` (`parent_school_id`),
+  KEY `idx_school_name` (`name`(191)),
+  KEY `idx_school_ward` (`ward`),
   
   -- CHỈ MỤC KHÔNG GIAN (SPATIAL INDEX) CỦA MYSQL 8.0+:
   -- Cho phép tính toán bán kính vùng đệm Buffer 1km/3km trong vài phần nghìn giây
@@ -132,7 +139,8 @@ CREATE TABLE `schools` (
 
   CONSTRAINT `fk_school_level` FOREIGN KEY (`education_level_id`) REFERENCES `education_levels` (`id`),
   CONSTRAINT `fk_school_type` FOREIGN KEY (`school_type_id`) REFERENCES `school_types` (`id`),
-  CONSTRAINT `fk_school_district` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`)
+  CONSTRAINT `fk_school_district` FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`),
+  CONSTRAINT `fk_school_parent_campus` FOREIGN KEY (`parent_school_id`) REFERENCES `schools` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- 6. BẢNG LỊCH SỬ THỐNG KÊ QUY MÔ HỌC SINH / GIÁO VIÊN THEO NĂM HỌC (SCHOOL STATISTICS)

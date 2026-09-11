@@ -153,6 +153,46 @@
             </div>
           </div>
 
+          <!-- Related campuses are requested only in the detail response. -->
+          <div v-if="relatedCampuses.length > 1" class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
+            <div class="flex items-center justify-between mb-2.5">
+              <span class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-building-circle-check text-indigo-600"></i>
+                <span>Hệ thống cơ sở</span>
+              </span>
+              <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">
+                {{ relatedCampuses.length }} địa điểm
+              </span>
+            </div>
+
+            <div class="space-y-1.5">
+              <button
+                v-for="campus in relatedCampuses"
+                :key="campus.id"
+                type="button"
+                :disabled="campus.is_current"
+                @click="$emit('view-related-campus', campus)"
+                :class="campus.is_current
+                  ? 'bg-indigo-50 border-indigo-200 cursor-default'
+                  : 'bg-slate-50 border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 cursor-pointer'"
+                class="w-full text-left p-2.5 rounded-lg border transition-colors disabled:opacity-100">
+                <div class="flex items-start gap-2">
+                  <i class="fa-solid fa-location-dot mt-0.5 text-indigo-500"></i>
+                  <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-1.5">
+                      <span class="font-semibold text-slate-800 truncate">{{ campus.campus_name || campus.name }}</span>
+                      <span v-if="campus.is_current" class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-600 text-white">Đang xem</span>
+                    </div>
+                    <p class="mt-0.5 text-[10.5px] text-slate-500 truncate">
+                      {{ campus.campus_type_label }}<span v-if="campus.address"> · {{ campus.address }}</span>
+                    </p>
+                  </div>
+                  <i v-if="!campus.is_current" class="fa-solid fa-chevron-right text-[10px] text-slate-400 mt-1"></i>
+                </div>
+              </button>
+            </div>
+          </div>
+
           <!-- 1. Danh sách Ban Giám hiệu, Trưởng khoa -->
           <div class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
             <div class="flex items-center justify-between mb-2.5">
@@ -746,7 +786,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['close', 'buffer-analyze'])
+const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus'])
 
 // Dynamic level icon matching map pin
 const levelIcon = computed(() => {
@@ -768,6 +808,11 @@ const currentGalleryIndex = ref(0)
 // Helper: level label
 const levelLabel = computed(() => {
   return props.school?.education_level_name || props.school?.education_level || 'Cơ sở giáo dục'
+})
+
+const relatedCampuses = computed(() => {
+  const items = props.school?.campus_group?.items
+  return Array.isArray(items) ? items : []
 })
 
 // Safe parser for JSON or array fields from Database
