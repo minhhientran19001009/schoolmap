@@ -118,6 +118,10 @@ const mapContainer = ref(null)
 let map = null
 let markerClusterGroup = null
 let markersMap = new Map() // school.id -> L.marker
+// A selected campus can be outside the active search/ward filter. Keep one
+// temporary marker on the map so following a campus link still has a visual
+// destination without changing the user's filters.
+let focusedSchoolMarker = null
 let baseTileLayer = null
 let bufferCircleLayer = null
 
@@ -568,6 +572,10 @@ function renderMarkers(schools) {
   const wantedIds = new Set(schools.map(s => s.id))
   const availableIds = new Set((props.schools || []).map(s => s.id))
 
+  if (focusedSchoolMarker?.schoolData && wantedIds.has(focusedSchoolMarker.schoolData.id)) {
+    clearFocusedSchoolMarker()
+  }
+
   // Keep existing markers and only change the filtered delta. This avoids
   // rebuilding all Leaflet DOM nodes and popup handlers on every filter input.
   for (const [id, marker] of markersMap) {
@@ -598,25 +606,7 @@ function renderMarkers(schools) {
       }
     }
 
-    const levelConfig = LEVEL_MAP[school.education_level] || { color: '#64748b', icon: 'fa-solid fa-school' }
-    
-    // Custom HTML Upright Pin Marker (Google Maps style)
-    const iconHtml = `
-      <div class="edu-marker-pin" id="marker-${school.id}">
-        <div class="edu-marker-head" style="background-color: ${levelConfig.color};">
-          <i class="${levelConfig.icon} edu-marker-icon"></i>
-        </div>
-        <div class="edu-marker-tip" style="border-top-color: ${levelConfig.color};"></div>
-      </div>
-    `
-
-    const customIcon = L.divIcon({
-      className: 'edu-marker-container',
-      html: iconHtml,
-      iconSize: [32, 38],
-      iconAnchor: [16, 36],
-      popupAnchor: [0, -38]
-    })
+    const customIcon = createSchoolMarkerIcon(school)
 
     const marker = L.marker([school.lat, school.lng], { icon: customIcon })
     marker.schoolData = school
@@ -640,6 +630,47 @@ function renderMarkers(schools) {
     markerClusterGroup.addLayer(marker)
     markersMap.set(school.id, marker)
   })
+}
+
+function createSchoolMarkerIcon(school, isFocused = false) {
+  const levelConfig = LEVEL_MAP[school.education_level] || { color: '#64748b', icon: 'fa-solid fa-school' }
+  const iconHtml = `
+    <div class="edu-marker-pin${isFocused ? ' is-selected' : ''}" id="marker-${school.id}">
+      <div class="edu-marker-head" style="background-color: ${levelConfig.color};">
+        <i class="${levelConfig.icon} edu-marker-icon"></i>
+      </div>
+      <div class="edu-marker-tip" style="border-top-color: ${levelConfig.color};"></div>
+    </div>
+  `
+
+  return L.divIcon({
+    className: 'edu-marker-container',
+    html: iconHtml,
+    iconSize: [32, 38],
+    iconAnchor: [16, 36],
+    popupAnchor: [0, -38]
+  })
+}
+
+function clearFocusedSchoolMarker() {
+  if (focusedSchoolMarker && map) {
+    map.removeLayer(focusedSchoolMarker)
+  }
+  focusedSchoolMarker = null
+}
+
+function showFocusedSchoolMarker(school) {
+  if (!map || !school.lat || !school.lng) return
+
+  clearFocusedSchoolMarker()
+  focusedSchoolMarker = L.marker([school.lat, school.lng], {
+    icon: createSchoolMarkerIcon(school, true),
+    zIndexOffset: 1000,
+  }).addTo(map)
+  focusedSchoolMarker.schoolData = school
+  focusedSchoolMarker.on('click', () => emit('view-detail', school))
+  focusedSchoolMarker.bindPopup(buildPopupHtml(school), { maxWidth: 320, minWidth: 260 })
+  focusedSchoolMarker.on('popupopen', () => setupPopupEventListeners(school))
 }
 
 /**
@@ -796,13 +827,10 @@ function buildPopupHtml(s) {
         </a>
       </div>
 
-      <div class="flex gap-1.5 mt-1.5">
-        <button id="btn-popup-buffer-${s.id}" class="flex-1 py-1 rounded-md bg-purple-50 text-purple-700 hover:bg-purple-100 text-[11px] font-medium flex items-center justify-center gap-1 transition-colors">
+      <div class="mt-1.5">
+        <button id="btn-popup-buffer-${s.id}" class="w-full py-1 rounded-md bg-purple-50 text-purple-700 hover:bg-purple-100 text-[11px] font-medium flex items-center justify-center gap-1 transition-colors">
           <i class="fa-solid fa-bullseye text-[10px]"></i>
           <span>Bán kính 3km</span>
-        </button>
-        <button id="btn-popup-edit-${s.id}" class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-600 hover:bg-slate-200 text-[11px] font-medium transition-colors">
-          <i class="fa-solid fa-pen text-[10px]"></i>
         </button>
       </div>
     </div>
@@ -827,13 +855,6 @@ function setupPopupEventListeners(school) {
       }
     }
 
-    const btnEdit = document.getElementById(`btn-popup-edit-${school.id}`)
-    if (btnEdit) {
-      btnEdit.onclick = (e) => {
-        e.preventDefault()
-        emit('edit-school', school)
-      }
-    }
   }, 50)
 }
 
@@ -850,10 +871,16 @@ function flyToSchool(school, openDetail = true) {
 
   setTimeout(() => {
     const marker = markersMap.get(school.id)
-    if (marker) {
+    if (marker && markerClusterGroup.hasLayer(marker)) {
+      clearFocusedSchoolMarker()
       markerClusterGroup.zoomToShowLayer(marker, () => {
         marker.openPopup()
       })
+    } else {
+      // The school is valid but hidden by an active ward/search/level filter.
+      // Leave the filters untouched and render one highlighted destination pin.
+      showFocusedSchoolMarker(school)
+      focusedSchoolMarker?.openPopup()
     }
   }, 800)
 }
@@ -957,6 +984,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   delete window.__openSchoolFromWardPopup
+  clearFocusedSchoolMarker()
   if (map) {
     map.remove()
     map = null
