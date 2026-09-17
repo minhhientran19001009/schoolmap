@@ -50,12 +50,6 @@
             <i class="fa-solid fa-location-dot text-[10px] text-blue-200"></i>
             <span>{{ school.ward || school.district_name || 'Ninh Bình' }}</span>
           </span>
-
-          <!-- Campus Note Badge -->
-          <span v-if="school.campus_note" class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-amber-400/25 text-amber-200 border border-amber-300/30">
-            <i class="fa-solid fa-building-flag text-[10px] text-amber-300"></i>
-            <span>{{ school.campus_note }}</span>
-          </span>
         </div>
       </div>
 
@@ -128,11 +122,6 @@
                 <span class="leading-snug">{{ school.address }}</span>
               </div>
 
-              <div v-if="school.campus_note" class="flex items-start gap-2 text-slate-600">
-                <i class="fa-solid fa-building-flag text-amber-500 mt-0.5 w-4 text-center flex-shrink-0"></i>
-                <span class="leading-snug text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200/50">{{ school.campus_note }}</span>
-              </div>
-
               <div v-if="school.phone" class="flex items-center gap-2 text-slate-600">
                 <i class="fa-solid fa-phone text-slate-400 w-4 text-center flex-shrink-0"></i>
                 <a :href="`tel:${school.phone}`" class="text-blue-700 font-semibold hover:underline">
@@ -153,41 +142,102 @@
             </div>
           </div>
 
-          <!-- Related campuses are requested only in the detail response. -->
-          <div v-if="relatedCampuses.length > 1" class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
-            <div class="flex items-center justify-between mb-2.5">
-              <span class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
-                <i class="fa-solid fa-building-circle-check text-indigo-600"></i>
-                <span>Hệ thống cơ sở</span>
-              </span>
-              <span class="text-[10px] font-semibold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">
-                {{ relatedCampuses.length }} địa điểm
+          <!-- Related campuses network -->
+          <div v-if="relatedCampuses.length > 1" class="bg-white rounded-xl p-3.5 sm:p-4 border border-slate-200 shadow-xs space-y-3">
+            <!-- Header with Title and Count -->
+            <div class="flex items-center justify-between pb-2.5 border-b border-slate-100">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+                  <i class="fa-solid fa-network-wired text-xs"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
+                    <span>Hệ thống cơ sở đào tạo</span>
+                  </h3>
+                  <p class="text-[10.5px] text-slate-400 font-normal">
+                    {{ mainCampusesCount }} trụ sở chính · {{ subCampusesCount }} cơ sở trực thuộc
+                  </p>
+                </div>
+              </div>
+              
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-slate-100 text-slate-700">
+                {{ relatedCampuses.length }}
               </span>
             </div>
 
-            <div class="space-y-1.5">
+            <!-- Mini search filter if > 4 campuses -->
+            <div v-if="relatedCampuses.length > 4" class="relative">
+              <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]"></i>
+              <input
+                v-model="campusSearchQuery"
+                type="text"
+                placeholder="Lọc theo tên cơ sở, phường xã..."
+                class="w-full pl-7 pr-7 py-1 rounded-lg border border-slate-200 bg-slate-50/70 text-[11px] text-slate-700 focus:outline-hidden focus:bg-white focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 transition-all placeholder:text-slate-400"
+              />
               <button
-                v-for="campus in relatedCampuses"
+                v-if="campusSearchQuery"
+                @click="campusSearchQuery = ''"
+                class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+
+            <!-- Campus Items List -->
+            <div :class="relatedCampuses.length > 4 ? 'max-h-[340px] overflow-y-auto pr-1' : ''" class="space-y-2">
+              <div v-if="filteredCampuses.length === 0" class="py-4 text-center text-slate-400 text-[11px] italic">
+                Không tìm thấy cơ sở phù hợp
+              </div>
+
+              <button
+                v-for="campus in filteredCampuses"
                 :key="campus.id"
                 type="button"
                 :disabled="campus.is_current"
                 @click="$emit('view-related-campus', campus)"
                 :class="campus.is_current
-                  ? 'bg-indigo-50 border-indigo-200 cursor-default'
-                  : 'bg-slate-50 border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/50 cursor-pointer'"
-                class="w-full text-left p-2.5 rounded-lg border transition-colors disabled:opacity-100">
-                <div class="flex items-start gap-2">
-                  <i class="fa-solid fa-location-dot mt-0.5 text-indigo-500"></i>
+                  ? 'bg-gradient-to-r from-blue-50/90 via-indigo-50/40 to-white border-blue-400 shadow-xs ring-1 ring-blue-500/20 cursor-default'
+                  : 'bg-white hover:bg-slate-50/90 border-slate-200 hover:border-indigo-300 hover:shadow-xs cursor-pointer group'"
+                class="w-full text-left px-3.5 py-2.5 rounded-xl border transition-all duration-200 relative overflow-hidden disabled:opacity-100">
+                
+                <!-- Left Accent indicator bar for active item -->
+                <div v-if="campus.is_current" class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 to-indigo-600 rounded-l-xl"></div>
+
+                <div class="flex items-center justify-between gap-2.5">
+                  <!-- Content details (clean name without logo or type tags) -->
                   <div class="min-w-0 flex-1">
-                    <div class="flex items-center gap-1.5">
-                      <span class="font-semibold text-slate-800 truncate">{{ campus.campus_name || campus.name }}</span>
-                      <span v-if="campus.is_current" class="text-[9px] px-1.5 py-0.5 rounded bg-indigo-600 text-white">Đang xem</span>
+                    <!-- Title row -->
+                    <div>
+                      <span 
+                        :class="campus.is_current ? 'text-blue-950 font-bold' : 'text-slate-800 group-hover:text-indigo-700 font-semibold'"
+                        class="text-xs sm:text-[13px] truncate transition-colors">
+                        {{ getCampusDisplayName(campus) }}
+                      </span>
                     </div>
-                    <p class="mt-0.5 text-[10.5px] text-slate-500 truncate">
-                      {{ campus.campus_type_label }}<span v-if="campus.address"> · {{ campus.address }}</span>
-                    </p>
+
+                    <!-- Ward & Address info -->
+                    <div class="mt-1 flex items-center gap-1.5 flex-wrap text-[11px] text-slate-500">
+                      <!-- Ward Chip -->
+                      <span v-if="campus.ward" class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200/60 flex-shrink-0">
+                        <i class="fa-solid fa-location-dot text-[8.5px] text-indigo-500"></i>
+                        <span>{{ campus.ward }}</span>
+                      </span>
+
+                      <!-- Short Address -->
+                      <span v-if="campus.address" class="truncate text-slate-500 text-[10.5px]" :title="campus.address">
+                        {{ campus.address }}
+                      </span>
+                    </div>
                   </div>
-                  <i v-if="!campus.is_current" class="fa-solid fa-chevron-right text-[10px] text-slate-400 mt-1"></i>
+
+                  <!-- Right Action Indicator -->
+                  <div v-if="!campus.is_current" class="flex-shrink-0 self-center pl-1 text-slate-300 group-hover:text-indigo-600 transition-colors">
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center bg-slate-50 group-hover:bg-indigo-50 transition-colors">
+                      <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+                    </div>
+                  </div>
+                  <div v-else class="flex-shrink-0 self-center pl-1 text-blue-600">
+                    <i class="fa-solid fa-circle-check text-sm"></i>
+                  </div>
                 </div>
               </button>
             </div>
@@ -786,7 +836,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus'])
+const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus', 'fit-campuses'])
 
 // Dynamic level icon matching map pin
 const levelIcon = computed(() => {
@@ -813,6 +863,63 @@ const levelLabel = computed(() => {
 const relatedCampuses = computed(() => {
   const items = props.school?.campus_group?.items
   return Array.isArray(items) ? items : []
+})
+
+const campusSearchQuery = ref('')
+
+const mainCampusesCount = computed(() => {
+  return relatedCampuses.value.filter(c => c.campus_type === 'MAIN').length
+})
+
+const subCampusesCount = computed(() => {
+  return relatedCampuses.value.filter(c => c.campus_type !== 'MAIN').length
+})
+
+function getCampusDisplayName(campus) {
+  if (campus.campus_name && campus.campus_name.trim()) {
+    return campus.campus_name.trim()
+  }
+
+  const isMain = campus.campus_type === 'MAIN'
+  const note = campus.campus_note?.trim() || ''
+
+  if (isMain) {
+    if (!note || /^(cơ sở chính|trụ sở chính)$/i.test(note)) {
+      return 'Trụ sở chính'
+    }
+    if (/^(cơ sở|khu|địa điểm)\s*\d+/i.test(note)) {
+      return `${note} (Trụ sở chính)`
+    }
+    return `Trụ sở chính – ${note}`
+  }
+
+  if (note) {
+    return note
+  }
+
+  if (campus.name) {
+    const parts = campus.name.split(/[–—-]/)
+    if (parts.length > 1) {
+      const lastPart = parts[parts.length - 1].trim()
+      if (/cơ sở|khu|địa điểm|phân hiệu/i.test(lastPart)) {
+        return lastPart
+      }
+    }
+  }
+
+  return campus.name || 'Cơ sở đào tạo'
+}
+
+const filteredCampuses = computed(() => {
+  const list = relatedCampuses.value
+  const q = campusSearchQuery.value.trim().toLowerCase()
+  if (!q) return list
+  return list.filter(c => {
+    const name = (getCampusDisplayName(c) || '').toLowerCase()
+    const ward = (c.ward || '').toLowerCase()
+    const addr = (c.address || '').toLowerCase()
+    return name.includes(q) || ward.includes(q) || addr.includes(q)
+  })
 })
 
 // Safe parser for JSON or array fields from Database

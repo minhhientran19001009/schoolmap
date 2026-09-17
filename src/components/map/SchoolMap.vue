@@ -773,13 +773,6 @@ function buildPopupHtml(s) {
 
   return `
     <div class="p-3.5 select-none">
-      <!-- Tag Badges -->
-      <div class="flex items-center gap-1.5 mb-2">
-        <span style="background-color: ${levelConfig.color}; color: white;" class="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">
-          ${levelConfig.label}
-        </span>
-      </div>
-
       <!-- Title -->
       <h3 class="font-bold text-slate-800 text-sm leading-snug mb-1">
         ${s.name}
@@ -991,9 +984,24 @@ onUnmounted(() => {
   }
 })
 
+function fitCampusesBounds(campuses) {
+  if (!map || !Array.isArray(campuses) || campuses.length === 0) return
+  const validPoints = campuses
+    .filter(c => c && c.lat && c.lng)
+    .map(c => [Number(c.lat), Number(c.lng)])
+  if (validPoints.length > 0) {
+    if (validPoints.length === 1) {
+      map.flyTo(validPoints[0], 15, { duration: 1.0 })
+    } else {
+      map.fitBounds(validPoints, { padding: [100, 100], maxZoom: 15, animate: true })
+    }
+  }
+}
+
 defineExpose({
   flyToSchool,
   triggerBufferForSchool,
-  resetBounds
+  resetBounds,
+  fitCampusesBounds
 })
 </script>

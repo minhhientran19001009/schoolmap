@@ -15,6 +15,7 @@
       @close="selectedSchool = null"
       @buffer-analyze="handleBufferAnalyze"
       @view-related-campus="openRelatedCampus"
+      @fit-campuses="handleFitCampuses"
     />
   </div>
 </template>
@@ -49,6 +50,10 @@ async function openRelatedCampus(campus) {
   nextTick(() => {
     mapRef.value?.flyToSchool(campus, false)
   })
+}
+
+function handleFitCampuses(campuses) {
+  mapRef.value?.fitCampusesBounds(campuses)
 }
 
 function handleBufferAnalyze(school) {
