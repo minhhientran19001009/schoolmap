@@ -213,6 +213,57 @@ Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $r
     return redirect()->route('filament.admin.resources.schools.index');
 })->middleware(['auth', 'throttle:10,1'])->name('admin.schools.import-excel');
 
+Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Request $request, \App\Services\TrainingMajorExcelService $excelService) {
+    $validator = Validator::make($request->all(), [
+        'excel_file' => ['required', 'file', 'extensions:xlsx,xls', 'max:40960'],
+    ], [
+        'excel_file.required' => 'Vui lòng chọn tệp Excel cần nhập.',
+        'excel_file.file' => 'Tệp tải lên không hợp lệ.',
+        'excel_file.extensions' => 'Chỉ chấp nhận tệp Excel định dạng .xlsx hoặc .xls.',
+        'excel_file.max' => 'Tệp Excel không được lớn hơn 40 MB.',
+    ]);
+
+    $redirect = fn () => redirect()->route('filament.admin.resources.training-majors.index');
+
+    if ($validator->fails()) {
+        \Filament\Notifications\Notification::make()
+            ->title('Không thể tải tệp danh mục chuyên ngành')
+            ->body($validator->errors()->first('excel_file'))
+            ->danger()
+            ->send();
+
+        return $redirect();
+    }
+
+    $result = $excelService->importFromFile($request->file('excel_file')->getRealPath());
+
+    if (! $result['success']) {
+        \Filament\Notifications\Notification::make()
+            ->title('Lỗi khi đọc tệp danh mục chuyên ngành')
+            ->body($result['message'] ?? 'Không thể xử lý tệp Excel.')
+            ->danger()
+            ->send();
+
+        return $redirect();
+    }
+
+    $message = "Tạo mới {$result['created']} ngành, cập nhật {$result['updated']} ngành.";
+    if ($result['skipped'] > 0) {
+        $message .= " Bỏ qua {$result['skipped']} dòng trống.";
+    }
+    if (! empty($result['errors'])) {
+        $message .= ' Có ' . count($result['errors']) . ' dòng lỗi cần kiểm tra lại.';
+    }
+
+    $notification = \Filament\Notifications\Notification::make()
+        ->title(empty($result['errors']) ? 'Nhập danh mục chuyên ngành thành công' : 'Nhập dữ liệu có cảnh báo')
+        ->body($message);
+
+    (empty($result['errors']) ? $notification->success() : $notification->warning())->send();
+
+    return $redirect();
+})->middleware(['auth', 'throttle:10,1'])->name('admin.training-majors.import-excel');
+
 Route::get('/api/schools/{id}', function ($id) use ($mapSchool) {
     $school = School::with(['educationLevels', 'majors'])->where('id', $id)->orWhere('code', $id)->first();
     if (!$school) {
