@@ -31,6 +31,7 @@ export const STATUS_MAP = {
 
 // Live reactive state: populated exclusively from the MySQL database
 export const liveSchools = ref([])
+export const liveTrainingMajors = ref([])
 export const isSchoolsLoading = ref(false)
 
 const envBase = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL) ? import.meta.env.VITE_API_BASE_URL.replace(/\/+$/, '') : ''
@@ -47,6 +48,7 @@ const API_ENDPOINTS = [
 // Several layouts mount at the same time and may all request the school list.
 // Reuse the same promise so the database and browser only handle one request.
 let syncPromise = null
+let majorsPromise = null
 const detailPromises = new Map()
 
 async function requestApi(path, options = {}) {
@@ -73,6 +75,7 @@ async function requestApi(path, options = {}) {
 
 export const schoolService = {
   liveSchools,
+  liveTrainingMajors,
 
   // Initialize service: clear old local storage seed caches and pull fresh data from MySQL
   async init() {
@@ -148,6 +151,29 @@ export const schoolService = {
 
   getById(id) {
     return liveSchools.value.find(s => s.id === id || s.code === id) || null
+  },
+
+  async getTrainingMajors() {
+    if (liveTrainingMajors.value.length > 0) return liveTrainingMajors.value
+    if (majorsPromise) return await majorsPromise
+
+    majorsPromise = (async () => {
+      const data = await requestApi('/api/training-majors?active=1&used=1')
+      if (Array.isArray(data)) {
+        liveTrainingMajors.value = data.map(major => ({
+          ...major,
+          id: String(major.id),
+          schools_count: Number(major.schools_count || 0)
+        }))
+      }
+      return liveTrainingMajors.value
+    })()
+
+    try {
+      return await majorsPromise
+    } finally {
+      majorsPromise = null
+    }
   },
 
   // Heavy detail fields are fetched only when a user opens a school profile.

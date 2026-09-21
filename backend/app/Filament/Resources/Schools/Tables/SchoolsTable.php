@@ -12,6 +12,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class SchoolsTable
 {
@@ -21,7 +22,14 @@ class SchoolsTable
             ->columns([
                 TextColumn::make('name')
                     ->label('Tên Cơ sở Giáo dục')
-                    ->searchable()
+                    ->searchable(query: function (Builder $query, string $search): Builder {
+                        $search = mb_strtolower(trim($search), 'UTF-8');
+
+                        return $query->whereRaw(
+                            'LOWER(`name`) COLLATE utf8mb4_bin LIKE ?',
+                            ["%{$search}%"],
+                        );
+                    })
                     ->sortable()
                     ->weight('bold')
                     ->wrap(),
@@ -41,7 +49,14 @@ class SchoolsTable
 
                 TextColumn::make('ward')
                     ->label('Phường / Xã')
-                    ->searchable()
+                    ->searchable(query: function (Builder $query, string $search): Builder {
+                        $search = mb_strtolower(trim($search), 'UTF-8');
+
+                        return $query->whereRaw(
+                            'LOWER(`ward`) COLLATE utf8mb4_bin LIKE ?',
+                            ["%{$search}%"],
+                        );
+                    })
                     ->sortable(),
 
             ])
@@ -53,6 +68,11 @@ class SchoolsTable
                 SelectFilter::make('campus_type')
                     ->label('Lọc theo loại cơ sở')
                     ->options(School::campusTypeLabels()),
+
+                SelectFilter::make('majors')
+                    ->label('Lọc theo chuyên ngành')
+                    ->relationship('majors', 'name')
+                    ->searchable(),
             ])
             ->recordActions([
                 ActionGroup::make([

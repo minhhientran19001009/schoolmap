@@ -132,12 +132,8 @@ class SchoolForm
                                     ->default(105.9745)
                                     ->extraAttributes(['id' => 'school-lng-input']),
 
-                                Grid::make(1)->schema([
-                                    TextInput::make('address')
-                                        ->label('Địa chỉ chi tiết')
-                                        ->placeholder('Địa chỉ sẽ tự động điền khi chọn vị trí trên bản đồ, hoặc có thể chỉnh sửa thủ công')
-                                        ->extraInputAttributes(['id' => 'school-address-input']),
-                                ]),
+                                Hidden::make('address')
+                                    ->extraAttributes(['id' => 'school-address-input']),
 
                                 // Cơ sở vật chất & Thư viện Hình ảnh nằm trong Thông tin chung
                                 Section::make('Cơ sở vật chất & Thư viện Hình ảnh')
@@ -217,42 +213,49 @@ class SchoolForm
                                 Section::make('Các ngành / nghề đào tạo')
                                     ->description('Khai báo danh mục các chuyên ngành trường đang tuyển sinh và đào tạo')
                                     ->schema([
-                                        Repeater::make('training_majors')
+                                        Repeater::make('majorAssignments')
                                             ->label('Danh mục Ngành / Nghề đào tạo')
+                                            ->relationship('majorAssignments')
                                             ->addActionLabel('+ Thêm ngành nghề đào tạo')
                                             ->schema([
-                                                TextInput::make('name')
-                                                    ->label('Tên ngành / nghề đào tạo')
-                                                    ->placeholder('VD: Công nghệ Ô tô, May thời trang...')
+                                                Select::make('training_major_id')
+                                                    ->label('Chuyên ngành / nghề đào tạo')
+                                                    ->relationship('trainingMajor', 'name', modifyQueryUsing: fn ($query) => $query->where('is_active', true))
+                                                    ->searchable()
+                                                    ->getSearchResultsUsing(function (?string $search): array {
+                                                        $search = mb_strtolower(trim((string) $search), 'UTF-8');
+                                                        $query = \App\Models\TrainingMajor::query()
+                                                            ->where('is_active', true);
+
+                                                        if ($search !== '') {
+                                                            $query->whereRaw(
+                                                                'LOWER(name) COLLATE utf8mb4_bin LIKE ?',
+                                                                ["%{$search}%"],
+                                                            );
+                                                        }
+
+                                                        return $query->orderBy('name')
+                                                            ->limit(50)
+                                                            ->pluck('name', 'id')
+                                                            ->toArray();
+                                                    })
+                                                    ->optionsLimit(50)
                                                     ->required()
-                                                    ->columnSpan(2),
-
-                                                Select::make('degree_level')
-                                                    ->label('Trình độ đào tạo')
-                                                    ->options([
-                                                        'cao_dang' => 'Cao đẳng',
-                                                        'trung_cap' => 'Trung cấp',
-                                                        'so_cap' => 'Sơ cấp / Chứng chỉ nghề',
-                                                        'dai_hoc' => 'Đại học',
-                                                    ])
-                                                    ->default('cao_dang')
-                                                    ->required(),
-
-                                                TextInput::make('major_code')
-                                                    ->label('Mã ngành (tùy chọn)')
-                                                    ->placeholder('VD: 6510216'),
+                                                    ->disableOptionsWhenSelectedInSiblingRepeaterItems(),
 
                                                 TextInput::make('annual_quota')
                                                     ->label('Chỉ tiêu tuyển sinh')
                                                     ->numeric()
-                                                    ->placeholder('VD: 120'),
+                                                    ->minValue(0)
+                                                    ->default(0)
+                                                    ->suffix('SV/năm'),
                                             ])
-                                            ->columns(5)
+                                            ->columns(2)
                                             ->defaultItems(0)
                                             ->collapsible()
                                             ->itemLabel(fn (array $state): ?string => 
-                                                filled($state['name'] ?? null) 
-                                                    ? ($state['name'] . ' (' . ($state['degree_level'] ?? '') . ')') 
+                                                filled($state['training_major_id'] ?? null)
+                                                    ? 'Chuyên ngành đã chọn'
                                                     : 'Ngành đào tạo mới'
                                             ),
                                     ]),

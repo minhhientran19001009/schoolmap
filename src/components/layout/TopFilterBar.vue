@@ -148,7 +148,7 @@
       @click="isMobileFilterOpen = true"
       :class="hasNonSearchFilter ? 'bg-blue-800 text-white shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200/90'"
       class="sm:hidden relative w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-2xs"
-      title="Mở bộ lọc (Cấp học & Xã/Phường)">
+      title="Mở bộ lọc (Cấp học, chuyên ngành & Xã/Phường)">
       <i class="fa-solid fa-sliders text-xs"></i>
       <!-- Active badge dot -->
       <span 
@@ -170,15 +170,21 @@
     <!-- ============================================================== -->
     <!-- MOBILE FILTER BOTTOM SHEET / MODAL (< sm)                      -->
     <!-- ============================================================== -->
-    <div 
-      v-if="isMobileFilterOpen"
-      class="fixed inset-0 z-[1400] bg-slate-900/50 backdrop-blur-xs flex flex-col justify-end sm:hidden animate-in fade-in select-none">
-      
-      <!-- Backdrop tap dismiss -->
-      <div class="flex-1" @click="isMobileFilterOpen = false"></div>
+    <Teleport to="body">
+      <div
+        v-if="isMobileFilterOpen"
+        class="fixed inset-0 z-[3000] flex flex-col justify-end sm:hidden animate-in fade-in select-none">
 
-      <!-- Sheet Container -->
-      <div class="bg-white rounded-t-3xl shadow-2xl flex flex-col max-h-[82vh] overflow-hidden animate-in slide-in-from-bottom duration-200 border-t border-slate-200">
+        <!-- Backdrop tap dismiss -->
+        <button
+          type="button"
+          class="absolute inset-0 bg-slate-900/50 backdrop-blur-xs cursor-default"
+          aria-label="Đóng bộ lọc"
+          @click="isMobileFilterOpen = false">
+        </button>
+
+        <!-- Sheet Container -->
+        <div class="relative z-10 w-full bg-white rounded-t-3xl shadow-2xl flex flex-col max-h-[90dvh] overflow-hidden animate-in slide-in-from-bottom duration-200 border-t border-slate-200">
         
         <!-- Sheet Header -->
         <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between flex-shrink-0 bg-slate-50/70">
@@ -196,7 +202,7 @@
         </div>
 
         <!-- Scrollable Sheet Content -->
-        <div class="p-4 overflow-y-auto space-y-4">
+        <div class="flex-1 min-h-0 p-4 pb-6 overflow-y-auto overscroll-contain space-y-4 touch-pan-y">
           
           <!-- Section 1: Education Levels -->
           <div>
@@ -226,7 +232,66 @@
 
           <div class="h-px bg-slate-100"></div>
 
-          <!-- Section 2: Ward / Commune (129 Wards) -->
+          <!-- Section 2: One searchable training major -->
+          <div>
+            <div class="text-xs font-bold text-slate-800 mb-2 flex items-center justify-between">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-list-check text-blue-700"></i>
+                <span>Chuyên ngành đào tạo</span>
+              </span>
+              <span v-if="filterStore.majorId !== 'all'" class="text-[10px] text-blue-700 font-semibold">Đã chọn 1</span>
+            </div>
+            <div class="relative mb-2">
+              <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
+              <input
+                v-model="majorSearchQuery"
+                type="text"
+                placeholder="Tìm tên chuyên ngành..."
+                class="w-full pl-8 pr-7 py-2 bg-slate-100 focus:bg-white text-xs font-medium text-slate-800 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-200 outline-none transition-all placeholder:text-slate-400"
+              />
+              <button
+                v-if="majorSearchQuery"
+                @click="majorSearchQuery = ''"
+                class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 w-5 h-5 flex items-center justify-center cursor-pointer">
+                <i class="fa-solid fa-xmark text-xs"></i>
+              </button>
+            </div>
+            <div class="max-h-44 overflow-y-auto space-y-1 pr-1 border border-slate-100 rounded-xl p-1 bg-slate-50/50">
+              <button
+                @click="filterStore.majorId = 'all'"
+                :class="filterStore.majorId === 'all' ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-100'"
+                class="w-full px-2.5 py-1.5 rounded-lg text-xs text-left flex items-center justify-between cursor-pointer">
+                <span>Tất cả chuyên ngành</span>
+                <i v-if="filterStore.majorId === 'all'" class="fa-solid fa-check text-xs"></i>
+              </button>
+              <button
+                v-for="major in filteredMajors"
+                :key="major.id"
+                @click="filterStore.majorId = String(major.id)"
+                :class="String(filterStore.majorId) === String(major.id) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-100'"
+                class="w-full px-2.5 py-1.5 rounded-lg text-xs text-left flex items-center justify-between cursor-pointer">
+                <span
+                  class="min-w-0 flex-1 pr-2 leading-4 whitespace-normal break-words"
+                  :title="major.name">
+                  {{ major.name }}
+                </span>
+                <span class="flex items-center gap-1 flex-shrink-0 ml-1">
+                  <span
+                    :class="String(filterStore.majorId) === String(major.id) ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-500'"
+                    class="min-w-5 px-1.5 py-0.5 rounded-md text-[10px] font-mono text-center"
+                    :title="`${major.schools_count || 0} trường đào tạo`">
+                    {{ major.schools_count || 0 }}
+                  </span>
+                  <i v-if="String(filterStore.majorId) === String(major.id)" class="fa-solid fa-check text-xs flex-shrink-0"></i>
+                </span>
+              </button>
+              <p v-if="filteredMajors.length === 0" class="text-center py-3 text-xs text-slate-400 italic">Không tìm thấy ngành phù hợp</p>
+            </div>
+          </div>
+
+          <div class="h-px bg-slate-100"></div>
+
+          <!-- Section 3: Ward / Commune (129 Wards) -->
           <div>
             <div class="text-xs font-bold text-slate-800 mb-2 flex items-center justify-between">
               <span class="flex items-center gap-1.5">
@@ -292,7 +357,9 @@
         </div>
 
         <!-- Sheet Footer Actions -->
-        <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center gap-2 flex-shrink-0">
+        <div
+          class="relative z-10 p-3 border-t border-slate-200 bg-slate-50 flex items-center gap-2 flex-shrink-0 shadow-[0_-4px_12px_rgba(15,23,42,0.06)]"
+          style="padding-bottom: max(0.75rem, env(safe-area-inset-bottom));">
           <button 
             @click="filterStore.reset(); isMobileFilterOpen = false"
             class="flex-1 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 font-semibold text-xs hover:bg-slate-100 transition-colors flex items-center justify-center gap-1.5 cursor-pointer">
@@ -307,15 +374,16 @@
           </button>
         </div>
 
+        </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { filterStore, targetSchoolToFly } from '../../services/filterStore'
-import { schoolService, LEVEL_MAP, liveSchools, EDUCATION_LEVELS } from '../../services/schoolService'
+import { schoolService, LEVEL_MAP, liveSchools, liveTrainingMajors, EDUCATION_LEVELS } from '../../services/schoolService'
 
 const wards = ref([])
 const allSchools = liveSchools
@@ -323,6 +391,7 @@ const showSuggestions = ref(false)
 const searchContainer = ref(null)
 
 const levels = EDUCATION_LEVELS
+const majors = liveTrainingMajors
 
 // Mobile sheet state
 const isMobileFilterOpen = ref(false)
@@ -332,9 +401,10 @@ const isWardMenuOpen = ref(false)
 const wardSearchQuery = ref('')
 const wardContainer = ref(null)
 const wardSearchInputRef = ref(null)
+const majorSearchQuery = ref('')
 
 const hasNonSearchFilter = computed(() => {
-  return filterStore.level !== 'all' || filterStore.ward !== 'all'
+  return filterStore.level !== 'all' || filterStore.ward !== 'all' || filterStore.majorId !== 'all'
 })
 
 onMounted(async () => {
@@ -343,6 +413,7 @@ onMounted(async () => {
 
   // Sync live schools from MySQL
   await schoolService.syncFromApi()
+  await schoolService.getTrainingMajors()
 
   document.addEventListener('click', handleClickOutside)
 })
@@ -403,6 +474,12 @@ const filteredWardsList = computed(() => {
     return (w.name && w.name.toLowerCase().includes(q)) ||
            (w.full_name && w.full_name.toLowerCase().includes(q))
   })
+})
+
+const filteredMajors = computed(() => {
+  const q = majorSearchQuery.value.toLocaleLowerCase('vi').trim()
+  if (!q) return majors.value
+  return majors.value.filter(major => (major.name || '').toLocaleLowerCase('vi').includes(q))
 })
 
 function getUnitBadgeClass(unitType) {

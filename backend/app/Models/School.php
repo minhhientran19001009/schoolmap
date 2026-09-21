@@ -167,6 +167,23 @@ class School extends Model
         return $this->belongsToMany(EducationLevel::class, 'school_education_levels', 'school_id', 'education_level_id');
     }
 
+    /**
+     * The canonical many-to-many training-major relation. The legacy
+     * training_majors JSON column remains available during the migration
+     * window, but new code should read and write this relation.
+     */
+    public function majors()
+    {
+        return $this->belongsToMany(TrainingMajor::class, 'school_training_major')
+            ->withPivot('degree_level', 'annual_quota')
+            ->withTimestamps();
+    }
+
+    public function majorAssignments()
+    {
+        return $this->hasMany(SchoolTrainingMajor::class);
+    }
+
     public function parentCampus()
     {
         return $this->belongsTo(School::class, 'parent_school_id');
@@ -255,7 +272,7 @@ class School extends Model
             : json_encode($this->getLeadersAttribute($value), JSON_UNESCAPED_UNICODE);
     }
 
-    /** @return array<int, array{name: string, degree_level: string, major_code: ?string, annual_quota: int}> */
+    /** @return array<int, array{name: string, degree_level: string, annual_quota: int}> */
     public function getTrainingMajorsAttribute(mixed $value): array
     {
         $majors = [];
@@ -264,7 +281,6 @@ class School extends Model
                 $majors[] = [
                     'name' => trim((string) $item['name']),
                     'degree_level' => (string) ($item['degree_level'] ?? 'cao_dang'),
-                    'major_code' => filled($item['major_code'] ?? null) ? trim((string) $item['major_code']) : null,
                     'annual_quota' => max(0, (int) ($item['annual_quota'] ?? 0)),
                 ];
                 continue;
@@ -278,7 +294,6 @@ class School extends Model
                         $majors[] = [
                             'name' => $name,
                             'degree_level' => 'cao_dang',
-                            'major_code' => null,
                             'annual_quota' => max(0, (int) preg_replace('/\D+/', '', $quota)),
                         ];
                     }

@@ -4,15 +4,17 @@ export const filterStore = reactive({
   search: '',
   level: 'all',
   ward: 'all',
+  majorId: 'all',
 
   reset() {
     this.search = ''
     this.level = 'all'
     this.ward = 'all'
+    this.majorId = 'all'
   },
 
   hasActiveFilter() {
-    return this.search !== '' || this.level !== 'all' || this.ward !== 'all'
+    return this.search !== '' || this.level !== 'all' || this.ward !== 'all' || this.majorId !== 'all'
   }
 })
 

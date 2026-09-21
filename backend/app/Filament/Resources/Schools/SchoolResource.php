@@ -23,7 +23,7 @@ class SchoolResource extends Resource
     protected static ?string $pluralModelLabel = 'Danh sách Trường học';
     protected static ?string $navigationLabel = 'Danh sách Trường học';
     protected static \UnitEnum|string|null $navigationGroup = 'Mạng lưới Giáo dục';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 3;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedAcademicCap;
 

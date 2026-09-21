@@ -143,7 +143,38 @@ CREATE TABLE `schools` (
   CONSTRAINT `fk_school_parent_campus` FOREIGN KEY (`parent_school_id`) REFERENCES `schools` (`id`) ON DELETE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 6. BẢNG LỊCH SỬ THỐNG KÊ QUY MÔ HỌC SINH / GIÁO VIÊN THEO NĂM HỌC (SCHOOL STATISTICS)
+-- 6. DANH MỤC CHUYÊN NGÀNH ĐÀO TẠO
+DROP TABLE IF EXISTS `school_training_major`;
+DROP TABLE IF EXISTS `training_majors`;
+CREATE TABLE `training_majors` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `slug` VARCHAR(255) NOT NULL UNIQUE,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_training_major_name` (`name`),
+  KEY `idx_training_major_active` (`is_active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 7. LIÊN KẾT NHIỀU-NHIỀU GIỮA TRƯỜNG VÀ CHUYÊN NGÀNH
+CREATE TABLE `school_training_major` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `school_id` VARCHAR(50) NOT NULL,
+  `training_major_id` BIGINT UNSIGNED NOT NULL,
+  `degree_level` VARCHAR(30) NOT NULL DEFAULT 'cao_dang',
+  `annual_quota` INT UNSIGNED NOT NULL DEFAULT 0,
+  `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_school_training_major` (`school_id`, `training_major_id`, `degree_level`),
+  KEY `idx_school_training_major_major` (`training_major_id`),
+  CONSTRAINT `fk_school_training_major_school` FOREIGN KEY (`school_id`) REFERENCES `schools` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_school_training_major_major` FOREIGN KEY (`training_major_id`) REFERENCES `training_majors` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- 8. BẢNG LỊCH SỬ THỐNG KÊ QUY MÔ HỌC SINH / GIÁO VIÊN THEO NĂM HỌC (SCHOOL STATISTICS)
 DROP TABLE IF EXISTS `school_statistics`;
 CREATE TABLE `school_statistics` (
   `id` BIGINT AUTO_INCREMENT NOT NULL,

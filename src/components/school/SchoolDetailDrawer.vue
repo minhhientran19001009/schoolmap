@@ -300,19 +300,10 @@
                 class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex flex-col gap-1">
                 <div class="flex items-center justify-between">
                   <span class="font-bold text-slate-800 text-[12px]">{{ major.name }}</span>
-                  <span 
-                    :class="getDegreeBadgeColor(major.degree_level)"
-                    class="text-[10px] font-bold px-2 py-0.5 rounded-full">
-                    {{ formatDegreeLevel(major.degree_level) }}
-                  </span>
                 </div>
-                <div class="flex items-center gap-3 text-[11px] text-slate-500 mt-0.5">
-                  <span v-if="major.major_code" class="font-mono text-slate-400">
-                    Mã: <strong>{{ major.major_code }}</strong>
-                  </span>
-                  <span v-if="major.annual_quota">
-                    Chỉ tiêu: <strong class="text-blue-700">{{ major.annual_quota }}</strong> SV/năm
-                  </span>
+                <div v-if="major.annual_quota" class="text-[11px] text-slate-500 mt-0.5">
+                  Chỉ tiêu tuyển sinh:
+                  <strong class="text-blue-700">{{ major.annual_quota }}</strong> SV/năm
                 </div>
               </div>
             </div>
@@ -955,23 +946,6 @@ const displayLeaders = computed(() => {
 const displayMajors = computed(() => {
   return parseArrayField(props.school?.training_majors)
 })
-
-function formatDegreeLevel(lvl) {
-  const clean = (lvl || '').replace(/-/g, '_')
-  if (clean === 'cao_dang') return 'Cao đẳng'
-  if (clean === 'trung_cap') return 'Trung cấp'
-  if (clean === 'so_cap') return 'Sơ cấp'
-  if (clean === 'dai_hoc') return 'Đại học'
-  return 'Chính quy'
-}
-
-function getDegreeBadgeColor(lvl) {
-  const clean = (lvl || '').replace(/-/g, '_')
-  if (clean === 'cao_dang') return 'bg-blue-100 text-blue-800'
-  if (clean === 'trung_cap') return 'bg-amber-100 text-amber-800'
-  if (clean === 'so_cap') return 'bg-teal-100 text-teal-800'
-  return 'bg-purple-100 text-purple-800'
-}
 
 function formatArea(area) {
   if (!area) return '—'

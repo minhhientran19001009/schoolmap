@@ -84,6 +84,41 @@
     align-items: center;
     margin: 12px 0;
 }
+.loc-address-row {
+    margin: 0 0 12px;
+}
+.loc-address-label {
+    display: block;
+    margin-bottom: 6px;
+    color: #0f172a;
+    font-size: 13px;
+    font-weight: 600;
+}
+.loc-address-input {
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #0f172a;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.loc-address-input:focus {
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+:is(.dark) .loc-address-label {
+    color: #ffffff;
+}
+:is(.dark) .loc-address-input {
+    background-color: #27272a;
+    border-color: #3f3f46;
+    color: #f4f4f5;
+}
 .loc-input-wrapper {
     position: relative;
     flex: 1;
@@ -317,6 +352,19 @@
         </button>
     </div>
 
+    <!-- Địa chỉ chi tiết được đặt ngay dưới ô dán tọa độ để dễ kiểm tra và chỉnh sửa -->
+    <div class="loc-address-row">
+        <label for="school-address-visible-input" class="loc-address-label">Địa chỉ chi tiết</label>
+        <input
+            id="school-address-visible-input"
+            type="text"
+            x-model="address"
+            @input="syncAddressInput($event.target.value)"
+            placeholder="Địa chỉ sẽ tự động điền khi chọn vị trí trên bản đồ, hoặc có thể chỉnh sửa thủ công"
+            class="loc-address-input"
+        />
+    </div>
+
     <!-- Khung Bản đồ Leaflet -->
     <div wire:ignore class="loc-map-wrapper">
         <div 
@@ -359,6 +407,7 @@ function schoolLocationPicker(config) {
         marker: null,
         currentLat: config.defaultLat || 20.2506,
         currentLng: config.defaultLng || 105.9745,
+        address: '',
         pasteInput: '',
         statusMessage: 'Sẵn sàng chọn vị trí',
         isLocating: false,
@@ -373,6 +422,7 @@ function schoolLocationPicker(config) {
                     this.currentLat = parseFloat(wireLat);
                     this.currentLng = parseFloat(wireLng);
                 }
+                this.address = this.$wire.get('data.address') || '';
             }
 
             this.waitForLeaflet(() => {
@@ -553,6 +603,18 @@ function schoolLocationPicker(config) {
             this.pasteInput = '';
         },
 
+        syncAddressInput(value) {
+            this.address = value || '';
+            const addrInput = document.getElementById('school-address-input');
+            if (addrInput && addrInput.value !== this.address) {
+                addrInput.value = this.address;
+                addrInput.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            if (this.$wire) {
+                this.$wire.set('data.address', this.address);
+            }
+        },
+
         getCurrentLocation() {
             if (!navigator.geolocation) {
                 alert('Trình duyệt của bạn không hỗ trợ định vị GPS!');
@@ -645,7 +707,7 @@ function schoolLocationPicker(config) {
                     this.statusMessage = `✅ Địa chỉ: ${detectedAddress}`;
                     this.syncAddressToForm(detectedAddress, detectedWard);
                 } else {
-                    this.statusMessage = `📍 Đã ghim vị trí [${lat}, ${lng}]. Vui lòng nhập địa chỉ chi tiết bên dưới.`;
+                    this.statusMessage = `📍 Đã ghim vị trí [${lat}, ${lng}]. Vui lòng kiểm tra hoặc nhập địa chỉ chi tiết ở ô phía trên.`;
                 }
             } catch (err) {
                 console.error(err);
@@ -656,6 +718,7 @@ function schoolLocationPicker(config) {
         },
 
         syncAddressToForm(address, wardHint) {
+            this.address = address || '';
             const addrInput = document.getElementById('school-address-input');
             if (addrInput) {
                 addrInput.value = address;

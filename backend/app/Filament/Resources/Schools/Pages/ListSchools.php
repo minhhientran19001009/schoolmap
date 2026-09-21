@@ -7,6 +7,8 @@ use App\Services\SchoolExcelService;
 use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
+use Filament\Support\Enums\Alignment;
+use Filament\Support\Enums\Width;
 use Filament\Support\Icons\Heroicon;
 
 class ListSchools extends ListRecords
@@ -41,60 +43,18 @@ class ListSchools extends ListRecords
                 ->label('Nhập từ Excel')
                 ->icon(Heroicon::OutlinedArrowUpTray)
                 ->color('info')
-                ->form([
-                    \Filament\Forms\Components\FileUpload::make('excel_file')
-                        ->label('Chọn tệp Excel (.xlsx, .xls)')
-                        ->helperText('Tải lên tệp Excel theo khung mẫu. Nếu thiếu tọa độ hoặc số liệu, hệ thống sẽ tự động gán giá trị an toàn.')
-                        ->disk('local')
-                        ->directory('temp_imports')
-                        ->required(),
-                ])
-                ->action(function (array $data) {
-                    $paths = [
-                        storage_path('app/private/' . $data['excel_file']),
-                        storage_path('app/' . $data['excel_file']),
-                    ];
-
-                    $filePath = null;
-                    foreach ($paths as $p) {
-                        if (file_exists($p)) {
-                            $filePath = $p;
-                            break;
-                        }
-                    }
-
-                    if (!$filePath) {
-                        \Filament\Notifications\Notification::make()
-                            ->title('Không tìm thấy tệp tải lên')
-                            ->danger()
-                            ->send();
-                        return;
-                    }
-
-                    $service = app(SchoolExcelService::class);
-                    $res = $service->importFromFile($filePath);
-
-                    @unlink($filePath);
-
-                    if ($res['success']) {
-                        $msg = "Thành công: Tạo mới {$res['created']} trường, Cập nhật {$res['updated']} trường.";
-                        if ($res['skipped'] > 0) {
-                            $msg .= " Bỏ qua {$res['skipped']} dòng trống.";
-                        }
-
-                        \Filament\Notifications\Notification::make()
-                            ->title('Nhập dữ liệu Excel thành công!')
-                            ->body($msg)
-                            ->success()
-                            ->send();
-                    } else {
-                        \Filament\Notifications\Notification::make()
-                            ->title('Lỗi khi đọc file Excel')
-                            ->body($res['message'] ?? 'Không thể xử lý file.')
-                            ->danger()
-                            ->send();
-                    }
-                }),
+                ->formWrapper(false)
+                ->modalHeading('Nhập từ Excel')
+                ->modalDescription('Chọn tệp Excel theo khung mẫu để tạo mới hoặc cập nhật danh sách trường học.')
+                ->modalWidth(Width::Large)
+                ->modalContent(view('filament.resources.schools.import-excel'))
+                ->modalSubmitAction(fn (Action $action): Action => $action
+                    ->label('Tải lên và nhập dữ liệu')
+                    ->icon(Heroicon::OutlinedArrowUpTray)
+                    ->submit('school-excel-import-form')
+                    ->formId('school-excel-import-form'))
+                ->modalCancelActionLabel('Hủy')
+                ->modalFooterActionsAlignment(Alignment::End),
 
             CreateAction::make()->label('Thêm Trường học mới'),
         ];

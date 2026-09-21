@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\EducationLevel;
 use App\Models\School;
+use App\Models\TrainingMajor;
 use App\Models\Ward;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -540,7 +541,7 @@ class SchoolExcelService
         $sheet->getRowDimension(3)->setRowHeight(34);
 
         // Lấy danh sách toàn bộ trường học từ CSDL
-        $schools = School::with(['educationLevels', 'parentCampus:id,code'])->orderBy('name', 'asc')->get();
+        $schools = School::with(['educationLevels', 'majors:id,name,slug', 'parentCampus:id,code'])->orderBy('name', 'asc')->get();
 
         $rowIdx = 4;
         $centerColumns = ['D', 'G', 'H', 'I', 'R'];
@@ -579,16 +580,26 @@ class SchoolExcelService
 
             // Ngành đào tạo dạng chuỗi: Tên ngành:Chỉ tiêu
             $majorsStr = '';
-            if (!empty($s->training_majors) && is_array($s->training_majors)) {
-                $parts = [];
-                foreach ($s->training_majors as $m) {
-                    $mName = $m['name'] ?? '';
-                    $quota = $m['annual_quota'] ?? 0;
-                    if ($mName) {
-                        $parts[] = $quota > 0 ? "{$mName}:{$quota}" : $mName;
-                    }
-                }
-                $majorsStr = implode('; ', $parts);
+            if ($s->majors->isNotEmpty()) {
+                $majorsStr = $s->majors
+                    ->map(function ($major): string {
+                        $name = trim((string) $major->name);
+                        $quota = max(0, (int) ($major->pivot?->annual_quota ?? 0));
+
+                        return $quota > 0 ? "{$name}:{$quota}" : $name;
+                    })
+                    ->filter()
+                    ->implode('; ');
+            } else {
+                $majorsStr = collect($s->training_majors)
+                    ->map(function (array $major): string {
+                        $name = trim((string) ($major['name'] ?? ''));
+                        $quota = max(0, (int) ($major['annual_quota'] ?? 0));
+
+                        return $quota > 0 ? "{$name}:{$quota}" : $name;
+                    })
+                    ->filter()
+                    ->implode('; ');
             }
 
             // Doanh nghiệp liên kết dạng chuỗi: Tên:Nội dung
@@ -1068,6 +1079,8 @@ class SchoolExcelService
                 $school->student_count = $studentCount;
                 $school->annual_graduates = $annualGraduates;
                 $school->employment_rate = $employmentRate;
+                // Keep the legacy JSON column in sync for rollback compatibility;
+                // the searchable catalog and pivot relation below are canonical.
                 $school->training_majors = !empty($majorsList) ? $majorsList : null;
                 $school->teacher_count = $teacherCount;
                 $school->teacher_quota = $teacherQuota;
@@ -1114,6 +1127,26 @@ class SchoolExcelService
                     $school->educationLevels()->sync([$levelId]);
                 }
 
+                // Accept both the current "name:quota" format and old rows
+                // containing only a major name.
+                $school->majorAssignments()->delete();
+                foreach ($majorsList as $majorItem) {
+                    $majorName = trim((string) ($majorItem['name'] ?? ''));
+                    if ($majorName === '') {
+                        continue;
+                    }
+
+                    $major = TrainingMajor::firstOrCreate(
+                        ['slug' => Str::slug($majorName)],
+                        ['name' => $majorName, 'is_active' => true],
+                    );
+                    $school->majorAssignments()->create([
+                        'training_major_id' => $major->id,
+                        'degree_level' => $majorItem['degree_level'] ?? $levelId ?? 'cao_dang',
+                        'annual_quota' => max(0, (int) ($majorItem['annual_quota'] ?? 0)),
+                    ]);
+                }
+
                 if ($isNew) {
                     $created++;
                 } else {
@@ -1157,8 +1190,7 @@ class SchoolExcelService
      * Phân tích chuỗi Ngành đào tạo cực kỳ thông minh:
      * - Tự động dọn dẹp khoảng trắng thừa ("   Công nghệ   Ô tô   :  200  ")
      * - Chấp nhận nhiều loại dấu phân cách: chấm phẩy (;), xuống dòng (\n, \r), dấu gạch đứng (|), dấu phẩy (,)
-     * - Tự động xử lý trường hợp quên điền số chỉ tiêu (mặc định 0) hoặc chỉ ghi chữ ("Công nghệ Thông tin")
-     * - Tự động trích xuất số nếu người dùng gõ kèm chữ ("200 chỉ tiêu", "150 sinh viên")
+     * - Đọc và lưu chỉ tiêu theo cú pháp Tên ngành:Chỉ tiêu
      * - Chấp nhận dấu gạch ngang thay cho dấu hai chấm ("Công nghệ Ô tô - 150")
      */
     public function parseTrainingMajorsClean(?string $raw, string $levelId = 'cao_dang'): array
@@ -1185,28 +1217,21 @@ class SchoolExcelService
 
             $majorName = $part;
             $quota = 0;
-
             if (str_contains($part, ':')) {
                 [$nameChunk, $quotaChunk] = explode(':', $part, 2);
                 $majorName = trim($nameChunk);
-                $quotaChunk = trim($quotaChunk);
-
-                // Trích xuất số nếu có (bỏ qua chữ như "chỉ tiêu", "SV", "học sinh")
-                if (preg_match('/\d+/', $quotaChunk, $m)) {
-                    $quota = (int)$m[0];
-                }
+                $quota = (int) preg_replace('/\D+/', '', trim($quotaChunk));
             } elseif (preg_match('/^(.*?)[-–—]\s*(\d+)/u', $part, $dashMatch)) {
                 // Nhận diện cú pháp gạch ngang "Tên ngành - 150"
                 $majorName = trim($dashMatch[1]);
-                $quota = (int)$dashMatch[2];
+                $quota = (int) $dashMatch[2];
             }
 
             if (!empty($majorName)) {
                 $results[] = [
                     'name' => $majorName,
-                    'annual_quota' => $quota,
                     'degree_level' => $levelId,
-                    'major_code' => '',
+                    'annual_quota' => max(0, $quota),
                 ];
             }
         }

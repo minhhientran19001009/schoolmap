@@ -6,7 +6,7 @@
     <div class="flex items-center justify-between text-xs px-1 pb-1.5 border-b border-slate-100">
       <span class="font-bold text-slate-800 flex items-center gap-1.5 text-xs">
         <i class="fa-solid fa-filter text-blue-600 text-[11px]"></i>
-        <span>Lọc theo cấp học</span>
+        <span>Bộ lọc bản đồ</span>
       </span>
       <button 
         @click="$emit('close')"
@@ -63,6 +63,63 @@
       </button>
     </div>
 
+    <!-- One searchable training-major filter -->
+    <div class="pt-2 border-t border-slate-100">
+      <div class="flex items-center justify-between px-1 mb-1.5">
+        <span class="text-[11px] font-bold text-slate-800 flex items-center gap-1.5">
+          <i class="fa-solid fa-list-check text-blue-700"></i>
+          <span>Chuyên ngành đào tạo</span>
+        </span>
+        <button
+          v-if="filterStore.majorId !== 'all'"
+          @click="filterStore.majorId = 'all'"
+          class="text-[10px] text-slate-400 hover:text-rose-600 cursor-pointer"
+          title="Bỏ lọc chuyên ngành">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="relative mb-1.5">
+        <i class="fa-solid fa-magnifying-glass absolute left-2 top-1/2 -translate-y-1/2 text-slate-400 text-[10px]"></i>
+        <input
+          v-model="majorSearchQuery"
+          type="text"
+          placeholder="Tìm chuyên ngành..."
+          class="w-full pl-6 pr-2 py-1.5 bg-slate-100/80 rounded-lg border border-slate-200 text-[11px] outline-none focus:border-blue-400 focus:bg-white"
+        />
+      </div>
+      <div class="max-h-32 overflow-y-auto space-y-0.5 pr-0.5">
+        <button
+          @click="filterStore.majorId = 'all'"
+          :class="filterStore.majorId === 'all' ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-100'"
+          class="w-full px-2 py-1.5 rounded-lg text-[11px] text-left flex items-center justify-between cursor-pointer">
+          <span>Tất cả chuyên ngành</span>
+          <i v-if="filterStore.majorId === 'all'" class="fa-solid fa-check text-[10px]"></i>
+        </button>
+        <button
+          v-for="major in filteredMajors"
+          :key="major.id"
+          @click="filterStore.majorId = String(major.id)"
+          :class="String(filterStore.majorId) === String(major.id) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-100'"
+          class="w-full px-2 py-1.5 rounded-lg text-[11px] text-left flex items-center justify-between cursor-pointer">
+          <span
+            class="min-w-0 flex-1 pr-1 leading-4 whitespace-normal break-words"
+            :title="major.name">
+            {{ major.name }}
+          </span>
+          <span class="flex items-center gap-1 flex-shrink-0 ml-1">
+            <span
+              :class="String(filterStore.majorId) === String(major.id) ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-500'"
+              class="min-w-5 px-1.5 py-0.5 rounded-md text-[10px] font-mono text-center"
+              :title="`${major.schools_count || 0} trường đào tạo`">
+              {{ major.schools_count || 0 }}
+            </span>
+            <i v-if="String(filterStore.majorId) === String(major.id)" class="fa-solid fa-check text-[10px] flex-shrink-0"></i>
+          </span>
+        </button>
+        <p v-if="filteredMajors.length === 0" class="text-[10px] text-slate-400 italic text-center py-2">Không tìm thấy ngành phù hợp</p>
+      </div>
+    </div>
+
     <!-- Summary Count Badge -->
     <div class="pt-1.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 px-1">
       <span>{{ filterStore.ward !== 'all' ? 'Trên địa bàn:' : 'Đang hiển thị:' }}</span>
@@ -74,8 +131,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { EDUCATION_LEVELS } from '../../services/schoolService'
+import { computed, onMounted, ref } from 'vue'
+import { EDUCATION_LEVELS, liveTrainingMajors, schoolService } from '../../services/schoolService'
 import { filterStore } from '../../services/filterStore'
 
 const props = defineProps({
@@ -96,6 +153,18 @@ const props = defineProps({
 defineEmits(['close'])
 
 const levels = EDUCATION_LEVELS
+const majors = liveTrainingMajors
+const majorSearchQuery = ref('')
+
+const filteredMajors = computed(() => {
+  const query = majorSearchQuery.value.trim().toLocaleLowerCase('vi')
+  if (!query) return majors.value
+  return majors.value.filter(major => (major.name || '').toLocaleLowerCase('vi').includes(query))
+})
+
+onMounted(() => {
+  schoolService.getTrainingMajors()
+})
 
 function normalizeWard(str) {
   return (str || '')
@@ -127,6 +196,22 @@ const scopedSchools = computed(() => {
   })
 })
 
+// Once a major is selected, education-level counters must use the same
+// major scope as the map results instead of counting every school in the ward.
+const majorScopedSchools = computed(() => {
+  if (filterStore.majorId === 'all') return scopedSchools.value
+
+  const selectedMajorId = String(filterStore.majorId)
+
+  return scopedSchools.value.filter(school => {
+    const majorIds = Array.isArray(school.training_major_ids)
+      ? school.training_major_ids.map(id => String(id))
+      : []
+
+    return majorIds.includes(selectedMajorId)
+  })
+})
+
 const activeWardDisplayName = computed(() => {
   if (filterStore.ward === 'all') return ''
   const first = scopedSchools.value[0]
@@ -139,7 +224,12 @@ function clearWardScope() {
 }
 
 function getLevelCount(levelId) {
-  if (levelId === 'all') return scopedSchools.value.length
-  return scopedSchools.value.filter(s => s.education_level === levelId).length
+  if (levelId === 'all') return majorScopedSchools.value.length
+  return majorScopedSchools.value.filter(s => {
+    const ids = Array.isArray(s.education_level_ids) && s.education_level_ids.length > 0
+      ? s.education_level_ids
+      : [s.education_level]
+    return ids.map(id => String(id).replace(/-/g, '_')).includes(levelId)
+  }).length
 }
 </script>

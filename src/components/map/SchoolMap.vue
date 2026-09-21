@@ -260,6 +260,7 @@ watch(() => filterStore.ward, (newWard) => {
 const filteredSchools = computed(() => {
   const q = filterStore.search.toLowerCase().trim()
   const filterLvl = (filterStore.level || 'all').replace(/-/g, '_')
+  const filterMajor = String(filterStore.majorId || 'all')
   const selectedW = filterStore.ward && filterStore.ward !== 'all'
     ? filterStore.ward.toLowerCase().trim()
     : ''
@@ -275,8 +276,13 @@ const filteredSchools = computed(() => {
       (s.address || '').toLowerCase().includes(q) ||
       (s.ward || '').toLowerCase().includes(q)
 
-    const sLevel = (s.education_level || '').replace(/-/g, '_')
-    const matchLevel = filterLvl === 'all' || sLevel === filterLvl
+    const levelIds = (Array.isArray(s.education_level_ids) && s.education_level_ids.length > 0
+      ? s.education_level_ids
+      : [s.education_level]
+    ).map(level => String(level || '').replace(/-/g, '_'))
+    const matchLevel = filterLvl === 'all' || levelIds.includes(filterLvl)
+    const majorIds = Array.isArray(s.training_major_ids) ? s.training_major_ids.map(id => String(id)) : []
+    const matchMajor = filterMajor === 'all' || majorIds.includes(filterMajor)
 
     let matchWard = true
     if (selectedWNorm) {
@@ -293,7 +299,7 @@ const filteredSchools = computed(() => {
       }
     }
 
-    return matchSearch && matchLevel && matchWard
+    return matchSearch && matchLevel && matchWard && matchMajor
   })
 })
 
@@ -469,9 +475,6 @@ async function loadAdministrativeBoundaries() {
 
             const popupContent = `
               <div class="p-3 select-none">
-                <div class="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full inline-block mb-1">
-                  Đơn vị hành chính cấp Xã/Phường
-                </div>
                 <h4 class="font-bold text-slate-800 text-sm mb-1">${wardFullName}</h4>
                 <p class="text-xs text-slate-500 mb-2">
                   <span>Diện tích: <strong>${wardProps.areaKm2 || '—'} km²</strong></span>
