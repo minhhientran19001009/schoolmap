@@ -14,8 +14,8 @@
         <i class="fa-solid fa-graduation-cap"></i>
       </div>
       <div class="flex flex-col">
-        <span class="font-bold text-slate-800 text-sm sm:text-base leading-tight">Bản đồ số Giáo dục Ninh Bình</span>
-        <span class="text-[10px] text-slate-500 font-medium hidden sm:block">Sở Giáo dục và Đào tạo Tỉnh Ninh Bình</span>
+        <span class="font-bold text-slate-800 text-sm sm:text-base leading-tight">Bản đồ số GDNN tỉnh Ninh Bình</span>
+        <span class="text-[10px] text-slate-500 font-medium hidden sm:block">Tỉnh Ninh Bình</span>
       </div>
     </div>
 
@@ -155,7 +155,7 @@ const currentViewTitle = computed(() => {
     case 'map': return 'Bản đồ tương tác mạng lưới cơ sở giáo dục'
     case 'dashboard': return 'Báo cáo & Thống kê tổng hợp số liệu giáo dục'
     case 'table': return 'Quản trị danh mục cơ sở giáo dục'
-    default: return 'Bản đồ số Giáo dục Ninh Bình'
+    default: return 'Bản đồ số GDNN tỉnh Ninh Bình'
   }
 })
 

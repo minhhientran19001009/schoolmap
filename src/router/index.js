@@ -20,7 +20,7 @@ const routes = [
         path: 'map',
         name: 'ClientMap',
         component: ClientMapView,
-        meta: { title: 'Bản đồ số Giáo dục Tỉnh Ninh Bình' }
+        meta: { title: 'Bản đồ số GDNN tỉnh Ninh Bình' }
       },
       {
         path: 'thong-ke',
@@ -55,7 +55,7 @@ router.beforeEach((to, from, next) => {
   }
 
   if (to.meta.title) {
-    document.title = `${to.meta.title} — Bản đồ số Ninh Bình`
+    document.title = to.meta.title
   }
   next()
 })

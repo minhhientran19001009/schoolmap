@@ -9,11 +9,11 @@
         </div>
         <div class="flex flex-col">
           <span class="font-bold text-slate-800 text-xs sm:text-base leading-tight group-hover:text-blue-800 transition-colors">
-            <span class="sm:hidden">Bản đồ Ninh Bình</span>
-            <span class="hidden sm:inline">Bản đồ số Giáo dục Ninh Bình</span>
+            <span class="sm:hidden">Bản đồ GDNN</span>
+            <span class="hidden sm:inline">Bản đồ số GDNN tỉnh Ninh Bình</span>
           </span>
           <span class="text-[10px] text-slate-500 font-medium hidden md:block">
-            Cổng Thông tin Tra cứu Mạng lưới Cơ sở Giáo dục
+            Cổng thông tin tra cứu cơ sở giáo dục nghề nghiệp
           </span>
         </div>
       </router-link>
