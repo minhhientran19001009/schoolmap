@@ -5,6 +5,7 @@ import ClientLayout from '../layouts/ClientLayout.vue'
 
 // Client Views
 import ClientMapView from '../views/client/ClientMapView.vue'
+import ClientJobsView from '../views/client/ClientJobsView.vue'
 
 const routes = [
   // Client Portal Routes
@@ -21,6 +22,20 @@ const routes = [
         name: 'ClientMap',
         component: ClientMapView,
         meta: { title: 'Bản đồ số GDNN tỉnh Ninh Bình' }
+      },
+      {
+        path: 'tuyen-dung',
+        alias: 'viec-lam',
+        name: 'ClientJobs',
+        component: ClientJobsView,
+        meta: { title: 'Tin tuyển dụng việc làm — GDNN Ninh Bình' }
+      },
+      {
+        path: 'tuyen-dung/:id',
+        alias: 'viec-lam/:id',
+        name: 'ClientJobDetail',
+        component: () => import('../views/client/ClientJobDetailView.vue'),
+        meta: { title: 'Chi tiết tin tuyển dụng — GDNN Ninh Bình' }
       },
       {
         path: 'thong-ke',

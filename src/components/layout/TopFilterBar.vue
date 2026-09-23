@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-1.5 sm:gap-2 flex-1 max-w-3xl justify-end md:justify-center min-w-0">
+  <div class="flex items-center gap-1.5 sm:gap-2 flex-1 max-w-xl justify-end md:justify-center min-w-0">
     <!-- Search Bar with Live Suggestions -->
     <div class="relative flex-1 min-w-0 sm:max-w-xs md:max-w-sm" ref="searchContainer">
       <div class="relative flex items-center">
@@ -42,8 +42,8 @@
       </div>
     </div>
 
-    <!-- Desktop & Tablet: Searchable Ward Combobox (hidden on < sm) -->
-    <div class="hidden sm:block relative w-36 sm:w-44 md:w-56 lg:w-64 flex-shrink-0" ref="wardContainer">
+    <!-- Desktop & Tablet: Searchable Ward Combobox (hidden on < md) -->
+    <div class="hidden md:block relative w-36 lg:w-48 xl:w-56 flex-shrink-0" ref="wardContainer">
       <!-- Trigger Button -->
       <div 
         @click="toggleWardMenu"
@@ -143,11 +143,11 @@
       </div>
     </div>
 
-    <!-- Mobile Filter Trigger Button (< sm only) -->
+    <!-- Mobile Filter Trigger Button (< md only) -->
     <button 
       @click="isMobileFilterOpen = true"
       :class="hasNonSearchFilter ? 'bg-blue-800 text-white shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200/90'"
-      class="sm:hidden relative w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-2xs"
+      class="md:hidden relative w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-2xs"
       title="Mở bộ lọc (Cấp học, chuyên ngành & Xã/Phường)">
       <i class="fa-solid fa-sliders text-xs"></i>
       <!-- Active badge dot -->
@@ -161,19 +161,19 @@
     <button 
       v-if="filterStore.hasActiveFilter()"
       @click="filterStore.reset()"
-      class="hidden sm:flex text-[11px] text-blue-700 hover:text-blue-900 font-semibold px-2 py-1.5 rounded-lg hover:bg-blue-50 items-center gap-1 flex-shrink-0 transition-colors cursor-pointer"
+      class="hidden md:flex text-[11px] text-blue-700 hover:text-blue-900 font-semibold px-2 py-1.5 rounded-lg hover:bg-blue-50 items-center gap-1 flex-shrink-0 transition-colors cursor-pointer"
       title="Xóa toàn bộ bộ lọc">
       <i class="fa-solid fa-rotate-left text-[10px]"></i>
       <span class="hidden md:inline">Đặt lại</span>
     </button>
 
     <!-- ============================================================== -->
-    <!-- MOBILE FILTER BOTTOM SHEET / MODAL (< sm)                      -->
+    <!-- MOBILE FILTER BOTTOM SHEET / MODAL (< md)                      -->
     <!-- ============================================================== -->
     <Teleport to="body">
       <div
         v-if="isMobileFilterOpen"
-        class="fixed inset-0 z-[3000] flex flex-col justify-end sm:hidden animate-in fade-in select-none">
+        class="fixed inset-0 z-[3000] flex flex-col justify-end md:hidden animate-in fade-in select-none">
 
         <!-- Backdrop tap dismiss -->
         <button

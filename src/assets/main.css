@@ -56,6 +56,16 @@ body {
   background: #94a3b8;
 }
 
+/* Hide scrollbar utility for clean mobile scrolling tracks */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Leaflet Custom Styles matching reference site */
 .leaflet-container {
   font-family: 'Roboto', sans-serif !important;

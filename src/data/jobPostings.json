@@ -1,0 +1,650 @@
+[
+  {
+    "id": "job-1",
+    "title": "Kỹ thuật viên Lắp ráp Ô tô",
+    "company": "Công ty CP Sản xuất Ô tô Hyundai Thành Công Việt Nam",
+    "company_logo": "HTCV",
+    "company_color": "bg-blue-700",
+    "ward_code": "13348",
+    "ward_name": "Đồng Văn",
+    "address": "KCN Gián Khẩu, Tỉnh Ninh Bình",
+    "salary": "9 - 15 triệu/tháng",
+    "salary_level": "9_12",
+    "industry": "co_khi",
+    "industry_name": "Kỹ thuật cơ khí",
+    "experience": "Không yêu cầu KN (Được đào tạo)",
+    "education": "Trung cấp / Cao đẳng nghề Cơ khí, Ô tô",
+    "deadline": "30/10/2026",
+    "is_hot": true,
+    "benefits": ["Xe đưa đón các huyện", "Bao cơm ca 35k", "Thưởng lễ tết 3 tháng lương", "BHXH full lương"],
+    "description": [
+      "Thực hiện công đoạn lắp ráp khung gầm, động cơ, hệ thống điện trên dây chuyền ô tô hiện đại của Hyundai.",
+      "Vận hành các thiết bị xiết lực tự động, rô bốt gá đặt linh kiện theo quy trình chuẩn.",
+      "Kiểm tra chất lượng linh kiện đầu vào và sản phẩm hoàn thiện từng công đoạn.",
+      "Tuân thủ 5S và an toàn lao động trong xưởng sản xuất."
+    ],
+    "requirements": [
+      "Tốt nghiệp Trung cấp, Cao đẳng các ngành: Công nghệ Ô tô, Cơ khí chế tạo, Điện - Điện tử công nghiệp.",
+      "Chăm chỉ, nhanh nhẹn, có sức khỏe tốt, sẵn sàng làm việc theo ca.",
+      "Ưu tiên học viên, sinh viên tốt nghiệp các trường đào tạo nghề tại Ninh Bình."
+    ],
+    "contact": {
+      "contact_person": "Phòng Tuyển dụng & Nhân sự Hyundai Thành Công",
+      "phone": "02293868686",
+      "zalo": "0988123456",
+      "email": "tuyendung@hyundai-thanhcong.vn",
+      "address": "Ban Nhân sự - Nhà máy Hyundai Thành Công, KCN Gián Khẩu, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-2",
+    "title": "Thợ Hàn Công nghệ cao (MIG/MAG/TIG)",
+    "company": "Công ty Cổ phần Cơ điện Lilama Ninh Bình",
+    "company_logo": "LILAMA",
+    "company_color": "bg-amber-600",
+    "ward_code": "13318",
+    "ward_name": "Châu Sơn",
+    "address": "Khu xưởng cơ khí Châu Sơn, Tỉnh Ninh Bình",
+    "salary": "11 - 18 triệu/tháng",
+    "salary_level": "10_15",
+    "industry": "co_khi",
+    "industry_name": "Kỹ thuật cơ khí",
+    "experience": "Từ 1 năm kinh nghiệm",
+    "education": "Trung cấp / Chứng chỉ Hàn 3G/4G/6G",
+    "deadline": "25/10/2026",
+    "is_hot": true,
+    "benefits": ["Bao ăn ở tại chỗ", "Phụ cấp độc hại nghề hàn", "Thưởng công trình", "Bảo hộ lao động cấp mới"],
+    "description": [
+      "Gia công, hàn các kết cấu thép chịu lực, bồn bể áp lực và đường ống công nghiệp.",
+      "Đọc bản vẽ kỹ thuật hàn cơ khí, chuẩn bị vật liệu và máy hàn theo tiêu chuẩn.",
+      "Thực hiện kiểm tra mối hàn bằng mắt và phối hợp kiểm tra siêu âm NDT."
+    ],
+    "requirements": [
+      "Có chứng chỉ nghề Hàn (MIG, TIG hoặc que), tay nghề từ 3G trở lên.",
+      "Biết đọc bản vẽ kỹ thuật gia công kim loại.",
+      "Ưu tiên học viên trường Cao đẳng Cơ điện Xây dựng Việt Xô hoặc CĐ Lilama."
+    ],
+    "contact": {
+      "contact_person": "Anh Phạm Văn Thắng (Trưởng phòng Nhân sự)",
+      "phone": "0912345678",
+      "zalo": "0912345678",
+      "email": "nhansu@lilamaninhbinh.com.vn",
+      "address": "Văn phòng Tuyển dụng Lilama, Châu Sơn, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-3",
+    "title": "Công nhân Kỹ thuật Điện tử / Vận hành máy SMT",
+    "company": "Công ty TNHH Mcnex Vina (Hàn Quốc)",
+    "company_logo": "MCNEX",
+    "company_color": "bg-emerald-700",
+    "ward_code": "13285",
+    "ward_name": "Phủ Lý",
+    "address": "KCN Phúc Sơn, Tỉnh Ninh Bình",
+    "salary": "8.5 - 13 triệu/tháng",
+    "salary_level": "7_10",
+    "industry": "dien_dien_tu",
+    "industry_name": "Điện - Điện tử - Viễn thông",
+    "experience": "Không yêu cầu KN (Được đào tạo nhận lương)",
+    "education": "Trung cấp Điện / Điện tử / Tin học hoặc PTTH",
+    "deadline": "05/11/2026",
+    "is_hot": true,
+    "benefits": ["Phòng điều hòa 100%", "Xe đưa đón 8 tuyến", "Thưởng chuyên cần 800k/tháng", "Khám sức khỏe định kỳ"],
+    "description": [
+      "Vận hành dây chuyền tự động gắn chip linh kiện camera module điện thoại thông minh.",
+      "Tiếp liệu cuộn linh kiện điện tử vào máy SMT, kiểm tra bo mạch qua kính hiển vi.",
+      "Thực hiện công việc trong phòng sạch tiêu chuẩn quốc tế."
+    ],
+    "requirements": [
+      "Nam/Nữ từ 18 - 35 tuổi, mắt sáng, không cận thị nặng.",
+      "Chăm chỉ, nhanh nhẹn, tuân thủ nghiêm ngặt quy định phòng sạch.",
+      "Không yêu cầu kinh nghiệm, công ty hỗ trợ đào tạo 100% hưởng nguyên lương."
+    ],
+    "contact": {
+      "contact_person": "Ban Tuyển dụng Nhân sự Mcnex Vina",
+      "phone": "02293889988",
+      "zalo": "0987654321",
+      "email": "recruitment@mcnex.co.kr",
+      "address": "Cổng 1, Nhà máy Mcnex Vina, KCN Phúc Sơn, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-4",
+    "title": "Kỹ sư Bảo trì Điện Công nghiệp & Tự động hóa",
+    "company": "Công ty Cổ phần Tập đoàn The Vissai",
+    "company_logo": "VISSAI",
+    "company_color": "bg-red-700",
+    "ward_code": "13363",
+    "ward_name": "Tiên Sơn",
+    "address": "Nhà máy Xi măng Vissai, Tỉnh Ninh Bình",
+    "salary": "12 - 20 triệu/tháng",
+    "salary_level": "above_15",
+    "industry": "dien_dien_tu",
+    "industry_name": "Điện - Điện tử - Viễn thông",
+    "experience": "Từ 1 - 2 năm kinh nghiệm",
+    "education": "Cao đẳng / Đại học ngành Điện công nghiệp, Tự động hóa",
+    "deadline": "15/11/2026",
+    "is_hot": false,
+    "benefits": ["Lương thưởng cạnh tranh", "Đóng BHXH mức cao", "Ăn trưa miễn phí tại nhà ăn", "Cung cấp căn hộ công vụ"],
+    "description": [
+      "Bảo trì, sửa chữa hệ thống tủ điện phân phối, biến tần, động cơ công suất lớn trong dây chuyền clinker.",
+      "Lập trình và giám sát hệ thống PLC, Scada điều khiển trung tâm.",
+      "Định kỳ kiểm tra các thiết bị đo lường cảm biến nhiệt độ, áp suất, độ rung."
+    ],
+    "requirements": [
+      "Tốt nghiệp Cao đẳng hoặc Đại học chuyên ngành Điện tự động hóa, Điện công nghiệp.",
+      "Hiểu biết về PLC Siemens S7-1200, biến tần Schneider/ABB.",
+      "Ưu tiên sinh viên tốt nghiệp loại Khá/Giỏi từ các trường nghề công lập Ninh Bình."
+    ],
+    "contact": {
+      "contact_person": "Phòng Tổ chức Cán bộ - Tập đoàn The Vissai",
+      "phone": "02293871888",
+      "zalo": "0977223344",
+      "email": "hr@vissaigroup.com",
+      "address": "Trụ sở Tập đoàn The Vissai, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-5",
+    "title": "Thợ May Công nghiệp / Chuyền may Xuất khẩu",
+    "company": "Công ty TNHH May Đô Lương",
+    "company_logo": "DOLUONG",
+    "company_color": "bg-purple-700",
+    "ward_code": "13504",
+    "ward_name": "Bình Lục",
+    "address": "Cụm May mặc Bình Lục, Tỉnh Ninh Bình",
+    "salary": "7.5 - 12 triệu/tháng (Lương theo sản phẩm)",
+    "salary_level": "7_10",
+    "industry": "det_may",
+    "industry_name": "Dệt may - Giày da",
+    "experience": "Chưa có tay nghề được học nghề miễn phí có phụ cấp",
+    "education": "Lao động phổ thông / Sơ cấp may",
+    "deadline": "20/11/2026",
+    "is_hot": true,
+    "benefits": ["Phụ cấp con nhỏ 200k/tháng", "Tiền chuyên cần 700k", "Bao cơm trưa + bữa phụ tăng ca", "Thưởng quý & tháng 13"],
+    "description": [
+      "Vận hành máy may 1 kim, 2 kim, vắt sổ may các công đoạn áo jacket xuất khẩu sang thị trường Mỹ, EU.",
+      "Thực hiện may mẫu hoặc may sản xuất hàng loạt theo chỉ dẫn của chuyền trưởng.",
+      "Đảm bảo năng suất và chất lượng mũi chỉ không bị lỗi."
+    ],
+    "requirements": [
+      "Nam/Nữ độ tuổi từ 18 - 45, sức khỏe tốt.",
+      "Biết may máy công nghiệp là một lợi thế, nếu chưa biết sẽ được đào tạo cấp tốc 2 tuần có hưởng trợ cấp học nghề.",
+      "Tính cẩn thận, chăm chỉ, có tinh thần trách nhiệm."
+    ],
+    "contact": {
+      "contact_person": "Chị Vũ Thị Hoa (Phòng Nhân sự May Đô Lương)",
+      "phone": "02293856789",
+      "zalo": "0981234888",
+      "email": "tuyendung@doluonggarment.com",
+      "address": "Cổng Công ty May Đô Lương, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-6",
+    "title": "Nhân viên Lễ tân & Chăm sóc Khách hàng (Tiếng Anh/Hàn)",
+    "company": "Khách sạn The Reed Ninh Bình (Tiêu chuẩn 4 sao)",
+    "company_logo": "THEREED",
+    "company_color": "bg-yellow-700",
+    "ward_code": "13285",
+    "ward_name": "Phủ Lý",
+    "address": "Đường Đinh Điền, Phường Phủ Lý, Tỉnh Ninh Bình",
+    "salary": "8 - 14 triệu/tháng + Phí phục vụ (Service charge)",
+    "salary_level": "7_10",
+    "industry": "du_lich",
+    "industry_name": "Du lịch - Khách sạn - Dịch vụ",
+    "experience": "Ưu tiên sinh viên mới tốt nghiệp ngành Du lịch/Khách sạn",
+    "education": "Trung cấp / Cao đẳng Du lịch, Ngoại ngữ",
+    "deadline": "10/11/2026",
+    "is_hot": false,
+    "benefits": ["Phí phục vụ Service Charge hàng tháng", "Đồng phục & giặt là miễn phí", "Đào tạo nghiệp vụ khách sạn 4 sao", "Môi trường giao tiếp quốc tế"],
+    "description": [
+      "Chào đón khách đến lưu trú, làm thủ tục Check-in và Check-out nhanh chóng, chuyên nghiệp.",
+      "Tư vấn thông tin danh lam thắng cảnh (Tràng An, Tam Cốc, Bái Đính, Hang Múa) cho du khách trong nước và quốc tế.",
+      "Tiếp nhận và giải quyết các yêu cầu, phản hồi của khách lưu trú trong ca làm việc."
+    ],
+    "requirements": [
+      "Tốt nghiệp Trung cấp/Cao đẳng chuyên ngành Quản trị Khách sạn, Lễ tân hoặc Ngoại ngữ.",
+      "Giao tiếp tiếng Anh hoặc tiếng Hàn cơ bản, ngoại hình ưa nhìn.",
+      "Nhanh nhẹn, nụ cười thân thiện, kỹ năng xử lý tình huống tốt."
+    ],
+    "contact": {
+      "contact_person": "Phòng Nhân sự Khách sạn The Reed",
+      "phone": "02293889977",
+      "zalo": "0945678910",
+      "email": "hr@thereedhotel.com",
+      "address": "Quầy Lễ tân The Reed Hotel, Đường Đinh Điền, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-7",
+    "title": "Nhân viên Bếp chính & Bếp Á",
+    "company": "Quần thể Du lịch Sinh thái Tràng An (Doanh nghiệp Xuân Trường)",
+    "company_logo": "TRANGAN",
+    "company_color": "bg-teal-700",
+    "ward_code": "13420",
+    "ward_name": "Tam Chúc",
+    "address": "Khu ẩm thực Du lịch Tràng An, Tỉnh Ninh Bình",
+    "salary": "9 - 16 triệu/tháng",
+    "salary_level": "10_15",
+    "industry": "du_lich",
+    "industry_name": "Du lịch - Khách sạn - Dịch vụ",
+    "experience": "Từ 1 năm chế biến món Á hoặc đặc sản Ninh Bình",
+    "education": "Chứng chỉ nghề Kỹ thuật Chế biến Món ăn",
+    "deadline": "28/10/2026",
+    "is_hot": true,
+    "benefits": ["Thưởng doanh thu mùa lễ hội", "Bao ăn ca tại khu du lịch", "Hỗ trợ chỗ ở cho nhân viên ở xa", "Nghỉ phép có lương"],
+    "description": [
+      "Trực tiếp sơ chế và chế biến các món ăn đặc sản Ninh Bình (dê núi, cơm cháy, gà đồi) và món Á phục vụ đoàn du khách.",
+      "Đảm bảo an toàn vệ sinh thực phẩm theo quy chuẩn của Bộ Y tế.",
+      "Quản lý định lượng nguyên vật liệu, kiểm soát hao hụt thực phẩm."
+    ],
+    "requirements": [
+      "Có chứng chỉ hoặc bằng tốt nghiệp Kỹ thuật chế biến món ăn từ các trường nghề.",
+      "Có kinh nghiệm làm việc tại nhà hàng, khách sạn.",
+      "Chịu được áp lực công việc vào dịp cuối tuần và mùa lễ hội cao điểm."
+    ],
+    "contact": {
+      "contact_person": "Bếp trưởng Trần Văn Nam",
+      "phone": "0904123987",
+      "zalo": "0904123987",
+      "email": "amthuctrangan@xuantruong.vn",
+      "address": "Ban Quản lý Ẩm thực Tràng An, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-8",
+    "title": "Kỹ thuật viên Vận hành Dây chuyền Đồ hộp Nông sản",
+    "company": "Công ty CP Thực phẩm Xuất khẩu Đồng Giao (DOVECO)",
+    "company_logo": "DOVECO",
+    "company_color": "bg-green-700",
+    "ward_code": "13531",
+    "ward_name": "Bình Giang",
+    "address": "Tổ hợp Nhà máy Doveco, Tỉnh Ninh Bình",
+    "salary": "8 - 14 triệu/tháng",
+    "salary_level": "7_10",
+    "industry": "nong_nghiep",
+    "industry_name": "Nông - Lâm - Thủy sản",
+    "experience": "Không yêu cầu kinh nghiệm (Ưu tiên người địa phương)",
+    "education": "Trung cấp Chế biến thực phẩm, Cơ điện",
+    "deadline": "30/10/2026",
+    "is_hot": false,
+    "benefits": ["Thưởng vụ dứa, ngô ngọt", "Cơm trưa tự chọn tại căng tin", "Đóng bảo hiểm 100% sau thử việc", "Quà tặng sản phẩm công ty các dịp lễ"],
+    "description": [
+      "Vận hành hệ thống máy thanh trùng, đóng lon, chiết rót nước ép dứa và ngô ngọt xuất khẩu.",
+      "Kiểm tra nồng độ brix, độ kín của nắp hộp kim loại theo quy trình kiểm tra chất lượng.",
+      "Bảo dưỡng và vệ sinh đường ống CIP sau mỗi ca sản xuất."
+    ],
+    "requirements": [
+      "Tốt nghiệp Trung cấp, Cao đẳng các ngành Công nghệ Thực phẩm, Vận hành máy, Điện cơ.",
+      "Sức khỏe tốt, có tinh thần cầu tiến, kỷ luật cao.",
+      "Ưu tiên ứng viên thường trú trên địa bàn tỉnh Ninh Bình."
+    ],
+    "contact": {
+      "contact_person": "Phòng Tổ chức Nhân sự Doveco",
+      "phone": "02293864234",
+      "zalo": "0915678123",
+      "email": "tuyendung@doveco.com.vn",
+      "address": "Khu công nghiệp Đồng Giao, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-9",
+    "title": "Lái xe & Lái máy Xúc / Máy Lu công trình",
+    "company": "Doanh nghiệp Xây dựng Xuân Trường",
+    "company_logo": "XUANTRUONG",
+    "company_color": "bg-amber-800",
+    "ward_code": "13291",
+    "ward_name": "Phù Vân",
+    "address": "Đội thi công giao thông Phù Vân, Tỉnh Ninh Bình",
+    "salary": "12 - 22 triệu/tháng",
+    "salary_level": "above_15",
+    "industry": "xay_dung",
+    "industry_name": "Xây dựng - Kiến trúc",
+    "experience": "Từ 1 năm lái máy công trình",
+    "education": "Chứng chỉ Lái máy thi công hoặc Giấy phép lái xe hạng C",
+    "deadline": "20/10/2026",
+    "is_hot": true,
+    "benefits": ["Lương chuyển khoản đúng ngày mùng 5", "Bao trọn ăn ở tại công trường", "Phụ cấp xăng xe điện thoại", "Thưởng tiến độ dự án"],
+    "description": [
+      "Vận hành máy đào, máy xúc lật, máy ủi hoặc lái xe ben tải trọng lớn thi công san lấp mặt bằng dự án hạ tầng.",
+      "Bảo dưỡng cơ bản máy xúc, kiểm tra dầu mỡ bôi trơn hàng ngày.",
+      "Phối hợp với chỉ huy trưởng công trường đảm bảo an toàn thi công."
+    ],
+    "requirements": [
+      "Có chứng chỉ vận hành máy xây dựng hoặc GPLX hạng C trở lên.",
+      "Có kinh nghiệm thực tế lái máy công trình, cẩn thận, không uống rượu bia trong giờ làm việc.",
+      "Ưu tiên học viên học nghề lái máy tại các trường dạy nghề tỉnh Ninh Bình."
+    ],
+    "contact": {
+      "contact_person": "Ban Điều hành Dự án Xuân Trường",
+      "phone": "02293871111",
+      "zalo": "0982345678",
+      "email": "nhansu@xuantruongconstruction.vn",
+      "address": "Văn phòng Điều hành Xuân Trường, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-10",
+    "title": "Vận hành Lò Nung Kính & Kiểm tra KCS",
+    "company": "Công ty TNHH Kính nổi Siêu trắng Chu Lai - CS Ninh Bình",
+    "company_logo": "CFG",
+    "company_color": "bg-cyan-700",
+    "ward_code": "13558",
+    "ward_name": "Bình Sơn",
+    "address": "KCN Khánh Phú, Tỉnh Ninh Bình",
+    "salary": "10 - 17 triệu/tháng",
+    "salary_level": "10_15",
+    "industry": "xay_dung",
+    "industry_name": "Xây dựng - Kiến trúc",
+    "experience": "Chưa có kinh nghiệm được đào tạo",
+    "education": "Trung cấp / Cao đẳng Hóa vật liệu, Cơ khí, Tự động hóa",
+    "deadline": "08/11/2026",
+    "is_hot": false,
+    "benefits": ["Phụ cấp môi trường nhiệt độ cao", "Khám sức khỏe 2 lần/năm", "Cơm ca dinh dưỡng cao", "Chế độ bảo hiểm đầy đủ"],
+    "description": [
+      "Giám sát thông số nhiệt độ, áp suất lò nung tấm kính phẳng siêu trắng công nghệ cao.",
+      "Kiểm tra chất lượng bề mặt kính, phát hiện bọt khí, vết xước qua hệ thống máy laser.",
+      "Điều khiển tay robot gắp dỡ tấm kính vào kiện đóng gói xuất khẩu."
+    ],
+    "requirements": [
+      "Nam sức khỏe tốt, tốt nghiệp Trung cấp/Cao đẳng các khối ngành kỹ thuật.",
+      "Chịu được môi trường làm việc công nghiệp nhiệt độ cao.",
+      "Ý thức an toàn lao động nghiêm ngặt."
+    ],
+    "contact": {
+      "contact_person": "Phòng Nhân sự Nhà máy Kính CFG",
+      "phone": "02293845678",
+      "zalo": "0976543210",
+      "email": "tuyendung@cfg.vn",
+      "address": "Phòng Bảo vệ Nhà máy Kính, KCN Khánh Phú, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-11",
+    "title": "Nhân viên Bán hàng & Chăm sóc Showroom Ô tô",
+    "company": "Hyundai Ninh Bình (Đại lý ủy quyền chính hãng 3S)",
+    "company_logo": "HYUNDAI",
+    "company_color": "bg-blue-800",
+    "ward_code": "13285",
+    "ward_name": "Phủ Lý",
+    "address": "Đại lộ Trần Hưng Đạo, Phường Phủ Lý, Tỉnh Ninh Bình",
+    "salary": "8 - 25 triệu/tháng (Lương cứng + Hoa hồng cao)",
+    "salary_level": "above_15",
+    "industry": "kinh_doanh",
+    "industry_name": "Kinh doanh - Quản lý",
+    "experience": "Không yêu cầu KN, đam mê ô tô",
+    "education": "Trung cấp / Cao đẳng QTKD, Kinh tế, Kỹ thuật",
+    "deadline": "15/11/2026",
+    "is_hot": true,
+    "benefits": ["Hoa hồng xe hấp dẫn từ 5 - 15 triệu/xe", "Được cấp xe lái thử", "Đào tạo kỹ năng bán hàng chuyên sâu từ Hyundai Motor", "Môi trường năng động"],
+    "description": [
+      "Đón tiếp khách hàng tại showroom, giới thiệu các dòng xe du lịch và xe thương mại Hyundai.",
+      "Tư vấn giải pháp tài chính vay trả góp ngân hàng, thủ tục đăng ký, đăng kiểm xe.",
+      "Chăm sóc khách hàng sau bàn giao xe, nhắc lịch bảo dưỡng định kỳ."
+    ],
+    "requirements": [
+      "Nam/Nữ từ 20 - 32 tuổi, ngoại hình sáng, khả năng giao tiếp lưu loát.",
+      "Yêu thích ô tô, có kỹ năng thuyết phục khách hàng.",
+      "Có bằng lái xe B2 là một lợi thế lớn."
+    ],
+    "contact": {
+      "contact_person": "Giám đốc Bán hàng - Mr. Vũ Minh Quân",
+      "phone": "0983123456",
+      "zalo": "0983123456",
+      "email": "quanvm@hyundaininhbinh.vn",
+      "address": "Showroom Hyundai Ninh Bình, Phủ Lý, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-12",
+    "title": "Nhân viên Kiểm soát Chất lượng May (KCS / QC)",
+    "company": "Công ty TNHH May Xuất khẩu Kim Sơn",
+    "company_logo": "KIMSON",
+    "company_color": "bg-pink-700",
+    "ward_code": "13573",
+    "ward_name": "Lý Nhân",
+    "address": "Cụm Công nghiệp Kim Sơn, Tỉnh Ninh Bình",
+    "salary": "8 - 13 triệu/tháng",
+    "salary_level": "7_10",
+    "industry": "det_may",
+    "industry_name": "Dệt may - Giày da",
+    "experience": "Từ 6 tháng làm KCS may",
+    "education": "Trung cấp Công nghệ May / Quản trị chất lượng",
+    "deadline": "25/11/2026",
+    "is_hot": false,
+    "benefits": ["Hỗ trợ tiền xăng xe", "Cơm trưa miễn phí", "Thưởng chuyên cần 600k", "Môi trường xưởng thoáng mát có quạt hơi nước"],
+    "description": [
+      "Kiểm tra chất lượng bán thành phẩm và thành phẩm áo sơ mi, quần âu tại chuyền may.",
+      "Phát hiện lỗi kỹ thuật may (bỏ mũi, lệch cúc, nhăn viền) và yêu cầu công nhân sửa lỗi ngay.",
+      "Lập báo cáo tỷ lệ lỗi theo từng công đoạn hàng ngày cho quản đốc xưởng."
+    ],
+    "requirements": [
+      "Nhanh mắt, cẩn thận, nắm vững tiêu chuẩn thông số may xuất khẩu.",
+      "Ưu tiên ứng viên có kinh nghiệm hoặc học viên tốt nghiệp ngành May các trường nghề tại Ninh Bình."
+    ],
+    "contact": {
+      "contact_person": "Phòng Tuyển dụng May Kim Sơn",
+      "phone": "02293721888",
+      "zalo": "0944332211",
+      "email": "tuyendung@maykimson.vn",
+      "address": "Cổng 2 - CCN Kim Sơn, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-13",
+    "title": "Kỹ thuật viên Sửa chữa Gầm - Máy Ô tô",
+    "company": "Xưởng Dịch vụ Sửa chữa Ô tô Thành Công Tam Điệp",
+    "company_logo": "TC-AUTO",
+    "company_color": "bg-blue-900",
+    "ward_code": "13540",
+    "ward_name": "Bình An",
+    "address": "Khu công nghiệp Tam Điệp, Tỉnh Ninh Bình",
+    "salary": "9 - 16 triệu/tháng",
+    "salary_level": "10_15",
+    "industry": "co_khi",
+    "industry_name": "Kỹ thuật cơ khí",
+    "experience": "Ưu tiên sinh viên tốt nghiệp ngành Công nghệ Ô tô",
+    "education": "Trung cấp / Cao đẳng nghề Công nghệ Ô tô",
+    "deadline": "12/11/2026",
+    "is_hot": true,
+    "benefits": ["Thưởng năng suất dịch vụ sửa chữa", "Đào tạo bài bản theo giáo trình Hyundai toàn cầu", "Trang cấp đồ nghề xịn", "Ăn trưa tại xưởng"],
+    "description": [
+      "Chẩn đoán, bảo dưỡng hệ thống phanh, lái, treo, gầm xe ô tô du lịch và xe thương mại.",
+      "Sử dụng máy đọc lỗi chuyên dụng Scan-tool đọc mã lỗi động cơ, hộp số tự động.",
+      "Thay thế dầu nhớt, bugi, lọc gió và phụ tùng định kỳ cho khách hàng."
+    ],
+    "requirements": [
+      "Tốt nghiệp ngành Công nghệ Ô tô từ các trường Cao đẳng, Trung cấp nghề.",
+      "Có tư duy kỹ thuật tốt, chăm chỉ, thật thà, yêu nghề ô tô.",
+      "Ưu tiên sinh viên mới tốt nghiệp từ Cao đẳng Cơ điện Hà Nội CS Ninh Bình hoặc CĐ Cơ điện Xây dựng Việt Xô."
+    ],
+    "contact": {
+      "contact_person": "Quản đốc Xưởng Dịch vụ - Anh Nguyễn Văn Long",
+      "phone": "0916889900",
+      "zalo": "0916889900",
+      "email": "longnv@thanhcongauto.vn",
+      "address": "Xưởng Dịch vụ Ô tô Thành Công, Bình An, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-14",
+    "title": "Nhân viên Kho Vận & Quản lý Đơn hàng Logistics",
+    "company": "Công ty TNHH Logistics & Kho bãi Tân Cảng Ninh Bình",
+    "company_logo": "TANCANG",
+    "company_color": "bg-indigo-700",
+    "ward_code": "13474",
+    "ward_name": "Tân Thanh",
+    "address": "Khu kho bãi Tân Thanh, Tỉnh Ninh Bình",
+    "salary": "8.5 - 14 triệu/tháng",
+    "salary_level": "7_10",
+    "industry": "kinh_doanh",
+    "industry_name": "Kinh doanh - Quản lý",
+    "experience": "Từ 6 tháng làm kho vận hoặc lái xe nâng",
+    "education": "Trung cấp Quản lý kho / Logistics / Tin học",
+    "deadline": "18/11/2026",
+    "is_hot": false,
+    "benefits": ["Phụ cấp trách nhiệm", "Làm việc trong nhà kho tiêu chuẩn", "Bảo hiểm tai nạn 24/7", "Lương tháng 13 đảm bảo"],
+    "description": [
+      "Điều phối, kiểm đếm số lượng hàng hóa xuất nhập kho qua hệ thống WMS phần mềm.",
+      "Phối hợp với lái xe nâng hàng bốc dỡ hàng hóa từ container vào giá kệ kho.",
+      "Lập phiếu xuất nhập kho, đối soát số liệu tồn kho định kỳ hàng tuần."
+    ],
+    "requirements": [
+      "Tốt nghiệp Trung cấp, Cao đẳng các ngành Logistics, Quản trị kinh doanh, Kế toán, Tin học.",
+      "Cẩn thận, nhanh nhẹn, sử dụng thành thạo máy tính và phần mềm quản lý kho.",
+      "Sức khỏe tốt, có trách nhiệm cao với công việc."
+    ],
+    "contact": {
+      "contact_person": "Bộ phận Kho vận Tân Cảng",
+      "phone": "02293833445",
+      "zalo": "0977889900",
+      "email": "tuyendung@tancangninhbinh.com",
+      "address": "Cổng Tổng kho Logistics, Tân Thanh, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-15",
+    "title": "Nhân viên Nuôi trồng Thủy sản & Chăm sóc Cảnh quan",
+    "company": "Khu Du lịch Sinh thái Thung Nham (Doanh nghiệp Ninh Bình)",
+    "company_logo": "THUNGNHAM",
+    "company_color": "bg-emerald-800",
+    "ward_code": "13483",
+    "ward_name": "Thanh Bình",
+    "address": "Khu Du lịch Thung Nham, Tỉnh Ninh Bình",
+    "salary": "7 - 10.5 triệu/tháng",
+    "salary_level": "7_10",
+    "industry": "nong_nghiep",
+    "industry_name": "Nông - Lâm - Thủy sản",
+    "experience": "Không yêu cầu kinh nghiệm (Ưu tiên lao động địa phương)",
+    "education": "Lao động phổ thông / Sơ cấp Nông - Lâm - Thủy sản",
+    "deadline": "30/10/2026",
+    "is_hot": false,
+    "benefits": ["Không gian làm việc trong lành gần gũi thiên nhiên", "Cơm trưa tại khu du lịch", "Thưởng mùa du lịch", "Môi trường thân thiện"],
+    "description": [
+      "Chăm sóc đàn cá cảnh, thủy sản trong hồ sinh thái và bảo tồn cảnh quan vườn chim Thung Nham.",
+      "Cắt tỉa, tưới nước, chăm sóc hoa và cây cảnh trong khuôn viên khu du lịch.",
+      "Dọn dẹp lối đi dạo, vệ sinh lòng hồ đảm bảo môi trường sinh thái xanh sạch đẹp."
+    ],
+    "requirements": [
+      "Nam/Nữ có sức khỏe tốt, chăm chỉ, yêu thích thiên nhiên nông - lâm - thủy sản.",
+      "Ưu tiên người dân sinh sống tại khu vực lân cận hoặc học viên ngành Nông lâm thủy sản.",
+      "Được hướng dẫn kỹ thuật chăm sóc cây cối và thủy sinh."
+    ],
+    "contact": {
+      "contact_person": "Ban Quản lý Cảnh quan Thung Nham",
+      "phone": "02293624888",
+      "zalo": "0912998877",
+      "email": "info@thungnham.com",
+      "address": "Ban Điều hành Thung Nham, Thanh Bình, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-16",
+    "title": "Kỹ thuật viên Vận hành Máy Gia công Cơ khí CNC",
+    "company": "Công ty TNHH Phụ tùng Ô tô Sejin F&D Ninh Bình",
+    "company_logo": "SEJIN",
+    "company_color": "bg-blue-600",
+    "ward_code": "13336",
+    "ward_name": "Duy Hà",
+    "address": "KCN Duy Hà, Tỉnh Ninh Bình",
+    "salary": "10 - 16 triệu/tháng",
+    "salary_level": "10_15",
+    "industry": "co_khi",
+    "industry_name": "Kỹ thuật cơ khí",
+    "experience": "Từ 6 tháng hoặc sinh viên nghề tốt nghiệp loại khá",
+    "education": "Trung cấp / Cao đẳng Cắt gọt kim loại, Cơ khí chính xác",
+    "deadline": "10/11/2026",
+    "is_hot": true,
+    "benefits": ["Môi trường làm việc chuẩn Hàn Quốc", "Xe đưa đón công nhân", "Thưởng năng suất tháng", "Hỗ trợ bữa trưa và bữa xế"],
+    "description": [
+      "Gá đặt chi tiết phôi kim loại lên máy phay CNC, máy tiện CNC theo bản vẽ gia công phụ tùng ô tô.",
+      "Hiệu chỉnh dao cụ, bù mòn dao và kiểm tra kích thước sản phẩm bằng thước cặp, panme điện tử.",
+      "Vệ sinh máy, thay dầu làm mát sau ca làm việc."
+    ],
+    "requirements": [
+      "Tốt nghiệp chuyên ngành Cắt gọt kim loại, Chế tạo máy từ các trường GDNN.",
+      "Biết đọc bản vẽ kỹ thuật cơ khí 2D, sử dụng thành thạo dụng cụ đo lường chính xác.",
+      "Ưu tiên sinh viên các trường nghề Ninh Bình."
+    ],
+    "contact": {
+      "contact_person": "Phòng Nhân sự Sejin F&D",
+      "phone": "02293881234",
+      "zalo": "0967889900",
+      "email": "hr@sejinfd.com",
+      "address": "Nhà máy Sejin F&D, Duy Hà, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-17",
+    "title": "Kỹ thuật viên Quản trị Mạng & IT Helpdesk",
+    "company": "Công ty Cổ phần Giải pháp Công nghệ Số Ninh Bình",
+    "company_logo": "NBSOFT",
+    "company_color": "bg-sky-700",
+    "ward_code": "13285",
+    "ward_name": "Phủ Lý",
+    "address": "Đường Lê Hồng Phong, Phường Phủ Lý, Tỉnh Ninh Bình",
+    "salary": "9 - 15 triệu/tháng",
+    "salary_level": "7_10",
+    "industry": "cntt",
+    "industry_name": "Công nghệ thông tin",
+    "experience": "Ưu tiên sinh viên mới tốt nghiệp ngành CNTT",
+    "education": "Trung cấp / Cao đẳng Công nghệ thông tin, Quản trị mạng",
+    "deadline": "20/11/2026",
+    "is_hot": true,
+    "benefits": ["Thưởng dự án chuyển đổi số", "Máy tính cấu hình cao làm việc", "Trợ cấp chứng chỉ mạng CCNA/Micosoft", "Du lịch nghỉ mát hàng năm"],
+    "description": [
+      "Cài đặt, bảo trì máy tính, máy in, mạng LAN, camera an ninh và đường truyền Internet cho các doanh nghiệp.",
+      "Hỗ trợ kỹ thuật (IT Helpdesk) người dùng văn phòng xử lý sự cố phần mềm, email, sao lưu dữ liệu.",
+      "Vận hành và giám sát hệ thống máy chủ Server, sao lưu backup định kỳ."
+    ],
+    "requirements": [
+      "Tốt nghiệp Trung cấp, Cao đẳng các ngành: Công nghệ thông tin, Quản trị mạng, Kỹ thuật máy tính.",
+      "Nắm vững kiến thức phần cứng máy tính, hệ điều hành Windows/Linux, mạng máy tính căn bản.",
+      "Nhiệt tình, có trách nhiệm, khả năng tự học hỏi công nghệ mới."
+    ],
+    "contact": {
+      "contact_person": "Phòng Kỹ thuật & Công nghệ",
+      "phone": "02293899222",
+      "zalo": "0918776655",
+      "email": "tuyendung@nbsoft.vn",
+      "address": "Tòa nhà Công nghệ số, Phủ Lý, Tỉnh Ninh Bình"
+    }
+  },
+  {
+    "id": "job-18",
+    "title": "Lập trình viên / Quản trị Website & Phần mềm Doanh nghiệp",
+    "company": "Tổ hợp Sản xuất Ô tô Hyundai Thành Công Ninh Bình",
+    "company_logo": "HTCV",
+    "company_color": "bg-blue-700",
+    "ward_code": "13348",
+    "ward_name": "Đồng Văn",
+    "address": "Trung tâm CNTT Hyundai Thành Công, KCN Gián Khẩu, Tỉnh Ninh Bình",
+    "salary": "12 - 20 triệu/tháng",
+    "salary_level": "above_15",
+    "industry": "cntt",
+    "industry_name": "Công nghệ thông tin",
+    "experience": "Từ 1 năm hoặc sinh viên giỏi các trường đào tạo CNTT",
+    "education": "Cao đẳng / Đại học Công nghệ thông tin, Phần mềm",
+    "deadline": "15/11/2026",
+    "is_hot": false,
+    "benefits": ["Xe đưa đón từ Hà Nội & các huyện Ninh Bình", "Lương tháng 13, 14", "Ăn trưa miễn phí tại nhà ăn công ty", "Môi trường công nghệ hiện đại"],
+    "description": [
+      "Phát triển và bảo trì các hệ thống phần mềm quản lý sản xuất nội bộ (MES/ERP), cổng thông tin điện tử của nhà máy.",
+      "Quản trị cơ sở dữ liệu MySQL, SQL Server, hỗ trợ trích xuất báo cáo dữ liệu sản xuất.",
+      "Phối hợp với chuyên gia kỹ thuật Hàn Quốc trong các dự án nâng cấp phần mềm tự động hóa."
+    ],
+    "requirements": [
+      "Tốt nghiệp Cao đẳng hoặc Đại học chuyên ngành Công nghệ thông tin, Khoa học máy tính.",
+      "Có kinh nghiệm lập trình Web (PHP/Laravel, JavaScript/Vue/React, hoặc .NET/C#).",
+      "Ưu tiên ứng viên có hộ khẩu tại Ninh Bình hoặc sinh viên trường nghề giỏi."
+    ],
+    "contact": {
+      "contact_person": "Ban Công nghệ Thông tin Hyundai Thành Công",
+      "phone": "02293868686",
+      "zalo": "0988123456",
+      "email": "it.tuyendung@hyundai-thanhcong.vn",
+      "address": "Khu công nghệ - Nhà máy Hyundai Thành Công, KCN Gián Khẩu, Tỉnh Ninh Bình"
+    }
+  }
+]
