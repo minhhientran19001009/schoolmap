@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center gap-1.5 sm:gap-2 flex-1 max-w-xl justify-end md:justify-center min-w-0">
-    <!-- Search Bar with Live Suggestions -->
-    <div class="relative flex-1 min-w-0 sm:max-w-xs md:max-w-sm" ref="searchContainer">
+    <!-- Search Bar with Live Suggestions (hidden on mobile < md) -->
+    <div class="hidden md:block relative flex-1 min-w-0 sm:max-w-xs md:max-w-sm" ref="searchContainer">
       <div class="relative flex items-center">
         <i class="fa-solid fa-magnifying-glass absolute left-2.5 sm:left-3 text-slate-400 text-xs pointer-events-none"></i>
         <input 
@@ -204,6 +204,19 @@
         </div>
       </div>
     </div>
+
+    <!-- Mobile Search Trigger Button (< md only) -->
+    <button 
+      @click="openMobileSearch"
+      class="md:hidden relative w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-all cursor-pointer shadow-2xs"
+      :class="filterStore.search ? 'bg-blue-800 text-white shadow-xs' : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200/90'"
+      title="Tìm kiếm trường học">
+      <i class="fa-solid fa-magnifying-glass text-xs"></i>
+      <span 
+        v-if="filterStore.search" 
+        class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-blue-500 rounded-full border-2 border-white">
+      </span>
+    </button>
 
     <!-- Mobile Filter Trigger Button (< md only) -->
     <button 
@@ -439,6 +452,97 @@
         </div>
       </div>
     </Teleport>
+
+    <!-- ============================================================== -->
+    <!-- MOBILE FULL-SCREEN SEARCH OVERLAY (< md)                       -->
+    <!-- ============================================================== -->
+    <Teleport to="body">
+      <div 
+        v-if="isMobileSearchOpen" 
+        class="fixed inset-0 z-[3100] bg-slate-900/40 backdrop-blur-xs flex flex-col md:hidden animate-in fade-in select-none">
+        
+        <!-- Top Search Bar Header -->
+        <div 
+          class="bg-white px-3 py-2 border-b border-slate-200 shadow-md flex items-center gap-2 flex-shrink-0"
+          style="padding-top: max(0.5rem, env(safe-area-inset-top));">
+          <button 
+            @click="closeMobileSearch" 
+            class="w-8 h-8 rounded-xl hover:bg-slate-100 text-slate-600 flex items-center justify-center flex-shrink-0 cursor-pointer"
+            title="Quay lại">
+            <i class="fa-solid fa-arrow-left text-sm"></i>
+          </button>
+          
+          <div class="flex-1 relative flex items-center">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 text-slate-400 text-xs pointer-events-none"></i>
+            <input 
+              ref="mobileSearchInputRef"
+              v-model="filterStore.search"
+              @keydown.enter="handleMobileEnter"
+              type="text"
+              placeholder="Tìm tên trường, địa chỉ..."
+              class="w-full pl-8 pr-8 py-2 bg-slate-100 text-xs sm:text-sm font-medium text-slate-800 rounded-xl border border-slate-200 focus:bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none"
+            />
+            <button 
+              v-if="filterStore.search"
+              @click="filterStore.search = ''"
+              class="absolute right-2.5 text-slate-400 hover:text-slate-600 w-5 h-5 flex items-center justify-center cursor-pointer"
+              title="Xóa">
+              <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+          </div>
+
+          <button 
+            @click="closeMobileSearch"
+            class="text-xs font-semibold text-blue-700 px-1 py-1 hover:text-blue-900 flex-shrink-0 cursor-pointer">
+            Đóng
+          </button>
+        </div>
+
+        <!-- Live Search Results Sheet -->
+        <div class="bg-white flex-1 overflow-y-auto divide-y divide-slate-100">
+          <div v-if="filteredSuggestions.length > 0">
+            <div class="px-3.5 py-2 bg-slate-50 text-[11px] text-slate-500 font-semibold flex justify-between items-center">
+              <span>Tìm thấy {{ filteredSuggestions.length }} cơ sở GDNN</span>
+              <span class="text-[10px] text-slate-400">Chạm để xem</span>
+            </div>
+            <div 
+              v-for="school in filteredSuggestions" 
+              :key="school.id"
+              @click="selectSuggestionAndClose(school)"
+              class="px-3.5 py-2.5 hover:bg-blue-50/70 active:bg-blue-100 flex items-center gap-2.5 cursor-pointer">
+              <div 
+                class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 border"
+                :style="{ 
+                  backgroundColor: getLevelBg(school.education_level), 
+                  borderColor: getLevelBorder(school.education_level),
+                  color: getLevelColor(school.education_level) 
+                }">
+                <i :class="getLevelIcon(school.education_level)" class="text-xs"></i>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-xs font-bold text-slate-900 leading-snug line-clamp-1">{{ school.name }}</p>
+                <p class="text-[11px] text-slate-500 truncate mt-0.5 flex items-center gap-1">
+                  <i class="fa-solid fa-location-dot text-[9px] text-slate-400"></i>
+                  <span>{{ formatSchoolAddress(school) }}</span>
+                </p>
+              </div>
+              <i class="fa-solid fa-chevron-right text-[10px] text-slate-300"></i>
+            </div>
+          </div>
+          <div v-else-if="filterStore.search.trim().length > 0" class="p-8 text-center text-slate-500">
+            <div class="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-2">
+              <i class="fa-solid fa-magnifying-glass text-sm"></i>
+            </div>
+            <p class="text-xs font-bold text-slate-700">Không tìm thấy trường nào</p>
+            <p class="text-[11px] text-slate-400 mt-1">Không có cơ sở giáo dục nào khớp với "{{ filterStore.search }}"</p>
+          </div>
+          <div v-else class="p-8 text-center text-slate-400 text-xs">
+            <i class="fa-solid fa-magnifying-glass text-xl mb-2 text-slate-300 block"></i>
+            Nhập tên trường, địa chỉ hoặc mã trường để tìm kiếm nhanh
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -457,6 +561,32 @@ const majors = liveTrainingMajors
 
 // Mobile sheet state
 const isMobileFilterOpen = ref(false)
+const isMobileSearchOpen = ref(false)
+const mobileSearchInputRef = ref(null)
+
+function openMobileSearch() {
+  isMobileSearchOpen.value = true
+  nextTick(() => {
+    mobileSearchInputRef.value?.focus()
+  })
+}
+
+function closeMobileSearch() {
+  isMobileSearchOpen.value = false
+}
+
+function selectSuggestionAndClose(school) {
+  selectSuggestion(school)
+  isMobileSearchOpen.value = false
+}
+
+function handleMobileEnter() {
+  if (filteredSuggestions.value.length > 0) {
+    selectSuggestionAndClose(filteredSuggestions.value[0])
+  } else {
+    closeMobileSearch()
+  }
+}
 
 // Searchable Ward Combobox state
 const isWardMenuOpen = ref(false)

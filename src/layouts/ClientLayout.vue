@@ -1,18 +1,18 @@
 <template>
   <div class="w-screen h-screen overflow-hidden flex flex-col bg-slate-50 font-sans select-none">
     <!-- Public Header (56px - 60px) - Modern Portal & Apple Segmented Control Aesthetic -->
-    <header class="h-14 sm:h-[58px] bg-white/95 backdrop-blur-md border-b border-slate-200/90 z-40 flex items-center justify-between px-2 sm:px-4 md:px-6 gap-2 sm:gap-3 flex-shrink-0 shadow-xs sticky top-0 transition-all">
+    <header class="h-14 sm:h-[58px] bg-white/95 backdrop-blur-md border-b border-slate-200/90 z-40 flex items-center justify-between px-2 sm:px-4 md:px-6 gap-1.5 sm:gap-3 flex-shrink-0 shadow-xs sticky top-0 transition-all">
       
       <!-- Left: Logo and Brand -->
-      <router-link to="/map" class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 group">
+      <router-link to="/map" class="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0 group">
         <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-gradient-to-tr from-blue-700 via-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-xs group-hover:scale-105 group-hover:shadow-soft transition-all duration-200 flex-shrink-0">
           <i class="fa-solid fa-graduation-cap"></i>
         </div>
         <div class="flex flex-col min-w-0">
           <span class="font-extrabold text-slate-800 text-xs sm:text-sm md:text-base leading-tight group-hover:text-blue-700 transition-colors whitespace-nowrap">
-            <span class="min-[380px]:hidden">GDNN</span>
-            <span class="hidden min-[380px]:inline sm:hidden">GDNN Ninh Bình</span>
-            <span class="hidden sm:inline">Bản đồ số GDNN Ninh Bình</span>
+            <span class="hidden md:inline">Bản đồ số GDNN Ninh Bình</span>
+            <span class="hidden sm:inline md:hidden">GDNN Ninh Bình</span>
+            <span class="hidden min-[480px]:inline sm:hidden">GDNN</span>
           </span>
           <span class="text-[11px] text-slate-500 font-medium hidden lg:block leading-tight mt-0.5">
             Cổng tra cứu cơ sở GDNN & Việc làm
@@ -21,13 +21,13 @@
       </router-link>
 
       <!-- Center / Primary Nav: Switch Tabs (Bản đồ vs Việc làm) -->
-      <nav class="segmented-control-track inline-flex items-center p-1 bg-slate-100/95 rounded-2xl flex-shrink-0 border border-slate-200/80 shadow-inner">
+      <nav class="segmented-control-track inline-flex items-center p-0.5 sm:p-1 bg-slate-100/95 rounded-2xl flex-shrink-0 border border-slate-200/80 shadow-inner">
         <!-- Tab 1: Bản đồ GDNN -->
         <router-link 
           to="/map"
           :class="isMapRoute ? 'nav-tab-active-map' : 'nav-tab-inactive'"
-          class="nav-tab-item px-2.5 sm:px-3.5 py-1.5 text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer whitespace-nowrap">
-          <i class="fa-solid fa-map-location-dot text-xs" :class="isMapRoute ? 'text-blue-600' : 'text-slate-400'"></i>
+          class="nav-tab-item px-2 sm:px-3 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer whitespace-nowrap">
+          <i class="fa-solid fa-map-location-dot text-[11px] sm:text-xs" :class="isMapRoute ? 'text-blue-600' : 'text-slate-400'"></i>
           <span class="hidden md:inline">Bản đồ GDNN</span>
           <span class="md:hidden">Bản đồ</span>
         </router-link>
@@ -36,8 +36,8 @@
         <router-link 
           to="/tuyen-dung"
           :class="isJobsRoute ? 'nav-tab-active-jobs' : 'nav-tab-inactive'"
-          class="nav-tab-item px-2.5 sm:px-3.5 py-1.5 text-xs rounded-xl transition-all flex items-center gap-1.5 cursor-pointer relative whitespace-nowrap">
-          <i class="fa-solid fa-briefcase text-xs" :class="isJobsRoute ? 'text-purple-600' : 'text-slate-400'"></i>
+          class="nav-tab-item px-2 sm:px-3 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer relative whitespace-nowrap">
+          <i class="fa-solid fa-briefcase text-[11px] sm:text-xs" :class="isJobsRoute ? 'text-purple-600' : 'text-slate-400'"></i>
           <span class="hidden md:inline">Việc làm GDNN</span>
           <span class="md:hidden">Việc làm</span>
           <!-- Live Ping Notification Badge -->
@@ -49,7 +49,7 @@
       </nav>
 
       <!-- Center-Right Filter Area (Visible on Map view) -->
-      <TopFilterBar v-if="isMapRoute" class="flex-1 min-w-0" />
+      <TopFilterBar v-if="isMapRoute" class="flex-1 md:flex-initial min-w-0" />
       <div v-else class="flex-1"></div>
 
       <!-- Right Action: Dành cho Nhà tuyển dụng (Responsive: Icon-only on mobile & small tablet, full on desktop) -->

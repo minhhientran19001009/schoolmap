@@ -125,7 +125,7 @@
     <main id="job-listings-section" class="max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-1">
       
       <!-- Section Header -->
-      <div class="flex items-center justify-between flex-wrap gap-2 sm:gap-3 mb-3">
+      <div class="w-full flex items-center justify-between flex-wrap gap-2 sm:gap-3 mb-3">
         <div class="flex items-center gap-2">
           <span class="text-xl sm:text-2xl text-orange-500 animate-bounce">🔥</span>
           <h2 class="text-base sm:text-xl md:text-2xl font-black text-slate-900 tracking-tight">
@@ -152,7 +152,7 @@
       </div>
 
       <!-- Horizontal Filter Bar (Exact Match to Photo 2 - fully mobile responsive) -->
-      <div class="bg-white rounded-2xl p-2 sm:p-3 border border-slate-200 shadow-2xs mb-4 sm:mb-5 flex flex-col md:flex-row items-start md:items-center gap-2 sm:gap-2.5">
+      <div class="w-full max-w-full bg-white rounded-2xl p-2.5 sm:p-3 border border-slate-200 shadow-2xs mb-4 sm:mb-5 flex flex-col md:flex-row items-stretch md:items-center gap-2 sm:gap-2.5">
         
         <!-- Left Custom Dropdown: "Lọc theo: Khu công nghiệp / Ngành nghề" (No native select overflow) -->
         <div ref="filterModeDropdownRef" class="relative flex-shrink-0 self-start md:self-auto">
@@ -219,7 +219,7 @@
         </div>
 
         <!-- Right: Horizontal Pills with Arrow Scroll Buttons (Exact Photo 2 Structure) -->
-        <div class="flex-1 min-w-0 flex items-center gap-1 sm:gap-2">
+        <div class="w-full max-w-full min-w-0 flex-1 flex items-center gap-1 sm:gap-2">
           <!-- Prev button (hidden on very small screens to give max width to swipe track) -->
           <button 
             @click="scrollPills('left')"
@@ -232,7 +232,7 @@
           <div 
             ref="pillsContainerRef"
             style="scrollbar-width: none; -ms-overflow-style: none;"
-            class="flex-1 min-w-0 flex items-center gap-1.5 sm:gap-2 overflow-x-auto scroll-smooth py-0.5 no-scrollbar touch-pan-x">
+            class="flex-1 min-w-0 max-w-full flex items-center gap-1.5 sm:gap-2 overflow-x-auto scroll-smooth py-0.5 no-scrollbar touch-pan-x">
             
             <!-- Mode 1: Khu công nghiệp (Default like Photo 2) -->
             <template v-if="filterMode === 'zone'">
@@ -292,7 +292,7 @@
       </div>
 
       <!-- Quick Category Tabs (All / Tuyển gấp / Lương cao / v.v.) -->
-      <div class="flex items-center gap-1.5 overflow-x-auto pb-1.5 mb-3 sm:mb-4 text-xs no-scrollbar touch-pan-x">
+      <div class="w-full max-w-full flex items-center gap-1.5 overflow-x-auto pb-1.5 mb-3 sm:mb-4 text-xs no-scrollbar touch-pan-x">
         <button 
           v-for="tab in jobTabs" 
           :key="tab.id"
@@ -306,7 +306,7 @@
       <!-- 3-Column Job Grid with Pagination (Full Width, Wide & Spacious Cards) -->
       <div 
         v-if="filteredJobs.length > 0"
-        class="space-y-6 sm:space-y-8">
+        class="w-full max-w-full space-y-6 sm:space-y-8">
         
         <!-- Job Cards Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
