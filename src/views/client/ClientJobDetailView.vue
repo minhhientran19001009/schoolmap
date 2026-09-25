@@ -363,8 +363,10 @@
             <div class="flex justify-center">
               <div 
                 :class="job.company_color || 'bg-[#3b1d74]'"
-                class="w-16 h-16 rounded-2xl text-white font-black text-sm flex items-center justify-center shadow-sm border border-slate-100 tracking-wider">
-                {{ job.company_logo || 'DN' }}
+                class="w-16 h-16 rounded-2xl text-white font-black flex items-center justify-center shadow-sm border border-slate-100 overflow-hidden p-1.5 text-center select-none">
+                <span class="max-w-full truncate text-xs sm:text-sm font-black uppercase tracking-tight block">
+                  {{ job.company_logo || 'DN' }}
+                </span>
               </div>
             </div>
 
@@ -427,8 +429,10 @@
                   <!-- Mini Logo -->
                   <div 
                     :class="rel.company_color || 'bg-slate-700'"
-                    class="w-9 h-9 rounded-lg text-white font-bold text-[10px] flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-100">
-                    {{ rel.company_logo || 'DN' }}
+                    class="w-9 h-9 rounded-lg text-white font-bold flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-100 overflow-hidden p-0.5 text-center select-none">
+                    <span class="max-w-full truncate text-[8px] font-black uppercase block">
+                      {{ rel.company_logo || 'DN' }}
+                    </span>
                   </div>
 
                   <!-- Job info -->

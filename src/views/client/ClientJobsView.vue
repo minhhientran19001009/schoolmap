@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full overflow-y-auto bg-[#f8f9fa] flex flex-col font-sans select-text">
+  <div class="w-full h-full overflow-y-auto overflow-x-hidden bg-[#f8f9fa] flex flex-col font-sans select-text">
     
     <!-- Hero Search Section (Authentic Vieclam24h Lavender Theme) -->
     <section class="bg-[#f3f0ff] pt-5 sm:pt-8 pb-6 sm:pb-10 px-3 sm:px-6 flex-shrink-0 border-b border-purple-100/60">

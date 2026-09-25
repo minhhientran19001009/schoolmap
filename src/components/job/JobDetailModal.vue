@@ -18,8 +18,10 @@
           <!-- Company Logo -->
           <div 
             :class="job.company_color || 'bg-[#3b1d74]'"
-            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl text-white font-black text-sm sm:text-base flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100">
-            {{ job.company_logo || 'DN' }}
+            class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl text-white font-black flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100 overflow-hidden p-1 text-center select-none">
+            <span class="max-w-full truncate text-xs sm:text-sm font-black uppercase tracking-tight block">
+              {{ job.company_logo || 'DN' }}
+            </span>
           </div>
 
           <!-- Job & Company Info -->
