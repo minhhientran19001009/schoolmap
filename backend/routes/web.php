@@ -156,14 +156,20 @@ Route::get('/api/schools', function () use ($mapSchool) {
 });
 
 Route::get('/api/schools/download-template', function (\App\Services\SchoolExcelService $excelService) {
+    abort_unless(auth()->user()?->isSystemAdmin(), 403);
+
     return $excelService->downloadTemplate();
 })->middleware(['auth', 'throttle:30,1']);
 
 Route::get('/api/schools/export-excel', function (\App\Services\SchoolExcelService $excelService) {
+    abort_unless(auth()->user()?->isSystemAdmin(), 403);
+
     return $excelService->exportCurrentSchools();
 })->middleware(['auth', 'throttle:10,1']);
 
 Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $request, \App\Services\SchoolExcelService $excelService) {
+    abort_unless(auth()->user()?->isSystemAdmin(), 403);
+
     $validator = Validator::make($request->all(), [
         'excel_file' => ['required', 'file', 'extensions:xlsx,xls', 'max:40960'],
     ], [
@@ -214,6 +220,8 @@ Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $r
 })->middleware(['auth', 'throttle:10,1'])->name('admin.schools.import-excel');
 
 Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Request $request, \App\Services\TrainingMajorExcelService $excelService) {
+    abort_unless(auth()->user()?->isSystemAdmin(), 403);
+
     $validator = Validator::make($request->all(), [
         'excel_file' => ['required', 'file', 'extensions:xlsx,xls', 'max:40960'],
     ], [
@@ -348,6 +356,8 @@ Route::get('/api/wards', function () {
 });
 
 Route::post('/api/schools', function (\Illuminate\Http\Request $request) use ($schoolPayload, $syncSchoolMajors) {
+    abort_unless(auth()->user()?->isSystemAdmin(), 403);
+
     $data = $schoolPayload($request, true);
     if (empty($data['code'])) {
         $data['code'] = (string) rand(10000, 99999);
@@ -369,7 +379,27 @@ Route::put('/api/schools/{id}', function ($id, \Illuminate\Http\Request $request
     if (!$school) {
         return response()->json(['error' => 'School not found'], 404);
     }
+
+    $user = auth()->user();
+    abort_unless(
+        $user?->isSystemAdmin() || $user?->canManageSchool($school),
+        403,
+        'Bạn không có quyền cập nhật trường học này.',
+    );
+
     $data = $schoolPayload($request);
+
+    if (! $user?->isSystemAdmin()) {
+        $data = array_intersect_key($data, array_flip([
+            'name', 'ward', 'address', 'lat', 'lng', 'phone', 'email', 'website', 'principal', 'leaders',
+            'training_majors', 'annual_enrollment', 'annual_graduates', 'employment_rate', 'student_count',
+            'teacher_count', 'teachers_shortage', 'teachers_surplus', 'faculty_rank_1', 'faculty_rank_2',
+            'faculty_rank_3', 'faculty_doctors', 'faculty_masters', 'faculty_professors', 'partner_enterprises',
+            'class_count', 'classroom_count', 'computer_room_count', 'library', 'lab_count', 'workshops_count',
+            'campus_area_m2', 'gallery', 'major_assignments',
+        ]));
+    }
+
     $levelId = $data['education_level'] ?? $data['education_level_id'] ?? null;
     if ($levelId) {
         $data['education_level_id'] = $levelId;
@@ -385,6 +415,8 @@ Route::put('/api/schools/{id}', function ($id, \Illuminate\Http\Request $request
 })->middleware(['auth', 'throttle:60,1']);
 
 Route::delete('/api/schools/{id}', function ($id) {
+    abort_unless(auth()->user()?->isSystemAdmin(), 403);
+
     $school = School::where('id', $id)->orWhere('code', $id)->first();
     if ($school) {
         if ($school->childCampuses()->exists()) {

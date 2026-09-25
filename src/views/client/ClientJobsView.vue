@@ -42,7 +42,7 @@
             <div class="hidden md:block w-px h-8 bg-slate-200"></div>
 
             <!-- 2. Industry Custom Popover Dropdown (No native select overflow) -->
-            <div ref="industryDropdownRef" class="w-full md:w-56 relative">
+            <div ref="industryDropdownRef" class="w-full md:w-64 lg:w-72 relative">
               <!-- Trigger Button -->
               <div 
                 @click="toggleIndustryMenu"
@@ -72,7 +72,7 @@
               <!-- Popover Dropdown with Industry List -->
               <div 
                 v-if="isIndustryMenuOpen"
-                class="absolute left-0 right-0 md:left-0 md:right-auto md:w-64 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in select-none">
+                class="absolute left-0 right-0 md:left-0 md:right-auto md:w-72 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in select-none">
                 
                 <div class="max-h-64 overflow-y-auto space-y-0.5 pr-1 no-scrollbar">
                   <!-- "All Industries" option -->
@@ -107,114 +107,6 @@
               </div>
             </div>
 
-            <div class="hidden md:block w-px h-8 bg-slate-200"></div>
-
-            <!-- 3. Ward Searchable Combobox (From CSDL wards table) -->
-            <div ref="wardDropdownRef" class="w-full md:w-64 relative">
-              <!-- Trigger Button -->
-              <div 
-                @click="toggleWardMenu"
-                class="w-full pl-8 pr-8 py-2.5 text-xs sm:text-sm font-medium text-slate-700 rounded-xl bg-slate-50/70 hover:bg-slate-100/70 border border-transparent hover:border-slate-200 transition-all cursor-pointer flex items-center justify-between select-none"
-                :class="{ 'ring-1 ring-[#6c3fb8] bg-white border-purple-200 shadow-2xs': isWardMenuOpen }">
-                
-                <i class="fa-solid fa-location-dot absolute left-3 text-blue-600 text-xs pointer-events-none"></i>
-                
-                <span class="truncate block" :class="selectedWardCode !== 'all' ? 'text-[#6c3fb8] font-bold' : 'text-slate-700'">
-                  {{ selectedWardLabel }}
-                </span>
-
-                <div class="absolute right-2.5 flex items-center gap-1">
-                  <button 
-                    v-if="selectedWardCode !== 'all'"
-                    @click.stop="clearWard"
-                    class="w-4 h-4 rounded-full text-slate-400 hover:text-rose-600 hover:bg-rose-50 flex items-center justify-center cursor-pointer transition-colors"
-                    title="Bỏ chọn xã/phường">
-                    <i class="fa-solid fa-xmark text-[10px]"></i>
-                  </button>
-                  <i 
-                    class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform duration-200"
-                    :class="{ 'rotate-180 text-[#6c3fb8]': isWardMenuOpen }"></i>
-                </div>
-              </div>
-
-              <!-- Popover Dropdown with Search -->
-              <div 
-                v-if="isWardMenuOpen"
-                class="absolute left-0 right-0 md:left-auto md:right-0 top-full mt-1.5 w-full md:w-80 bg-white border border-slate-200 rounded-2xl shadow-2xl p-2.5 z-50 animate-in fade-in slide-in-from-top-2 select-none">
-                
-                <!-- Search Input Box -->
-                <div class="relative mb-2">
-                  <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-                  <input 
-                    ref="wardSearchInputRef"
-                    v-model="wardSearchQuery"
-                    type="text"
-                    placeholder="Tìm tên xã, phường, thị trấn..."
-                    class="w-full pl-8 pr-7 py-2 bg-slate-50 hover:bg-slate-100/80 focus:bg-white text-xs font-medium text-slate-800 rounded-xl border border-slate-200 focus:border-[#853AFF] focus:ring-2 focus:ring-purple-100 outline-none transition-all placeholder:text-slate-400"
-                    @keydown.esc="isWardMenuOpen = false"
-                  />
-                  <button 
-                    v-if="wardSearchQuery"
-                    @click="wardSearchQuery = ''"
-                    class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 w-4 h-4 flex items-center justify-center cursor-pointer">
-                    <i class="fa-solid fa-xmark text-xs"></i>
-                  </button>
-                </div>
-
-                <!-- Header info / counter -->
-                <div class="flex items-center justify-between px-2 py-1 text-[11px] text-slate-400 border-b border-slate-100 mb-1">
-                  <span>{{ wardSearchQuery ? `Tìm thấy ${filteredWardsList.length} kết quả` : `Tổng cộng ${wardsList.length} xã/phường` }}</span>
-                  <span class="text-[10px] text-purple-600 font-semibold">Tỉnh Ninh Bình</span>
-                </div>
-
-                <!-- Scrollable Wards List -->
-                <div class="max-h-60 overflow-y-auto space-y-0.5 pr-1">
-                  <!-- "All Wards" option -->
-                  <div 
-                    @click="selectWard('all')"
-                    :class="selectedWardCode === 'all' ? 'bg-purple-50 text-[#6c3fb8] font-bold' : 'text-slate-700 hover:bg-slate-50'"
-                    class="px-2.5 py-1.5 rounded-xl text-xs cursor-pointer flex items-center justify-between transition-colors">
-                    <div class="flex items-center gap-2">
-                      <i class="fa-solid fa-map-location-dot text-blue-600 text-xs"></i>
-                      <span>Tất cả Xã/Phường</span>
-                    </div>
-                    <i v-if="selectedWardCode === 'all'" class="fa-solid fa-check text-xs text-[#6c3fb8]"></i>
-                  </div>
-
-                  <div class="h-px bg-slate-100 my-1"></div>
-
-                  <!-- Empty state -->
-                  <div 
-                    v-if="filteredWardsList.length === 0" 
-                    class="text-center py-5 text-xs text-slate-400 italic">
-                    <i class="fa-solid fa-map-pin text-slate-300 text-lg block mb-1"></i>
-                    Không tìm thấy xã/phường nào khớp với "{{ wardSearchQuery }}"
-                  </div>
-
-                  <!-- Filtered Items -->
-                  <template v-else>
-                    <div 
-                      v-for="w in filteredWardsList"
-                      :key="w.id || w.code || w.name"
-                      @click="selectWard(w.name)"
-                      :class="isWardSelected(w) ? 'bg-purple-50 text-[#6c3fb8] font-bold' : 'text-slate-700 hover:bg-slate-50'"
-                      class="px-2.5 py-1.5 rounded-xl text-xs cursor-pointer flex items-center justify-between transition-colors group">
-                      <div class="flex items-center gap-2 min-w-0">
-                        <span 
-                          :class="getUnitBadgeClass(w.unit_type)"
-                          class="text-[10px] px-1.5 py-0.5 rounded font-semibold flex-shrink-0">
-                          {{ w.unit_type || 'Xã' }}
-                        </span>
-                        <span class="truncate group-hover:text-[#6c3fb8]">{{ w.full_name || w.name }}</span>
-                      </div>
-                      <i v-if="isWardSelected(w)" class="fa-solid fa-check text-xs text-[#6c3fb8] flex-shrink-0 ml-1"></i>
-                    </div>
-                  </template>
-                </div>
-
-              </div>
-            </div>
-
             <!-- 4. Search CTA Button (Purple Gradient) -->
             <button 
               @click="scrollToJobs"
@@ -224,34 +116,6 @@
             </button>
 
           </div>
-        </div>
-
-        <!-- Trending Keywords (Vieclam24h style - horizontal scroll on mobile) -->
-        <div class="pt-2 flex items-center justify-start sm:justify-center gap-1.5 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 no-scrollbar text-xs text-slate-600 px-1 w-full max-w-full">
-          <span class="font-semibold text-slate-500 flex-shrink-0 text-[11px] sm:text-xs">Từ khóa:</span>
-          <button 
-            v-for="(kw, idx) in trendingKeywords" 
-            :key="idx"
-            @click="setKeyword(kw)"
-            class="px-2.5 py-1 rounded-full bg-white hover:bg-purple-100 text-slate-700 hover:text-[#6c3fb8] border border-purple-100 text-[11px] font-medium transition-colors cursor-pointer shadow-2xs whitespace-nowrap flex-shrink-0">
-            {{ kw }}
-          </button>
-        </div>
-
-        <!-- Feature Category Badges (horizontal scroll track on mobile, wrap on desktop) -->
-        <div class="pt-2.5 sm:pt-4 flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 no-scrollbar px-1 w-full max-w-full">
-          <button 
-            v-for="(cat, idx) in featureCategories" 
-            :key="idx"
-            @click="applyQuickCategory(cat.type)"
-            :class="activeQuickCategory === cat.type ? 'bg-[#3b1d74] text-white border-[#3b1d74]' : 'bg-white text-slate-700 border-purple-100 hover:border-purple-300'"
-            class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl border text-[11px] sm:text-xs font-semibold transition-all shadow-2xs flex items-center gap-1.5 cursor-pointer whitespace-nowrap flex-shrink-0">
-            <span>{{ cat.icon }}</span>
-            <span>{{ cat.label }}</span>
-            <span v-if="cat.badge" class="px-1.5 py-0.2 rounded text-[9px] font-bold uppercase bg-rose-500 text-white">
-              {{ cat.badge }}
-            </span>
-          </button>
         </div>
 
       </div>
@@ -439,16 +303,90 @@
         </button>
       </div>
 
-      <!-- 3-Column Job Grid (Full Width, Wide & Spacious Cards) -->
+      <!-- 3-Column Job Grid with Pagination (Full Width, Wide & Spacious Cards) -->
       <div 
         v-if="filteredJobs.length > 0"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
-        <JobCard 
-          v-for="job in filteredJobs"
-          :key="job.id"
-          :job="job"
-          @select="goToJobDetail($event)"
-        />
+        class="space-y-6 sm:space-y-8">
+        
+        <!-- Job Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-5">
+          <JobCard 
+            v-for="job in paginatedJobs"
+            :key="job.id"
+            :job="job"
+            @select="goToJobDetail($event)"
+          />
+        </div>
+
+        <!-- Premium Modern Pagination Bar -->
+        <div 
+          v-if="totalPages > 1"
+          class="bg-white rounded-2xl border border-slate-200 p-3 sm:p-4 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 select-none">
+          
+          <!-- Left info: items counter (responsive format for mobile & desktop) -->
+          <div class="text-xs text-slate-500 order-2 sm:order-1 text-center sm:text-left">
+            <span class="sm:hidden">
+              <span class="font-bold text-slate-800">{{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, filteredJobs.length) }}</span>
+              <span class="text-slate-400"> / </span>
+              <span class="font-bold text-[#6c3fb8]">{{ filteredJobs.length }}</span> việc làm
+            </span>
+            <span class="hidden sm:inline">
+              Hiển thị <span class="font-bold text-slate-800">{{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, filteredJobs.length) }}</span>
+              trên <span class="font-bold text-[#6c3fb8]">{{ filteredJobs.length }}</span> việc làm
+            </span>
+          </div>
+
+          <!-- Right: Page Number Controls -->
+          <div class="flex items-center gap-1 sm:gap-1.5 order-1 sm:order-2">
+            <!-- Prev Button -->
+            <button 
+              @click="prevPage"
+              :disabled="currentPage === 1"
+              :class="currentPage === 1 
+                ? 'opacity-40 cursor-not-allowed text-slate-300 border-slate-100 bg-slate-50' 
+                : 'hover:bg-purple-50 text-slate-700 hover:text-[#6c3fb8] border-slate-200 hover:border-purple-200 bg-white cursor-pointer active:scale-95 shadow-2xs'"
+              class="h-8 sm:h-9 px-2.5 sm:px-3 rounded-xl border text-xs font-semibold flex items-center gap-1 transition-all"
+              title="Trang trước">
+              <i class="fa-solid fa-chevron-left text-[10px]"></i>
+              <span class="hidden sm:inline">Trước</span>
+            </button>
+
+            <!-- Page Numbers List -->
+            <template v-for="(p, idx) in displayedPages" :key="idx">
+              <!-- Ellipsis separator -->
+              <span 
+                v-if="p === '...'"
+                class="h-8 sm:h-9 w-6 sm:w-8 flex items-center justify-center text-slate-400 text-xs font-bold">
+                ...
+              </span>
+              <!-- Number Button -->
+              <button 
+                v-else
+                @click="goToPage(p)"
+                :class="currentPage === p 
+                  ? 'bg-gradient-to-r from-[#853AFF] to-[#6C5FFF] text-white font-bold shadow-xs border-transparent' 
+                  : 'bg-white hover:bg-purple-50 text-slate-700 hover:text-[#6c3fb8] border-slate-200 hover:border-purple-200 font-semibold shadow-2xs'"
+                class="h-8 sm:h-9 w-8 sm:w-9 rounded-xl border text-xs flex items-center justify-center transition-all cursor-pointer active:scale-95">
+                {{ p }}
+              </button>
+            </template>
+
+            <!-- Next Button -->
+            <button 
+              @click="nextPage"
+              :disabled="currentPage === totalPages"
+              :class="currentPage === totalPages 
+                ? 'opacity-40 cursor-not-allowed text-slate-300 border-slate-100 bg-slate-50' 
+                : 'hover:bg-purple-50 text-slate-700 hover:text-[#6c3fb8] border-slate-200 hover:border-purple-200 bg-white cursor-pointer active:scale-95 shadow-2xs'"
+              class="h-8 sm:h-9 px-2.5 sm:px-3 rounded-xl border text-xs font-semibold flex items-center gap-1 transition-all"
+              title="Trang sau">
+              <span class="hidden sm:inline">Sau</span>
+              <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </button>
+          </div>
+
+        </div>
+
       </div>
 
       <!-- Empty State -->
@@ -500,21 +438,22 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { jobService } from '../../services/jobService'
-import { schoolService } from '../../services/schoolService'
 import JobCard from '../../components/job/JobCard.vue'
 
 const router = useRouter()
 
 const searchQuery = ref('')
-const selectedWardCode = ref('all')
 const selectedIndustry = ref('all')
 const selectedZone = ref('all')
 const filterMode = ref('zone')
 const selectedTab = ref('all')
-const activeQuickCategory = ref('all')
+
+// Pagination State (Always 9 jobs per page: 3 rows of 3 columns)
+const currentPage = ref(1)
+const pageSize = ref(9)
 
 // Horizontal Pills scroll ref
 const pillsContainerRef = ref(null)
@@ -557,34 +496,9 @@ const selectedIndustryLabel = computed(() => {
   return matched ? matched.name : 'Tất cả ngành nghề'
 })
 
-// Ward Combobox State
-const isWardMenuOpen = ref(false)
-const wardSearchQuery = ref('')
-const wardDropdownRef = ref(null)
-const wardSearchInputRef = ref(null)
-
-const wardsList = ref([])
 const industries = jobService.getIndustries()
 const initialJobs = jobService.getAll()
 const initialJobsCount = initialJobs.length
-
-const trendingKeywords = [
-  'Hyundai Thành Công',
-  'Mcnex Vina',
-  'May mặc',
-  'KCN Gián Khẩu',
-  'Doveco Tam Điệp',
-  'Tràng An',
-  'Thợ Hàn 3G'
-]
-
-const featureCategories = [
-  { type: 'all', icon: '✨', label: 'Tất cả việc làm' },
-  { type: 'immediate', icon: '⚡', label: 'Việc đi làm ngay', badge: 'Mới' },
-  { type: 'no_cv', icon: '📄', label: 'Việc không cần CV', badge: 'Mới' },
-  { type: 'top_company', icon: '⭐', label: 'Doanh nghiệp lớn' },
-  { type: 'gdnn_grad', icon: '🎓', label: 'Sinh viên nghề mới ra trường' }
-]
 
 const jobTabs = [
   { id: 'all', label: 'Tất cả' },
@@ -603,13 +517,7 @@ const industrialZones = [
   { name: 'Cụm Công nghiệp Kim Sơn', shortName: 'CCN Kim Sơn', keyword: 'Kim Sơn', count: 2 }
 ]
 
-onMounted(async () => {
-  try {
-    const data = await schoolService.getWards()
-    wardsList.value = Array.isArray(data) ? data : []
-  } catch (e) {
-    wardsList.value = []
-  }
+onMounted(() => {
   document.addEventListener('click', handleClickOutside)
 })
 
@@ -618,9 +526,6 @@ onUnmounted(() => {
 })
 
 function handleClickOutside(e) {
-  if (wardDropdownRef.value && !wardDropdownRef.value.contains(e.target)) {
-    isWardMenuOpen.value = false
-  }
   if (industryDropdownRef.value && !industryDropdownRef.value.contains(e.target)) {
     isIndustryMenuOpen.value = false
   }
@@ -629,62 +534,10 @@ function handleClickOutside(e) {
   }
 }
 
-function toggleWardMenu() {
-  isWardMenuOpen.value = !isWardMenuOpen.value
-  if (isWardMenuOpen.value) {
-    nextTick(() => {
-      wardSearchInputRef.value?.focus()
-    })
-  }
-}
-
-function selectWard(wardName) {
-  selectedWardCode.value = wardName
-  isWardMenuOpen.value = false
-  wardSearchQuery.value = ''
-  scrollToJobs()
-}
-
-function clearWard() {
-  selectedWardCode.value = 'all'
-  wardSearchQuery.value = ''
-}
-
-function isWardSelected(w) {
-  if (selectedWardCode.value === 'all') return false
-  const selected = selectedWardCode.value.toLowerCase()
-  return (w.name && w.name.toLowerCase() === selected) || 
-         (w.full_name && w.full_name.toLowerCase() === selected)
-}
-
-const selectedWardLabel = computed(() => {
-  if (selectedWardCode.value === 'all') return 'Tất cả Xã/Phường'
-  const matched = wardsList.value.find(w => 
-    (w.name && w.name.toLowerCase() === selectedWardCode.value.toLowerCase()) ||
-    (w.full_name && w.full_name.toLowerCase() === selectedWardCode.value.toLowerCase())
-  )
-  return matched ? (matched.full_name || matched.name) : selectedWardCode.value
-})
-
-const filteredWardsList = computed(() => {
-  const q = wardSearchQuery.value.toLowerCase().trim()
-  if (!q) return wardsList.value
-  return wardsList.value.filter(w => {
-    return (w.name && w.name.toLowerCase().includes(q)) ||
-           (w.full_name && w.full_name.toLowerCase().includes(q))
-  })
-})
-
-function getUnitBadgeClass(unitType) {
-  if (unitType === 'Phường') return 'bg-blue-100 text-blue-800'
-  if (unitType === 'Thị trấn') return 'bg-purple-100 text-purple-800'
-  return 'bg-emerald-100 text-emerald-800'
-}
-
 const filteredJobs = computed(() => {
   let list = jobService.filterJobs({
     search: searchQuery.value,
-    wardCode: selectedWardCode.value,
+    wardCode: 'all',
     industry: selectedIndustry.value
   })
 
@@ -696,15 +549,6 @@ const filteredJobs = computed(() => {
       j.company.toLowerCase().includes(zk) ||
       j.title.toLowerCase().includes(zk)
     )
-  }
-
-  // Quick Category filter
-  if (activeQuickCategory.value === 'hot') {
-    list = list.filter(j => j.is_hot)
-  } else if (activeQuickCategory.value === 'no_cv' || activeQuickCategory.value === 'immediate') {
-    list = list.filter(j => j.experience?.includes('Không yêu cầu') || j.is_hot)
-  } else if (activeQuickCategory.value === 'gdnn_grad') {
-    list = list.filter(j => j.education?.includes('Trung cấp') || j.education?.includes('Cao đẳng'))
   }
 
   // Tab filter
@@ -723,13 +567,66 @@ const filteredJobs = computed(() => {
   return list
 })
 
+// Pagination Computed Properties
+const totalPages = computed(() => {
+  return Math.ceil(filteredJobs.value.length / pageSize.value) || 1
+})
+
+const paginatedJobs = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value
+  return filteredJobs.value.slice(start, start + pageSize.value)
+})
+
+const displayedPages = computed(() => {
+  const total = totalPages.value
+  const current = currentPage.value
+  if (total <= 7) {
+    return Array.from({ length: total }, (_, i) => i + 1)
+  }
+  if (current <= 3) {
+    return [1, 2, 3, 4, '...', total]
+  } else if (current >= total - 2) {
+    return [1, '...', total - 3, total - 2, total - 1, total]
+  } else {
+    return [1, '...', current - 1, current, current + 1, '...', total]
+  }
+})
+
+function goToPage(page) {
+  if (page < 1 || page > totalPages.value || page === currentPage.value) return
+  currentPage.value = page
+  scrollToJobs()
+}
+
+function prevPage() {
+  if (currentPage.value > 1) {
+    goToPage(currentPage.value - 1)
+  }
+}
+
+function nextPage() {
+  if (currentPage.value < totalPages.value) {
+    goToPage(currentPage.value + 1)
+  }
+}
+
+// Reset page to 1 whenever any filter criteria changes
+watch([searchQuery, selectedIndustry, selectedZone, selectedTab], () => {
+  currentPage.value = 1
+})
+
+// Keep currentPage within bounds if totalPages shrinks
+watch(totalPages, (newTotal) => {
+  if (currentPage.value > newTotal) {
+    currentPage.value = Math.max(1, newTotal)
+  }
+})
+
 const hasActiveFilter = computed(() => {
   return searchQuery.value || 
-         selectedWardCode.value !== 'all' || 
          selectedIndustry.value !== 'all' || 
          selectedZone.value !== 'all' ||
-         selectedTab.value !== 'all' || 
-         activeQuickCategory.value !== 'all'
+         selectedTab.value !== 'all'
 })
 
 function scrollPills(direction) {
@@ -741,16 +638,6 @@ function scrollPills(direction) {
   }
 }
 
-function setKeyword(kw) {
-  searchQuery.value = kw
-  scrollToJobs()
-}
-
-function applyQuickCategory(type) {
-  activeQuickCategory.value = type
-  scrollToJobs()
-}
-
 function filterByZone(keyword) {
   selectedZone.value = keyword
   scrollToJobs()
@@ -758,13 +645,10 @@ function filterByZone(keyword) {
 
 function resetFilters() {
   searchQuery.value = ''
-  selectedWardCode.value = 'all'
   selectedIndustry.value = 'all'
   selectedZone.value = 'all'
   selectedTab.value = 'all'
-  activeQuickCategory.value = 'all'
-  wardSearchQuery.value = ''
-  isWardMenuOpen.value = false
+  currentPage.value = 1
 }
 
 function goToJobDetail(job) {

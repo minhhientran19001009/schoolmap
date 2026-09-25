@@ -791,7 +791,7 @@ function buildPopupHtml(s) {
       ${s.principal ? `
         <p class="text-[11px] text-slate-500 flex items-center gap-1.5 mb-2">
           <i class="fa-solid fa-user-tie text-slate-400"></i>
-          <span>HT: ${s.principal}</span>
+          <span>${String(s.principal).replace(/^HT:\s*/i, '')}</span>
         </p>
       ` : ''}
 

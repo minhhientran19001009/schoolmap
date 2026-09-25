@@ -6,6 +6,7 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -39,11 +40,19 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * Cho phép tài khoản đăng nhập vào Filament Admin trong mọi môi trường
+     * Restrict each Filament panel to the account type it serves.
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        if (! (bool) $this->is_active || filled($this->locked_at)) {
+            return false;
+        }
+
+        return match ($panel->getId()) {
+            'admin' => in_array($this->role, ['SUPER_ADMIN', 'DISTRICT_ADMIN', 'VIEWER'], true),
+            'school' => $this->isSchoolAdmin() && filled($this->school_id),
+            default => false,
+        };
     }
 
     /**
@@ -65,7 +74,11 @@ class User extends Authenticatable implements FilamentUser
         'password_hash',
         'role',
         'district_id',
+        'school_id',
         'is_active',
+        'must_change_password',
+        'password_changed_at',
+        'locked_at',
     ];
 
     /**
@@ -90,8 +103,36 @@ class User extends Authenticatable implements FilamentUser
             'password' => 'hashed',
             'password_hash' => 'hashed',
             'is_active' => 'boolean',
+            'must_change_password' => 'boolean',
             'last_login_at' => 'datetime',
+            'password_changed_at' => 'datetime',
+            'locked_at' => 'datetime',
         ];
+    }
+
+    public function school(): BelongsTo
+    {
+        return $this->belongsTo(School::class, 'school_id');
+    }
+
+    public function isSchoolAdmin(): bool
+    {
+        return $this->role === 'SCHOOL_ADMIN';
+    }
+
+    public function isSystemAdmin(): bool
+    {
+        return in_array($this->role, ['SUPER_ADMIN', 'DISTRICT_ADMIN'], true);
+    }
+
+    public function canManageSchool(School $school): bool
+    {
+        if (! $this->isSchoolAdmin() || blank($this->school_id)) {
+            return false;
+        }
+
+        return (string) $school->getKey() === (string) $this->school_id
+            || (string) $school->parent_school_id === (string) $this->school_id;
     }
 
     /**

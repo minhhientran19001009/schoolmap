@@ -8,6 +8,7 @@
           v-model="filterStore.search"
           @focus="showSuggestions = true"
           @keydown.esc="showSuggestions = false"
+          @keydown.enter="handleEnterKey"
           type="text"
           placeholder="Tìm trường, địa chỉ..."
           class="w-full pl-7 sm:pl-8 pr-7 py-1.5 bg-slate-100/90 hover:bg-slate-100 focus:bg-white text-xs font-medium text-slate-800 rounded-xl border border-slate-200/80 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all placeholder:text-slate-400 shadow-2xs"
@@ -23,21 +24,82 @@
 
       <!-- Autocomplete Suggestions Dropdown -->
       <div 
-        v-if="showSuggestions && filteredSuggestions.length > 0"
-        class="absolute left-0 right-0 sm:right-auto sm:w-80 md:w-96 top-9 mt-1 bg-white border border-slate-200 rounded-xl shadow-2xl py-1 max-h-64 overflow-y-auto z-50">
-        <div 
-          v-for="school in filteredSuggestions.slice(0, 7)"
-          :key="school.id"
-          @click="selectSuggestion(school)"
-          class="px-3 py-2 hover:bg-blue-50 cursor-pointer text-xs border-b border-slate-50 last:border-0 flex items-start gap-2 transition-colors">
-          <span 
-            class="w-2.5 h-2.5 rounded-full mt-1 flex-shrink-0"
-            :style="{ backgroundColor: getLevelColor(school.education_level) }"></span>
-          <div class="flex-1 min-w-0">
-            <p class="font-semibold text-slate-800 truncate">{{ school.name }}</p>
-            <p class="text-[11px] text-slate-500 truncate">{{ school.ward || '' }}, {{ school.district_name || '' }}</p>
+        v-if="showSuggestions && filterStore.search.trim().length > 0"
+        class="absolute right-0 sm:right-auto sm:left-0 top-9 mt-1.5 w-[calc(100vw-28px)] sm:w-[440px] md:w-[480px] max-w-[500px] bg-white border border-slate-200/90 rounded-2xl shadow-xl z-50 overflow-hidden animate-in fade-in slide-in-from-top-1 duration-150">
+        
+        <!-- Header / Count -->
+        <div class="px-3.5 py-2 bg-slate-50/90 border-b border-slate-100 flex items-center justify-between text-[11px] text-slate-500 font-medium">
+          <div class="flex items-center gap-1.5">
+            <i class="fa-solid fa-school text-slate-400 text-[10px]"></i>
+            <span>Kết quả tìm kiếm <strong class="text-blue-700 font-semibold">({{ filteredSuggestions.length }})</strong></span>
           </div>
-          <span class="text-[10px] font-medium text-slate-400 uppercase flex-shrink-0">{{ school.education_level }}</span>
+          <span class="text-[10px] text-slate-400">Nhấp để xem trên bản đồ</span>
+        </div>
+
+        <!-- Suggestions List -->
+        <div v-if="filteredSuggestions.length > 0" class="max-h-72 sm:max-h-80 overflow-y-auto divide-y divide-slate-100/80">
+          <div 
+            v-for="school in filteredSuggestions.slice(0, 8)"
+            :key="school.id"
+            @click="selectSuggestion(school)"
+            class="px-3.5 py-2.5 hover:bg-blue-50/70 cursor-pointer transition-colors flex items-center gap-3 group">
+            
+            <!-- Level Icon Badge -->
+            <div 
+              class="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-105 border"
+              :style="{ 
+                backgroundColor: getLevelBg(school.education_level), 
+                borderColor: getLevelBorder(school.education_level),
+                color: getLevelColor(school.education_level) 
+              }">
+              <i :class="getLevelIcon(school.education_level)" class="text-xs"></i>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 min-w-0">
+              <p 
+                class="font-semibold text-slate-800 text-xs sm:text-[13px] leading-snug group-hover:text-blue-700 transition-colors truncate" 
+                :title="school.name">
+                {{ school.name }}
+              </p>
+              
+              <div class="flex items-center gap-2 mt-1 text-[11px] text-slate-500">
+                <!-- Level Badge -->
+                <span 
+                  class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-semibold flex-shrink-0"
+                  :style="{ 
+                    backgroundColor: getLevelBg(school.education_level), 
+                    color: getLevelColor(school.education_level) 
+                  }">
+                  {{ getLevelLabel(school.education_level) }}
+                </span>
+
+                <span class="text-slate-300">•</span>
+
+                <!-- Address -->
+                <span 
+                  class="truncate text-slate-500 text-[11px] flex items-center gap-1 min-w-0" 
+                  :title="formatSchoolAddress(school)">
+                  <i class="fa-solid fa-location-dot text-[9.5px] text-slate-400 flex-shrink-0"></i>
+                  <span class="truncate">{{ formatSchoolAddress(school) }}</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Action indicator -->
+            <div class="w-6 h-6 rounded-lg flex items-center justify-center text-slate-300 group-hover:text-blue-600 group-hover:bg-blue-100/60 flex-shrink-0 transition-all">
+              <i class="fa-solid fa-chevron-right text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div v-else class="px-4 py-6 text-center">
+          <div class="w-9 h-9 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-2">
+            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+          </div>
+          <p class="text-xs font-semibold text-slate-700">Không tìm thấy trường nào</p>
+          <p class="text-[11px] text-slate-400 mt-0.5">Không có cơ sở giáo dục nào khớp với "{{ filterStore.search }}"</p>
         </div>
       </div>
     </div>
@@ -488,14 +550,48 @@ function getUnitBadgeClass(unitType) {
   return 'bg-emerald-100 text-emerald-800'
 }
 
+function handleEnterKey() {
+  if (filteredSuggestions.value.length > 0) {
+    selectSuggestion(filteredSuggestions.value[0])
+  }
+}
+
+function removeVietnameseTones(str) {
+  return (str || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/Đ/g, 'D')
+    .toLowerCase()
+}
+
 const filteredSuggestions = computed(() => {
-  const q = filterStore.search.toLowerCase().trim()
-  if (!q) return []
+  const rawQ = filterStore.search.trim().toLowerCase()
+  if (!rawQ) return []
+  const cleanQ = removeVietnameseTones(rawQ)
+
   return allSchools.value.filter(s => {
-    return s.name.toLowerCase().includes(q) ||
-      (s.code && s.code.toLowerCase().includes(q)) ||
-      (s.address && s.address.toLowerCase().includes(q)) ||
-      (s.ward && s.ward.toLowerCase().includes(q))
+    const name = (s.name || '').toLowerCase()
+    const cleanName = removeVietnameseTones(name)
+    const code = (s.code || '').toLowerCase()
+    const address = (s.address || '').toLowerCase()
+    const cleanAddr = removeVietnameseTones(address)
+    const ward = (s.ward || '').toLowerCase()
+    const cleanWard = removeVietnameseTones(ward)
+    const district = (s.district_name || '').toLowerCase()
+    const cleanDistrict = removeVietnameseTones(district)
+
+    return (
+      name.includes(rawQ) ||
+      cleanName.includes(cleanQ) ||
+      code.includes(rawQ) ||
+      address.includes(rawQ) ||
+      cleanAddr.includes(cleanQ) ||
+      ward.includes(rawQ) ||
+      cleanWard.includes(cleanQ) ||
+      district.includes(rawQ) ||
+      cleanDistrict.includes(cleanQ)
+    )
   })
 })
 
@@ -505,7 +601,51 @@ function selectSuggestion(school) {
   showSuggestions.value = false
 }
 
+function getLevelLabel(levelId) {
+  const normalized = (levelId || '').toLowerCase().replace(/-/g, '_')
+  return LEVEL_MAP[normalized]?.label || levelId || 'Khác'
+}
+
 function getLevelColor(levelId) {
-  return LEVEL_MAP[levelId]?.color || '#64748b'
+  const normalized = (levelId || '').toLowerCase().replace(/-/g, '_')
+  return LEVEL_MAP[normalized]?.color || '#2563eb'
+}
+
+function getLevelBg(levelId) {
+  const normalized = (levelId || '').toLowerCase().replace(/-/g, '_')
+  const bgMap = {
+    gdtx: '#fef2f2',
+    trung_cap: '#fffbeb',
+    cao_dang: '#f0fdf4',
+    dai_hoc: '#eff6ff',
+  }
+  return bgMap[normalized] || '#f8fafc'
+}
+
+function getLevelBorder(levelId) {
+  const normalized = (levelId || '').toLowerCase().replace(/-/g, '_')
+  const borderMap = {
+    gdtx: '#fecaca',
+    trung_cap: '#fde68a',
+    cao_dang: '#bbf7d0',
+    dai_hoc: '#bfdbfe',
+  }
+  return borderMap[normalized] || '#e2e8f0'
+}
+
+function getLevelIcon(levelId) {
+  const normalized = (levelId || '').toLowerCase().replace(/-/g, '_')
+  return LEVEL_MAP[normalized]?.icon || 'fa-solid fa-graduation-cap'
+}
+
+function formatSchoolAddress(school) {
+  if (school.address && school.address.trim()) {
+    return school.address.trim()
+  }
+  const parts = [school.ward, school.district_name].filter(p => p && p.trim())
+  if (parts.length > 0) {
+    return parts.join(', ')
+  }
+  return 'Tỉnh Ninh Bình'
 }
 </script>

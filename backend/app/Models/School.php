@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -160,6 +161,11 @@ class School extends Model
     public function wardRelation()
     {
         return $this->belongsTo(Ward::class, 'ward', 'name');
+    }
+
+    public function userAccount(): HasOne
+    {
+        return $this->hasOne(User::class, 'school_id');
     }
 
     public function educationLevels()
