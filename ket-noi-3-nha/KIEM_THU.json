@@ -1,0 +1,31 @@
+{
+  "status": "passed",
+  "checks": 24,
+  "scope": "Local behavioral tests using Apps Script service doubles and actual compiled frontend adapter. Google deployment and in-browser Google Sites embedding require installation by the owner.",
+  "results": [
+    "No access or data before owner setup",
+    "Setup creates private data store with source catalogs and safe samples",
+    "Repeated setup preserves rows and does not create another spreadsheet",
+    "Blank visitor identity cannot inherit deployment owner privileges",
+    "Unapproved signed-in account cannot read or write",
+    "Invalid types, missing fields, quantity limits and unknown occupations are rejected",
+    "Create demand and capacity; reload reads persisted Sheets rows",
+    "Proposal reduces available quantities and survives reload",
+    "Reject mismatched occupation, level, period, missing IDs, reversed roles",
+    "Capacity limit and demand limit both apply on the server",
+    "Concurrent update is re-read after acquiring the shared lock",
+    "Busy lock produces retry response without saving",
+    "User text remains text and spoofed IDs/sample flags are replaced",
+    "Reports preserve quarter separation, skill gaps, searchable catalog, safe CSV",
+    "Missing source sheet fails visibly instead of inventing real data",
+    "Manifest defaults to owner-only deployment and contains no external connection scope",
+    "Company and school lookup, original codes and prefilled forms remain available",
+    "Frontend reads all three endpoints through google.script.run",
+    "Embedded save requires typed review code before any RPC write",
+    "Cancelling embedded save keeps data out of the backend",
+    "Offline preview remains read-only and clearly rejects save",
+    "Missing Apps Script connection and malformed JSON fail with visible errors",
+    "Apps Script communication failure preserves a retryable response",
+    "Index and preview are standalone, have correct heading and valid inline JavaScript"
+  ]
+}

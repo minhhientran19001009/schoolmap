@@ -1,0 +1,4567 @@
+{
+  "source": {
+    "filename": "2026 Bang tong hop quy mô tuyen sinh.xlsx",
+    "sheet": "Mau 1 - KQTS",
+    "title": "TỔNG HỢP BÁO CÁO KẾT QUẢ TUYỂN SINH 9 THÁNG ĐẦU NĂM 2025",
+    "periodLabel": "(Tính đến 9/2025)",
+    "importedAt": "2026-10-01",
+    "sha256": "e829c03b42cc864dbad204dfd34cdbb9806596a5c23856aee54294c4c00a83a2",
+    "notes": [
+      "Tên file ghi năm 2026, tiêu đề và thời điểm trong bảng ghi năm 2025; kỳ số liệu cần xác nhận.",
+      "Các ô tổng ở dòng 16, 17, 214 bị lỗi #REF!; không sử dụng làm tổng hợp.",
+      "Quy mô trong bảng nguồn không tự chuyển thành năng lực đáp ứng theo quý hoặc số người sẵn sàng làm việc."
+    ]
+  },
+  "schools": [
+    {
+      "id": "school-r18",
+      "name": "Trường CĐ nghề số 20/BQP",
+      "code": "CDT2503",
+      "type": "Cao đẳng",
+      "sourceRow": 18,
+      "reported": {
+        "total": 3050,
+        "college": 295,
+        "intermediate": 1065,
+        "elementary": 1690
+      },
+      "rawCounts": [
+        3050,
+        295,
+        1065,
+        1690
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r19",
+          "name": "Công nghệ ô tô",
+          "code": "6510216",
+          "sourceRow": 19,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 560,
+            "college": 105,
+            "intermediate": 280,
+            "elementary": 175
+          },
+          "rawCounts": [
+            560,
+            105,
+            280,
+            175
+          ]
+        },
+        {
+          "id": "program-r20",
+          "name": "KT lắp đặt điện và ĐKTCN",
+          "code": "6520201",
+          "sourceRow": 20,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 185,
+            "college": 35,
+            "intermediate": 150,
+            "elementary": null
+          },
+          "rawCounts": [
+            185,
+            35,
+            150,
+            null
+          ]
+        },
+        {
+          "id": "program-r21",
+          "name": "Điện tử công nghiệp",
+          "code": "6520225",
+          "sourceRow": 21,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 205,
+            "college": 35,
+            "intermediate": 65,
+            "elementary": 105
+          },
+          "rawCounts": [
+            205,
+            35,
+            65,
+            105
+          ]
+        },
+        {
+          "id": "program-r22",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "code": "6520205",
+          "sourceRow": 22,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 505,
+            "college": 70,
+            "intermediate": 225,
+            "elementary": 210
+          },
+          "rawCounts": [
+            505,
+            70,
+            225,
+            210
+          ]
+        },
+        {
+          "id": "program-r23",
+          "name": "KT sửa chữa, lắp ráp máy tính",
+          "code": "6480102",
+          "sourceRow": 23,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": 25,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            50,
+            25,
+            25,
+            null
+          ]
+        },
+        {
+          "id": "program-r24",
+          "name": "Vận hành máy thi công nền",
+          "code": "6520183",
+          "sourceRow": 24,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 170,
+            "college": 25,
+            "intermediate": 25,
+            "elementary": 120
+          },
+          "rawCounts": [
+            170,
+            25,
+            25,
+            120
+          ]
+        },
+        {
+          "id": "program-r25",
+          "name": "May thời trang",
+          "code": "5540205",
+          "sourceRow": 25,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 330,
+            "college": null,
+            "intermediate": 225,
+            "elementary": 105
+          },
+          "rawCounts": [
+            330,
+            null,
+            225,
+            105
+          ]
+        },
+        {
+          "id": "program-r26",
+          "name": "Sửa chữa thiết bị may",
+          "code": "5520133",
+          "sourceRow": 26,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 70,
+            "college": null,
+            "intermediate": 70,
+            "elementary": null
+          },
+          "rawCounts": [
+            70,
+            null,
+            70,
+            null
+          ]
+        },
+        {
+          "id": "program-r27",
+          "name": "Điện công nghiệp",
+          "code": "",
+          "sourceRow": 27,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 130,
+            "college": null,
+            "intermediate": null,
+            "elementary": 130
+          },
+          "rawCounts": [
+            130,
+            null,
+            null,
+            130
+          ]
+        },
+        {
+          "id": "program-r28",
+          "name": "Công nghệ thông tin",
+          "code": "",
+          "sourceRow": 28,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 70,
+            "college": null,
+            "intermediate": null,
+            "elementary": 70
+          },
+          "rawCounts": [
+            70,
+            null,
+            null,
+            70
+          ]
+        },
+        {
+          "id": "program-r29",
+          "name": "Bảo trì máy may",
+          "code": "",
+          "sourceRow": 29,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 140,
+            "college": null,
+            "intermediate": null,
+            "elementary": 140
+          },
+          "rawCounts": [
+            140,
+            null,
+            null,
+            140
+          ]
+        },
+        {
+          "id": "program-r30",
+          "name": "Hàn công nghệ cao",
+          "code": "",
+          "sourceRow": 30,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 155,
+            "college": null,
+            "intermediate": null,
+            "elementary": 155
+          },
+          "rawCounts": [
+            155,
+            null,
+            null,
+            155
+          ]
+        },
+        {
+          "id": "program-r31",
+          "name": "Sửa chữa cơ khí động cơ",
+          "code": "",
+          "sourceRow": 31,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 155,
+            "college": null,
+            "intermediate": null,
+            "elementary": 155
+          },
+          "rawCounts": [
+            155,
+            null,
+            null,
+            155
+          ]
+        },
+        {
+          "id": "program-r32",
+          "name": "Sửa chữa điện - điện lạnh ô tô",
+          "code": "",
+          "sourceRow": 32,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 175,
+            "college": null,
+            "intermediate": null,
+            "elementary": 175
+          },
+          "rawCounts": [
+            175,
+            null,
+            null,
+            175
+          ]
+        },
+        {
+          "id": "program-r33",
+          "name": "Tiếng Hàn Quốc",
+          "code": "",
+          "sourceRow": 33,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 150,
+            "college": null,
+            "intermediate": null,
+            "elementary": 150
+          },
+          "rawCounts": [
+            150,
+            null,
+            null,
+            150
+          ]
+        },
+        {
+          "id": "program-r34",
+          "name": "Bồi dưỡng Tiếng Nhật",
+          "code": "",
+          "sourceRow": 34,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r35",
+          "name": "Lái xe ô tô hạng B.01, B, C1",
+          "code": "",
+          "sourceRow": 35,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r36",
+          "name": "Bồi dưỡng CCCM, GCNKNCM thuyền, máy trưởng, LPT",
+          "code": "",
+          "sourceRow": 36,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r37",
+      "name": "Trường Cao đẳng Xây dựng NĐ",
+      "code": "CDT2502",
+      "type": "Cao đẳng",
+      "sourceRow": 37,
+      "reported": {
+        "total": 920,
+        "college": 100,
+        "intermediate": 690,
+        "elementary": 130
+      },
+      "rawCounts": [
+        920,
+        100,
+        690,
+        130
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r38",
+          "name": "Công nghệ kỹ thuật Công trình XD",
+          "code": "6510104",
+          "sourceRow": 38,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 40,
+            "college": 40,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            40,
+            40,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r39",
+          "name": "Quản lý Xây dựng",
+          "code": "6580301",
+          "sourceRow": 39,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r40",
+          "name": "Kế toán doanh nghiệp",
+          "code": "6340302",
+          "sourceRow": 40,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 20,
+            "college": 20,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            20,
+            20,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r41",
+          "name": "Hàn",
+          "code": "6520123",
+          "sourceRow": 41,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r42",
+          "name": "Kỹ thuật xây dựng",
+          "code": "6580201",
+          "sourceRow": 42,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 20,
+            "college": 20,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            20,
+            20,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r43",
+          "name": "Xây dựng dân dụng và công nghiệp",
+          "code": "5580202",
+          "sourceRow": 43,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 60,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            60,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r44",
+          "name": "Kế toán doanh nghiệp",
+          "code": "6340302",
+          "sourceRow": 44,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 70,
+            "college": null,
+            "intermediate": 70,
+            "elementary": null
+          },
+          "rawCounts": [
+            70,
+            null,
+            70,
+            null
+          ]
+        },
+        {
+          "id": "program-r45",
+          "name": "Quản trị mạng máy tính",
+          "code": "5480209",
+          "sourceRow": 45,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 55,
+            "college": null,
+            "intermediate": 55,
+            "elementary": null
+          },
+          "rawCounts": [
+            55,
+            null,
+            55,
+            null
+          ]
+        },
+        {
+          "id": "program-r46",
+          "name": "Tin học văn phòng",
+          "code": "5480203",
+          "sourceRow": 46,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": 50,
+            "elementary": null
+          },
+          "rawCounts": [
+            50,
+            null,
+            50,
+            null
+          ]
+        },
+        {
+          "id": "program-r47",
+          "name": "Điện dân dụng",
+          "code": "5520226",
+          "sourceRow": 47,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 175,
+            "college": null,
+            "intermediate": 165,
+            "elementary": 10
+          },
+          "rawCounts": [
+            175,
+            null,
+            165,
+            10
+          ]
+        },
+        {
+          "id": "program-r48",
+          "name": "Thương mại điện tử",
+          "code": "5340122",
+          "sourceRow": 48,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 35,
+            "college": null,
+            "intermediate": 35,
+            "elementary": null
+          },
+          "rawCounts": [
+            35,
+            null,
+            35,
+            null
+          ]
+        },
+        {
+          "id": "program-r49",
+          "name": "Thiết kế đồ hoạ",
+          "code": "52104028",
+          "sourceRow": 49,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 35,
+            "college": null,
+            "intermediate": 35,
+            "elementary": null
+          },
+          "rawCounts": [
+            35,
+            null,
+            35,
+            null
+          ]
+        },
+        {
+          "id": "program-r50",
+          "name": "Kỹ thuật xây dựng",
+          "code": "5580201",
+          "sourceRow": 50,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 100,
+            "college": null,
+            "intermediate": 80,
+            "elementary": 20
+          },
+          "rawCounts": [
+            100,
+            null,
+            80,
+            20
+          ]
+        },
+        {
+          "id": "program-r51",
+          "name": "Cốt thép - Hàn",
+          "code": "5580208",
+          "sourceRow": 51,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 40,
+            "college": null,
+            "intermediate": 30,
+            "elementary": 10
+          },
+          "rawCounts": [
+            40,
+            null,
+            30,
+            10
+          ]
+        },
+        {
+          "id": "program-r52",
+          "name": "Cấp, thoát nước",
+          "code": "5520312",
+          "sourceRow": 52,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 20,
+            "college": null,
+            "intermediate": 10,
+            "elementary": 10
+          },
+          "rawCounts": [
+            20,
+            null,
+            10,
+            10
+          ]
+        },
+        {
+          "id": "program-r53",
+          "name": "Mộc X.dựng và trang trí nội thất",
+          "code": "5580210",
+          "sourceRow": 53,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 20,
+            "college": null,
+            "intermediate": 10,
+            "elementary": 10
+          },
+          "rawCounts": [
+            20,
+            null,
+            10,
+            10
+          ]
+        },
+        {
+          "id": "program-r54",
+          "name": "Mộc Mỹ nghệ",
+          "code": "5210421",
+          "sourceRow": 54,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 30,
+            "college": null,
+            "intermediate": 10,
+            "elementary": 20
+          },
+          "rawCounts": [
+            30,
+            null,
+            10,
+            20
+          ]
+        },
+        {
+          "id": "program-r55",
+          "name": "Mộc dân dụng",
+          "code": "5580211",
+          "sourceRow": 55,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": 10,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            null,
+            10,
+            null
+          ]
+        },
+        {
+          "id": "program-r56",
+          "name": "Kỹ thuật Điêu khắc gỗ",
+          "code": "5210101",
+          "sourceRow": 56,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 40,
+            "college": null,
+            "intermediate": 20,
+            "elementary": 20
+          },
+          "rawCounts": [
+            40,
+            null,
+            20,
+            20
+          ]
+        },
+        {
+          "id": "program-r57",
+          "name": "Chạm khắc đá",
+          "code": "5210408",
+          "sourceRow": 57,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": 10,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            null,
+            10,
+            null
+          ]
+        },
+        {
+          "id": "program-r58",
+          "name": "Kỹ thuật Sơn mài và Khảm trai",
+          "code": "5210412",
+          "sourceRow": 58,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 20,
+            "college": null,
+            "intermediate": 10,
+            "elementary": 10
+          },
+          "rawCounts": [
+            20,
+            null,
+            10,
+            10
+          ]
+        },
+        {
+          "id": "program-r59",
+          "name": "Hàn",
+          "code": "5520123",
+          "sourceRow": 59,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 40,
+            "college": null,
+            "intermediate": 30,
+            "elementary": 10
+          },
+          "rawCounts": [
+            40,
+            null,
+            30,
+            10
+          ]
+        },
+        {
+          "id": "program-r60",
+          "name": "Nề hoàn thiện",
+          "code": "",
+          "sourceRow": 60,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": null,
+            "elementary": 10
+          },
+          "rawCounts": [
+            10,
+            null,
+            null,
+            10
+          ]
+        }
+      ],
+      "issues": [
+        "Dòng 44 lặp tên và mã nghề ở dòng khác; giữ từng dòng để đối chiếu trình độ và số liệu."
+      ]
+    },
+    {
+      "id": "school-r62",
+      "name": "Trường CĐ Công nghiệp Nam Định",
+      "code": "cdt2501",
+      "type": "Cao đẳng",
+      "sourceRow": 62,
+      "reported": {
+        "total": 0,
+        "college": 270,
+        "intermediate": 1000,
+        "elementary": 50
+      },
+      "rawCounts": [
+        0,
+        270,
+        1000,
+        50
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r63",
+          "name": "Cắt gọt kim loại",
+          "code": "5520121",
+          "sourceRow": 63,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r64",
+          "name": "Công nghệ kỹ thuật nhiệt",
+          "code": "5510211",
+          "sourceRow": 64,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r65",
+          "name": "Công nghệ may",
+          "code": "5540204",
+          "sourceRow": 65,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r66",
+          "name": "Công nghệ ô tô",
+          "code": "5510216",
+          "sourceRow": 66,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r67",
+          "name": "Điện công nghiệp",
+          "code": "5520227",
+          "sourceRow": 67,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r68",
+          "name": "Điện tử công nghiệp",
+          "code": "5520225",
+          "sourceRow": 68,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r69",
+          "name": "Kế toán doanh nghiệp",
+          "code": "5340302",
+          "sourceRow": 69,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r70",
+          "name": "May thời trang",
+          "code": "5540205",
+          "sourceRow": 70,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r71",
+          "name": "Sửa chữa thiết bị may",
+          "code": "5520133",
+          "sourceRow": 71,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r72",
+          "name": "Tin học văn phòng",
+          "code": "5480203",
+          "sourceRow": 72,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r73",
+          "name": "Hàn",
+          "code": "5520123",
+          "sourceRow": 73,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r74",
+          "name": "Cắt gọt kim loại",
+          "code": "6520121",
+          "sourceRow": 74,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r75",
+          "name": "Công nghệ kỹ thuật điều khiển và TĐH",
+          "code": "6510305",
+          "sourceRow": 75,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r76",
+          "name": "Công nghệ ô tô",
+          "code": "6510216",
+          "sourceRow": 76,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r77",
+          "name": "Điện công nghiệp",
+          "code": "6520227",
+          "sourceRow": 77,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r78",
+          "name": "Kế toán",
+          "code": "6340301",
+          "sourceRow": 78,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r79",
+          "name": "May thời trang",
+          "code": "6540205",
+          "sourceRow": 79,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      ],
+      "issues": [
+        "Cột Tổng của cơ sở chưa khớp tổng CĐ, TC, SC trong dòng nguồn."
+      ]
+    },
+    {
+      "id": "school-r80",
+      "name": "Trường CĐ Kinh tế và Công nghệ NĐ",
+      "code": "CDD2501",
+      "type": "Cao đẳng",
+      "sourceRow": 80,
+      "reported": {
+        "total": 2455,
+        "college": 300,
+        "intermediate": 1505,
+        "elementary": 650
+      },
+      "rawCounts": [
+        2455,
+        300,
+        1505,
+        650
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r81",
+          "name": "Hàn",
+          "code": "5520123",
+          "sourceRow": 81,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 35,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            35,
+            null
+          ]
+        },
+        {
+          "id": "program-r82",
+          "name": "Cắt gọt kim loại",
+          "code": "5520121",
+          "sourceRow": 82,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 35,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            35,
+            null
+          ]
+        },
+        {
+          "id": "program-r83",
+          "name": "Công nghệ ô tô",
+          "code": "5510216",
+          "sourceRow": 83,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 150,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            150,
+            null
+          ]
+        },
+        {
+          "id": "program-r84",
+          "name": "Sửa chữa thiết bị may",
+          "code": "5520113",
+          "sourceRow": 84,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r85",
+          "name": "Điện công nghiệp",
+          "code": "5520227",
+          "sourceRow": 85,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 210,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            210,
+            null
+          ]
+        },
+        {
+          "id": "program-r86",
+          "name": "Điện tử công nghiệp",
+          "code": "5520225",
+          "sourceRow": 86,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 20,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            20,
+            null
+          ]
+        },
+        {
+          "id": "program-r87",
+          "name": "Điện công nghiệp và dân dụng",
+          "code": "5520223",
+          "sourceRow": 87,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 45,
+            "elementary": 105
+          },
+          "rawCounts": [
+            null,
+            null,
+            45,
+            105
+          ]
+        },
+        {
+          "id": "program-r88",
+          "name": "Công nghệ kỹ thuật điện, điện tử",
+          "code": "5510303",
+          "sourceRow": 88,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 45,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            45,
+            null
+          ]
+        },
+        {
+          "id": "program-r89",
+          "name": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "code": "5520205",
+          "sourceRow": 89,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 70,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            70,
+            null
+          ]
+        },
+        {
+          "id": "program-r90",
+          "name": "Công nghệ thông tin",
+          "code": "5480202",
+          "sourceRow": 90,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r91",
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "code": "5480102",
+          "sourceRow": 91,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 35,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            35,
+            null
+          ]
+        },
+        {
+          "id": "program-r92",
+          "name": "May thời trang",
+          "code": "5540205",
+          "sourceRow": 92,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 150,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            150,
+            null
+          ]
+        },
+        {
+          "id": "program-r93",
+          "name": "Chăm sóc sắc đẹp",
+          "code": "5810404",
+          "sourceRow": 93,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 60,
+            "elementary": 35
+          },
+          "rawCounts": [
+            null,
+            null,
+            60,
+            35
+          ]
+        },
+        {
+          "id": "program-r94",
+          "name": "Kỹ thuật chế biến món ăn",
+          "code": "5810207",
+          "sourceRow": 94,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 90,
+            "elementary": 150
+          },
+          "rawCounts": [
+            null,
+            null,
+            90,
+            150
+          ]
+        },
+        {
+          "id": "program-r95",
+          "name": "Kế toán doanh nghiệp",
+          "code": "5340302",
+          "sourceRow": 95,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r96",
+          "name": "Công nghệ kỹ thuật chế biến và bảo quản nông sản",
+          "code": "5620102",
+          "sourceRow": 96,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 90,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            90,
+            null
+          ]
+        },
+        {
+          "id": "program-r97",
+          "name": "Chăn nuôi - Thú y",
+          "code": "5620120",
+          "sourceRow": 97,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            null
+          ]
+        },
+        {
+          "id": "program-r98",
+          "name": "Hàn",
+          "code": "6520123",
+          "sourceRow": 98,
+          "levels": [
+            "Cao đẳng",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": 35
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            35
+          ]
+        },
+        {
+          "id": "program-r99",
+          "name": "Cắt gọt kim loại",
+          "code": "6520121",
+          "sourceRow": 99,
+          "levels": [
+            "Cao đẳng",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": 20,
+            "intermediate": null,
+            "elementary": 35
+          },
+          "rawCounts": [
+            null,
+            20,
+            null,
+            35
+          ]
+        },
+        {
+          "id": "program-r100",
+          "name": "Công nghệ ô tô",
+          "code": "6520216",
+          "sourceRow": 100,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r101",
+          "name": "Điện công nghiệp",
+          "code": "6520227",
+          "sourceRow": 101,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r102",
+          "name": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "code": "6520205",
+          "sourceRow": 102,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r103",
+          "name": "Công nghệ thông tin",
+          "code": "6480201",
+          "sourceRow": 103,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r104",
+          "name": "Kế toán",
+          "code": "6430301",
+          "sourceRow": 104,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r105",
+          "name": "May thời trang",
+          "code": "6540205",
+          "sourceRow": 105,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r106",
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "code": "6480102.5480102",
+          "sourceRow": 106,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": 30,
+            "intermediate": 35,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            30,
+            35,
+            null
+          ]
+        },
+        {
+          "id": "program-r107",
+          "name": "Quản lý khai thác công trình thuỷ lợi",
+          "code": "6340429, 53404229",
+          "sourceRow": 107,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": 20,
+            "intermediate": 25,
+            "elementary": 45
+          },
+          "rawCounts": [
+            null,
+            20,
+            25,
+            45
+          ]
+        },
+        {
+          "id": "program-r108",
+          "name": "Vận hành sửa chữa trạm bơm điện",
+          "code": "6520249, 5520259",
+          "sourceRow": 108,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": 20,
+            "intermediate": 25,
+            "elementary": 70
+          },
+          "rawCounts": [
+            null,
+            20,
+            25,
+            70
+          ]
+        },
+        {
+          "id": "program-r109",
+          "name": "Nghiệp vụ lễ tân",
+          "code": "5810203",
+          "sourceRow": 109,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            null
+          ]
+        },
+        {
+          "id": "program-r110",
+          "name": "Nghiệp vụ nhà hàng",
+          "code": "5810206",
+          "sourceRow": 110,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            null
+          ]
+        },
+        {
+          "id": "program-r111",
+          "name": "Quản trị khách sạn",
+          "code": "5810201",
+          "sourceRow": 111,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            null
+          ]
+        },
+        {
+          "id": "program-r112",
+          "name": "Quản lý đất đai",
+          "code": "5850102",
+          "sourceRow": 112,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 20,
+            "elementary": 70
+          },
+          "rawCounts": [
+            null,
+            null,
+            20,
+            70
+          ]
+        },
+        {
+          "id": "program-r113",
+          "name": "Kỹ thuật điêu khắc gỗ",
+          "code": "5210101",
+          "sourceRow": 113,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 20,
+            "elementary": 35
+          },
+          "rawCounts": [
+            null,
+            null,
+            20,
+            35
+          ]
+        },
+        {
+          "id": "program-r114",
+          "name": "Nuôi trồng thuỷ sản",
+          "code": "5620303",
+          "sourceRow": 114,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            null
+          ]
+        },
+        {
+          "id": "program-r115",
+          "name": "Trồng trọt và bảo vệ thực vật",
+          "code": "5620111",
+          "sourceRow": 115,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 20,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            20,
+            null
+          ]
+        },
+        {
+          "id": "program-r116",
+          "name": "Chăn nuôi - Thú y",
+          "code": "5620120",
+          "sourceRow": 116,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": 70
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            70
+          ]
+        },
+        {
+          "id": "program-r117",
+          "name": "Kế toán hành chính sự nghiệp",
+          "code": "5340307",
+          "sourceRow": 117,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            25,
+            null
+          ]
+        }
+      ],
+      "issues": [
+        "Dòng 116 lặp tên và mã nghề ở dòng khác; giữ từng dòng để đối chiếu trình độ và số liệu."
+      ]
+    },
+    {
+      "id": "school-r118",
+      "name": "Trường Cao đẳng VHNT & Du lịch NĐ",
+      "code": "cdd2502",
+      "type": "Cao đẳng",
+      "sourceRow": 118,
+      "reported": {
+        "total": 205,
+        "college": 60,
+        "intermediate": 145,
+        "elementary": 0
+      },
+      "rawCounts": [
+        205,
+        60,
+        145,
+        0
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r119",
+          "name": "Thanh nhạc",
+          "code": "6210225",
+          "sourceRow": 119,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 15,
+            "college": 15,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            15,
+            15,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r120",
+          "name": "Hướng dẫn du lịch",
+          "code": "6810103",
+          "sourceRow": 120,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r121",
+          "name": "Khoa học thư viện",
+          "code": "6320206",
+          "sourceRow": 121,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r122",
+          "name": "Thiết kế đồ họa",
+          "code": "6210402",
+          "sourceRow": 122,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 25,
+            "college": 25,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            25,
+            25,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r123",
+          "name": "Thanh nhạc",
+          "code": "5210225",
+          "sourceRow": 123,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": 15,
+            "elementary": null
+          },
+          "rawCounts": [
+            15,
+            null,
+            15,
+            null
+          ]
+        },
+        {
+          "id": "program-r124",
+          "name": "Organ",
+          "code": "5210224",
+          "sourceRow": 124,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": 10,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            null,
+            10,
+            null
+          ]
+        },
+        {
+          "id": "program-r125",
+          "name": "Biểu diễn nhạc cụ truyền thống",
+          "code": "5210216",
+          "sourceRow": 125,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 5,
+            "college": null,
+            "intermediate": 5,
+            "elementary": null
+          },
+          "rawCounts": [
+            5,
+            null,
+            5,
+            null
+          ]
+        },
+        {
+          "id": "program-r126",
+          "name": "Hội họa",
+          "code": "5210103",
+          "sourceRow": 126,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": 15,
+            "elementary": null
+          },
+          "rawCounts": [
+            15,
+            null,
+            15,
+            null
+          ]
+        },
+        {
+          "id": "program-r127",
+          "name": "Thiết kế đồ họa",
+          "code": "5210402",
+          "sourceRow": 127,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 20,
+            "college": null,
+            "intermediate": 20,
+            "elementary": null
+          },
+          "rawCounts": [
+            20,
+            null,
+            20,
+            null
+          ]
+        },
+        {
+          "id": "program-r128",
+          "name": "Nghệ thuật biểu diễn Chèo",
+          "code": "5210203",
+          "sourceRow": 128,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": 15,
+            "elementary": null
+          },
+          "rawCounts": [
+            15,
+            null,
+            15,
+            null
+          ]
+        },
+        {
+          "id": "program-r129",
+          "name": "Nghệ thuật biểu diễn Kịch nói",
+          "code": "5210210",
+          "sourceRow": 129,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": 10,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            null,
+            10,
+            null
+          ]
+        },
+        {
+          "id": "program-r130",
+          "name": "Hướng dẫn du lịch",
+          "code": "5810103",
+          "sourceRow": 130,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 45,
+            "college": null,
+            "intermediate": 45,
+            "elementary": null
+          },
+          "rawCounts": [
+            45,
+            null,
+            45,
+            null
+          ]
+        },
+        {
+          "id": "program-r131",
+          "name": "Thư viện",
+          "code": "5320205",
+          "sourceRow": 131,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": 10,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            null,
+            10,
+            null
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r132",
+      "name": "Trường Cao đẳng Cơ giới Ninh Bình",
+      "code": "CDT2702",
+      "type": "Cao đẳng",
+      "sourceRow": 132,
+      "reported": {
+        "total": 2620,
+        "college": 220,
+        "intermediate": 900,
+        "elementary": 1500
+      },
+      "rawCounts": [
+        2620,
+        220,
+        900,
+        1500
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r133",
+          "name": "Công nghệ ôtô",
+          "code": "6510216",
+          "sourceRow": 133,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 350,
+            "college": 55,
+            "intermediate": 245,
+            "elementary": 50
+          },
+          "rawCounts": [
+            350,
+            55,
+            245,
+            50
+          ]
+        },
+        {
+          "id": "program-r134",
+          "name": "Hàn",
+          "code": "6520123",
+          "sourceRow": 134,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 55,
+            "college": 10,
+            "intermediate": 30,
+            "elementary": 15
+          },
+          "rawCounts": [
+            55,
+            10,
+            30,
+            15
+          ]
+        },
+        {
+          "id": "program-r135",
+          "name": "Cắt gọt kim loại",
+          "code": "6520121",
+          "sourceRow": 135,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 40,
+            "college": 10,
+            "intermediate": 20,
+            "elementary": 10
+          },
+          "rawCounts": [
+            40,
+            10,
+            20,
+            10
+          ]
+        },
+        {
+          "id": "program-r136",
+          "name": "Điện công nghiệp",
+          "code": "6520227",
+          "sourceRow": 136,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 110,
+            "college": 50,
+            "intermediate": 50,
+            "elementary": 10
+          },
+          "rawCounts": [
+            110,
+            50,
+            50,
+            10
+          ]
+        },
+        {
+          "id": "program-r137",
+          "name": "Kỹ thuật máy lạnh và điều hoà không khí",
+          "code": "6520205",
+          "sourceRow": 137,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 195,
+            "college": 35,
+            "intermediate": 150,
+            "elementary": 10
+          },
+          "rawCounts": [
+            195,
+            35,
+            150,
+            10
+          ]
+        },
+        {
+          "id": "program-r138",
+          "name": "Lập trình máy tính",
+          "code": "6480207",
+          "sourceRow": 138,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": 5,
+            "intermediate": 10,
+            "elementary": null
+          },
+          "rawCounts": [
+            15,
+            5,
+            10,
+            null
+          ]
+        },
+        {
+          "id": "program-r139",
+          "name": "Kế toán doanh nghiệp",
+          "code": "6340302",
+          "sourceRow": 139,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 25,
+            "college": 10,
+            "intermediate": 15,
+            "elementary": null
+          },
+          "rawCounts": [
+            25,
+            10,
+            15,
+            null
+          ]
+        },
+        {
+          "id": "program-r140",
+          "name": "Kỹ thuật chế biến món ăn",
+          "code": "6810207",
+          "sourceRow": 140,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 295,
+            "college": 35,
+            "intermediate": 230,
+            "elementary": 30
+          },
+          "rawCounts": [
+            295,
+            35,
+            230,
+            30
+          ]
+        },
+        {
+          "id": "program-r141",
+          "name": "Vận hành máy thi công nền",
+          "code": "5520183",
+          "sourceRow": 141,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 80,
+            "college": null,
+            "intermediate": 60,
+            "elementary": 20
+          },
+          "rawCounts": [
+            80,
+            null,
+            60,
+            20
+          ]
+        },
+        {
+          "id": "program-r142",
+          "name": "Vận hành Cần, cầu trục",
+          "code": "5520182",
+          "sourceRow": 142,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": 10,
+            "elementary": 40
+          },
+          "rawCounts": [
+            50,
+            null,
+            10,
+            40
+          ]
+        },
+        {
+          "id": "program-r143",
+          "name": "Điện dân dụng",
+          "code": "6520226",
+          "sourceRow": 143,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 75,
+            "college": 5,
+            "intermediate": 60,
+            "elementary": 10
+          },
+          "rawCounts": [
+            75,
+            5,
+            60,
+            10
+          ]
+        },
+        {
+          "id": "program-r144",
+          "name": "VH máy thi công mặt đường",
+          "code": "5520184",
+          "sourceRow": 144,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": 5,
+            "elementary": 10
+          },
+          "rawCounts": [
+            15,
+            null,
+            5,
+            10
+          ]
+        },
+        {
+          "id": "program-r145",
+          "name": "Sửa chữa máy thi công xây dựng",
+          "code": "6520146",
+          "sourceRow": 145,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 5,
+            "intermediate": 5,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            5,
+            5,
+            null
+          ]
+        },
+        {
+          "id": "program-r146",
+          "name": "Cấp thoát nước",
+          "code": "5520312",
+          "sourceRow": 146,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 5,
+            "college": null,
+            "intermediate": 5,
+            "elementary": null
+          },
+          "rawCounts": [
+            5,
+            null,
+            5,
+            null
+          ]
+        },
+        {
+          "id": "program-r147",
+          "name": "Bảo trì hệ thống thiết bị cơ khí",
+          "code": "6520151",
+          "sourceRow": 147,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r148",
+          "name": "Công tác xã hội",
+          "code": "6760101",
+          "sourceRow": 148,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 5,
+            "college": null,
+            "intermediate": 5,
+            "elementary": null
+          },
+          "rawCounts": [
+            5,
+            null,
+            5,
+            null
+          ]
+        },
+        {
+          "id": "program-r149",
+          "name": "Hàn 3G, 5G, 6G",
+          "code": "",
+          "sourceRow": 149,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": null,
+            "elementary": 15
+          },
+          "rawCounts": [
+            15,
+            null,
+            null,
+            15
+          ]
+        },
+        {
+          "id": "program-r150",
+          "name": "Vận hành Cầu trục",
+          "code": "",
+          "sourceRow": 150,
+          "levels": [],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r151",
+          "name": "Vận hành máy xúc lật",
+          "code": "",
+          "sourceRow": 151,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": null,
+            "elementary": 10
+          },
+          "rawCounts": [
+            10,
+            null,
+            null,
+            10
+          ]
+        },
+        {
+          "id": "program-r152",
+          "name": "Vận hành máy xúc",
+          "code": "",
+          "sourceRow": 152,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 30,
+            "college": null,
+            "intermediate": null,
+            "elementary": 30
+          },
+          "rawCounts": [
+            30,
+            null,
+            null,
+            30
+          ]
+        },
+        {
+          "id": "program-r153",
+          "name": "Vận hành máy lu",
+          "code": "",
+          "sourceRow": 153,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": null,
+            "elementary": 15
+          },
+          "rawCounts": [
+            15,
+            null,
+            null,
+            15
+          ]
+        },
+        {
+          "id": "program-r154",
+          "name": "Vận hành xe nâng hàng",
+          "code": "",
+          "sourceRow": 154,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 55,
+            "college": null,
+            "intermediate": null,
+            "elementary": 55
+          },
+          "rawCounts": [
+            55,
+            null,
+            null,
+            55
+          ]
+        },
+        {
+          "id": "program-r155",
+          "name": "Vận hành Cần trục",
+          "code": "",
+          "sourceRow": 155,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 30,
+            "college": null,
+            "intermediate": null,
+            "elementary": 30
+          },
+          "rawCounts": [
+            30,
+            null,
+            null,
+            30
+          ]
+        },
+        {
+          "id": "program-r156",
+          "name": "Vận hành Cầu trục",
+          "code": "",
+          "sourceRow": 156,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": null,
+            "elementary": 50
+          },
+          "rawCounts": [
+            50,
+            null,
+            null,
+            50
+          ]
+        },
+        {
+          "id": "program-r157",
+          "name": "Vận hành máy ủi",
+          "code": "",
+          "sourceRow": 157,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": null,
+            "elementary": 10
+          },
+          "rawCounts": [
+            10,
+            null,
+            null,
+            10
+          ]
+        },
+        {
+          "id": "program-r158",
+          "name": "Điện nước",
+          "code": "",
+          "sourceRow": 158,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 10,
+            "college": null,
+            "intermediate": null,
+            "elementary": 10
+          },
+          "rawCounts": [
+            10,
+            null,
+            null,
+            10
+          ]
+        },
+        {
+          "id": "program-r159",
+          "name": "Kỹ thuật pha chế đồ uống",
+          "code": "",
+          "sourceRow": 159,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 5,
+            "college": null,
+            "intermediate": null,
+            "elementary": 5
+          },
+          "rawCounts": [
+            5,
+            null,
+            null,
+            5
+          ]
+        },
+        {
+          "id": "program-r160",
+          "name": "Lái xe ô tô hạng B, B.01, C1",
+          "code": "",
+          "sourceRow": 160,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 900,
+            "college": null,
+            "intermediate": null,
+            "elementary": 900
+          },
+          "rawCounts": [
+            900,
+            null,
+            null,
+            900
+          ]
+        },
+        {
+          "id": "program-r161",
+          "name": "Sư phạm dạy nghề",
+          "code": "",
+          "sourceRow": 161,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 150,
+            "college": null,
+            "intermediate": null,
+            "elementary": 150
+          },
+          "rawCounts": [
+            150,
+            null,
+            null,
+            150
+          ]
+        },
+        {
+          "id": "program-r162",
+          "name": "Thú y",
+          "code": "",
+          "sourceRow": 162,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 15,
+            "college": null,
+            "intermediate": null,
+            "elementary": 15
+          },
+          "rawCounts": [
+            15,
+            null,
+            null,
+            15
+          ]
+        }
+      ],
+      "issues": [
+        "Dòng 156 lặp tên và mã nghề ở dòng khác; giữ từng dòng để đối chiếu trình độ và số liệu."
+      ]
+    },
+    {
+      "id": "school-r163",
+      "name": "Trường Cao đẳng nghề LILAMA 1",
+      "code": "CĐT 2703",
+      "type": "Cao đẳng",
+      "sourceRow": 163,
+      "reported": {
+        "total": 1090,
+        "college": 70,
+        "intermediate": 420,
+        "elementary": 600
+      },
+      "rawCounts": [
+        1090,
+        70,
+        420,
+        600
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r164",
+          "name": "Hàn",
+          "code": "5520123",
+          "sourceRow": 164,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 125,
+            "college": 25,
+            "intermediate": 100,
+            "elementary": null
+          },
+          "rawCounts": [
+            125,
+            25,
+            100,
+            null
+          ]
+        },
+        {
+          "id": "program-r165",
+          "name": "Kỹ thuật lắp đặt TBĐ và ĐK trong CN",
+          "code": "5520201",
+          "sourceRow": 165,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 170,
+            "college": 25,
+            "intermediate": 145,
+            "elementary": null
+          },
+          "rawCounts": [
+            170,
+            25,
+            145,
+            null
+          ]
+        },
+        {
+          "id": "program-r166",
+          "name": "Công nghệ ô tô",
+          "code": "5510216",
+          "sourceRow": 166,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 30,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            30,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r167",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "code": "5520205",
+          "sourceRow": 167,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 100,
+            "college": null,
+            "intermediate": 100,
+            "elementary": null
+          },
+          "rawCounts": [
+            100,
+            null,
+            100,
+            null
+          ]
+        },
+        {
+          "id": "program-r168",
+          "name": "Chế tạo thiết bị cơ khí",
+          "code": "5520104",
+          "sourceRow": 168,
+          "levels": [
+            "Cao đẳng",
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 65,
+            "college": 20,
+            "intermediate": 45,
+            "elementary": null
+          },
+          "rawCounts": [
+            65,
+            20,
+            45,
+            null
+          ]
+        },
+        {
+          "id": "program-r169",
+          "name": "Lái xe ô tô B, C1",
+          "code": "",
+          "sourceRow": 169,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 570,
+            "college": null,
+            "intermediate": null,
+            "elementary": 570
+          },
+          "rawCounts": [
+            570,
+            null,
+            null,
+            570
+          ]
+        },
+        {
+          "id": "program-r170",
+          "name": "Bồi dưỡng NVSP cho NG dạy SC, TC-CD",
+          "code": "",
+          "sourceRow": 170,
+          "levels": [
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 30,
+            "college": null,
+            "intermediate": null,
+            "elementary": 30
+          },
+          "rawCounts": [
+            30,
+            null,
+            null,
+            30
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r171",
+      "name": "Trường cao đẳng phát thanh truyền hình I",
+      "code": "CPT",
+      "type": "Cao đẳng",
+      "sourceRow": 171,
+      "reported": {
+        "total": null,
+        "college": null,
+        "intermediate": null,
+        "elementary": null
+      },
+      "rawCounts": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "groups": [
+        {
+          "label": "Hệ cao đẳng",
+          "level": "Cao đẳng",
+          "sourceRow": 172,
+          "reported": {
+            "total": 225,
+            "college": 225,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            225,
+            225,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Hệ Trung cấp",
+          "level": "Trung cấp",
+          "sourceRow": 180,
+          "reported": {
+            "total": 515,
+            "college": null,
+            "intermediate": 515,
+            "elementary": null
+          },
+          "rawCounts": [
+            515,
+            null,
+            515,
+            null
+          ]
+        },
+        {
+          "label": "Sơ cấp",
+          "level": "Sơ cấp",
+          "sourceRow": 186,
+          "reported": {
+            "total": 250,
+            "college": null,
+            "intermediate": null,
+            "elementary": 250
+          },
+          "rawCounts": [
+            250,
+            null,
+            null,
+            250
+          ]
+        }
+      ],
+      "programs": [
+        {
+          "id": "program-r173",
+          "name": "Báo chí",
+          "code": "6320103",
+          "sourceRow": 173,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 70,
+            "college": 70,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            70,
+            70,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r174",
+          "name": "Quan hệ công chúng",
+          "code": "6320108",
+          "sourceRow": 174,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 25,
+            "college": 25,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            25,
+            25,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r175",
+          "name": "Kế toán",
+          "code": "6340301",
+          "sourceRow": 175,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 25,
+            "college": 25,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            25,
+            25,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r176",
+          "name": "Công nghệ thông tin",
+          "code": "6480201",
+          "sourceRow": 176,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 30,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            30,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r177",
+          "name": "Công nghệ KT điện, điện tử",
+          "code": "6510303",
+          "sourceRow": 177,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 30,
+            "college": 30,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            30,
+            30,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r178",
+          "name": "Công nghệ KT điện tử truyền thông",
+          "code": "6510312",
+          "sourceRow": 178,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 25,
+            "college": 25,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            25,
+            25,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r179",
+          "name": "Tiếng Anh",
+          "code": "6220206",
+          "sourceRow": 179,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 20,
+            "college": 20,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            20,
+            20,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r181",
+          "name": "Báo chí",
+          "code": "5320103",
+          "sourceRow": 181,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 75,
+            "college": null,
+            "intermediate": 75,
+            "elementary": null
+          },
+          "rawCounts": [
+            75,
+            null,
+            75,
+            null
+          ]
+        },
+        {
+          "id": "program-r182",
+          "name": "Kế toán doanh nghiệp",
+          "code": "5340302",
+          "sourceRow": 182,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 75,
+            "college": null,
+            "intermediate": 75,
+            "elementary": null
+          },
+          "rawCounts": [
+            75,
+            null,
+            75,
+            null
+          ]
+        },
+        {
+          "id": "program-r183",
+          "name": "Tin học ứng dụng",
+          "code": "5480205",
+          "sourceRow": 183,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 190,
+            "college": null,
+            "intermediate": 190,
+            "elementary": null
+          },
+          "rawCounts": [
+            190,
+            null,
+            190,
+            null
+          ]
+        },
+        {
+          "id": "program-r184",
+          "name": "Công nghệ KT điện, điện tử",
+          "code": "5510303",
+          "sourceRow": 184,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 150,
+            "college": null,
+            "intermediate": 150,
+            "elementary": null
+          },
+          "rawCounts": [
+            150,
+            null,
+            150,
+            null
+          ]
+        },
+        {
+          "id": "program-r185",
+          "name": "Công nghệ KT điện tử truyền thông",
+          "code": "5510312",
+          "sourceRow": 185,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 25,
+            "college": null,
+            "intermediate": 25,
+            "elementary": null
+          },
+          "rawCounts": [
+            25,
+            null,
+            25,
+            null
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r187",
+      "name": "TRƯỜNG CAO ĐẲNG Y TẾ NINH BÌNH",
+      "code": "CDD2701 (CNY)",
+      "type": "Cao đẳng",
+      "sourceRow": 187,
+      "reported": {
+        "total": 300,
+        "college": 280,
+        "intermediate": 20,
+        "elementary": null
+      },
+      "rawCounts": [
+        300,
+        280,
+        20,
+        null
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r188",
+          "name": "Cao đẳng Điều dưỡng",
+          "code": "6720301",
+          "sourceRow": 188,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 140,
+            "college": 140,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            140,
+            140,
+            "-",
+            "-"
+          ]
+        },
+        {
+          "id": "program-r189",
+          "name": "Cao đẳng Dược",
+          "code": "6720201",
+          "sourceRow": 189,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 140,
+            "college": 140,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            140,
+            140,
+            "-",
+            "-"
+          ]
+        },
+        {
+          "id": "program-r190",
+          "name": "Y sỹ đa khoa (TC)",
+          "code": "5720101",
+          "sourceRow": 190,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 20,
+            "college": null,
+            "intermediate": 20,
+            "elementary": null
+          },
+          "rawCounts": [
+            20,
+            "-",
+            20,
+            "-"
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r191",
+      "name": "Trường Cao đẳng Công nghệ, Kinh tế và Chế biến lâm sản",
+      "code": "CDT2401",
+      "type": "Cao đẳng",
+      "sourceRow": 191,
+      "reported": {
+        "total": 689,
+        "college": 93,
+        "intermediate": 546,
+        "elementary": 50
+      },
+      "rawCounts": [
+        689,
+        93,
+        546,
+        50
+      ],
+      "groups": [
+        {
+          "label": "Hệ cao đẳng",
+          "level": "Cao đẳng",
+          "sourceRow": 192,
+          "reported": {
+            "total": 0,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            0,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Hệ trung cấp",
+          "level": "Trung cấp",
+          "sourceRow": 201,
+          "reported": {
+            "total": 0,
+            "college": null,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            0,
+            null,
+            null,
+            null
+          ]
+        },
+        {
+          "label": "Hệ sơ cấp",
+          "level": "Sơ cấp",
+          "sourceRow": 211,
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": null,
+            "elementary": 50
+          },
+          "rawCounts": [
+            50,
+            null,
+            null,
+            50
+          ]
+        }
+      ],
+      "programs": [
+        {
+          "id": "program-r193",
+          "name": "Gia công & thiết kế SP Mộc",
+          "code": "6210422",
+          "sourceRow": 193,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r194",
+          "name": "Kỹ thuật Điêu khắc gỗ",
+          "code": "6210101",
+          "sourceRow": 194,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r195",
+          "name": "Kỹ thuật Sơn mài và Khảm trai",
+          "code": "6210412",
+          "sourceRow": 195,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r196",
+          "name": "Kế toán Doanh nghiệp",
+          "code": "6340302",
+          "sourceRow": 196,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r197",
+          "name": "Quản trị mạng máy tính",
+          "code": "6480209",
+          "sourceRow": 197,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 20,
+            "college": 20,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            20,
+            20,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r198",
+          "name": "Điện dân dụng",
+          "code": "6520226",
+          "sourceRow": 198,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 10,
+            "college": 10,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            10,
+            10,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r199",
+          "name": "Điện Công nghiệp",
+          "code": "6520227",
+          "sourceRow": 199,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 11,
+            "college": 11,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            11,
+            11,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r200",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "code": "6520205",
+          "sourceRow": 200,
+          "levels": [
+            "Cao đẳng"
+          ],
+          "reported": {
+            "total": 12,
+            "college": 12,
+            "intermediate": null,
+            "elementary": null
+          },
+          "rawCounts": [
+            12,
+            12,
+            null,
+            null
+          ]
+        },
+        {
+          "id": "program-r202",
+          "name": "Gia công & thiết kế SP Mộc",
+          "code": "5210422",
+          "sourceRow": 202,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 90,
+            "college": null,
+            "intermediate": 90,
+            "elementary": null
+          },
+          "rawCounts": [
+            90,
+            null,
+            90,
+            null
+          ]
+        },
+        {
+          "id": "program-r203",
+          "name": "Kỹ thuật Điêu khắc gỗ",
+          "code": "5210101",
+          "sourceRow": 203,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 90,
+            "college": null,
+            "intermediate": 90,
+            "elementary": null
+          },
+          "rawCounts": [
+            90,
+            null,
+            90,
+            null
+          ]
+        },
+        {
+          "id": "program-r204",
+          "name": "Kỹ thuật Sơn mài và Khảm trai",
+          "code": "5210412",
+          "sourceRow": 204,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 60,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            60,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r205",
+          "name": "Kế toán Doanh nghiệp",
+          "code": "5340302",
+          "sourceRow": 205,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 56,
+            "college": null,
+            "intermediate": 56,
+            "elementary": null
+          },
+          "rawCounts": [
+            56,
+            null,
+            56,
+            null
+          ]
+        },
+        {
+          "id": "program-r206",
+          "name": "Quản trị mạng máy tính",
+          "code": "5480209",
+          "sourceRow": 206,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": 50,
+            "elementary": null
+          },
+          "rawCounts": [
+            50,
+            null,
+            50,
+            null
+          ]
+        },
+        {
+          "id": "program-r207",
+          "name": "Quản trị CSDL",
+          "code": "5480208",
+          "sourceRow": 207,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": 50,
+            "elementary": null
+          },
+          "rawCounts": [
+            50,
+            null,
+            50,
+            null
+          ]
+        },
+        {
+          "id": "program-r208",
+          "name": "Điện dân dụng",
+          "code": "5520226",
+          "sourceRow": 208,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 50,
+            "college": null,
+            "intermediate": 50,
+            "elementary": null
+          },
+          "rawCounts": [
+            50,
+            null,
+            50,
+            null
+          ]
+        },
+        {
+          "id": "program-r209",
+          "name": "Điện Công nghiệp",
+          "code": "5520227",
+          "sourceRow": 209,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 60,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            60,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r210",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "code": "5520205",
+          "sourceRow": 210,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 40,
+            "college": null,
+            "intermediate": 40,
+            "elementary": null
+          },
+          "rawCounts": [
+            40,
+            null,
+            40,
+            null
+          ]
+        }
+      ],
+      "issues": [
+        "Dòng 192 ghi Hệ cao đẳng bằng 0 trong khi dòng nghề có số liệu.",
+        "Dòng 201 ghi Hệ trung cấp bằng 0 trong khi dòng nghề có số liệu."
+      ]
+    },
+    {
+      "id": "school-r215",
+      "name": "Trường Trung cấp Công nghệ số 8 Nam Định",
+      "code": "TCD2502",
+      "type": "Trung cấp",
+      "sourceRow": 215,
+      "reported": {
+        "total": 690,
+        "college": 0,
+        "intermediate": 550,
+        "elementary": 140
+      },
+      "rawCounts": [
+        690,
+        0,
+        550,
+        140
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r216",
+          "name": "Công nghệ thông tin",
+          "code": "5480201",
+          "sourceRow": 216,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 125,
+            "college": null,
+            "intermediate": 90,
+            "elementary": 35
+          },
+          "rawCounts": [
+            125,
+            null,
+            90,
+            35
+          ]
+        },
+        {
+          "id": "program-r217",
+          "name": "Công nghệ kỹ thuật ô tô",
+          "code": "5510202",
+          "sourceRow": 217,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 40,
+            "college": null,
+            "intermediate": 40,
+            "elementary": 0
+          },
+          "rawCounts": [
+            40,
+            null,
+            40,
+            0
+          ]
+        },
+        {
+          "id": "program-r218",
+          "name": "Công nghệ, kỹ thuật điện, điện tử",
+          "code": "5510303",
+          "sourceRow": 218,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 160,
+            "college": null,
+            "intermediate": 125,
+            "elementary": 35
+          },
+          "rawCounts": [
+            160,
+            null,
+            125,
+            35
+          ]
+        },
+        {
+          "id": "program-r219",
+          "name": "Hàn",
+          "code": "5520123",
+          "sourceRow": 219,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 105,
+            "college": null,
+            "intermediate": 70,
+            "elementary": 35
+          },
+          "rawCounts": [
+            105,
+            null,
+            70,
+            35
+          ]
+        },
+        {
+          "id": "program-r220",
+          "name": "May thời trang",
+          "code": "5540205",
+          "sourceRow": 220,
+          "levels": [
+            "Trung cấp",
+            "Sơ cấp"
+          ],
+          "reported": {
+            "total": 260,
+            "college": null,
+            "intermediate": 225,
+            "elementary": 35
+          },
+          "rawCounts": [
+            260,
+            null,
+            225,
+            35
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r222",
+      "name": "Trường Trung cấp GTVT NĐ",
+      "code": "TCD2506",
+      "type": "Trung cấp",
+      "sourceRow": 222,
+      "reported": {
+        "total": 250,
+        "college": 0,
+        "intermediate": null,
+        "elementary": 0
+      },
+      "rawCounts": [
+        250,
+        0,
+        null,
+        0
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r223",
+          "name": "Công nghệ ô tô",
+          "code": "55102016",
+          "sourceRow": 223,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 153,
+            "college": null,
+            "intermediate": 153,
+            "elementary": null
+          },
+          "rawCounts": [
+            153,
+            null,
+            153,
+            null
+          ]
+        },
+        {
+          "id": "program-r224",
+          "name": "Điện Công nghiệp",
+          "code": "5520227",
+          "sourceRow": 224,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": 97,
+            "college": null,
+            "intermediate": 97,
+            "elementary": null
+          },
+          "rawCounts": [
+            97,
+            null,
+            97,
+            null
+          ]
+        }
+      ],
+      "issues": []
+    },
+    {
+      "id": "school-r225",
+      "name": "Trường Trung cấp Đại Lâm",
+      "code": "TCD2503",
+      "type": "Trung cấp",
+      "sourceRow": 225,
+      "reported": {
+        "total": 0,
+        "college": 0,
+        "intermediate": null,
+        "elementary": 0
+      },
+      "rawCounts": [
+        0,
+        0,
+        null,
+        0
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r226",
+          "name": "Công nghệ ôt ô",
+          "code": "5510216",
+          "sourceRow": 226,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 175,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            175,
+            null
+          ]
+        },
+        {
+          "id": "program-r227",
+          "name": "May thời trang",
+          "code": "5540205",
+          "sourceRow": 227,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 245,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            245,
+            null
+          ]
+        },
+        {
+          "id": "program-r228",
+          "name": "Kỹ thuật chế biến món ăn",
+          "code": "5810207",
+          "sourceRow": 228,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        }
+      ],
+      "issues": [
+        "Cột Tổng ghi 0 trong khi các dòng ngành, nghề có số liệu dương."
+      ]
+    },
+    {
+      "id": "school-r229",
+      "name": "Trường Trung Cấp Kỹ Thuật - Du Lịch Công Đoàn Ninh Bình",
+      "code": "",
+      "type": "Trung cấp",
+      "sourceRow": 229,
+      "reported": {
+        "total": null,
+        "college": null,
+        "intermediate": 300,
+        "elementary": null
+      },
+      "rawCounts": [
+        null,
+        null,
+        300,
+        null
+      ],
+      "groups": [],
+      "programs": [
+        {
+          "id": "program-r230",
+          "name": "Nghề Điện dân dụng",
+          "code": "5520226",
+          "sourceRow": 230,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r231",
+          "name": "Nghề Điện công nghiệp và dân dụng",
+          "code": "5520223",
+          "sourceRow": 231,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r232",
+          "name": "Nghề công nghệ thông tin",
+          "code": "5480202",
+          "sourceRow": 232,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r233",
+          "name": "Nghề hướng dẫn du lịch",
+          "code": "5810103",
+          "sourceRow": 233,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 60,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            60,
+            null
+          ]
+        },
+        {
+          "id": "program-r234",
+          "name": "Quản trị khách sạn",
+          "code": "5810201",
+          "sourceRow": 234,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r235",
+          "name": "Nghiệp vụ nhà hàng",
+          "code": "5810206",
+          "sourceRow": 235,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r236",
+          "name": "Nghề may thời trang",
+          "code": "5540205",
+          "sourceRow": 236,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        },
+        {
+          "id": "program-r237",
+          "name": "Kỹ thuật chế biến món ăn",
+          "code": "5810207",
+          "sourceRow": 237,
+          "levels": [
+            "Trung cấp"
+          ],
+          "reported": {
+            "total": null,
+            "college": null,
+            "intermediate": 30,
+            "elementary": null
+          },
+          "rawCounts": [
+            null,
+            null,
+            30,
+            null
+          ]
+        }
+      ],
+      "issues": []
+    }
+  ]
+}
