@@ -74,6 +74,10 @@
                   {{ getLevelLabel(school.education_level) }}
                 </span>
 
+                <span v-if="school.code" class="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-slate-600 flex-shrink-0">
+                  {{ school.code }}
+                </span>
+
                 <span class="text-slate-300">•</span>
 
                 <!-- Address -->
@@ -321,7 +325,7 @@
               <input
                 v-model="majorSearchQuery"
                 type="text"
-                placeholder="Tìm tên chuyên ngành..."
+                placeholder="Tìm tên hoặc mã ngành..."
                 class="w-full pl-8 pr-7 py-2 bg-slate-100 focus:bg-white text-xs font-medium text-slate-800 rounded-xl border border-slate-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-200 outline-none transition-all placeholder:text-slate-400"
               />
               <button
@@ -345,10 +349,9 @@
                 @click="filterStore.majorId = String(major.id)"
                 :class="String(filterStore.majorId) === String(major.id) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-100'"
                 class="w-full px-2.5 py-1.5 rounded-lg text-xs text-left flex items-center justify-between cursor-pointer">
-                <span
-                  class="min-w-0 flex-1 pr-2 leading-4 whitespace-normal break-words"
-                  :title="major.name">
-                  {{ major.name }}
+                <span class="min-w-0 flex-1 pr-2">
+                  <span class="block leading-4 whitespace-normal break-words" :title="major.name">{{ major.name }}</span>
+                  <span v-if="major.code" class="mt-0.5 block font-mono text-[9px] font-medium text-slate-400">Mã: {{ major.code }}</span>
                 </span>
                 <span class="flex items-center gap-1 flex-shrink-0 ml-1">
                   <span
@@ -671,7 +674,10 @@ const filteredWardsList = computed(() => {
 const filteredMajors = computed(() => {
   const q = majorSearchQuery.value.toLocaleLowerCase('vi').trim()
   if (!q) return majors.value
-  return majors.value.filter(major => (major.name || '').toLocaleLowerCase('vi').includes(q))
+  return majors.value.filter(major =>
+    (major.name || '').toLocaleLowerCase('vi').includes(q) ||
+    (major.code || '').toLocaleLowerCase('vi').includes(q)
+  )
 })
 
 function getUnitBadgeClass(unitType) {

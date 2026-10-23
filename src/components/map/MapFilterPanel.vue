@@ -83,7 +83,7 @@
         <input
           v-model="majorSearchQuery"
           type="text"
-          placeholder="Tìm chuyên ngành..."
+          placeholder="Tìm tên hoặc mã ngành..."
           class="w-full pl-6 pr-2 py-1.5 bg-slate-100/80 rounded-lg border border-slate-200 text-[11px] outline-none focus:border-blue-400 focus:bg-white"
         />
       </div>
@@ -101,10 +101,9 @@
           @click="filterStore.majorId = String(major.id)"
           :class="String(filterStore.majorId) === String(major.id) ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-100'"
           class="w-full px-2 py-1.5 rounded-lg text-[11px] text-left flex items-center justify-between cursor-pointer">
-          <span
-            class="min-w-0 flex-1 pr-1 leading-4 whitespace-normal break-words"
-            :title="major.name">
-            {{ major.name }}
+          <span class="min-w-0 flex-1 pr-1">
+            <span class="block leading-4 whitespace-normal break-words" :title="major.name">{{ major.name }}</span>
+            <span v-if="major.code" class="mt-0.5 block font-mono text-[9px] font-medium text-slate-400">Mã: {{ major.code }}</span>
           </span>
           <span class="flex items-center gap-1 flex-shrink-0 ml-1">
             <span
@@ -159,7 +158,10 @@ const majorSearchQuery = ref('')
 const filteredMajors = computed(() => {
   const query = majorSearchQuery.value.trim().toLocaleLowerCase('vi')
   if (!query) return majors.value
-  return majors.value.filter(major => (major.name || '').toLocaleLowerCase('vi').includes(query))
+  return majors.value.filter(major =>
+    (major.name || '').toLocaleLowerCase('vi').includes(query) ||
+    (major.code || '').toLocaleLowerCase('vi').includes(query)
+  )
 })
 
 onMounted(() => {

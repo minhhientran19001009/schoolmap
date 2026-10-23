@@ -1,7 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\DemoBusinessPortalController;
+use App\Http\Controllers\Api\DemoSchoolPortalController;
+use App\Http\Controllers\Api\PublicSchoolController;
+use App\Http\Controllers\Api\SupplyDemandController;
+use App\Models\EducationLevel;
 use App\Models\School;
 use App\Models\TrainingMajor;
+use App\Services\SchoolExcelService;
+use App\Services\TrainingMajorExcelService;
+use Filament\Notifications\Notification;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -9,6 +18,33 @@ use Illuminate\Validation\Rule;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('/api/public/schools')->group(function (): void {
+    Route::get('/', [PublicSchoolController::class, 'index']);
+    Route::get('/catalogs', [PublicSchoolController::class, 'catalogs']);
+});
+
+Route::prefix('/api/supply-demand')->group(function (): void {
+    Route::get('/catalogs', [SupplyDemandController::class, 'catalogs']);
+    Route::get('/portal', [SupplyDemandController::class, 'portal']);
+});
+
+Route::prefix('/api/demo/school-portal')->middleware('throttle:60,1')->group(function (): void {
+    Route::post('/select-school', [DemoSchoolPortalController::class, 'selectSchool']);
+    Route::get('/capacities', [DemoSchoolPortalController::class, 'capacities']);
+    Route::post('/capacities', [DemoSchoolPortalController::class, 'storeCapacity']);
+    Route::get('/opportunities', [DemoSchoolPortalController::class, 'opportunities']);
+    Route::post('/proposals', [DemoSchoolPortalController::class, 'storeProposal']);
+    Route::get('/field-proposals', [DemoSchoolPortalController::class, 'fieldProposals']);
+    Route::post('/field-proposals', [DemoSchoolPortalController::class, 'storeFieldProposal']);
+});
+
+Route::prefix('/api/demo/business-portal')->middleware('throttle:60,1')->group(function (): void {
+    Route::get('/employers', [DemoBusinessPortalController::class, 'employers']);
+    Route::post('/select-employer', [DemoBusinessPortalController::class, 'selectEmployer']);
+    Route::get('/demands', [DemoBusinessPortalController::class, 'demands']);
+    Route::post('/demands', [DemoBusinessPortalController::class, 'storeDemand']);
 });
 
 // Keep the public map payload small. Heavy JSON fields are returned by the
@@ -24,10 +60,28 @@ $mapSchool = static function (School $school, array $districtNames = []) {
     $arr['training_major_ids'] = $school->relationLoaded('majors')
         ? $school->majors->pluck('id')->values()->all()
         : [];
+    // The map only needs a compact preview. Full major data stays on the
+    // school-detail endpoint and is loaded on demand.
+    $arr['training_major_count'] = $school->relationLoaded('majors')
+        ? $school->majors->count()
+        : 0;
+    $arr['training_major_summary'] = $school->relationLoaded('majors')
+        ? $school->majors
+            ->take(2)
+            ->map(fn (TrainingMajor $major): array => [
+                'name' => $major->name,
+                'code' => $major->code,
+                'degree_level' => $major->pivot?->degree_level,
+                'annual_quota' => (int) ($major->pivot?->annual_quota ?? 0),
+            ])
+            ->values()
+            ->all()
+        : [];
     $arr['school_type'] = $school->school_type_id;
     $arr['district_name'] = $districtNames[$school->district_id] ?? null;
     $arr['campus_type'] = $school->campus_type ?: 'MAIN';
     $arr['campus_type_label'] = School::campusTypeLabels()[$arr['campus_type']] ?? 'Cơ sở giáo dục';
+
     return $arr;
 };
 
@@ -56,7 +110,7 @@ $syncSchoolMajors = static function (School $school, ?array $assignments): void 
 // The public write routes are kept for legacy integrations. Explicitly allow
 // only school attributes and validate the location/campus fields before model
 // events enforce the relational integrity a second time.
-$schoolPayload = static function (\Illuminate\Http\Request $request, bool $creating = false): array {
+$schoolPayload = static function (Request $request, bool $creating = false): array {
     $allowed = [
         'code', 'name', 'campus_note', 'campus_type', 'campus_name', 'parent_school_id',
         'education_level', 'education_level_id', 'school_type_id', 'special_type', 'district_id', 'ward',
@@ -103,9 +157,9 @@ $schoolPayload = static function (\Illuminate\Http\Request $request, bool $creat
     return Validator::make($data, $rules)->validate();
 };
 
-Route::get('/api/training-majors', function (\Illuminate\Http\Request $request) {
+Route::get('/api/training-majors', function (Request $request) {
     $query = TrainingMajor::query()
-        ->select(['id', 'name', 'slug', 'is_active'])
+        ->select(['id', 'name', 'code', 'slug', 'is_active'])
         ->withCount('schools')
         ->orderBy('name');
 
@@ -119,7 +173,10 @@ Route::get('/api/training-majors', function (\Illuminate\Http\Request $request) 
 
     if ($search = trim((string) $request->input('q', ''))) {
         $search = mb_strtolower($search, 'UTF-8');
-        $query->whereRaw('LOWER(`name`) COLLATE utf8mb4_bin LIKE ?', ["%{$search}%"]);
+        $query->where(function ($query) use ($search): void {
+            $query->whereRaw('LOWER(`name`) COLLATE utf8mb4_bin LIKE ?', ["%{$search}%"])
+                ->orWhereRaw('LOWER(COALESCE(`code`, \'\')) COLLATE utf8mb4_bin LIKE ?', ["%{$search}%"]);
+        });
     }
 
     return response()->json($query->get())
@@ -138,7 +195,7 @@ Route::get('/api/schools', function () use ($mapSchool) {
             'classroom_count', 'computer_room_count', 'library', 'lab_count',
             'campus_area_m2', 'status', 'last_verified_at',
         ])
-        ->with(['educationLevels:id,name', 'majors:id,name,slug'])
+        ->with(['educationLevels:id,name', 'majors:id,name,code,slug'])
         ->orderBy('name', 'asc')
         ->get();
 
@@ -146,7 +203,7 @@ Route::get('/api/schools', function () use ($mapSchool) {
         ->whereIn('id', $schools->pluck('district_id')->filter()->unique()->values())
         ->pluck('name', 'id')
         ->all();
-    
+
     // Map education level name for backward compatibility with frontend
     $data = $schools->map(fn ($school) => $mapSchool($school, $districtNames));
 
@@ -155,19 +212,19 @@ Route::get('/api/schools', function () use ($mapSchool) {
         ->header('Access-Control-Allow-Methods', 'GET, OPTIONS');
 });
 
-Route::get('/api/schools/download-template', function (\App\Services\SchoolExcelService $excelService) {
+Route::get('/api/schools/download-template', function (SchoolExcelService $excelService) {
     abort_unless(auth()->user()?->isSystemAdmin(), 403);
 
     return $excelService->downloadTemplate();
 })->middleware(['auth', 'throttle:30,1']);
 
-Route::get('/api/schools/export-excel', function (\App\Services\SchoolExcelService $excelService) {
+Route::get('/api/schools/export-excel', function (SchoolExcelService $excelService) {
     abort_unless(auth()->user()?->isSystemAdmin(), 403);
 
     return $excelService->exportCurrentSchools();
 })->middleware(['auth', 'throttle:10,1']);
 
-Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $request, \App\Services\SchoolExcelService $excelService) {
+Route::post('/admin/schools/import-excel', function (Request $request, SchoolExcelService $excelService) {
     abort_unless(auth()->user()?->isSystemAdmin(), 403);
 
     $validator = Validator::make($request->all(), [
@@ -180,7 +237,7 @@ Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $r
     ]);
 
     if ($validator->fails()) {
-        \Filament\Notifications\Notification::make()
+        Notification::make()
             ->title('Không thể tải tệp Excel')
             ->body($validator->errors()->first('excel_file'))
             ->danger()
@@ -193,7 +250,7 @@ Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $r
     $result = $excelService->importFromFile($uploadedFile->getRealPath());
 
     if (! $result['success']) {
-        \Filament\Notifications\Notification::make()
+        Notification::make()
             ->title('Lỗi khi đọc tệp Excel')
             ->body($result['message'] ?? 'Không thể xử lý tệp Excel.')
             ->danger()
@@ -210,7 +267,7 @@ Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $r
         $message .= ' Có '.count($result['errors']).' dòng cần kiểm tra lại.';
     }
 
-    \Filament\Notifications\Notification::make()
+    Notification::make()
         ->title('Nhập dữ liệu Excel thành công')
         ->body($message)
         ->success()
@@ -219,7 +276,7 @@ Route::post('/admin/schools/import-excel', function (\Illuminate\Http\Request $r
     return redirect()->route('filament.admin.resources.schools.index');
 })->middleware(['auth', 'throttle:10,1'])->name('admin.schools.import-excel');
 
-Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Request $request, \App\Services\TrainingMajorExcelService $excelService) {
+Route::post('/admin/training-majors/import-excel', function (Request $request, TrainingMajorExcelService $excelService) {
     abort_unless(auth()->user()?->isSystemAdmin(), 403);
 
     $validator = Validator::make($request->all(), [
@@ -234,7 +291,7 @@ Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Re
     $redirect = fn () => redirect()->route('filament.admin.resources.training-majors.index');
 
     if ($validator->fails()) {
-        \Filament\Notifications\Notification::make()
+        Notification::make()
             ->title('Không thể tải tệp danh mục chuyên ngành')
             ->body($validator->errors()->first('excel_file'))
             ->danger()
@@ -246,7 +303,7 @@ Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Re
     $result = $excelService->importFromFile($request->file('excel_file')->getRealPath());
 
     if (! $result['success']) {
-        \Filament\Notifications\Notification::make()
+        Notification::make()
             ->title('Lỗi khi đọc tệp danh mục chuyên ngành')
             ->body($result['message'] ?? 'Không thể xử lý tệp Excel.')
             ->danger()
@@ -260,10 +317,10 @@ Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Re
         $message .= " Bỏ qua {$result['skipped']} dòng trống.";
     }
     if (! empty($result['errors'])) {
-        $message .= ' Có ' . count($result['errors']) . ' dòng lỗi cần kiểm tra lại.';
+        $message .= ' Có '.count($result['errors']).' dòng lỗi cần kiểm tra lại.';
     }
 
-    $notification = \Filament\Notifications\Notification::make()
+    $notification = Notification::make()
         ->title(empty($result['errors']) ? 'Nhập danh mục chuyên ngành thành công' : 'Nhập dữ liệu có cảnh báo')
         ->body($message);
 
@@ -274,19 +331,34 @@ Route::post('/admin/training-majors/import-excel', function (\Illuminate\Http\Re
 
 Route::get('/api/schools/{id}', function ($id) use ($mapSchool) {
     $school = School::with(['educationLevels', 'majors'])->where('id', $id)->orWhere('code', $id)->first();
-    if (!$school) {
+    if (! $school) {
         return response()->json(['error' => 'School not found'], 404);
     }
     $districtName = DB::table('districts')->where('id', $school->district_id)->value('name');
     $arr = $mapSchool($school, $districtName ? [$school->district_id => $districtName] : []);
+    $legacyMajorCodes = collect($school->training_majors)
+        ->filter(fn (array $major): bool => filled($major['name'] ?? null) && filled($major['major_code'] ?? null))
+        ->mapWithKeys(fn (array $major): array => [
+            mb_strtolower(trim((string) $major['name']), 'UTF-8') => $major['major_code'],
+        ]);
     $arr['training_majors'] = $school->relationLoaded('majors') && $school->majors->isNotEmpty()
         ? $school->majors->map(fn ($major) => [
             'id' => $major->id,
             'name' => $major->name,
+            'code' => $major->code ?: $legacyMajorCodes->get(mb_strtolower(trim($major->name), 'UTF-8')),
             'degree_level' => $major->pivot?->degree_level ?? 'cao_dang',
             'annual_quota' => (int) ($major->pivot?->annual_quota ?? 0),
         ])->values()->all()
         : $school->training_majors;
+    // The profile uses this catalog for both summary cards and table columns.
+    // Send the complete DB list so a zero-value level remains visible.
+    $arr['education_levels_catalog'] = EducationLevel::query()
+        ->select(['id', 'name', 'color', 'icon', 'display_order'])
+        ->orderBy('display_order')
+        ->orderBy('name')
+        ->get()
+        ->values()
+        ->all();
 
     // Campus members are intentionally fetched only here, not in the map list.
     // This keeps panning responsive even when the database has many locations.
@@ -345,7 +417,7 @@ Route::get('/api/schools/{id}', function ($id) use ($mapSchool) {
 });
 
 Route::get('/api/wards', function () {
-    $wards = \Illuminate\Support\Facades\DB::table('wards')
+    $wards = DB::table('wards')
         ->select('id', 'code', 'name', 'full_name', 'unit_type', 'area_km2')
         ->orderBy('name', 'asc')
         ->get();
@@ -355,7 +427,7 @@ Route::get('/api/wards', function () {
         ->header('Access-Control-Allow-Methods', 'GET, OPTIONS');
 });
 
-Route::post('/api/schools', function (\Illuminate\Http\Request $request) use ($schoolPayload, $syncSchoolMajors) {
+Route::post('/api/schools', function (Request $request) use ($schoolPayload, $syncSchoolMajors) {
     abort_unless(auth()->user()?->isSystemAdmin(), 403);
 
     $data = $schoolPayload($request, true);
@@ -369,14 +441,15 @@ Route::post('/api/schools', function (\Illuminate\Http\Request $request) use ($s
     $school = School::create($data);
     $school->educationLevels()->sync([$levelId]);
     $syncSchoolMajors($school, $majorAssignments);
+
     return response()->json($school, 201)
         ->header('Access-Control-Allow-Origin', '*')
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 })->middleware(['auth', 'throttle:60,1']);
 
-Route::put('/api/schools/{id}', function ($id, \Illuminate\Http\Request $request) use ($schoolPayload, $syncSchoolMajors) {
+Route::put('/api/schools/{id}', function ($id, Request $request) use ($schoolPayload, $syncSchoolMajors) {
     $school = School::where('id', $id)->orWhere('code', $id)->first();
-    if (!$school) {
+    if (! $school) {
         return response()->json(['error' => 'School not found'], 404);
     }
 
@@ -409,6 +482,7 @@ Route::put('/api/schools/{id}', function ($id, \Illuminate\Http\Request $request
     unset($data['major_assignments']);
     $school->update($data);
     $syncSchoolMajors($school, $majorAssignments);
+
     return response()->json($school)
         ->header('Access-Control-Allow-Origin', '*')
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -428,6 +502,7 @@ Route::delete('/api/schools/{id}', function ($id) {
         $school->majorAssignments()->delete();
         $school->delete();
     }
+
     return response()->json(['success' => true])
         ->header('Access-Control-Allow-Origin', '*')
         ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');

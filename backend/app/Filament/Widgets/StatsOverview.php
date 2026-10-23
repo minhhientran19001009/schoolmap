@@ -12,6 +12,11 @@ class StatsOverview extends StatsOverviewWidget
 {
     protected static ?int $sort = 1;
 
+    public static function canView(): bool
+    {
+        return false;
+    }
+
     protected function getStats(): array
     {
         $totalSchools = School::count();
@@ -23,7 +28,7 @@ class StatsOverview extends StatsOverviewWidget
         $totalArea = round(Ward::sum('area_km2'), 1);
 
         return [
-            Stat::make('Danh sách Trường học', number_format($totalSchools) . ' Trường')
+            Stat::make('Danh sách Trường học', number_format($totalSchools).' Trường')
                 ->description("Đạt chuẩn QG: {$stdCount} trường")
                 ->descriptionIcon('heroicon-m-academic-cap')
                 ->color('primary'),
@@ -38,7 +43,7 @@ class StatsOverview extends StatsOverviewWidget
                 ->descriptionIcon('heroicon-m-map-pin')
                 ->color('success'),
 
-            Stat::make('Tổng Diện tích Tự nhiên', number_format($totalArea, 1) . ' km²')
+            Stat::make('Tổng Diện tích Tự nhiên', number_format($totalArea, 1).' km²')
                 ->description('Tỉnh Ninh Bình (Mã tỉnh GSO: 37)')
                 ->descriptionIcon('heroicon-m-globe-americas')
                 ->color('warning'),

@@ -37,6 +37,17 @@ class TrainingMajorsTable
                     ->weight('bold')
                     ->wrap(),
 
+                TextColumn::make('code')
+                    ->label('Mã ngành')
+                    ->placeholder('—')
+                    ->searchable(query: function (Builder $query, string $search): Builder {
+                        return $query->whereRaw(
+                            'LOWER(COALESCE(`code`, \'\')) COLLATE utf8mb4_bin LIKE ?',
+                            ['%'.mb_strtolower(trim($search), 'UTF-8').'%'],
+                        );
+                    })
+                    ->toggleable(),
+
                 TextColumn::make('schools_count')
                     ->label('Số trường')
                     ->counts('schools')

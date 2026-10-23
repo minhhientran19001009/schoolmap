@@ -12,12 +12,12 @@
     <div 
       class="relative w-full max-w-2xl max-h-[90vh] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden z-10 animate-zoom-in">
       
-      <!-- Modal Header (Vieclam24h Style) -->
-      <div class="p-4 sm:p-6 border-b border-slate-100 bg-[#faf8ff] flex items-start justify-between gap-3">
+      <!-- Modal Header (System Style) -->
+      <div class="p-4 sm:p-6 border-b border-slate-100 bg-gradient-to-r from-blue-50/70 via-white to-indigo-50/40 flex items-start justify-between gap-3">
         <div class="flex items-start gap-3.5 min-w-0">
           <!-- Company Logo -->
           <div 
-            :class="job.company_color || 'bg-[#3b1d74]'"
+            :class="job.company_color || 'bg-blue-700'"
             class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl text-white font-black flex items-center justify-center flex-shrink-0 shadow-sm border border-slate-100 overflow-hidden p-1 text-center select-none">
             <span class="max-w-full truncate text-xs sm:text-sm font-black uppercase tracking-tight block">
               {{ job.company_logo || 'DN' }}
@@ -40,13 +40,13 @@
               {{ job.title }}
             </h2>
 
-            <p class="text-xs sm:text-sm font-semibold text-[#6c3fb8] mt-0.5">
+            <p class="text-xs sm:text-sm font-semibold text-slate-600 mt-0.5">
               {{ job.company }}
             </p>
 
             <div class="flex flex-wrap items-center gap-2 mt-2.5">
               <!-- Salary -->
-              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-[#1d4ed8] font-bold text-xs sm:text-sm">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold text-xs sm:text-sm">
                 <i class="fa-solid fa-money-bill-wave text-emerald-600"></i>
                 <span>{{ job.salary }}</span>
               </span>
@@ -75,10 +75,10 @@
         <!-- Section 1: Mô tả công việc -->
         <div>
           <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2 mb-2">
-            <span class="w-1.5 h-4 bg-[#6c3fb8] rounded-full"></span>
+            <span class="w-1.5 h-4 bg-blue-600 rounded-full"></span>
             <span>Mô tả công việc</span>
           </h4>
-          <ul class="space-y-1.5 leading-relaxed pl-4 list-disc marker:text-[#6c3fb8]">
+          <ul class="space-y-1.5 leading-relaxed pl-4 list-disc marker:text-blue-600">
             <li v-for="(desc, idx) in job.description" :key="idx">
               {{ desc }}
             </li>
@@ -115,17 +115,50 @@
           </div>
         </div>
 
-        <!-- Section 4: Thông tin liên hệ & Ứng tuyển nhanh -->
-        <div class="p-4 sm:p-5 rounded-xl bg-[#faf8ff] border border-[#e9e3ff]">
-          <h4 class="text-sm font-bold text-[#3b1d74] flex items-center gap-2 mb-3">
-            <i class="fa-solid fa-id-card text-[#6c3fb8]"></i>
+        <!-- Section: Nơi có chương trình đào tạo (Mẫu Apps Script) -->
+        <div v-if="job.training_schools && job.training_schools.length">
+          <h4 class="text-sm font-bold text-slate-900 flex items-center justify-between mb-2.5">
+            <span class="flex items-center gap-2">
+              <span class="w-1.5 h-4 bg-indigo-600 rounded-full"></span>
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-graduation-cap text-[#4f46e5]"></i>
+                <span>Nơi có chương trình đào tạo kỹ năng</span>
+              </span>
+            </span>
+            <span class="text-xs text-slate-400 font-normal">{{ job.training_schools.length }} cơ sở GDNN</span>
+          </h4>
+          <div class="space-y-2">
+            <div 
+              v-for="(school, sIdx) in job.training_schools" 
+              :key="sIdx"
+              class="p-2.5 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-between gap-2 hover:bg-blue-50/50 transition-colors">
+              <div class="flex items-start gap-2.5 min-w-0 pr-1">
+                <i class="fa-solid fa-school text-indigo-600 text-xs mt-1 flex-shrink-0"></i>
+                <div class="min-w-0">
+                  <div class="font-bold text-xs text-slate-800 truncate" :title="school.name">{{ school.name }}</div>
+                  <div class="text-[11px] text-slate-500 truncate">{{ school.level }} · {{ school.district }}</div>
+                </div>
+              </div>
+              <router-link 
+                :to="{ path: '/co-so-gdnn', query: { q: school.name } }"
+                class="px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700 font-bold text-xs hover:bg-blue-100 transition-colors flex-shrink-0">
+                Xem
+              </router-link>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4: Thông tin liên hệ nhà tuyển dụng -->
+        <div class="p-4 sm:p-5 rounded-xl bg-slate-50 border border-slate-200/90">
+          <h4 class="text-sm font-bold text-slate-900 flex items-center gap-2 mb-3">
+            <i class="fa-solid fa-id-card text-blue-600"></i>
             <span>Thông tin nhà tuyển dụng tại Ninh Bình</span>
           </h4>
 
           <div class="space-y-1.5 text-slate-700">
             <p><strong>Người liên hệ:</strong> {{ job.contact?.contact_person }}</p>
             <p><strong>Địa chỉ nộp hồ sơ:</strong> {{ job.contact?.address }}</p>
-            <p v-if="job.contact?.email"><strong>Email:</strong> <a :href="`mailto:${job.contact?.email}`" class="text-[#6c3fb8] font-semibold underline">{{ job.contact?.email }}</a></p>
+            <p v-if="job.contact?.email"><strong>Email:</strong> <a :href="`mailto:${job.contact?.email}`" class="text-blue-600 font-semibold underline">{{ job.contact?.email }}</a></p>
           </div>
 
           <!-- Direct Call & Zalo Buttons -->
@@ -141,47 +174,10 @@
               :href="`https://zalo.me/${job.contact?.zalo}`"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex-1 min-w-[140px] py-2.5 px-4 rounded-xl bg-[#0068ff] hover:bg-blue-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
+              class="flex-1 min-w-[140px] py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
               <i class="fa-solid fa-comments"></i>
               <span>Nhắn tin Zalo</span>
             </a>
-          </div>
-
-          <!-- Fast Contact Form -->
-          <div class="mt-5 pt-4 border-t border-[#e9e3ff]">
-            <p class="text-xs font-bold text-slate-800 mb-2">Để lại thông tin để công ty liên hệ phỏng vấn:</p>
-            <form @submit.prevent="submitApplication" class="space-y-2">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <input 
-                  v-model="applicantName"
-                  type="text" 
-                  placeholder="Họ và tên của bạn *"
-                  required
-                  class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-[#6c3fb8] focus:ring-1 focus:ring-purple-200 outline-none"
-                />
-                <input 
-                  v-model="applicantPhone"
-                  type="tel" 
-                  placeholder="Số điện thoại liên hệ *"
-                  required
-                  class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-[#6c3fb8] focus:ring-1 focus:ring-purple-200 outline-none"
-                />
-              </div>
-              <input 
-                v-model="applicantSchool"
-                type="text" 
-                placeholder="Trường hoặc nghề đào tạo (ví dụ: Cao đẳng Cơ điện, ngành Hàn...)"
-                class="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-white focus:border-[#6c3fb8] focus:ring-1 focus:ring-purple-200 outline-none"
-              />
-              <button 
-                type="submit"
-                :disabled="isSubmitted"
-                class="w-full py-2.5 rounded-xl bg-[#6c3fb8] hover:bg-[#5b32a0] text-white font-bold text-xs transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer disabled:bg-slate-400">
-                <i v-if="isSubmitted" class="fa-solid fa-check"></i>
-                <i v-else class="fa-solid fa-paper-plane"></i>
-                <span>{{ isSubmitted ? 'Đã gửi hồ sơ thành công!' : 'Ứng tuyển ngay' }}</span>
-              </button>
-            </form>
           </div>
 
         </div>
@@ -202,8 +198,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
 const props = defineProps({
   job: {
     type: Object,
@@ -212,22 +206,4 @@ const props = defineProps({
 })
 
 defineEmits(['close'])
-
-const applicantName = ref('')
-const applicantPhone = ref('')
-const applicantSchool = ref('')
-const isSubmitted = ref(false)
-
-function submitApplication() {
-  if (!applicantName.value || !applicantPhone.value) return
-  isSubmitted.value = true
-  setTimeout(() => {
-    applicantName.value = ''
-    applicantPhone.value = ''
-    applicantSchool.value = ''
-    setTimeout(() => {
-      isSubmitted.value = false
-    }, 4000)
-  }, 500)
-}
 </script>

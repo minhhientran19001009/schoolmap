@@ -772,7 +772,34 @@ function buildPopupHtml(s) {
   const students = (s.student_count || 0).toLocaleString('vi-VN')
   const teachers = (s.teacher_count || 0)
   const classes = (s.class_count || 0)
-  const typeLabel = s.school_type === 'cong_lap' ? 'Công lập' : 'Tư thục'
+  const majorPreview = Array.isArray(s.training_major_summary) ? s.training_major_summary : []
+  const extraMajorCount = Math.max(0, Number(s.training_major_count || 0) - majorPreview.length)
+  const majorsHtml = majorPreview.length > 0 ? `
+      <div class="mt-2.5 rounded-xl border border-emerald-100 bg-emerald-50/50 p-2">
+        <div class="mb-1.5 flex items-center justify-between">
+          <span class="flex items-center gap-1 text-[10px] font-bold text-emerald-800">
+            <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
+            Ngành / nghề đào tạo
+          </span>
+          <span class="rounded bg-white px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700">${s.training_major_count || majorPreview.length}</span>
+        </div>
+        <div class="space-y-1.5">
+          ${majorPreview.map(major => {
+            const code = escapePopupHtml(major.code || '')
+            const quota = Number(major.annual_quota || 0)
+            return `
+              <div class="rounded-lg bg-white/90 px-2 py-1.5">
+                <div class="text-[11px] font-semibold leading-snug text-slate-700">${escapePopupHtml(major.name)}</div>
+                <div class="mt-1 flex flex-wrap items-center gap-1 text-[9px]">
+                  ${code ? `<span class="rounded bg-slate-100 px-1 py-0.5 font-mono font-semibold text-slate-600">Mã: ${code}</span>` : ''}
+                  <span class="rounded bg-blue-50 px-1 py-0.5 font-semibold text-blue-700">${formatTrainingLevel(major.degree_level)}</span>
+                  ${quota > 0 ? `<span class="text-slate-500">${quota.toLocaleString('vi-VN')} SV/năm</span>` : ''}
+                </div>
+              </div>`
+          }).join('')}
+        </div>
+        ${extraMajorCount > 0 ? `<div class="mt-1.5 text-right text-[10px] font-medium text-emerald-700">+ ${extraMajorCount} ngành, nghề khác</div>` : ''}
+      </div>` : ''
 
   return `
     <div class="p-3.5 select-none">
@@ -780,6 +807,11 @@ function buildPopupHtml(s) {
       <h3 class="font-bold text-slate-800 text-sm leading-snug mb-1">
         ${s.name}
       </h3>
+
+      <div class="mb-2 flex flex-wrap items-center gap-1.5 text-[10px]">
+        <span class="rounded bg-blue-50 px-1.5 py-0.5 font-semibold text-blue-700">${levelConfig.label || 'Cơ sở giáo dục'}</span>
+        ${s.code ? `<span class="rounded bg-slate-100 px-1.5 py-0.5 font-mono font-semibold text-slate-600">Mã trường: ${escapePopupHtml(s.code)}</span>` : ''}
+      </div>
 
       <!-- Address -->
       <p class="text-[11px] text-slate-500 flex items-start gap-1.5 mb-1">
@@ -794,6 +826,8 @@ function buildPopupHtml(s) {
           <span>${String(s.principal).replace(/^HT:\s*/i, '')}</span>
         </p>
       ` : ''}
+
+      ${majorsHtml}
 
       <!-- Stats Grid -->
       <div class="grid grid-cols-3 gap-1.5 my-2.5 bg-slate-50 p-2 rounded-xl border border-slate-100 text-center">
@@ -815,7 +849,7 @@ function buildPopupHtml(s) {
       <div class="grid grid-cols-2 gap-1.5 pt-1">
         <button id="btn-popup-detail-${s.id}" class="w-full py-1.5 px-2 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-semibold flex items-center justify-center gap-1 transition-colors">
           <i class="fa-solid fa-circle-info text-[11px]"></i>
-          <span>Chi tiết hồ sơ</span>
+          <span>Hồ sơ & ngành nghề</span>
         </button>
         <a href="https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}" target="_blank" class="w-full py-1.5 px-2 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold flex items-center justify-center gap-1 transition-colors text-decoration-none">
           <i class="fa-solid fa-diamond-turn-right text-[11px]"></i>
@@ -831,6 +865,27 @@ function buildPopupHtml(s) {
       </div>
     </div>
   `
+}
+
+function escapePopupHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
+function formatTrainingLevel(level) {
+  const labels = {
+    dai_hoc: 'Đại học',
+    cao_dang: 'Cao đẳng',
+    trung_cap: 'Trung cấp',
+    so_cap: 'Sơ cấp',
+    gdtx: 'GDTX - GDNN',
+  }
+
+  return labels[level] || 'Chưa cập nhật'
 }
 
 function setupPopupEventListeners(school) {

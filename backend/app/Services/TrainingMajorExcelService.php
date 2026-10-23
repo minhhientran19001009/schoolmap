@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class TrainingMajorExcelService
 {
     public const NAME_HEADER = 'Tên chuyên ngành / nghề đào tạo (*)';
+    public const CODE_HEADER = 'Mã ngành / nghề';
     public const ACTIVE_HEADER = 'Đang sử dụng';
 
     public function downloadTemplate(): StreamedResponse
@@ -24,21 +25,23 @@ class TrainingMajorExcelService
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setTitle('Mau_Nhap_Lieu');
 
-        $sheet->mergeCells('A1:B1');
+        $sheet->mergeCells('A1:C1');
         $sheet->setCellValue('A1', 'KHUNG NHẬP DANH MỤC CHUYÊN NGÀNH / NGHỀ ĐÀO TẠO');
-        $sheet->mergeCells('A2:B2');
-        $sheet->setCellValue('A2', 'Nhập mỗi chuyên ngành một dòng. Không thay đổi tên cột. Tên ngành là bắt buộc; trạng thái để trống sẽ mặc định là Có.');
-        $this->styleTitle($sheet, 'A1:B1');
-        $this->styleNote($sheet, 'A2:B2');
+        $sheet->mergeCells('A2:C2');
+        $sheet->setCellValue('A2', 'Nhập mỗi chuyên ngành một dòng. Không thay đổi tên cột. Tên ngành là bắt buộc; mã ngành là tùy chọn; trạng thái để trống sẽ mặc định là Có.');
+        $this->styleTitle($sheet, 'A1:C1');
+        $this->styleNote($sheet, 'A2:C2');
 
         $sheet->setCellValue('A4', self::NAME_HEADER);
-        $sheet->setCellValue('B4', self::ACTIVE_HEADER);
-        $this->styleHeader($sheet, 'A4:B4');
+        $sheet->setCellValue('B4', self::CODE_HEADER);
+        $sheet->setCellValue('C4', self::ACTIVE_HEADER);
+        $this->styleHeader($sheet, 'A4:C4');
         $sheet->getColumnDimension('A')->setWidth(58);
-        $sheet->getColumnDimension('B')->setWidth(20);
+        $sheet->getColumnDimension('B')->setWidth(22);
+        $sheet->getColumnDimension('C')->setWidth(20);
         $sheet->getRowDimension(4)->setRowHeight(32);
         $sheet->freezePane('A5');
-        $sheet->setAutoFilter('A4:B500');
+        $sheet->setAutoFilter('A4:C500');
 
         $validation = new DataValidation();
         $validation->setType(DataValidation::TYPE_LIST);
@@ -49,7 +52,7 @@ class TrainingMajorExcelService
         $validation->setErrorTitle('Trạng thái không hợp lệ');
         $validation->setError('Vui lòng chọn Có hoặc Không.');
         $validation->setFormula1('Danh_Muc!$A$2:$A$3');
-        $sheet->setDataValidation('B5:B500', $validation);
+        $sheet->setDataValidation('C5:C500', $validation);
 
         $catalog = $spreadsheet->createSheet();
         $catalog->setTitle('Danh_Muc');
@@ -68,14 +71,15 @@ class TrainingMajorExcelService
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->setTitle('Danh_Sach');
         $sheet->fromArray([
-            ['Tên chuyên ngành / nghề đào tạo', 'Đang sử dụng', 'Số trường đào tạo'],
+            ['Tên chuyên ngành / nghề đào tạo', 'Mã ngành / nghề', 'Đang sử dụng', 'Số trường đào tạo'],
         ], null, 'A1');
-        $this->styleHeader($sheet, 'A1:C1');
+        $this->styleHeader($sheet, 'A1:D1');
         $sheet->getColumnDimension('A')->setWidth(58);
-        $sheet->getColumnDimension('B')->setWidth(20);
-        $sheet->getColumnDimension('C')->setWidth(22);
+        $sheet->getColumnDimension('B')->setWidth(22);
+        $sheet->getColumnDimension('C')->setWidth(20);
+        $sheet->getColumnDimension('D')->setWidth(22);
         $sheet->freezePane('A2');
-        $sheet->setAutoFilter('A1:C1');
+        $sheet->setAutoFilter('A1:D1');
 
         $row = 2;
         TrainingMajor::query()
@@ -83,9 +87,10 @@ class TrainingMajorExcelService
             ->orderBy('name')
             ->each(function (TrainingMajor $major) use ($sheet, &$row): void {
                 $sheet->setCellValue("A{$row}", $major->name);
-                $sheet->setCellValue("B{$row}", $major->is_active ? 'Có' : 'Không');
-                $sheet->setCellValue("C{$row}", (int) $major->schools_count);
-                $sheet->getStyle("A{$row}:C{$row}")->applyFromArray([
+                $sheet->setCellValue("B{$row}", $major->code);
+                $sheet->setCellValue("C{$row}", $major->is_active ? 'Có' : 'Không');
+                $sheet->setCellValue("D{$row}", (int) $major->schools_count);
+                $sheet->getStyle("A{$row}:D{$row}")->applyFromArray([
                     'borders' => ['allBorders' => ['borderStyle' => Border::BORDER_THIN, 'color' => ['rgb' => 'E2E8F0']]],
                     'alignment' => ['vertical' => Alignment::VERTICAL_CENTER],
                 ]);
@@ -114,6 +119,7 @@ class TrainingMajorExcelService
 
         $headerRow = null;
         $nameColumn = null;
+        $codeColumn = null;
         $activeColumn = null;
 
         foreach ($rows as $rowNumber => $row) {
@@ -143,7 +149,9 @@ class TrainingMajorExcelService
             $header = $this->normalizeHeader($value);
             if ($this->isActiveHeader($header)) {
                 $activeColumn = $column;
-                break;
+            }
+            if ($this->isCodeHeader($header)) {
+                $codeColumn = $column;
             }
         }
 
@@ -160,6 +168,7 @@ class TrainingMajorExcelService
             }
 
             $name = $this->normalizeValue($row[$nameColumn] ?? null);
+            $code = $this->normalizeValue($codeColumn ? ($row[$codeColumn] ?? null) : null);
             $hasData = collect($row)->contains(fn ($value): bool => $this->normalizeValue($value) !== '');
             if (! $hasData) {
                 $skipped++;
@@ -175,6 +184,10 @@ class TrainingMajorExcelService
                 $errors[] = "Dòng {$rowNumber}: Tên chuyên ngành không được vượt quá 255 ký tự.";
                 continue;
             }
+            if (mb_strlen($code, 'UTF-8') > 50) {
+                $errors[] = "Dòng {$rowNumber}: Mã ngành / nghề không được vượt quá 50 ký tự.";
+                continue;
+            }
 
             $slug = Str::slug($name);
             if ($slug === '') {
@@ -188,12 +201,19 @@ class TrainingMajorExcelService
             $seenSlugs[$slug] = $rowNumber;
 
             try {
-                $isActive = $this->parseActiveValue($row[$activeColumn] ?? null);
                 $major = TrainingMajor::query()->where('slug', $slug)->first();
                 $isNew = $major === null;
                 $major ??= new TrainingMajor();
                 $major->name = $name;
-                $major->is_active = $isActive;
+                // Blank optional cells must never erase the code/status of an
+                // existing catalogue item during an Excel update.
+                if ($code !== '') {
+                    $major->code = $code;
+                }
+                $activeValue = $this->normalizeValue($activeColumn ? ($row[$activeColumn] ?? null) : null);
+                if ($isNew || $activeValue !== '') {
+                    $major->is_active = $this->parseActiveValue($activeValue);
+                }
                 $major->save();
 
                 $isNew ? $created++ : $updated++;
@@ -243,6 +263,13 @@ class TrainingMajorExcelService
             || str_contains($header, 'trang thai')
             || $header === 'is active'
             || $header === 'active';
+    }
+
+    private function isCodeHeader(string $header): bool
+    {
+        return str_contains($header, 'ma nganh')
+            || str_contains($header, 'ma nghe')
+            || $header === 'code';
     }
 
     private function parseActiveValue(mixed $value): bool

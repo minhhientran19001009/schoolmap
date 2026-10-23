@@ -7,7 +7,10 @@ use App\Services\TrainingMajorExcelService;
 use Filament\Actions\Action;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\Width;
+use App\Models\TrainingMajor;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use ReflectionMethod;
@@ -44,13 +47,30 @@ class TrainingMajorImportTest extends TestCase
 
     public function test_training_major_excel_import_creates_valid_rows_and_reports_duplicates(): void
     {
+        if (! Schema::hasTable('training_majors')) {
+            Schema::create('training_majors', function (Blueprint $table): void {
+                $table->id();
+                $table->string('name');
+                $table->string('code', 50)->nullable();
+                $table->string('slug')->unique();
+                $table->boolean('is_active')->default(true);
+                $table->timestamps();
+            });
+        }
+
+        if (! Schema::hasColumn('training_majors', 'code')) {
+            Schema::table('training_majors', function (Blueprint $table): void {
+                $table->string('code', 50)->nullable();
+            });
+        }
+
         $filePath = tempnam(sys_get_temp_dir(), 'training-major-');
         $majorName = 'Ngành kiểm thử Excel '.uniqid();
         $spreadsheet = new Spreadsheet();
         $spreadsheet->getActiveSheet()->fromArray([
-            ['Tên chuyên ngành / nghề đào tạo', 'Đang sử dụng'],
-            [$majorName, 'Có'],
-            [$majorName, 'Không'],
+            ['Tên chuyên ngành / nghề đào tạo', 'Mã ngành / nghề', 'Đang sử dụng'],
+            [$majorName, '5520121', 'Có'],
+            [$majorName, '5520121', 'Không'],
         ]);
         (new Xlsx($spreadsheet))->save($filePath);
 
@@ -63,6 +83,23 @@ class TrainingMajorImportTest extends TestCase
             $this->assertSame(1, $result['created']);
             $this->assertSame(0, $result['updated']);
             $this->assertCount(1, $result['errors']);
+            $this->assertSame('5520121', TrainingMajor::query()->where('name', $majorName)->value('code'));
+
+            $preservationPath = tempnam(sys_get_temp_dir(), 'training-major-preserve-');
+            $preservationSheet = new Spreadsheet();
+            $preservationSheet->getActiveSheet()->fromArray([
+                ['Tên chuyên ngành / nghề đào tạo', 'Mã ngành / nghề', 'Đang sử dụng'],
+                [$majorName, '', ''],
+            ]);
+            (new Xlsx($preservationSheet))->save($preservationPath);
+
+            $preserved = app(TrainingMajorExcelService::class)->importFromFile($preservationPath);
+
+            $this->assertTrue($preserved['success']);
+            $this->assertSame(1, $preserved['updated']);
+            $this->assertSame('5520121', TrainingMajor::query()->where('name', $majorName)->value('code'));
+            $this->assertTrue((bool) TrainingMajor::query()->where('name', $majorName)->value('is_active'));
+            @unlink($preservationPath);
         } finally {
             DB::rollBack();
             @unlink($filePath);

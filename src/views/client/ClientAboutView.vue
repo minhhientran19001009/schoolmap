@@ -3,24 +3,24 @@
     <div class="max-w-4xl mx-auto space-y-6">
       
       <!-- Hero Banner -->
-      <div class="bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 rounded-2xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+      <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-blue-50 via-indigo-50/60 to-white p-6 shadow-xs sm:p-8">
         <div class="relative z-10 space-y-3">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold backdrop-blur-xs text-blue-200">
+          <div class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/90 px-3 py-1 text-xs font-semibold text-blue-700 shadow-2xs backdrop-blur-xs">
             <i class="fa-solid fa-compass"></i>
             <span>Đề án Chuyển đổi số Ngành Giáo dục</span>
           </div>
-          <h1 class="text-2xl sm:text-3xl font-black tracking-tight">
+          <h1 class="text-2xl font-extrabold tracking-tight text-slate-900 sm:text-3xl lg:text-4xl">
             Hệ Thống Bản Đồ Số Mạng Lưới Giáo Dục Tỉnh Ninh Bình
           </h1>
-          <p class="text-blue-100 text-sm sm:text-base leading-relaxed max-w-2xl">
-            Công cụ trực quan hóa toàn bộ mạng lưới cơ sở giáo dục từ mầm non đến đại học trên nền tảng bản đồ số và hệ thống thông tin địa lý (GIS), phục vụ công tác tra cứu cho người dân và quản lý quy hoạch trường lớp.
+          <p class="max-w-2xl text-sm leading-relaxed text-slate-600 sm:text-base">
+            Công cụ trực quan hóa toàn bộ mạng lưới cơ sở giáo dục từ mầm non đến đại học trên nền tảng bản đồ số, phục vụ công tác tra cứu cho người dân và quản lý quy hoạch trường lớp.
           </p>
           <div class="pt-2 flex flex-wrap gap-3">
-            <router-link to="/map" class="px-5 py-2 rounded-xl bg-white text-blue-900 font-bold text-xs hover:bg-blue-50 transition-all shadow-md flex items-center gap-2">
+            <router-link to="/map" class="flex items-center gap-2 rounded-xl bg-blue-600 px-5 py-2 text-xs font-bold text-white shadow-sm transition-all hover:bg-blue-700">
               <i class="fa-solid fa-map-location-dot"></i>
               <span>Khám phá Bản đồ số</span>
             </router-link>
-            <router-link to="/thong-ke" class="px-5 py-2 rounded-xl bg-blue-700/80 hover:bg-blue-700 text-white font-semibold text-xs transition-all border border-white/20 flex items-center gap-2">
+            <router-link to="/thong-ke" class="flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-2 text-xs font-semibold text-slate-700 shadow-2xs transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700">
               <i class="fa-solid fa-chart-pie"></i>
               <span>Xem Thống kê Báo cáo</span>
             </router-link>

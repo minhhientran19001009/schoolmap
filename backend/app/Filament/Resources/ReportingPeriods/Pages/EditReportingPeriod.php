@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Filament\Resources\ReportingPeriods\Pages;
+
+use App\Filament\Resources\ReportingPeriods\ReportingPeriodResource;
+use Filament\Actions\DeleteAction;
+use Filament\Resources\Pages\EditRecord;
+
+class EditReportingPeriod extends EditRecord
+{
+    protected static string $resource = ReportingPeriodResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        return [DeleteAction::make()->label('Xóa')];
+    }
+}

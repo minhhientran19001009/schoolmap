@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -190,6 +191,11 @@ class School extends Model
         return $this->hasMany(SchoolTrainingMajor::class);
     }
 
+    public function trainingCapacities(): HasMany
+    {
+        return $this->hasMany(TrainingCapacity::class);
+    }
+
     public function parentCampus()
     {
         return $this->belongsTo(School::class, 'parent_school_id');
@@ -278,17 +284,27 @@ class School extends Model
             : json_encode($this->getLeadersAttribute($value), JSON_UNESCAPED_UNICODE);
     }
 
-    /** @return array<int, array{name: string, degree_level: string, annual_quota: int}> */
+    /** @return array<int, array{name: string, degree_level: string, annual_quota: int, major_code?: string}> */
     public function getTrainingMajorsAttribute(mixed $value): array
     {
         $majors = [];
         foreach ($this->decodeListAttribute($value) as $item) {
             if (is_array($item) && filled($item['name'] ?? null)) {
-                $majors[] = [
+                $major = [
                     'name' => trim((string) $item['name']),
                     'degree_level' => (string) ($item['degree_level'] ?? 'cao_dang'),
                     'annual_quota' => max(0, (int) ($item['annual_quota'] ?? 0)),
                 ];
+                // Preserve the historical source code only when it existed.
+                // This keeps an ordinary school update from changing the
+                // JSON shape of legacy records that do not have a code.
+                $legacyCode = filled($item['major_code'] ?? null)
+                    ? trim((string) $item['major_code'])
+                    : (filled($item['code'] ?? null) ? trim((string) $item['code']) : null);
+                if ($legacyCode !== null) {
+                    $major['major_code'] = $legacyCode;
+                }
+                $majors[] = $major;
                 continue;
             }
 

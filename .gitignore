@@ -37,6 +37,10 @@ backend/bootstrap/cache/*
 !backend/storage/framework/**/.gitignore
 !backend/storage/logs/.gitignore
 
+# Local API sessions and temporary database exports
+backend/cookies.txt
+backend/*_dump.json
+
 # Symlink (được tạo tự động bằng php artisan storage:link trên server)
 backend/public/storage
 
@@ -66,7 +70,11 @@ Thumbs.db
 !database/**
 !backend/database/**
 !*.sql
-
-# Cho phép tất cả dữ liệu JSON / GIS
+# Cho phép tất cả dữ liệu JSON trong src/data
 !src/data/**
-!*.json
+
+# Scratch and temporary dump files
+cookies.txt
+*.dump.json
+schools_dump.json
+XEM_THU.html

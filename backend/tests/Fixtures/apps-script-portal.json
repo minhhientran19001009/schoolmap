@@ -1,0 +1,18 @@
+{
+  "listings": [
+    {
+      "id": "test-demand-1",
+      "kind": "demand",
+      "org": "Doanh nghiệp kiểm thử chuyển đổi",
+      "profession": "Báo chí",
+      "level": "Cao đẳng",
+      "period": "Quý IV/2026",
+      "quantity": 12,
+      "skills": ["Kỹ năng số", "Biên tập nội dung"],
+      "district": "Ninh Bình",
+      "purpose": "Tuyển dụng",
+      "sample": 0
+    }
+  ],
+  "proposals": []
+}

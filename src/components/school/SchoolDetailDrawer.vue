@@ -1,16 +1,16 @@
 <template>
   <div>
-    <!-- Mobile & Tablet Backdrop overlay -->
+    <!-- Backdrop overlay: focus the school profile on every screen size -->
     <div 
       v-if="school"
       @click="$emit('close')"
-      class="fixed inset-0 bg-slate-900/40 backdrop-blur-2xs z-[1190] lg:hidden animate-in fade-in duration-200">
+      class="fixed inset-0 z-[1190] bg-slate-900/35 backdrop-blur-[1.5px] animate-in fade-in duration-200">
     </div>
 
     <!-- Main Right Sidebar Drawer -->
     <div 
       v-if="school"
-      class="fixed top-0 right-0 bottom-0 z-[1200] w-full sm:w-[460px] md:w-[500px] bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.15)] flex flex-col border-l border-slate-200 transition-all duration-300 ease-in-out select-none">
+      class="fixed top-0 right-0 bottom-0 z-[1200] w-full sm:w-[640px] lg:w-[760px] xl:w-[900px] 2xl:w-[980px] bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.15)] flex flex-col border-l border-slate-200 transition-all duration-300 ease-in-out select-none">
       
       <!-- Top Header (Inspired by reference screenshot) -->
       <div class="relative bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white p-4 sm:p-5 flex-shrink-0 shadow-md">
@@ -36,6 +36,11 @@
         <h2 class="text-base sm:text-lg font-bold leading-snug pr-10 text-white">
           {{ school.name }}
         </h2>
+
+        <div v-if="school.code" class="mt-1.5 inline-flex items-center gap-1.5 text-[11px] text-blue-100">
+          <span class="text-blue-200">Mã trường:</span>
+          <span class="rounded bg-white/15 px-1.5 py-0.5 font-mono font-semibold tracking-wide text-white">{{ school.code }}</span>
+        </div>
 
         <!-- Status & Location tags -->
         <div class="flex flex-wrap items-center gap-1.5 mt-2.5 text-xs">
@@ -281,37 +286,77 @@
 
 
 
-          <!-- 3. Các ngành / nghề đào tạo -->
-          <div class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
-            <div class="flex items-center justify-between mb-2.5">
-              <span class="font-bold text-slate-800 text-xs flex items-center gap-1.5">
-                <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
-                <span>Các ngành / nghề đào tạo</span>
-              </span>
-              <span class="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-                {{ displayMajors.length }} chuyên ngành
+          <!-- 3. Thông tin đào tạo -->
+          <section class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+            <div class="flex flex-col gap-2 border-b border-slate-100 p-3.5 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h3 class="flex items-center gap-1.5 text-sm font-bold text-slate-800">
+                  <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
+                  Thông tin đào tạo
+                </h3>
+                <p class="mt-0.5 text-[11px] text-slate-500">Chỉ tiêu được tổng hợp theo các cấp học đã gán cho cơ sở trong hệ thống.</p>
+              </div>
+              <span class="w-fit rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
+                {{ trainingPrograms.length }} ngành / nghề
               </span>
             </div>
 
-            <div v-if="displayMajors.length > 0" class="space-y-2">
-              <div 
-                v-for="(major, idx) in displayMajors" 
-                :key="idx"
-                class="p-2.5 rounded-lg bg-slate-50 border border-slate-100 flex flex-col gap-1">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-slate-800 text-[12px]">{{ major.name }}</span>
+            <div v-if="trainingPrograms.length > 0" class="p-3.5 sm:p-4">
+              <div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
+                <div class="rounded-xl border border-blue-100 bg-blue-50 p-3">
+                  <div class="text-[11px] font-medium text-slate-500">Tổng chỉ tiêu</div>
+                  <div class="mt-1 text-xl font-black text-blue-800">{{ formatQuota(trainingQuotaSummary.total) }}</div>
+                  <div class="text-[10px] text-blue-600">SV/năm</div>
                 </div>
-                <div v-if="major.annual_quota" class="text-[11px] text-slate-500 mt-0.5">
-                  Chỉ tiêu tuyển sinh:
-                  <strong class="text-blue-700">{{ major.annual_quota }}</strong> SV/năm
+                <div
+                  v-for="level in trainingSummaryCards"
+                  :key="level.id"
+                  :class="level.cardClass"
+                  class="rounded-xl border p-3">
+                  <div class="text-[11px] font-medium text-slate-500">{{ level.name }}</div>
+                  <div :class="level.valueClass" class="mt-1 text-xl font-black">{{ formatQuota(level.quota) }}</div>
+                  <div :class="level.unitClass" class="text-[10px]">SV/năm</div>
                 </div>
               </div>
+
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="min-w-[720px] w-full border-collapse text-left text-xs">
+                  <thead class="border-b border-slate-300 bg-slate-50 text-slate-600">
+                    <tr>
+                      <th class="min-w-[360px] px-3 py-3 font-semibold">Ngành / nghề đào tạo</th>
+                      <th class="min-w-[88px] px-3 py-3 text-right font-semibold">Tổng</th>
+                      <th
+                        v-for="level in trainingSummaryCards"
+                        :key="level.id"
+                        class="min-w-[120px] px-3 py-3 text-right font-semibold">
+                        {{ level.name }}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-200">
+                    <tr v-for="program in trainingPrograms" :key="program.key" class="align-top transition-colors hover:bg-slate-50/80">
+                      <td class="px-3 py-3">
+                        <div class="font-bold leading-snug text-slate-800">{{ program.name }}</div>
+                        <div v-if="program.code" class="mt-1 text-[10px] font-mono font-medium text-slate-500">Mã ngành: {{ program.code }}</div>
+                      </td>
+                      <td class="px-3 py-3 text-right font-bold text-blue-800">{{ formatQuota(program.total) }}</td>
+                      <td
+                        v-for="level in trainingSummaryCards"
+                        :key="`${program.key}-${level.id}`"
+                        class="px-3 py-3 text-right text-slate-700">
+                        {{ formatQuota(program.quotas[level.id] ?? 0) }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
-            <div v-else class="text-[11px] text-slate-400 italic text-center py-3 bg-slate-50 rounded-lg border border-dashed border-slate-200">
-              <span v-if="school.education_level === 'gdtx'">Chương trình đào tạo GDTX & Phổ thông</span>
-              <span v-else>Chưa có danh mục ngành đào tạo trong CSDL</span>
+
+            <div v-else class="m-3.5 rounded-lg border border-dashed border-slate-200 bg-slate-50 py-5 text-center text-[11px] italic text-slate-400">
+              <span v-if="school.education_level === 'gdtx'">Chương trình đào tạo GDTX & Phổ thông đang được cập nhật.</span>
+              <span v-else>Chưa có danh mục ngành đào tạo trong cơ sở dữ liệu.</span>
             </div>
-          </div>
+          </section>
 
           <!-- 4. Cơ sở vật chất & Thư viện hình ảnh -->
           <div class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
@@ -742,6 +787,86 @@
     </div>
 
     <!-- ============================================================== -->
+    <!-- MODAL POPUP: ALL TRAINING MAJORS                              -->
+    <!-- ============================================================== -->
+    <div
+      v-if="isMajorsModalOpen"
+      class="fixed inset-0 z-[2500] flex items-center justify-center bg-slate-900/60 p-3 backdrop-blur-xs animate-in fade-in select-none sm:p-4">
+
+      <div class="flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl animate-in zoom-in-95 duration-150">
+        <div class="flex flex-shrink-0 items-center justify-between bg-gradient-to-r from-emerald-700 to-teal-700 p-4 text-white">
+          <div class="flex min-w-0 items-center gap-2">
+            <i class="fa-solid fa-book-bookmark text-base text-emerald-100"></i>
+            <div class="min-w-0">
+              <h3 class="text-sm font-bold leading-tight">Ngành / nghề đào tạo</h3>
+              <p class="truncate text-[11px] text-emerald-100">{{ school?.name }} · {{ displayMajors.length }} ngành, nghề</p>
+            </div>
+          </div>
+          <button
+            @click="isMajorsModalOpen = false"
+            class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-white/20 text-white transition-colors hover:bg-white/30">
+            <i class="fa-solid fa-xmark text-xs"></i>
+          </button>
+        </div>
+
+        <div class="border-b border-slate-100 bg-slate-50 p-3">
+          <label class="relative block">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+            <input
+              v-model="majorSearchQuery"
+              type="search"
+              placeholder="Tìm theo tên hoặc mã ngành..."
+              class="w-full rounded-lg border border-slate-200 bg-white py-2 pl-8 pr-3 text-xs text-slate-700 outline-none transition-colors placeholder:text-slate-400 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+            />
+          </label>
+        </div>
+
+        <div class="hidden grid-cols-[minmax(0,1fr)_130px_110px] gap-3 border-b border-slate-200 bg-slate-50 px-4 py-2 text-[10px] font-bold uppercase tracking-wide text-slate-500 sm:grid">
+          <span>Ngành / nghề</span>
+          <span>Trình độ</span>
+          <span class="text-right">Chỉ tiêu</span>
+        </div>
+
+        <div class="flex-1 overflow-y-auto">
+          <div
+            v-for="(major, index) in filteredMajors"
+            :key="`${major.id || major.name}-${index}`"
+            class="grid gap-2 border-b border-slate-100 px-4 py-3 last:border-b-0 sm:grid-cols-[minmax(0,1fr)_130px_110px] sm:items-center sm:gap-3">
+            <div class="min-w-0">
+              <div class="text-xs font-bold leading-snug text-slate-800">{{ major.name }}</div>
+              <div v-if="getMajorCode(major)" class="mt-1 inline-flex rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[10px] font-semibold text-slate-600">
+                Mã: {{ getMajorCode(major) }}
+              </div>
+            </div>
+            <div>
+              <span class="inline-flex rounded bg-blue-50 px-1.5 py-0.5 text-[10px] font-semibold text-blue-700">
+                {{ formatDegreeLevel(major.degree_level) }}
+              </span>
+            </div>
+            <div class="text-left text-[11px] text-slate-600 sm:text-right">
+              <template v-if="major.annual_quota">
+                <strong class="text-blue-700">{{ major.annual_quota }}</strong> SV/năm
+              </template>
+              <span v-else>—</span>
+            </div>
+          </div>
+
+          <div v-if="filteredMajors.length === 0" class="px-4 py-10 text-center text-xs italic text-slate-400">
+            Không tìm thấy ngành / nghề phù hợp.
+          </div>
+        </div>
+
+        <div class="flex flex-shrink-0 justify-end border-t border-slate-200 bg-slate-50 p-3">
+          <button
+            @click="isMajorsModalOpen = false"
+            class="rounded-lg bg-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-700 transition-colors hover:bg-slate-300">
+            Đóng
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================== -->
     <!-- MODAL POPUP: ALL PARTNER ENTERPRISES                          -->
     <!-- ============================================================== -->
     <div 
@@ -841,6 +966,10 @@ const activeTab = ref('general') // 'general' | 'personnel' | 'enterprises'
 const currentEnterpriseIndex = ref(0)
 const isEnterprisesModalOpen = ref(false)
 const enterpriseSearchQuery = ref('')
+
+// Training-major detail modal
+const isMajorsModalOpen = ref(false)
+const majorSearchQuery = ref('')
 
 // Image Gallery Modal Lightbox
 const isGalleryModalOpen = ref(false)
@@ -947,6 +1076,207 @@ const displayMajors = computed(() => {
   return parseArrayField(props.school?.training_majors)
 })
 
+const TRAINING_LEVEL_ORDER = ['dai_hoc', 'cao_dang', 'trung_cap', 'so_cap', 'gdtx']
+
+const EDUCATION_LEVEL_CARD_STYLES = {
+  gdtx: {
+    cardClass: 'border-violet-100 bg-violet-50',
+    valueClass: 'text-violet-800',
+    unitClass: 'text-violet-600',
+  },
+  trung_cap: {
+    cardClass: 'border-amber-100 bg-amber-50',
+    valueClass: 'text-amber-800',
+    unitClass: 'text-amber-600',
+  },
+  cao_dang: {
+    cardClass: 'border-emerald-100 bg-emerald-50',
+    valueClass: 'text-emerald-800',
+    unitClass: 'text-emerald-600',
+  },
+  dai_hoc: {
+    cardClass: 'border-indigo-100 bg-indigo-50',
+    valueClass: 'text-indigo-800',
+    unitClass: 'text-indigo-600',
+  },
+}
+
+const DEFAULT_EDUCATION_LEVEL_CARD_STYLE = {
+  cardClass: 'border-slate-200 bg-slate-50',
+  valueClass: 'text-slate-800',
+  unitClass: 'text-slate-600',
+}
+
+const trainingPrograms = computed(() => {
+  const grouped = new Map()
+
+  displayMajors.value.forEach((major, index) => {
+    const name = String(major?.name || 'Chưa cập nhật tên ngành').trim()
+    const code = getMajorCode(major)
+    const key = `${name.toLocaleLowerCase('vi-VN')}|${code}`
+    const degreeLevel = normalizeTrainingLevel(major?.degree_level)
+    const quota = Number(major?.annual_quota ?? 0)
+    const safeQuota = Number.isFinite(quota) && quota >= 0 ? quota : 0
+
+    if (!grouped.has(key)) {
+      grouped.set(key, {
+        key: `${key}|${index}`,
+        name,
+        code,
+        levels: new Set(),
+        total: 0,
+        quotas: {},
+      })
+    }
+
+    const program = grouped.get(key)
+    program.levels.add(degreeLevel)
+    program.total += safeQuota
+    program.quotas[degreeLevel] = (program.quotas[degreeLevel] ?? 0) + safeQuota
+  })
+
+  return Array.from(grouped.values())
+    .map(program => ({
+      ...program,
+      levels: Array.from(program.levels).sort((a, b) => {
+        const left = TRAINING_LEVEL_ORDER.indexOf(a)
+        const right = TRAINING_LEVEL_ORDER.indexOf(b)
+        return (left === -1 ? 99 : left) - (right === -1 ? 99 : right)
+      }),
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+})
+
+const trainingQuotaSummary = computed(() => {
+  return {
+    total: trainingPrograms.value.reduce((total, program) => total + program.total, 0),
+  }
+})
+
+// Use the complete DB catalog for the cards and table columns. A level must
+// remain visible even when this school currently has no programme for it.
+const schoolEducationLevels = computed(() => {
+  const catalog = Array.isArray(props.school?.education_levels_catalog)
+    ? props.school.education_levels_catalog
+    : []
+  const assignedLevels = Array.isArray(props.school?.education_levels)
+    ? props.school.education_levels
+    : []
+
+  const fallbackIds = Array.isArray(props.school?.education_level_ids)
+    ? props.school.education_level_ids
+    : [props.school?.education_level || props.school?.education_level_id]
+
+  const source = catalog.length > 0
+    ? catalog
+    : assignedLevels.length > 0
+      ? assignedLevels
+    : fallbackIds.map(id => ({ id, name: getEducationLevelLabel(id) }))
+
+  const unique = new Map()
+  source.forEach((level, index) => {
+    const id = normalizeEducationLevelId(level?.id)
+    if (!id || unique.has(id)) return
+
+    unique.set(id, {
+      id,
+      name: String(level?.name || getEducationLevelLabel(id)).trim() || getEducationLevelLabel(id),
+      displayOrder: Number(level?.display_order ?? index),
+    })
+  })
+
+  return Array.from(unique.values())
+    .sort((left, right) => left.displayOrder - right.displayOrder || left.name.localeCompare(right.name, 'vi'))
+})
+
+const trainingSummaryCards = computed(() => {
+  const levels = schoolEducationLevels.value
+  const quotasByLevel = {}
+  const total = trainingQuotaSummary.value.total
+
+  displayMajors.value.forEach(major => {
+    const levelId = normalizeEducationLevelId(major?.degree_level)
+    const quota = Number(major?.annual_quota ?? 0)
+    if (!levelId || !Number.isFinite(quota) || quota < 0) return
+    quotasByLevel[levelId] = (quotasByLevel[levelId] ?? 0) + quota
+  })
+
+  const hasMappedQuota = levels.some(level => Object.prototype.hasOwnProperty.call(quotasByLevel, level.id))
+
+  return levels.map(level => {
+    // Historical records for a single-level school sometimes store the
+    // programme's detailed degree (e.g. sơ cấp) instead of its school level
+    // (e.g. GDTX). In that safe case, the whole quota belongs to its only
+    // configured level. Multiple-level schools are never guessed.
+    const quota = hasMappedQuota || levels.length !== 1
+      ? (quotasByLevel[level.id] ?? 0)
+      : total
+    const style = EDUCATION_LEVEL_CARD_STYLES[level.id] || DEFAULT_EDUCATION_LEVEL_CARD_STYLE
+
+    return {
+      ...level,
+      quota,
+      ...style,
+    }
+  })
+})
+
+const previewMajors = computed(() => displayMajors.value.slice(0, 4))
+
+const filteredMajors = computed(() => {
+  const query = majorSearchQuery.value.trim().toLocaleLowerCase('vi-VN')
+  if (!query) return displayMajors.value
+
+  return displayMajors.value.filter(major => [major?.name, getMajorCode(major)]
+    .filter(Boolean)
+    .some(value => String(value).toLocaleLowerCase('vi-VN').includes(query)))
+})
+
+function getMajorCode(major) {
+  const code = major?.code ?? major?.major_code
+  return code ? String(code).trim() : ''
+}
+
+function normalizeTrainingLevel(level) {
+  const normalized = normalizeEducationLevelId(level)
+  return TRAINING_LEVEL_ORDER.includes(normalized) ? normalized : normalized || 'khac'
+}
+
+function normalizeEducationLevelId(level) {
+  return String(level || '').trim().toLocaleLowerCase('vi-VN').replace(/-/g, '_')
+}
+
+function getEducationLevelLabel(level) {
+  const labels = {
+    gdtx: 'GDTX - GDNN',
+    trung_cap: 'Trung cấp',
+    cao_dang: 'Cao đẳng',
+    dai_hoc: 'Đại học',
+  }
+
+  return labels[normalizeEducationLevelId(level)] || 'Cấp học'
+}
+
+function formatQuota(value) {
+  const quota = Number(value)
+  return Number.isFinite(quota) ? quota.toLocaleString('vi-VN') : '—'
+}
+
+function formatDegreeLevel(level) {
+  const configuredLevel = schoolEducationLevels.value.find(item => item.id === normalizeEducationLevelId(level))
+  if (configuredLevel) return configuredLevel.name
+
+  const labels = {
+    dai_hoc: 'Đại học',
+    cao_dang: 'Cao đẳng',
+    trung_cap: 'Trung cấp',
+    so_cap: 'Sơ cấp',
+    gdtx: 'GDTX - GDNN',
+  }
+
+  return labels[normalizeTrainingLevel(level)] || 'Chưa cập nhật'
+}
+
 function formatArea(area) {
   if (!area) return '—'
   if (area >= 10000) {
@@ -1020,6 +1350,8 @@ function handleKeydown(e) {
   if (e.key === 'Escape') {
     if (isGalleryModalOpen.value) {
       isGalleryModalOpen.value = false
+    } else if (isMajorsModalOpen.value) {
+      isMajorsModalOpen.value = false
     } else if (isEnterprisesModalOpen.value) {
       isEnterprisesModalOpen.value = false
     } else if (props.school) {

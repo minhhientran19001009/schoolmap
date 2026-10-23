@@ -51,6 +51,7 @@ class User extends Authenticatable implements FilamentUser
         return match ($panel->getId()) {
             'admin' => in_array($this->role, ['SUPER_ADMIN', 'DISTRICT_ADMIN', 'VIEWER'], true),
             'school' => $this->isSchoolAdmin() && filled($this->school_id),
+            'business' => $this->isBusinessAdmin() && filled($this->employer_id),
             default => false,
         };
     }
@@ -75,6 +76,7 @@ class User extends Authenticatable implements FilamentUser
         'role',
         'district_id',
         'school_id',
+        'employer_id',
         'is_active',
         'must_change_password',
         'password_changed_at',
@@ -115,14 +117,31 @@ class User extends Authenticatable implements FilamentUser
         return $this->belongsTo(School::class, 'school_id');
     }
 
+    public function employer(): BelongsTo
+    {
+        return $this->belongsTo(Employer::class, 'employer_id');
+    }
+
     public function isSchoolAdmin(): bool
     {
         return $this->role === 'SCHOOL_ADMIN';
     }
 
+    public function isBusinessAdmin(): bool
+    {
+        return $this->role === 'BUSINESS_ADMIN';
+    }
+
     public function isSystemAdmin(): bool
     {
         return in_array($this->role, ['SUPER_ADMIN', 'DISTRICT_ADMIN'], true);
+    }
+
+    public function canManageEmployer(Employer $employer): bool
+    {
+        return $this->isBusinessAdmin()
+            && filled($this->employer_id)
+            && (int) $this->employer_id === (int) $employer->getKey();
     }
 
     public function canManageSchool(School $school): bool

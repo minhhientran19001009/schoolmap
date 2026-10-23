@@ -30,7 +30,7 @@ class SchoolPanelProvider extends PanelProvider
             ->passwordReset()
             ->spa()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::Emerald,
             ])
             ->font('Roboto')
             ->brandName('Cổng thông tin Nhà trường')

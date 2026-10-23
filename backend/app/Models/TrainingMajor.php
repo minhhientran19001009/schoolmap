@@ -9,6 +9,7 @@ class TrainingMajor extends Model
 {
     protected $fillable = [
         'name',
+        'code',
         'slug',
         'is_active',
     ];
@@ -21,6 +22,7 @@ class TrainingMajor extends Model
     {
         static::saving(function (TrainingMajor $major): void {
             $major->name = trim((string) $major->name);
+            $major->code = filled($major->code) ? trim((string) $major->code) : null;
             $major->slug = Str::slug($major->name);
         });
     }
@@ -35,5 +37,15 @@ class TrainingMajor extends Model
     public function assignments()
     {
         return $this->hasMany(SchoolTrainingMajor::class);
+    }
+
+    public function workforceDemands()
+    {
+        return $this->hasMany(WorkforceDemand::class);
+    }
+
+    public function trainingCapacities()
+    {
+        return $this->hasMany(TrainingCapacity::class);
     }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full overflow-y-auto bg-[#f8f9fa] flex flex-col font-sans select-text">
+  <div class="w-full h-full overflow-y-auto bg-slate-50 flex flex-col font-sans select-text">
     
     <!-- 1. Breadcrumbs (Vieclam24h Exact Style) -->
     <div class="bg-white border-b border-slate-200 py-2.5 sm:py-3 px-3 sm:px-6 flex-shrink-0">
@@ -49,7 +49,7 @@
         </p>
         <router-link 
           to="/tuyen-dung" 
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#6c3fb8] hover:bg-[#5b32a0] text-white font-bold text-xs transition-colors shadow-xs">
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-xs">
           <i class="fa-solid fa-briefcase"></i>
           <span>Khám phá các việc làm khác tại Ninh Bình</span>
         </router-link>
@@ -119,32 +119,6 @@
             <div class="text-xs text-slate-500 flex items-center gap-1.5 flex-wrap">
               <span>Hạn nộp hồ sơ:</span>
               <strong class="text-slate-800">{{ job.deadline }}</strong>
-              <span class="text-slate-300 mx-1">-</span>
-              <span @click="openApplyModal" class="text-[#853AFF] font-medium hover:underline cursor-pointer">
-                Ứng tuyển sớm để được ưu tiên
-              </span>
-            </div>
-
-            <!-- Action Buttons Row (Vieclam24h Exact 2-Button Row - stack on mobile) -->
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 pt-1">
-              
-              <!-- Primary CTA: Ứng tuyển ngay (Vieclam24h purple gradient, wide button) -->
-              <button 
-                @click="openApplyModal"
-                class="w-full sm:flex-1 py-3 px-6 rounded-xl bg-gradient-to-r from-[#853AFF] to-[#6C5FFF] hover:opacity-95 active:scale-[0.99] text-white font-bold text-sm sm:text-base shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>Ứng tuyển ngay</span>
-              </button>
-
-              <!-- Secondary: Lưu công việc này (Vieclam24h white with purple border) -->
-              <button 
-                @click="toggleSaveJob"
-                :class="isSaved ? 'bg-purple-50 text-[#853AFF] border-[#853AFF]' : 'bg-white text-[#853AFF] border-purple-200 hover:bg-purple-50 hover:border-[#853AFF]'"
-                class="w-full sm:w-auto px-5 py-3 rounded-xl border font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer shadow-2xs active:scale-[0.99] min-w-[150px] sm:min-w-[180px]">
-                <i :class="isSaved ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'"></i>
-                <span>{{ isSaved ? 'Đã lưu công việc' : 'Lưu công việc này' }}</span>
-              </button>
-
             </div>
 
           </div>
@@ -188,78 +162,153 @@
               </ul>
             </section>
 
-            <!-- Section 4: Thông tin chung (Vieclam24h Exact Table Matrix) -->
+            <!-- Section 4: Thông tin chung -->
             <section class="space-y-3 pt-2">
               <h2 class="text-base font-bold text-slate-900">
                 Thông tin chung
               </h2>
               
-              <div class="bg-[#faf8ff] rounded-xl border border-purple-100 p-4 grid grid-cols-1 sm:grid-cols-2 gap-y-3.5 gap-x-6 text-xs">
+              <div class="bg-slate-50/80 rounded-2xl border border-slate-200/80 p-4 sm:p-5 divide-y divide-slate-200/70 text-xs">
                 
-                <div>
-                  <span class="text-slate-400 block mb-0.5">Ngày đăng</span>
-                  <span class="font-bold text-slate-800">22/09/2026</span>
+                <!-- Hàng 1: Ngày đăng & Cấp bậc -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 pb-3.5 first:pt-0">
+                  <div>
+                    <span class="text-slate-400 block mb-1">Ngày đăng</span>
+                    <span class="font-bold text-slate-800 text-[13px]">22/09/2026</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block mb-1">Cấp bậc</span>
+                    <span class="font-bold text-slate-800 text-[13px]">Nhân viên / Kỹ thuật viên</span>
+                  </div>
                 </div>
 
-                <div>
-                  <span class="text-slate-400 block mb-0.5">Cấp bậc</span>
-                  <span class="font-bold text-slate-800">Nhân viên / Kỹ thuật viên</span>
+                <!-- Hàng 2: Số lượng tuyển & Hình thức làm việc -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 py-3.5">
+                  <div>
+                    <span class="text-slate-400 block mb-1">Số lượng tuyển</span>
+                    <span class="font-bold text-slate-800 text-[13px]">{{ job.recruitment_count ? `${job.recruitment_count} người` : 'Tuyển liên tục' }}</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block mb-1">Hình thức làm việc</span>
+                    <span class="font-bold text-slate-800 text-[13px]">Toàn thời gian cố định</span>
+                  </div>
                 </div>
 
-                <div>
-                  <span class="text-slate-400 block mb-0.5">Số lượng tuyển</span>
-                  <span class="font-bold text-slate-800">3 - 5 người</span>
+                <!-- Hàng 3: Yêu cầu kinh nghiệm & Trình độ đào tạo GDNN -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 py-3.5">
+                  <div>
+                    <span class="text-slate-400 block mb-1">Yêu cầu kinh nghiệm</span>
+                    <span class="font-bold text-slate-800 text-[13px] leading-snug">{{ job.experience || 'Không yêu cầu' }}</span>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block mb-1">Trình độ đào tạo GDNN</span>
+                    <span class="font-bold text-slate-800 text-[13px] leading-snug">{{ job.education || 'Trung cấp / Cao đẳng' }}</span>
+                  </div>
                 </div>
 
-                <div>
-                  <span class="text-slate-400 block mb-0.5">Hình thức làm việc</span>
-                  <span class="font-bold text-slate-800">Toàn thời gian cố định</span>
-                </div>
-
-                <div>
-                  <span class="text-slate-400 block mb-0.5">Yêu cầu kinh nghiệm</span>
-                  <span class="font-bold text-slate-800">{{ job.experience || 'Không yêu cầu' }}</span>
-                </div>
-
-                <div>
-                  <span class="text-slate-400 block mb-0.5">Trình độ đào tạo GDNN</span>
-                  <span class="font-bold text-slate-800">{{ job.education || 'Trung cấp / Cao đẳng' }}</span>
-                </div>
-
-                <div class="sm:col-span-2 pt-1 border-t border-purple-100/60">
-                  <span class="text-slate-400 block mb-1">Ngành nghề tuyển dụng</span>
-                  <div class="flex flex-wrap gap-1.5">
-                    <router-link 
-                      :to="{ path: '/tuyen-dung', query: { industry: job.industry } }"
-                      class="text-[#6c3fb8] hover:underline font-semibold">
-                      {{ job.industry_name }}
-                    </router-link>
-                    <span class="text-slate-300">/</span>
-                    <span class="text-slate-600">Doanh nghiệp tỉnh Ninh Bình</span>
+                <!-- Hàng 4: Địa điểm làm việc & Ngành nghề tuyển dụng -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 pt-3.5 last:pb-0">
+                  <div>
+                    <span class="text-slate-400 block mb-1">Địa điểm làm việc</span>
+                    <div class="font-bold text-slate-800 text-[13px] leading-snug flex items-start gap-1.5">
+                      <i class="fa-solid fa-location-dot text-rose-500 mt-0.5 text-xs flex-shrink-0"></i>
+                      <span>{{ job.address || (job.ward_name + ', Ninh Bình') }}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <span class="text-slate-400 block mb-1">Ngành nghề tuyển dụng</span>
+                    <div class="font-bold text-slate-800 text-[13px] leading-snug flex items-center gap-1.5 flex-wrap">
+                      <router-link 
+                        :to="{ path: '/tuyen-dung', query: { industry: job.industry } }"
+                        class="text-blue-600 hover:text-blue-700 hover:underline">
+                        {{ job.industry_name }}
+                      </router-link>
+                      <span class="text-slate-300 font-normal">/</span>
+                      <span class="text-slate-600 font-medium">Doanh nghiệp tỉnh Ninh Bình</span>
+                    </div>
                   </div>
                 </div>
 
               </div>
             </section>
 
-            <!-- Section 5: Địa điểm làm việc (Vieclam24h style) -->
-            <section class="space-y-2.5 pt-2">
-              <h2 class="text-base font-bold text-slate-900">
-                Địa điểm làm việc
-              </h2>
-              <div class="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                <i class="fa-solid fa-location-dot text-rose-500 mt-1 flex-shrink-0"></i>
-                <div>
-                  <span class="text-blue-600 font-bold mr-1">{{ job.ward_name }}:</span>
-                  <span>{{ job.address }}</span>
+            <!-- Section: Nơi có chương trình đào tạo kỹ năng cho công việc này -->
+            <section v-if="job.training_schools && job.training_schools.length" class="space-y-3 pt-2">
+              <div class="flex items-center justify-between">
+                <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+                  <i class="fa-solid fa-graduation-cap text-indigo-600"></i>
+                  <span>Nơi có chương trình đào tạo kỹ năng cho công việc này</span>
+                </h2>
+                <span class="text-xs text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-full font-bold border border-indigo-100/80">
+                  {{ job.training_schools.length }} cơ sở GDNN
+                </span>
+              </div>
+              <p class="text-xs text-slate-500">
+                Các cơ sở giáo dục nghề nghiệp tại tỉnh Ninh Bình và khu vực lân cận đào tạo chuyên môn, kỹ năng đáp ứng yêu cầu tuyển dụng của vị trí này:
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div 
+                  v-for="(school, sIdx) in job.training_schools" 
+                  :key="sIdx"
+                  class="p-4 rounded-xl border border-slate-200/90 bg-slate-50/70 hover:bg-white hover:border-blue-300 hover:shadow-xs transition-all flex flex-col justify-between h-full group">
+                  
+                  <!-- Top: Logo & School info -->
+                  <div>
+                    <div class="flex items-start gap-2.5">
+                      <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xs flex-shrink-0 mt-0.5 border border-indigo-100/80">
+                        <i class="fa-solid fa-school"></i>
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <!-- Fixed title height slot so 1-line and 2-line titles align perfectly -->
+                        <h4 
+                          class="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-blue-700 leading-snug line-clamp-2 h-9 sm:h-10 flex items-start" 
+                          :title="school.name">
+                          {{ school.name }}
+                        </h4>
+                        <p class="text-[11px] text-slate-500 mt-1 truncate">
+                          {{ school.level }} · {{ school.district }}
+                        </p>
+                      </div>
+                    </div>
+
+                    <!-- Middle: Program & Duration with fixed height -->
+                    <div 
+                      v-if="school.duration || school.program" 
+                      class="text-[11px] text-slate-600 bg-white px-2.5 py-2 rounded-lg border border-slate-100 flex items-center justify-between h-9 my-3">
+                      <span class="font-semibold text-slate-800 truncate mr-2">{{ school.program || 'Đào tạo kỹ năng thực hành' }}</span>
+                      <span class="text-slate-500 font-medium flex-shrink-0 flex items-center gap-1 text-[11px] whitespace-nowrap">
+                        <i class="fa-regular fa-clock text-[10px] text-slate-400"></i>
+                        <span>{{ school.duration || 'Theo chuẩn GDNN' }}</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- Bottom: Action buttons aligned to bottom -->
+                  <div class="pt-1 flex items-center gap-2 mt-auto">
+                    <router-link 
+                      :to="{ path: '/co-so-gdnn', query: { q: school.name } }"
+                      class="flex-1 py-1.5 px-3 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-blue-100/60">
+                      <i class="fa-solid fa-circle-info text-[11px]"></i>
+                      <span>Xem cơ sở</span>
+                    </router-link>
+                    <router-link 
+                      :to="{ path: '/map', query: { q: school.name } }"
+                      class="flex-1 py-1.5 px-3 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-xs flex items-center justify-center gap-1.5 transition-colors border border-indigo-100/60">
+                      <i class="fa-solid fa-map-location-dot text-[11px]"></i>
+                      <span>Bản đồ GDNN</span>
+                    </router-link>
+                  </div>
+
                 </div>
               </div>
             </section>
 
+
             <!-- Section 6: Thông tin liên hệ trực tiếp nhà tuyển dụng -->
             <section id="contact-section" class="space-y-3 pt-2">
               <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-address-card text-[#6c3fb8]"></i>
+                <i class="fa-solid fa-address-card text-blue-600"></i>
                 <span>Thông tin liên hệ nộp hồ sơ</span>
               </h2>
 
@@ -268,7 +317,7 @@
                 <p><strong>Địa chỉ nộp hồ sơ:</strong> {{ job.contact?.address }}</p>
                 <p v-if="job.contact?.email">
                   <strong>Email:</strong> 
-                  <a :href="`mailto:${job.contact?.email}`" class="text-[#6c3fb8] font-semibold underline ml-1">
+                  <a :href="`mailto:${job.contact?.email}`" class="text-blue-600 font-semibold underline ml-1">
                     {{ job.contact?.email }}
                   </a>
                 </p>
@@ -295,7 +344,7 @@
                   :href="`https://zalo.me/${job.contact?.zalo}`"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-[#0068ff] hover:bg-blue-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
+                  class="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
                   <i class="fa-solid fa-comments"></i>
                   <span>Nhắn Zalo: {{ job.contact?.zalo }}</span>
                 </a>
@@ -312,7 +361,7 @@
                   v-for="(kw, idx) in generatedKeywords" 
                   :key="idx"
                   :to="{ path: '/tuyen-dung', query: { search: kw } }"
-                  class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-purple-50 text-slate-600 hover:text-[#6c3fb8] text-xs transition-colors border border-slate-200">
+                  class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-700 text-xs transition-colors border border-slate-200 hover:border-blue-200">
                   {{ kw }}
                 </router-link>
               </div>
@@ -362,7 +411,7 @@
             <!-- Company Logo Center -->
             <div class="flex justify-center">
               <div 
-                :class="job.company_color || 'bg-[#3b1d74]'"
+                :class="job.company_color || 'bg-blue-700'"
                 class="w-16 h-16 rounded-2xl text-white font-black flex items-center justify-center shadow-sm border border-slate-100 overflow-hidden p-1.5 text-center select-none">
                 <span class="max-w-full truncate text-xs sm:text-sm font-black uppercase tracking-tight block">
                   {{ job.company_logo || 'DN' }}
@@ -395,8 +444,8 @@
 
             <!-- View company page link -->
             <div class="pt-1">
-              <router-link 
-                to="/tuyen-dung" 
+              <router-link
+                :to="companyPageRoute"
                 class="text-xs font-semibold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-1">
                 <span>Xem trang công ty</span>
                 <i class="fa-solid fa-angle-right text-[10px]"></i>
@@ -405,15 +454,18 @@
 
           </div>
 
-          <!-- Card 2: Việc làm tương tự cho bạn (Vieclam24h Exact Style) -->
-          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-2xs space-y-3.5">
+          <!-- Card 2: Việc làm tương tự cho bạn -->
+          <div class="bg-white rounded-2xl border border-slate-200 p-4 sm:p-5 shadow-2xs space-y-3">
             
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between pb-0.5">
               <h3 class="font-bold text-sm text-slate-900">
                 Việc làm tương tự cho bạn
               </h3>
-              <router-link to="/tuyen-dung" class="text-[11px] text-[#6c3fb8] hover:underline font-semibold">
-                Xem thêm →
+              <router-link 
+                to="/tuyen-dung" 
+                class="text-xs text-blue-600 hover:text-blue-700 hover:underline font-semibold inline-flex items-center gap-1 group/more">
+                <span>Xem thêm</span>
+                <i class="fa-solid fa-arrow-right text-[10px] group-hover/more:translate-x-0.5 transition-transform"></i>
               </router-link>
             </div>
 
@@ -423,57 +475,50 @@
               <div 
                 v-for="rel in relatedJobs" 
                 :key="rel.id"
-                class="py-3 first:pt-0 last:pb-0 group relative">
+                class="py-3 first:pt-1 last:pb-0 group">
                 
-                <div class="flex items-start gap-2.5">
+                <div class="flex items-start gap-3">
                   <!-- Mini Logo -->
-                  <div 
+                  <router-link 
+                    :to="`/tuyen-dung/${rel.id}`"
                     :class="rel.company_color || 'bg-slate-700'"
-                    class="w-9 h-9 rounded-lg text-white font-bold flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-100 overflow-hidden p-0.5 text-center select-none">
-                    <span class="max-w-full truncate text-[8px] font-black uppercase block">
+                    class="w-10 h-10 rounded-xl text-white font-black flex items-center justify-center flex-shrink-0 shadow-2xs border border-slate-100 overflow-hidden p-1 text-center select-none group-hover:scale-105 transition-transform duration-150"
+                    :title="rel.company">
+                    <span class="max-w-full truncate text-[9px] font-black uppercase tracking-tight block">
                       {{ rel.company_logo || 'DN' }}
                     </span>
-                  </div>
+                  </router-link>
 
                   <!-- Job info -->
-                  <div class="flex-1 min-w-0 pr-6">
+                  <div class="flex-1 min-w-0">
+                    <!-- Title -->
                     <router-link 
                       :to="`/tuyen-dung/${rel.id}`" 
-                      class="block font-bold text-xs text-slate-900 group-hover:text-[#6c3fb8] transition-colors line-clamp-1 leading-snug"
+                      class="block font-bold text-xs sm:text-[13px] text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug"
                       :title="rel.title">
                       {{ rel.title }}
                     </router-link>
 
+                    <!-- Company -->
                     <p class="text-[11px] text-slate-500 truncate mt-0.5" :title="rel.company">
                       {{ rel.company }}
                     </p>
 
-                    <!-- Salary & Location -->
-                    <div class="mt-1.5 flex items-center justify-between text-[11px]">
-                      <span class="font-bold text-blue-600">{{ rel.salary }}</span>
-                      <span class="text-slate-400 flex items-center gap-1">
-                        <i class="fa-solid fa-location-dot text-[10px]"></i>
-                        <span>{{ rel.ward_name }}</span>
+                    <!-- Balanced Bottom Row: Salary (Left) + Location (Right) -->
+                    <div class="mt-2 flex items-center justify-between text-xs gap-2">
+                      <!-- Salary -->
+                      <span class="font-bold text-blue-600 text-xs sm:text-[13px] truncate" :title="rel.salary">
+                        {{ rel.salary }}
                       </span>
-                    </div>
 
-                    <!-- Footer: deadline badge & tag (Vieclam24h exact style) -->
-                    <div class="mt-1.5 flex items-center justify-between text-[10px] text-slate-400">
-                      <span class="px-1.5 py-0.5 rounded border border-blue-200 text-blue-600 font-medium">
-                        Không cần CV
-                      </span>
-                      <span>Còn {{ getDaysLeft(rel.deadline) }} ngày</span>
+                      <!-- Location -->
+                      <div class="flex items-center gap-1 text-[11px] text-slate-500 font-medium flex-shrink-0" :title="rel.ward_name">
+                        <i class="fa-solid fa-location-dot text-[10px] text-slate-400"></i>
+                        <span>{{ rel.ward_name }}</span>
+                      </div>
                     </div>
 
                   </div>
-
-                  <!-- Heart Save Icon (Vieclam24h exact top-right icon) -->
-                  <button 
-                    @click.stop="toggleSaveRelatedJob(rel.id)"
-                    class="absolute top-3 right-0 p-1 text-slate-300 hover:text-rose-500 transition-colors"
-                    :title="isJobSaved(rel.id) ? 'Bỏ lưu' : 'Lưu việc làm'">
-                    <i :class="isJobSaved(rel.id) ? 'fa-solid fa-heart text-rose-500' : 'fa-regular fa-heart'"></i>
-                  </button>
 
                 </div>
 
@@ -484,19 +529,19 @@
           </div>
 
           <!-- Card 3: Hotline hỗ trợ GDNN Ninh Bình -->
-          <div class="bg-gradient-to-br from-[#3b1d74] to-[#251052] rounded-2xl p-4 text-white shadow-xs space-y-2.5">
+          <div class="bg-gradient-to-r from-blue-50 via-indigo-50/40 to-slate-50 border border-blue-100/80 rounded-2xl p-4 shadow-2xs space-y-2.5">
             <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-amber-300 text-sm">
+              <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-sm">
                 <i class="fa-solid fa-headset"></i>
               </div>
               <div>
-                <h4 class="font-bold text-xs leading-tight">Cần tư vấn việc làm GDNN?</h4>
-                <p class="text-[10px] text-purple-200">Sở LĐ-TB&XH Tỉnh Ninh Bình</p>
+                <h4 class="font-bold text-xs text-slate-800 leading-tight">Cần tư vấn việc làm GDNN?</h4>
+                <p class="text-[10px] text-slate-500">Sở LĐ-TB&XH Tỉnh Ninh Bình</p>
               </div>
             </div>
             <a 
               href="tel:02293868686" 
-              class="block w-full text-center py-2 px-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-[#251052] font-bold text-xs transition-colors shadow-2xs">
+              class="block w-full text-center py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs transition-colors shadow-2xs">
               <i class="fa-solid fa-phone mr-1.5"></i>
               <span>Hotline: 0229.386.8686</span>
             </a>
@@ -506,213 +551,11 @@
 
       </div>
 
-      <!-- ============================================================== -->
-      <!-- 3. BOTTOM HOTLINE MATRIX (Vieclam24h Exact 2-Column Boxes)      -->
-      <!-- ============================================================== -->
-      <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-        
-        <!-- Left: Hotline cho Người tìm việc -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs text-center space-y-3">
-          <h4 class="font-bold text-sm text-slate-800">
-            Hotline cho Người tìm việc & Học viên GDNN
-          </h4>
-          <div class="flex items-center justify-center gap-2 text-xs text-slate-600">
-            <i class="fa-solid fa-phone text-blue-600"></i>
-            <span>Trung tâm Dịch vụ Việc làm:</span>
-            <strong class="text-blue-700 text-sm">0229.386.8686</strong>
-          </div>
-          <button 
-            @click="openApplyModal"
-            class="px-5 py-2 rounded-xl border border-blue-600 text-blue-700 hover:bg-blue-50 font-bold text-xs transition-colors cursor-pointer">
-            Tư vấn cho Người tìm việc
-          </button>
-        </div>
 
-        <!-- Right: Hotline cho Nhà tuyển dụng -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-2xs text-center space-y-3">
-          <h4 class="font-bold text-sm text-slate-800">
-            Hotline cho Doanh nghiệp & Nhà tuyển dụng
-          </h4>
-          <div class="flex items-center justify-center gap-2 text-xs text-slate-600">
-            <i class="fa-solid fa-building text-[#6c3fb8]"></i>
-            <span>Ban Hỗ trợ Doanh nghiệp GDNN:</span>
-            <strong class="text-[#6c3fb8] text-sm">0229.386.8686</strong>
-          </div>
-          <router-link 
-            to="/admin"
-            class="inline-block px-5 py-2 rounded-xl border border-[#6c3fb8] text-[#6c3fb8] hover:bg-purple-50 font-bold text-xs transition-colors cursor-pointer">
-            Dành cho Nhà tuyển dụng
-          </router-link>
-        </div>
-
-      </div>
 
     </main>
 
-    <!-- ============================================================== -->
-    <!-- 4. QUICK APPLY MODAL (Vieclam24h Ứng tuyển nhanh)              -->
-    <!-- ============================================================== -->
-    <div 
-      v-if="isApplyModalOpen" 
-      class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-in">
-      
-      <div 
-        class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-100 overflow-hidden flex flex-col max-h-[94vh] sm:max-h-[90vh]">
-        
-        <!-- Modal Header -->
-        <div class="p-3.5 sm:p-5 border-b border-slate-100 flex items-center justify-between bg-[#faf8ff]">
-          <div>
-            <h3 class="font-black text-slate-900 text-base sm:text-lg">
-              Ứng tuyển trực tiếp
-            </h3>
-            <p class="text-xs text-[#853AFF] font-medium mt-0.5 line-clamp-1" :title="job?.title">
-              {{ job?.title }} - {{ job?.company }}
-            </p>
-          </div>
-          <button 
-            @click="isApplyModalOpen = false" 
-            class="w-8 h-8 rounded-full bg-slate-200/70 hover:bg-slate-300 text-slate-600 flex items-center justify-center transition-colors cursor-pointer">
-            <i class="fa-solid fa-xmark text-sm"></i>
-          </button>
-        </div>
-
-        <!-- Modal Body -->
-        <div class="p-4 sm:p-6 overflow-y-auto space-y-3.5 sm:space-y-4">
-          
-          <!-- Success Alert -->
-          <div v-if="isSubmitted" class="p-4 sm:p-5 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-3 animate-fade-in">
-            <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mx-auto">
-              <i class="fa-solid fa-circle-check"></i>
-            </div>
-            <h4 class="font-bold text-emerald-800 text-base">Nộp hồ sơ thành công!</h4>
-            <p class="text-xs text-emerald-700 leading-relaxed">
-              Hồ sơ ứng tuyển của bạn đã được chuyển trực tiếp tới Bộ phận Tuyển dụng của <strong>{{ job?.company }}</strong>. Doanh nghiệp sẽ liên hệ phỏng vấn qua số điện thoại <strong>{{ applyForm.phone }}</strong>.
-            </p>
-            <div class="pt-2 flex justify-center gap-3">
-              <button 
-                @click="isApplyModalOpen = false" 
-                class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-colors cursor-pointer">
-                Đã hiểu & Đóng
-              </button>
-            </div>
-          </div>
-
-          <!-- Form Content -->
-          <form v-else @submit.prevent="submitApplication" class="space-y-3 sm:space-y-3.5">
-            
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">
-                Họ và tên <span class="text-rose-500">*</span>
-              </label>
-              <input 
-                v-model="applyForm.fullName" 
-                type="text" 
-                required 
-                placeholder="Ví dụ: Nguyễn Văn An"
-                class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#853AFF] focus:border-transparent outline-none transition-all">
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">
-                  Số điện thoại <span class="text-rose-500">*</span>
-                </label>
-                <input 
-                  v-model="applyForm.phone" 
-                  type="tel" 
-                  required 
-                  placeholder="09xx xxx xxx"
-                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#853AFF] focus:border-transparent outline-none transition-all">
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold text-slate-700 mb-1">
-                  Email nhận kết quả
-                </label>
-                <input 
-                  v-model="applyForm.email" 
-                  type="email" 
-                  placeholder="name@email.com"
-                  class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#853AFF] focus:border-transparent outline-none transition-all">
-              </div>
-            </div>
-
-            <!-- Upload CV -->
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">
-                Đính kèm CV / Giới thiệu học vấn GDNN
-              </label>
-              <div class="border-2 border-dashed border-purple-200 hover:border-[#853AFF] rounded-xl p-3.5 sm:p-4 text-center bg-purple-50/40 hover:bg-purple-50/70 transition-colors cursor-pointer relative">
-                <input 
-                  type="file" 
-                  @change="handleFileUpload" 
-                  accept=".pdf,.doc,.docx" 
-                  class="absolute inset-0 opacity-0 cursor-pointer w-full h-full">
-                <i class="fa-solid fa-cloud-arrow-up text-xl text-[#853AFF] mb-1"></i>
-                <p class="text-xs font-bold text-slate-700">
-                  {{ applyForm.fileName || 'Kéo thả CV hoặc bấm để chọn tệp' }}
-                </p>
-                <p class="text-[10px] text-slate-400 mt-0.5">
-                  Định dạng hỗ trợ: PDF, DOCX (Dung lượng &lt; 5MB). Không bắt buộc nếu nộp nhanh.
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold text-slate-700 mb-1">
-                Lời nhắn / Trình độ đào tạo hiện tại
-              </label>
-              <textarea 
-                v-model="applyForm.message" 
-                rows="2" 
-                placeholder="VD: Em học nghề Điện công nghiệp tại Trường Cao đẳng Cơ điện Xây dựng Việt Xô, mong muốn ứng tuyển..."
-                class="w-full px-3.5 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-[#853AFF] focus:border-transparent outline-none transition-all resize-none"></textarea>
-            </div>
-
-            <!-- Hotline Direct option -->
-            <div class="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
-              <span class="text-slate-600">Hoặc liên hệ trực tiếp:</span>
-              <div class="flex items-center gap-2">
-                <a 
-                  v-if="job?.contact?.phone" 
-                  :href="`tel:${job.contact.phone}`" 
-                  class="text-emerald-700 font-bold hover:underline flex items-center gap-1">
-                  <i class="fa-solid fa-phone text-xs"></i>
-                  <span>{{ job.contact.phone }}</span>
-                </a>
-                <a 
-                  v-if="job?.contact?.zalo" 
-                  :href="`https://zalo.me/${job.contact.zalo}`" 
-                  target="_blank" 
-                  class="px-2 py-0.5 rounded bg-blue-600 text-white font-bold text-[10px] hover:bg-blue-700">
-                  Zalo
-                </a>
-              </div>
-            </div>
-
-            <!-- Actions (responsive stacked on mobile) -->
-            <div class="pt-2 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 sm:gap-2.5">
-              <button 
-                type="button" 
-                @click="isApplyModalOpen = false" 
-                class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-colors cursor-pointer text-center">
-                Hủy
-              </button>
-              <button 
-                type="submit" 
-                class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#853AFF] to-[#6C5FFF] hover:opacity-95 text-white font-bold text-xs shadow-xs transition-all cursor-pointer text-center">
-                Nộp hồ sơ ngay
-              </button>
-            </div>
-
-          </form>
-
-        </div>
-
-      </div>
-
-    </div>
-
+    <ClientFooter class="mt-auto" />
   </div>
 </template>
 
@@ -720,28 +563,44 @@
 import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { jobService } from '../../services/jobService'
+import { enterpriseService } from '../../services/enterpriseService'
 
 const route = useRoute()
-const isSaved = ref(false)
 const copiedLink = ref(false)
-const isApplyModalOpen = ref(false)
-const isSubmitted = ref(false)
-
-const SAVED_JOBS_KEY = 'schoolmap_saved_jobs'
-
-const applyForm = ref({
-  fullName: '',
-  phone: '',
-  email: '',
-  message: '',
-  fileName: ''
-})
 
 const job = computed(() => {
   const id = route.params.id
   if (!id) return null
   return jobService.getById(id)
 })
+
+function normalizeCompanyName(value) {
+  return String(value || '')
+    .toLocaleLowerCase('vi')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+const companyEnterprise = computed(() => {
+  const companyName = normalizeCompanyName(job.value?.company)
+  if (!companyName) return null
+
+  return enterpriseService.getAll().find((enterprise) => {
+    const fullName = normalizeCompanyName(enterprise.name)
+    const shortName = normalizeCompanyName(enterprise.short_name)
+    return fullName === companyName
+      || fullName.includes(companyName)
+      || companyName.includes(fullName)
+      || (shortName && (companyName.includes(shortName) || shortName.includes(companyName)))
+  }) || null
+})
+
+const companyPageRoute = computed(() => companyEnterprise.value
+  ? { name: 'ClientEnterpriseDetail', params: { id: companyEnterprise.value.id } }
+  : { name: 'ClientEnterpriseList', query: { search: job.value?.company || '' } })
 
 const relatedJobs = computed(() => {
   if (!job.value) return []
@@ -785,83 +644,12 @@ function formatExperience(exp) {
   return exp
 }
 
-function getSavedJobIds() {
-  try {
-    return JSON.parse(localStorage.getItem(SAVED_JOBS_KEY) || '[]')
-  } catch (e) {
-    return []
-  }
-}
-
-function checkIsSaved() {
-  if (!job.value) return
-  const list = getSavedJobIds()
-  isSaved.value = list.includes(job.value.id)
-}
-
-function toggleSaveJob() {
-  if (!job.value) return
-  try {
-    let list = getSavedJobIds()
-    if (list.includes(job.value.id)) {
-      list = list.filter(id => id !== job.value.id)
-      isSaved.value = false
-    } else {
-      list.push(job.value.id)
-      isSaved.value = true
-    }
-    localStorage.setItem(SAVED_JOBS_KEY, JSON.stringify(list))
-  } catch (e) {
-    isSaved.value = !isSaved.value
-  }
-}
-
-function isJobSaved(jobId) {
-  const list = getSavedJobIds()
-  return list.includes(jobId)
-}
-
-function toggleSaveRelatedJob(jobId) {
-  try {
-    let list = getSavedJobIds()
-    if (list.includes(jobId)) {
-      list = list.filter(id => id !== jobId)
-    } else {
-      list.push(jobId)
-    }
-    localStorage.setItem(SAVED_JOBS_KEY, JSON.stringify(list))
-    if (job.value && job.value.id === jobId) {
-      isSaved.value = list.includes(jobId)
-    }
-  } catch (e) {
-    // ignore
-  }
-}
-
-function openApplyModal() {
-  isSubmitted.value = false
-  isApplyModalOpen.value = true
-}
-
-function handleFileUpload(e) {
-  const file = e.target.files?.[0]
-  if (file) {
-    applyForm.value.fileName = file.name
-  }
-}
-
-function submitApplication() {
-  isSubmitted.value = true
-}
-
 watch(() => route.params.id, () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
-  checkIsSaved()
 })
 
 onMounted(() => {
   window.scrollTo({ top: 0, behavior: 'instant' })
-  checkIsSaved()
 })
 
 function scrollToContact() {

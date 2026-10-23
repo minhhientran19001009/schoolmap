@@ -41,7 +41,7 @@ class ListTrainingMajors extends ListRecords
                 ->color('info')
                 ->formWrapper(false)
                 ->modalHeading('Nhập danh mục chuyên ngành')
-                ->modalDescription('Tải tệp Excel theo khung mẫu để thêm mới hoặc cập nhật tên và trạng thái chuyên ngành.')
+                ->modalDescription('Tải tệp Excel theo khung mẫu để thêm mới hoặc cập nhật tên, mã ngành và trạng thái chuyên ngành.')
                 ->modalWidth(Width::Large)
                 ->modalContent(view('filament.resources.training-majors.import-excel'))
                 ->modalSubmitAction(fn (Action $action): Action => $action

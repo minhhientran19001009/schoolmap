@@ -255,5 +255,20 @@ export const schoolService = {
     } catch (e) {
       return []
     }
+  },
+
+  async getPublicSchools(params = {}) {
+    const query = new URLSearchParams()
+    for (const [key, val] of Object.entries(params)) {
+      if (val !== undefined && val !== null && val !== '' && val !== 'all') {
+        query.set(key, String(val))
+      }
+    }
+    const qStr = query.toString()
+    return await requestApi(`/api/public/schools${qStr ? '?' + qStr : ''}`)
+  },
+
+  async getPublicCatalogs() {
+    return await requestApi('/api/public/schools/catalogs')
   }
 }

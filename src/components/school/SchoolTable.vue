@@ -69,7 +69,7 @@
             <th class="py-3 px-3.5 min-w-[200px]">Tên cơ sở giáo dục</th>
             <th class="py-3 px-3.5">Cấp học</th>
             <th class="py-3 px-3.5">Địa bàn</th>
-            <th class="py-3 px-3.5 text-center">Tọa độ GIS</th>
+            <th class="py-3 px-3.5 text-center">Tọa độ vị trí</th>
             <th class="py-3 px-3.5 text-right">Quy mô (HS/GV)</th>
             <th class="py-3 px-3.5 text-center">Trạng thái</th>
             <th class="py-3 px-3.5 text-center w-36">Thao tác</th>

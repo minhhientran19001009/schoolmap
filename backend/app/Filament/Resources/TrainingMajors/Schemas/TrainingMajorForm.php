@@ -24,6 +24,12 @@ class TrainingMajorForm
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
 
+                        TextInput::make('code')
+                            ->label('Mã ngành / nghề')
+                            ->placeholder('VD: 5520121')
+                            ->maxLength(50)
+                            ->helperText('Không bắt buộc. Mã sẽ hiển thị khi người dân xem chi tiết ngành/nghề của trường.'),
+
                         Toggle::make('is_active')
                             ->label('Đang sử dụng')
                             ->default(true)

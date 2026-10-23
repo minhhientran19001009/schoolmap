@@ -56,7 +56,7 @@
           :class="activeTab === 'gis' ? 'text-blue-800 border-b-2 border-blue-800 bg-white' : 'hover:text-slate-900'"
           class="px-4 py-3 transition-colors flex items-center gap-1.5">
           <i class="fa-solid fa-map-pin"></i>
-          <span>Tọa độ & GIS</span>
+          <span>Tọa độ & Vị trí</span>
         </button>
       </div>
 
@@ -254,7 +254,7 @@
         <div v-if="activeTab === 'gis'" class="space-y-4">
           <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 space-y-2">
             <div class="flex items-center justify-between">
-              <span class="text-slate-500">Tọa độ GPS (WGS84):</span>
+              <span class="text-slate-500">Tọa độ vị trí:</span>
               <span class="font-mono font-bold text-blue-800 text-xs">{{ school.lat }}, {{ school.lng }}</span>
             </div>
             <div class="flex items-center justify-between">

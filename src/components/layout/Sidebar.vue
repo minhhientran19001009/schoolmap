@@ -38,7 +38,7 @@
 
       <div class="border-t border-slate-100 my-2"></div>
       <div v-if="isOpen" class="px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-        Nghiệp vụ GIS & Dữ liệu
+        Nghiệp vụ & Dữ liệu
       </div>
 
       <!-- Thêm trường mới -->
@@ -65,12 +65,12 @@
         <span v-if="isOpen" class="truncate text-left flex-1">Xuất dữ liệu Excel</span>
       </button>
 
-      <!-- Công cụ GIS: Heatmap / Buffer -->
+      <!-- Công cụ phân tích bản đồ -->
       <button 
         @click="$emit('trigger-gis-tool')"
         class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-all">
         <i class="fa-solid fa-layer-group w-5 text-center text-purple-600 text-base flex-shrink-0"></i>
-        <span v-if="isOpen" class="truncate text-left flex-1">Lớp phân tích GIS</span>
+        <span v-if="isOpen" class="truncate text-left flex-1">Lớp bản đồ phân tích</span>
       </button>
     </nav>
 
@@ -82,7 +82,7 @@
           <span class="text-xs font-bold text-slate-700">Tỉnh Ninh Bình</span>
         </div>
         <p class="text-[11px] text-slate-500">Mạng lưới 8 huyện/TP</p>
-        <p class="text-[11px] text-blue-700 font-semibold mt-1">Phiên bản V1.0 • GIS Mở</p>
+        <p class="text-[11px] text-blue-700 font-semibold mt-1">Phiên bản V1.0 • Bản đồ số</p>
       </div>
     </div>
   </aside>
