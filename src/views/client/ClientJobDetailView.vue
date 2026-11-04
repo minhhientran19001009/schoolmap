@@ -317,22 +317,24 @@
                 <p><strong>Địa chỉ nộp hồ sơ:</strong> {{ job.contact?.address }}</p>
                 <p v-if="job.contact?.email">
                   <strong>Email:</strong> 
-                  <a :href="`mailto:${job.contact?.email}`" class="text-blue-600 font-semibold underline ml-1">
+                  <a v-if="job.contact?.can_contact" :href="`mailto:${job.contact?.email}`" class="text-blue-600 font-semibold underline ml-1">
                     {{ job.contact?.email }}
                   </a>
+                  <span v-if="!job.contact?.can_contact" class="ml-1">{{ job.contact?.email }}</span>
                 </p>
                 <p v-if="job.contact?.phone">
                   <strong>Điện thoại:</strong> 
-                  <a :href="`tel:${job.contact?.phone}`" class="text-blue-600 font-bold ml-1 hover:underline">
+                  <a v-if="job.contact?.can_contact" :href="`tel:${job.contact?.phone}`" class="text-blue-600 font-bold ml-1 hover:underline">
                     {{ job.contact?.phone }}
                   </a>
+                  <span v-if="!job.contact?.can_contact" class="ml-1">{{ job.contact?.phone }}</span>
                 </p>
               </div>
 
               <!-- Quick contact buttons (responsive stacked on mobile) -->
               <div class="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1">
                 <a 
-                  v-if="job.contact?.phone"
+                  v-if="job.contact?.phone && job.contact?.can_contact"
                   :href="`tel:${job.contact?.phone}`"
                   class="w-full sm:flex-1 py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
                   <i class="fa-solid fa-phone-volume"></i>
@@ -340,7 +342,7 @@
                 </a>
 
                 <a 
-                  v-if="job.contact?.zalo"
+                  v-if="job.contact?.zalo && job.contact?.can_contact"
                   :href="`https://zalo.me/${job.contact?.zalo}`"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -574,29 +576,7 @@ const job = computed(() => {
   return jobService.getById(id)
 })
 
-function normalizeCompanyName(value) {
-  return String(value || '')
-    .toLocaleLowerCase('vi')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/đ/g, 'd')
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim()
-}
-
-const companyEnterprise = computed(() => {
-  const companyName = normalizeCompanyName(job.value?.company)
-  if (!companyName) return null
-
-  return enterpriseService.getAll().find((enterprise) => {
-    const fullName = normalizeCompanyName(enterprise.name)
-    const shortName = normalizeCompanyName(enterprise.short_name)
-    return fullName === companyName
-      || fullName.includes(companyName)
-      || companyName.includes(fullName)
-      || (shortName && (companyName.includes(shortName) || shortName.includes(companyName)))
-  }) || null
-})
+const companyEnterprise = computed(() => enterpriseService.getByCompanyName(job.value?.company))
 
 const companyPageRoute = computed(() => companyEnterprise.value
   ? { name: 'ClientEnterpriseDetail', params: { id: companyEnterprise.value.id } }

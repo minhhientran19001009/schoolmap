@@ -33,7 +33,7 @@
           </div>
         </div>
 
-        <div class="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div class="mt-3 grid grid-cols-2 gap-2">
           <div class="min-w-0 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2.5">
             <div class="min-w-0">
               <p class="text-xl font-black leading-none text-emerald-700">{{ formatNumber(profession.school_count) }}</p>

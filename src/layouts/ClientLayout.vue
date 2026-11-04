@@ -1,7 +1,7 @@
 <template>
   <div class="w-screen h-screen overflow-hidden flex flex-col bg-slate-50 font-sans select-none" @click="closePortalMenus">
     <!-- Public Header (56px - 60px) - Modern Portal & Apple Segmented Control Aesthetic -->
-    <header class="h-14 sm:h-[58px] bg-slate-50/95 backdrop-blur-md border-b border-slate-200/90 z-[1200] flex items-center px-2 sm:px-4 md:px-6 gap-1.5 sm:gap-3 flex-shrink-0 shadow-xs sticky top-0 transition-all">
+    <header class="h-14 sm:h-[58px] bg-slate-50/95 border-b border-slate-200/90 z-[1200] flex items-center px-2 sm:px-4 md:px-6 gap-1.5 sm:gap-3 flex-shrink-0 shadow-xs sticky top-0 transition-all min-w-0">
       
       <!-- Left: Logo and Brand -->
       <router-link to="/map" class="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0 group">
@@ -21,51 +21,50 @@
       </router-link>
 
       <!-- Center / Primary Nav -->
-      <nav class="segmented-control-track inline-flex items-center p-0.5 sm:p-1 bg-slate-100/95 rounded-2xl flex-shrink-0 lg:w-[540px] xl:w-[580px] border border-slate-200/80 shadow-inner">
+      <nav aria-label="Điều hướng chính" class="segmented-control-track inline-flex min-w-0 flex-1 items-center justify-center overflow-hidden p-0.5 sm:flex-none sm:p-1 bg-slate-100/95 rounded-2xl lg:w-[540px] xl:w-[580px] border border-slate-200/80 shadow-inner">
         <!-- Tab 1: Bản đồ GDNN -->
         <router-link
           to="/map"
           :class="isMapRoute ? 'nav-tab-active-map' : 'nav-tab-inactive'"
-          class="nav-tab-item px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer whitespace-nowrap">
+          class="nav-tab-item min-w-0 flex-1 justify-center px-1 sm:flex-none sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer whitespace-nowrap">
           <i class="fa-solid fa-map-location-dot text-[11px] sm:text-xs" :class="isMapRoute ? 'text-blue-600' : 'text-slate-400'"></i>
-          <span class="hidden md:inline">Bản đồ GDNN</span>
-          <span class="md:hidden">Bản đồ</span>
+          <span class="hidden lg:inline">Bản đồ GDNN</span>
+          <span class="hidden sm:inline lg:hidden">Bản đồ</span>
         </router-link>
 
         <!-- Tab 2: Danh sách cơ sở -->
         <router-link
           to="/co-so-gdnn"
           :class="isSchoolListRoute ? 'nav-tab-active-schools' : 'nav-tab-inactive'"
-          class="nav-tab-item px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer whitespace-nowrap">
+          class="nav-tab-item min-w-0 flex-1 justify-center px-1 sm:flex-none sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer whitespace-nowrap">
           <i class="fa-solid fa-building-columns text-[11px] sm:text-xs" :class="isSchoolListRoute ? 'text-blue-600' : 'text-slate-400'"></i>
-          <span class="hidden md:inline">Cơ sở GDNN</span>
-          <span class="md:hidden">Cơ sở</span>
+          <span class="hidden lg:inline">Cơ sở GDNN</span>
+          <span class="hidden sm:inline lg:hidden">Cơ sở</span>
         </router-link>
 
         <!-- Tab 3: Doanh nghiệp -->
         <router-link
           to="/danh-sach-doanh-nghiep"
           :class="isEnterpriseRoute ? 'nav-tab-active-enterprises' : 'nav-tab-inactive'"
-          class="nav-tab-item px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer whitespace-nowrap">
+          class="nav-tab-item min-w-0 flex-1 justify-center px-1 sm:flex-none sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer whitespace-nowrap">
           <i class="fa-solid fa-city text-[11px] sm:text-xs" :class="isEnterpriseRoute ? 'text-blue-600' : 'text-slate-400'"></i>
-          <span class="hidden md:inline">Doanh nghiệp</span>
-          <span class="md:hidden">Doanh nghiệp</span>
+          <span class="hidden lg:inline">Doanh nghiệp</span>
+          <span class="hidden sm:inline lg:hidden">Doanh nghiệp</span>
         </router-link>
 
         <!-- Tab 4: Việc làm GDNN -->
         <router-link 
           to="/tuyen-dung"
           :class="isJobsRoute ? 'nav-tab-active-jobs' : 'nav-tab-inactive'"
-          class="nav-tab-item px-2 sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer relative whitespace-nowrap">
+          class="nav-tab-item min-w-0 flex-1 justify-center px-1 sm:flex-none sm:px-2.5 py-1 sm:py-1.5 text-xs rounded-xl transition-all flex items-center gap-1 sm:gap-1.5 lg:flex-1 lg:justify-center cursor-pointer relative whitespace-nowrap">
           <i class="fa-solid fa-briefcase text-[11px] sm:text-xs" :class="isJobsRoute ? 'text-blue-600' : 'text-slate-400'"></i>
-          <span class="hidden md:inline">Việc làm</span>
-          <span class="md:hidden">Việc làm</span>
+          <span class="hidden sm:inline">Việc làm</span>
         </router-link>
       </nav>
 
       <!-- Center-Right Filter Area (Visible on Map view) -->
-      <TopFilterBar v-if="isMapRoute" class="flex-1 min-w-0" />
-      <div v-else class="flex-1"></div>
+      <TopFilterBar v-if="isMapRoute" class="hidden min-w-0 flex-1 lg:flex" />
+      <div v-else class="hidden flex-1 sm:block"></div>
 
       <!-- Public demo portals for schools and employers -->
       <div class="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
@@ -88,7 +87,7 @@
           <Transition name="portal-menu">
             <div
               v-if="schoolMenuOpen"
-              class="portal-menu-panel absolute right-0 top-full z-[70] mt-2 flex max-h-[calc(100dvh-4.5rem)] w-[min(380px,calc(100vw-1rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-2xl"
+              class="portal-menu-panel fixed left-2 right-2 top-16 z-[70] flex max-h-[calc(100dvh-4.5rem)] w-auto flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-2xl sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[min(380px,calc(100vw-1rem))]"
               @click.stop
             >
             <div class="border-b border-slate-100 p-3.5">
@@ -154,7 +153,7 @@
           <Transition name="portal-menu">
             <div
               v-if="employerMenuOpen"
-              class="portal-menu-panel absolute right-0 top-full z-[70] mt-2 flex max-h-[calc(100dvh-4.5rem)] w-[min(400px,calc(100vw-1rem))] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-2xl"
+              class="portal-menu-panel fixed left-2 right-2 top-16 z-[70] flex max-h-[calc(100dvh-4.5rem)] w-auto flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white text-left shadow-2xl sm:absolute sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:w-[min(400px,calc(100vw-1rem))]"
               @click.stop
             >
             <div class="border-b border-slate-100 p-3.5">

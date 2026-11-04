@@ -77,9 +77,9 @@
 
     <!-- 4. Bottom Row: Remaining time / Apply CTA -->
     <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 h-7">
-      <span class="flex items-center gap-1.5 text-slate-500">
+        <span class="flex items-center gap-1.5 text-slate-500">
         <i class="fa-regular fa-clock text-[10px] text-slate-400"></i>
-        <span>Còn {{ getDaysLeft(job.deadline) }} ngày</span>
+          <span>Còn {{ getDaysLeft(job.deadline) }} ngày</span>
       </span>
 
       <span class="text-blue-600 hover:text-blue-800 font-bold group-hover:translate-x-0.5 transition-all flex items-center gap-1 flex-shrink-0 text-xs">

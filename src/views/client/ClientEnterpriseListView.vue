@@ -10,7 +10,7 @@
           <div class="max-w-2xl">
             <div class="mb-2.5 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/90 px-3.5 py-1 text-xs font-bold text-blue-700 shadow-2xs backdrop-blur-xs">
               <i class="fa-solid fa-city text-[11px] text-blue-600"></i>
-              <span>Mạng lưới doanh nghiệp liên kết GDNN Ninh Bình</span>
+              <span>Doanh nghiệp và nhà tuyển dụng tại Ninh Bình</span>
             </div>
             
             <h1 class="text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-4xl leading-tight text-slate-900">
@@ -18,7 +18,7 @@
             </h1>
             
             <p class="mt-2 text-xs sm:text-sm md:text-base text-slate-600 max-w-2xl leading-relaxed">
-              Cổng tra cứu các tập đoàn, doanh nghiệp FDI, doanh nghiệp đối tác đào tạo nghề và tiếp nhận học viên tốt nghiệp GDNN trên địa bàn tỉnh Ninh Bình.
+              Tra cứu doanh nghiệp có tin tuyển dụng và các doanh nghiệp trong danh bạ GDNN trên địa bàn tỉnh Ninh Bình.
             </p>
           </div>
 
@@ -119,7 +119,7 @@
           Tìm thấy <strong class="text-blue-600">{{ filteredEnterprises.length }}</strong> doanh nghiệp phù hợp
         </h2>
         <span class="text-xs text-slate-500">
-          Hiển thị toàn bộ danh bạ doanh nghiệp đối tác
+          Danh bạ doanh nghiệp và nhà tuyển dụng
         </span>
       </div>
 

@@ -86,20 +86,20 @@
               </div>
             </div>
 
-            <router-link
+            <a
               v-if="enterprise.jobs_count > 0"
-              :to="{ path: '/tuyen-dung', query: { search: enterprise.short_name || enterprise.name } }"
+              href="#enterprise-open-jobs"
               class="inline-flex h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 text-xs font-bold text-white shadow-xs transition hover:bg-blue-700"
             >
               Xem việc làm
               <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </router-link>
+            </a>
           </div>
         </section>
 
         <div class="mt-5 grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div class="min-w-0 space-y-5">
-            <section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs">
+            <section id="enterprise-open-jobs" class="scroll-mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs">
               <div class="flex items-center justify-between gap-3 border-b border-slate-100 px-4 py-3.5 sm:px-5">
                 <h2 class="flex items-center gap-2 text-sm font-extrabold text-slate-900 sm:text-base">
                   <i class="fa-solid fa-briefcase text-purple-600"></i>

@@ -358,6 +358,56 @@
             </div>
           </section>
 
+          <!-- Historical recruitment outcomes from the supplied workbook; kept separate from annual quota data. -->
+          <section v-if="sourceAdmissionRecord" class="overflow-hidden rounded-xl border border-amber-200 bg-white shadow-xs">
+            <div class="flex flex-wrap items-start justify-between gap-2 border-b border-amber-100 bg-amber-50/70 p-3.5">
+              <div>
+                <h3 class="flex items-center gap-1.5 text-sm font-bold text-slate-800">
+                  <i class="fa-solid fa-chart-column text-amber-600"></i>
+                  Kết quả tuyển sinh theo báo cáo nguồn
+                </h3>
+                <p class="mt-0.5 text-[11px] text-slate-600">Quy mô tuyển sinh theo bậc đào tạo</p>
+              </div>
+              <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-600">Báo cáo tuyển sinh</span>
+            </div>
+            <div class="p-3.5 sm:p-4">
+              <div class="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <div v-for="item in sourceAdmissionSummary" :key="item.id" class="rounded-lg border border-slate-200 bg-slate-50 p-2.5">
+                  <div class="text-[10px] font-medium text-slate-500">{{ item.label }}</div>
+                  <div class="mt-0.5 text-base font-bold text-slate-800">
+                    {{ formatSourceAdmissionValue(item.value) }}<span v-if="item.value !== null && item.value !== undefined" class="ml-1 text-[10px] font-medium text-slate-500">người</span>
+                  </div>
+                </div>
+              </div>
+              <div class="overflow-x-auto rounded-lg border border-slate-200">
+                <table class="min-w-[620px] w-full border-collapse text-left text-[11px]">
+                  <thead class="border-b border-slate-200 bg-slate-50 text-slate-600">
+                    <tr>
+                      <th class="px-3 py-2.5 font-semibold">Ngành / nghề theo file</th>
+                      <th class="px-3 py-2.5 text-right font-semibold">Tổng</th>
+                      <th class="px-3 py-2.5 text-right font-semibold">Cao đẳng</th>
+                      <th class="px-3 py-2.5 text-right font-semibold">Trung cấp</th>
+                      <th class="px-3 py-2.5 text-right font-semibold">Sơ cấp</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr v-for="program in sourceAdmissionRecord.programs" :key="`${program.source_row}-${program.name}`">
+                      <td class="px-3 py-2.5">
+                        <div class="font-semibold text-slate-800">{{ program.name }}</div>
+                        <div v-if="program.code" class="mt-0.5 font-mono text-[10px] text-slate-500">Mã: {{ program.code }}</div>
+                      </td>
+                      <td class="px-3 py-2.5 text-right font-semibold text-blue-800">{{ formatSourceAdmissionValue(program.total) }}</td>
+                      <td class="px-3 py-2.5 text-right text-slate-700">{{ formatSourceAdmissionValue(program.cao_dang) }}</td>
+                      <td class="px-3 py-2.5 text-right text-slate-700">{{ formatSourceAdmissionValue(program.trung_cap) }}</td>
+                      <td class="px-3 py-2.5 text-right text-slate-700">{{ formatSourceAdmissionValue(program.so_cap) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="mt-2 text-[10px] text-slate-500">Dấu “—” giữ nguyên ô trống hoặc dấu gạch trong nguồn. {{ sourceAdmissionRecord.source_file }}</p>
+            </div>
+          </section>
+
           <!-- 4. Cơ sở vật chất & Thư viện hình ảnh -->
           <div class="bg-white rounded-xl p-3.5 border border-slate-200 shadow-xs">
             <span class="font-bold text-slate-800 text-xs flex items-center gap-1.5 mb-2.5">
@@ -944,6 +994,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { LEVEL_MAP } from '../../services/schoolService'
+import admissionResults from '../../data/admissionResults.json'
 
 const props = defineProps({
   school: {
@@ -953,6 +1004,24 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus', 'fit-campuses'])
+
+const sourceAdmissionRecord = computed(() => admissionResults.institutions.find((record) => (
+  record.school_id === props.school?.id || record.school_code === props.school?.code
+)) || null)
+
+const sourceAdmissionSummary = computed(() => {
+  const summary = sourceAdmissionRecord.value?.summary || {}
+  return [
+    { id: 'total', label: 'Tổng theo nguồn', value: summary.total },
+    { id: 'cao_dang', label: 'Cao đẳng', value: summary.cao_dang },
+    { id: 'trung_cap', label: 'Trung cấp', value: summary.trung_cap },
+    { id: 'so_cap', label: 'Sơ cấp', value: summary.so_cap },
+  ]
+})
+
+function formatSourceAdmissionValue(value) {
+  return value === null || value === undefined ? '—' : new Intl.NumberFormat('vi-VN').format(value)
+}
 
 // Dynamic level icon matching map pin
 const levelIcon = computed(() => {
@@ -1272,6 +1341,7 @@ function formatDegreeLevel(level) {
     trung_cap: 'Trung cấp',
     so_cap: 'Sơ cấp',
     gdtx: 'GDTX - GDNN',
+    chua_xac_dinh: 'Chưa xác định trình độ',
   }
 
   return labels[normalizeTrainingLevel(level)] || 'Chưa cập nhật'

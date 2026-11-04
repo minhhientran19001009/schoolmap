@@ -158,12 +158,14 @@
           <div class="space-y-1.5 text-slate-700">
             <p><strong>Người liên hệ:</strong> {{ job.contact?.contact_person }}</p>
             <p><strong>Địa chỉ nộp hồ sơ:</strong> {{ job.contact?.address }}</p>
-            <p v-if="job.contact?.email"><strong>Email:</strong> <a :href="`mailto:${job.contact?.email}`" class="text-blue-600 font-semibold underline">{{ job.contact?.email }}</a></p>
+            <p v-if="job.contact?.email"><strong>Email:</strong> <a v-if="job.contact?.can_contact" :href="`mailto:${job.contact?.email}`" class="text-blue-600 font-semibold underline">{{ job.contact?.email }}</a><span v-else>{{ job.contact?.email }}</span></p>
+            <p v-if="job.contact?.phone"><strong>Điện thoại:</strong> <a v-if="job.contact?.can_contact" :href="`tel:${job.contact?.phone}`" class="text-blue-600 font-bold underline">{{ job.contact?.phone }}</a><span v-else>{{ job.contact?.phone }}</span></p>
           </div>
 
           <!-- Direct Call & Zalo Buttons -->
           <div class="mt-4 flex flex-wrap gap-2.5">
             <a 
+              v-if="job.contact?.phone && job.contact?.can_contact"
               :href="`tel:${job.contact?.phone}`"
               class="flex-1 min-w-[140px] py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-colors">
               <i class="fa-solid fa-phone-volume"></i>
@@ -171,6 +173,7 @@
             </a>
 
             <a 
+              v-if="job.contact?.zalo && job.contact?.can_contact"
               :href="`https://zalo.me/${job.contact?.zalo}`"
               target="_blank"
               rel="noopener noreferrer"

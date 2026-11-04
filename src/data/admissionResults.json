@@ -1,0 +1,1958 @@
+{
+  "source_file": "2026 Bang tong hop quy mô tuyen sinh.xlsx",
+  "display_period": "Kỳ báo cáo",
+  "note": "Số liệu được giữ nguyên theo bảng nguồn; dấu gạch ngang hoặc ô trống là chưa có số liệu.",
+  "institutions": [
+    {
+      "school_id": "truong-cao-dang-nghe-so-20-bqp-truong-th-148",
+      "school_code": "NB-77525",
+      "source_name": "Trường CĐ nghề số 20/BQP",
+      "source_code": "CDT2503",
+      "summary": {
+        "total": 3050,
+        "cao_dang": 295,
+        "trung_cap": 1065,
+        "so_cap": 1690
+      },
+      "programs": [
+        {
+          "source_row": 19,
+          "code": "6510216",
+          "name": "Công nghệ ô tô",
+          "total": 560,
+          "cao_dang": 105,
+          "trung_cap": 280,
+          "so_cap": 175
+        },
+        {
+          "source_row": 20,
+          "code": "6520201",
+          "name": "KT lắp đặt điện và ĐKTCN",
+          "total": 185,
+          "cao_dang": 35,
+          "trung_cap": 150,
+          "so_cap": null
+        },
+        {
+          "source_row": 21,
+          "code": "6520225",
+          "name": "Điện tử công nghiệp",
+          "total": 205,
+          "cao_dang": 35,
+          "trung_cap": 65,
+          "so_cap": 105
+        },
+        {
+          "source_row": 22,
+          "code": "6520205",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "total": 505,
+          "cao_dang": 70,
+          "trung_cap": 225,
+          "so_cap": 210
+        },
+        {
+          "source_row": 23,
+          "code": "6480102",
+          "name": "KT sửa chữa, lắp ráp máy tính",
+          "total": 50,
+          "cao_dang": 25,
+          "trung_cap": 25,
+          "so_cap": null
+        },
+        {
+          "source_row": 24,
+          "code": "6520183",
+          "name": "Vận hành máy thi công nền",
+          "total": 170,
+          "cao_dang": 25,
+          "trung_cap": 25,
+          "so_cap": 120
+        },
+        {
+          "source_row": 25,
+          "code": "5540205",
+          "name": "May thời trang",
+          "total": 330,
+          "cao_dang": null,
+          "trung_cap": 225,
+          "so_cap": 105
+        },
+        {
+          "source_row": 26,
+          "code": "5520133",
+          "name": "Sửa chữa thiết bị may",
+          "total": 70,
+          "cao_dang": null,
+          "trung_cap": 70,
+          "so_cap": null
+        },
+        {
+          "source_row": 27,
+          "code": null,
+          "name": "Điện công nghiệp",
+          "total": 130,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 130
+        },
+        {
+          "source_row": 28,
+          "code": null,
+          "name": "Công nghệ thông tin",
+          "total": 70,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 70
+        },
+        {
+          "source_row": 29,
+          "code": null,
+          "name": "Bảo trì máy may",
+          "total": 140,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 140
+        },
+        {
+          "source_row": 30,
+          "code": null,
+          "name": "Hàn công nghệ cao",
+          "total": 155,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 155
+        },
+        {
+          "source_row": 31,
+          "code": null,
+          "name": "Sửa chữa cơ khí động cơ",
+          "total": 155,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 155
+        },
+        {
+          "source_row": 32,
+          "code": null,
+          "name": "Sửa chữa điện - điện lạnh ô tô",
+          "total": 175,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 175
+        },
+        {
+          "source_row": 33,
+          "code": null,
+          "name": "Tiếng Hàn Quốc",
+          "total": 150,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 150
+        },
+        {
+          "source_row": 34,
+          "code": null,
+          "name": "Bồi dưỡng Tiếng Nhật",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 35,
+          "code": null,
+          "name": "Lái xe ô tô hạng B.01, B, C1",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 36,
+          "code": null,
+          "name": "Bồi dưỡng CCCM, GCNKNCM thuyền, máy trưởng, LPT",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-xay-dung-nam-dinh-174",
+      "school_code": "NB-71714",
+      "source_name": "Trường Cao đẳng Xây dựng NĐ",
+      "source_code": "CDT2502",
+      "summary": {
+        "total": 920,
+        "cao_dang": 100,
+        "trung_cap": 690,
+        "so_cap": 130
+      },
+      "programs": [
+        {
+          "source_row": 38,
+          "code": "6510104",
+          "name": "Công nghệ kỹ thuật Công trình XD",
+          "total": 40,
+          "cao_dang": 40,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 39,
+          "code": "6580301",
+          "name": "Quản lý Xây dựng",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 40,
+          "code": "6340302",
+          "name": "Kế toán doanh nghiệp",
+          "total": 20,
+          "cao_dang": 20,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 41,
+          "code": "6520123",
+          "name": "Hàn",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 42,
+          "code": "6580201",
+          "name": "Kỹ thuật xây dựng",
+          "total": 20,
+          "cao_dang": 20,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 43,
+          "code": "5580202",
+          "name": "Xây dựng dân dụng và công nghiệp",
+          "total": 60,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 44,
+          "code": "6340302",
+          "name": "Kế toán doanh nghiệp",
+          "total": 70,
+          "cao_dang": null,
+          "trung_cap": 70,
+          "so_cap": null
+        },
+        {
+          "source_row": 45,
+          "code": "5480209",
+          "name": "Quản trị mạng máy tính",
+          "total": 55,
+          "cao_dang": null,
+          "trung_cap": 55,
+          "so_cap": null
+        },
+        {
+          "source_row": 46,
+          "code": "5480203",
+          "name": "Tin học văn phòng",
+          "total": 50,
+          "cao_dang": null,
+          "trung_cap": 50,
+          "so_cap": null
+        },
+        {
+          "source_row": 47,
+          "code": "5520226",
+          "name": "Điện dân dụng",
+          "total": 175,
+          "cao_dang": null,
+          "trung_cap": 165,
+          "so_cap": 10
+        },
+        {
+          "source_row": 48,
+          "code": "5340122",
+          "name": "Thương mại điện tử",
+          "total": 35,
+          "cao_dang": null,
+          "trung_cap": 35,
+          "so_cap": null
+        },
+        {
+          "source_row": 49,
+          "code": "52104028",
+          "name": "Thiết kế đồ hoạ",
+          "total": 35,
+          "cao_dang": null,
+          "trung_cap": 35,
+          "so_cap": null
+        },
+        {
+          "source_row": 50,
+          "code": "5580201",
+          "name": "Kỹ thuật xây dựng",
+          "total": 100,
+          "cao_dang": null,
+          "trung_cap": 80,
+          "so_cap": 20
+        },
+        {
+          "source_row": 51,
+          "code": "5580208",
+          "name": "Cốt thép - Hàn",
+          "total": 40,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": 10
+        },
+        {
+          "source_row": 52,
+          "code": "5520312",
+          "name": "Cấp, thoát nước",
+          "total": 20,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": 10
+        },
+        {
+          "source_row": 53,
+          "code": "5580210",
+          "name": "Mộc X.dựng và trang trí nội thất",
+          "total": 20,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": 10
+        },
+        {
+          "source_row": 54,
+          "code": "5210421",
+          "name": "Mộc Mỹ nghệ",
+          "total": 30,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": 20
+        },
+        {
+          "source_row": 55,
+          "code": "5580211",
+          "name": "Mộc dân dụng",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": null
+        },
+        {
+          "source_row": 56,
+          "code": "5210101",
+          "name": "Kỹ thuật Điêu khắc gỗ",
+          "total": 40,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": 20
+        },
+        {
+          "source_row": 57,
+          "code": "5210408",
+          "name": "Chạm khắc đá",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": null
+        },
+        {
+          "source_row": 58,
+          "code": "5210412",
+          "name": "Kỹ thuật Sơn mài và Khảm trai",
+          "total": 20,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": 10
+        },
+        {
+          "source_row": 59,
+          "code": "5520123",
+          "name": "Hàn",
+          "total": 40,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": 10
+        },
+        {
+          "source_row": 60,
+          "code": null,
+          "name": "Nề hoàn thiện",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 10
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-cong-nghiep-nam-dinh-351",
+      "school_code": "NB-88976",
+      "source_name": "Trường CĐ Công nghiệp Nam Định",
+      "source_code": "cdt2501",
+      "summary": {
+        "total": null,
+        "cao_dang": 270,
+        "trung_cap": 1000,
+        "so_cap": 50
+      },
+      "programs": [
+        {
+          "source_row": 63,
+          "code": "5520121",
+          "name": "Cắt gọt kim loại",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 64,
+          "code": "5510211",
+          "name": "Công nghệ kỹ thuật nhiệt",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 65,
+          "code": "5540204",
+          "name": "Công nghệ may",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 66,
+          "code": "5510216",
+          "name": "Công nghệ ô tô",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 67,
+          "code": "5520227",
+          "name": "Điện công nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 68,
+          "code": "5520225",
+          "name": "Điện tử công nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 69,
+          "code": "5340302",
+          "name": "Kế toán doanh nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 70,
+          "code": "5540205",
+          "name": "May thời trang",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 71,
+          "code": "5520133",
+          "name": "Sửa chữa thiết bị may",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 72,
+          "code": "5480203",
+          "name": "Tin học văn phòng",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 73,
+          "code": "5520123",
+          "name": "Hàn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 74,
+          "code": "6520121",
+          "name": "Cắt gọt kim loại",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 75,
+          "code": "6510305",
+          "name": "Công nghệ kỹ thuật điều khiển và TĐH",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 76,
+          "code": "6510216",
+          "name": "Công nghệ ô tô",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 77,
+          "code": "6520227",
+          "name": "Điện công nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 78,
+          "code": "6340301",
+          "name": "Kế toán",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 79,
+          "code": "6540205",
+          "name": "May thời trang",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-928",
+      "school_code": "NB-80777",
+      "source_name": "Trường CĐ Kinh tế và Công nghệ NĐ",
+      "source_code": "CDD2501",
+      "summary": {
+        "total": 2455,
+        "cao_dang": 300,
+        "trung_cap": 1505,
+        "so_cap": 650
+      },
+      "programs": [
+        {
+          "source_row": 81,
+          "code": "5520123",
+          "name": "Hàn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 35,
+          "so_cap": null
+        },
+        {
+          "source_row": 82,
+          "code": "5520121",
+          "name": "Cắt gọt kim loại",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 35,
+          "so_cap": null
+        },
+        {
+          "source_row": 83,
+          "code": "5510216",
+          "name": "Công nghệ ô tô",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 150,
+          "so_cap": null
+        },
+        {
+          "source_row": 84,
+          "code": "5520113",
+          "name": "Sửa chữa thiết bị may",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 85,
+          "code": "5520227",
+          "name": "Điện công nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 210,
+          "so_cap": null
+        },
+        {
+          "source_row": 86,
+          "code": "5520225",
+          "name": "Điện tử công nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": null
+        },
+        {
+          "source_row": 87,
+          "code": "5520223",
+          "name": "Điện công nghiệp và dân dụng",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 45,
+          "so_cap": 105
+        },
+        {
+          "source_row": 88,
+          "code": "5510303",
+          "name": "Công nghệ kỹ thuật điện, điện tử",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 45,
+          "so_cap": null
+        },
+        {
+          "source_row": 89,
+          "code": "5520205",
+          "name": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 70,
+          "so_cap": null
+        },
+        {
+          "source_row": 90,
+          "code": "5480202",
+          "name": "Công nghệ thông tin",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 91,
+          "code": "5480102",
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 35,
+          "so_cap": null
+        },
+        {
+          "source_row": 92,
+          "code": "5540205",
+          "name": "May thời trang",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 150,
+          "so_cap": null
+        },
+        {
+          "source_row": 93,
+          "code": "5810404",
+          "name": "Chăm sóc sắc đẹp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": 35
+        },
+        {
+          "source_row": 94,
+          "code": "5810207",
+          "name": "Kỹ thuật chế biến món ăn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 90,
+          "so_cap": 150
+        },
+        {
+          "source_row": 95,
+          "code": "5340302",
+          "name": "Kế toán doanh nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 96,
+          "code": "5620102",
+          "name": "Công nghệ kỹ thuật chế biến và bảo quản nông sản",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 90,
+          "so_cap": null
+        },
+        {
+          "source_row": 97,
+          "code": "5620120",
+          "name": "Chăn nuôi - Thú y",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        },
+        {
+          "source_row": 98,
+          "code": "6520123",
+          "name": "Hàn",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": 35
+        },
+        {
+          "source_row": 99,
+          "code": "6520121",
+          "name": "Cắt gọt kim loại",
+          "total": null,
+          "cao_dang": 20,
+          "trung_cap": null,
+          "so_cap": 35
+        },
+        {
+          "source_row": 100,
+          "code": "6520216",
+          "name": "Công nghệ ô tô",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 101,
+          "code": "6520227",
+          "name": "Điện công nghiệp",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 102,
+          "code": "6520205",
+          "name": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 103,
+          "code": "6480201",
+          "name": "Công nghệ thông tin",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 104,
+          "code": "6430301",
+          "name": "Kế toán",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 105,
+          "code": "6540205",
+          "name": "May thời trang",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 106,
+          "code": "6480102.548",
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "total": null,
+          "cao_dang": 30,
+          "trung_cap": 35,
+          "so_cap": null
+        },
+        {
+          "source_row": 107,
+          "code": "6340429, 53404229",
+          "name": "Quản lý khai thác công trình thuỷ lợi",
+          "total": null,
+          "cao_dang": 20,
+          "trung_cap": 25,
+          "so_cap": 45
+        },
+        {
+          "source_row": 108,
+          "code": "6520249, 5520259",
+          "name": "Vận hành sửa chữa trạm bơm điện",
+          "total": null,
+          "cao_dang": 20,
+          "trung_cap": 25,
+          "so_cap": 70
+        },
+        {
+          "source_row": 109,
+          "code": "5810203",
+          "name": "Nghiệp vụ lễ tân",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        },
+        {
+          "source_row": 110,
+          "code": "5810206",
+          "name": "Nghiệp vụ nhà hàng",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        },
+        {
+          "source_row": 111,
+          "code": "5810201",
+          "name": "Quản trị khách sạn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        },
+        {
+          "source_row": 112,
+          "code": "5850102",
+          "name": "Quản lý đất đai",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": 70
+        },
+        {
+          "source_row": 113,
+          "code": "5210101",
+          "name": "Kỹ thuật điêu khắc gỗ",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": 35
+        },
+        {
+          "source_row": 114,
+          "code": "5620303",
+          "name": "Nuôi trồng thuỷ sản",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        },
+        {
+          "source_row": 115,
+          "code": "5620111",
+          "name": "Trồng trọt và bảo vệ thực vật",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": null
+        },
+        {
+          "source_row": 116,
+          "code": "5620120",
+          "name": "Chăn nuôi - Thú y",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": 70
+        },
+        {
+          "source_row": 117,
+          "code": "5340307",
+          "name": "Kế toán hành chính sự nghiệp",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-van-hoa-nghe-thuat-va-du-519",
+      "school_code": "NB-76252",
+      "source_name": "Trường Cao đẳng VHNT & Du lịch NĐ",
+      "source_code": "cdd2502",
+      "summary": {
+        "total": 205,
+        "cao_dang": 60,
+        "trung_cap": 145,
+        "so_cap": null
+      },
+      "programs": [
+        {
+          "source_row": 119,
+          "code": "6210225",
+          "name": "Thanh nhạc",
+          "total": 15,
+          "cao_dang": 15,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 120,
+          "code": "6810103",
+          "name": "Hướng dẫn du lịch",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 121,
+          "code": "6320206",
+          "name": "Khoa học thư viện",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 122,
+          "code": "6210402",
+          "name": "Thiết kế đồ họa",
+          "total": 25,
+          "cao_dang": 25,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 123,
+          "code": "5210225",
+          "name": "Thanh nhạc",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": 15,
+          "so_cap": null
+        },
+        {
+          "source_row": 124,
+          "code": "5210224",
+          "name": "Organ",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": null
+        },
+        {
+          "source_row": 125,
+          "code": "5210216",
+          "name": "Biểu diễn nhạc cụ truyền thống",
+          "total": 5,
+          "cao_dang": null,
+          "trung_cap": 5,
+          "so_cap": null
+        },
+        {
+          "source_row": 126,
+          "code": "5210103",
+          "name": "Hội họa",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": 15,
+          "so_cap": null
+        },
+        {
+          "source_row": 127,
+          "code": "5210402",
+          "name": "Thiết kế đồ họa",
+          "total": 20,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": null
+        },
+        {
+          "source_row": 128,
+          "code": "5210203",
+          "name": "Nghệ thuật biểu diễn Chèo",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": 15,
+          "so_cap": null
+        },
+        {
+          "source_row": 129,
+          "code": "5210210",
+          "name": "Nghệ thuật biểu diễn Kịch nói",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": null
+        },
+        {
+          "source_row": 130,
+          "code": "5810103",
+          "name": "Hướng dẫn du lịch",
+          "total": 45,
+          "cao_dang": null,
+          "trung_cap": 45,
+          "so_cap": null
+        },
+        {
+          "source_row": 131,
+          "code": "5320205",
+          "name": "Thư viện",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-co-gioi-ninh-binh",
+      "school_code": "NB-CD-003",
+      "source_name": "Trường Cao đẳng Cơ giới Ninh Bình",
+      "source_code": "CDT2702",
+      "summary": {
+        "total": 2620,
+        "cao_dang": 220,
+        "trung_cap": 900,
+        "so_cap": 1500
+      },
+      "programs": [
+        {
+          "source_row": 133,
+          "code": "6510216",
+          "name": "Công nghệ ôtô",
+          "total": 350,
+          "cao_dang": 55,
+          "trung_cap": 245,
+          "so_cap": 50
+        },
+        {
+          "source_row": 134,
+          "code": "6520123",
+          "name": "Hàn",
+          "total": 55,
+          "cao_dang": 10,
+          "trung_cap": 30,
+          "so_cap": 15
+        },
+        {
+          "source_row": 135,
+          "code": "6520121",
+          "name": "Cắt gọt kim loại",
+          "total": 40,
+          "cao_dang": 10,
+          "trung_cap": 20,
+          "so_cap": 10
+        },
+        {
+          "source_row": 136,
+          "code": "6520227",
+          "name": "Điện công nghiệp",
+          "total": 110,
+          "cao_dang": 50,
+          "trung_cap": 50,
+          "so_cap": 10
+        },
+        {
+          "source_row": 137,
+          "code": "6520205",
+          "name": "Kỹ thuật máy lạnh và điều hoà không khí",
+          "total": 195,
+          "cao_dang": 35,
+          "trung_cap": 150,
+          "so_cap": 10
+        },
+        {
+          "source_row": 138,
+          "code": "6480207",
+          "name": "Lập trình máy tính",
+          "total": 15,
+          "cao_dang": 5,
+          "trung_cap": 10,
+          "so_cap": null
+        },
+        {
+          "source_row": 139,
+          "code": "6340302",
+          "name": "Kế toán doanh nghiệp",
+          "total": 25,
+          "cao_dang": 10,
+          "trung_cap": 15,
+          "so_cap": null
+        },
+        {
+          "source_row": 140,
+          "code": "6810207",
+          "name": "Kỹ thuật chế biến món ăn",
+          "total": 295,
+          "cao_dang": 35,
+          "trung_cap": 230,
+          "so_cap": 30
+        },
+        {
+          "source_row": 141,
+          "code": "5520183",
+          "name": "Vận hành máy thi công nền",
+          "total": 80,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": 20
+        },
+        {
+          "source_row": 142,
+          "code": "5520182",
+          "name": "Vận hành Cần, cầu trục",
+          "total": 50,
+          "cao_dang": null,
+          "trung_cap": 10,
+          "so_cap": 40
+        },
+        {
+          "source_row": 143,
+          "code": "6520226",
+          "name": "Điện dân dụng",
+          "total": 75,
+          "cao_dang": 5,
+          "trung_cap": 60,
+          "so_cap": 10
+        },
+        {
+          "source_row": 144,
+          "code": "5520184",
+          "name": "VH máy thi công mặt đường",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": 5,
+          "so_cap": 10
+        },
+        {
+          "source_row": 145,
+          "code": "6520146",
+          "name": "Sửa chữa máy thi công xây dựng",
+          "total": 10,
+          "cao_dang": 5,
+          "trung_cap": 5,
+          "so_cap": null
+        },
+        {
+          "source_row": 146,
+          "code": "5520312",
+          "name": "Cấp thoát nước",
+          "total": 5,
+          "cao_dang": null,
+          "trung_cap": 5,
+          "so_cap": null
+        },
+        {
+          "source_row": 147,
+          "code": "6520151",
+          "name": "Bảo trì hệ thống thiết bị cơ khí",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 148,
+          "code": "6760101",
+          "name": "Công tác xã hội",
+          "total": 5,
+          "cao_dang": null,
+          "trung_cap": 5,
+          "so_cap": null
+        },
+        {
+          "source_row": 149,
+          "code": null,
+          "name": "Hàn 3G, 5G, 6G",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 15
+        },
+        {
+          "source_row": 150,
+          "code": null,
+          "name": "Vận hành Cầu trục",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 151,
+          "code": null,
+          "name": "Vận hành máy xúc lật",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 10
+        },
+        {
+          "source_row": 152,
+          "code": null,
+          "name": "Vận hành máy xúc",
+          "total": 30,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 30
+        },
+        {
+          "source_row": 153,
+          "code": null,
+          "name": "Vận hành máy lu",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 15
+        },
+        {
+          "source_row": 154,
+          "code": null,
+          "name": "Vận hành xe nâng hàng",
+          "total": 55,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 55
+        },
+        {
+          "source_row": 155,
+          "code": null,
+          "name": "Vận hành Cần trục",
+          "total": 30,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 30
+        },
+        {
+          "source_row": 156,
+          "code": null,
+          "name": "Vận hành Cầu trục",
+          "total": 50,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 50
+        },
+        {
+          "source_row": 157,
+          "code": null,
+          "name": "Vận hành máy ủi",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 10
+        },
+        {
+          "source_row": 158,
+          "code": null,
+          "name": "Điện nước",
+          "total": 10,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 10
+        },
+        {
+          "source_row": 159,
+          "code": null,
+          "name": "Kỹ thuật pha chế đồ uống",
+          "total": 5,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 5
+        },
+        {
+          "source_row": 160,
+          "code": null,
+          "name": "Lái xe ô tô hạng B, B.01, C1",
+          "total": 900,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 900
+        },
+        {
+          "source_row": 161,
+          "code": null,
+          "name": "Sư phạm dạy nghề",
+          "total": 150,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 150
+        },
+        {
+          "source_row": 162,
+          "code": null,
+          "name": "Thú y",
+          "total": 15,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 15
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-nghe-lilama-1-382",
+      "school_code": "NB-13143",
+      "source_name": "Trường Cao đẳng nghề LILAMA 1",
+      "source_code": "CĐT 2703",
+      "summary": {
+        "total": 1090,
+        "cao_dang": 70,
+        "trung_cap": 420,
+        "so_cap": 600
+      },
+      "programs": [
+        {
+          "source_row": 164,
+          "code": "5520123",
+          "name": "Hàn",
+          "total": 125,
+          "cao_dang": 25,
+          "trung_cap": 100,
+          "so_cap": null
+        },
+        {
+          "source_row": 165,
+          "code": "5520201",
+          "name": "Kỹ thuật lắp đặt TBĐ và ĐK trong CN",
+          "total": 170,
+          "cao_dang": 25,
+          "trung_cap": 145,
+          "so_cap": null
+        },
+        {
+          "source_row": 166,
+          "code": "5510216",
+          "name": "Công nghệ ô tô",
+          "total": 30,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 167,
+          "code": "5520205",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "total": 100,
+          "cao_dang": null,
+          "trung_cap": 100,
+          "so_cap": null
+        },
+        {
+          "source_row": 168,
+          "code": "5520104",
+          "name": "Chế tạo thiết bị cơ khí",
+          "total": 65,
+          "cao_dang": 20,
+          "trung_cap": 45,
+          "so_cap": null
+        },
+        {
+          "source_row": 169,
+          "code": null,
+          "name": "Lái xe ô tô B, C1",
+          "total": 570,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 570
+        },
+        {
+          "source_row": 170,
+          "code": null,
+          "name": "Bồi dưỡng NVSP cho NG dạy SC, TC-CD",
+          "total": 30,
+          "cao_dang": null,
+          "trung_cap": null,
+          "so_cap": 30
+        }
+      ]
+    },
+    {
+      "school_id": "HN-CD-004",
+      "school_code": "37108",
+      "source_name": "Trường cao đẳng phát thanh truyền hình I",
+      "source_code": "CPT",
+      "summary": {
+        "total": null,
+        "cao_dang": null,
+        "trung_cap": null,
+        "so_cap": null
+      },
+      "programs": [
+        {
+          "source_row": 173,
+          "code": "6320103",
+          "name": "Báo chí",
+          "total": 70,
+          "cao_dang": 70,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 174,
+          "code": "6320108",
+          "name": "Quan hệ công chúng",
+          "total": 25,
+          "cao_dang": 25,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 175,
+          "code": "6340301",
+          "name": "Kế toán",
+          "total": 25,
+          "cao_dang": 25,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 176,
+          "code": "6480201",
+          "name": "Công nghệ thông tin",
+          "total": 30,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 177,
+          "code": "6510303",
+          "name": "Công nghệ KT điện, điện tử",
+          "total": 30,
+          "cao_dang": 30,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 178,
+          "code": "6510312",
+          "name": "Công nghệ KT điện tử truyền thông",
+          "total": 25,
+          "cao_dang": 25,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 179,
+          "code": "6220206",
+          "name": "Tiếng Anh",
+          "total": 20,
+          "cao_dang": 20,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 181,
+          "code": "5320103",
+          "name": "Báo chí",
+          "total": 75,
+          "cao_dang": null,
+          "trung_cap": 75,
+          "so_cap": null
+        },
+        {
+          "source_row": 182,
+          "code": "5340302",
+          "name": "Kế toán doanh nghiệp",
+          "total": 75,
+          "cao_dang": null,
+          "trung_cap": 75,
+          "so_cap": null
+        },
+        {
+          "source_row": 183,
+          "code": "5480205",
+          "name": "Tin học ứng dụng",
+          "total": 190,
+          "cao_dang": null,
+          "trung_cap": 190,
+          "so_cap": null
+        },
+        {
+          "source_row": 184,
+          "code": "5510303",
+          "name": "Công nghệ KT điện, điện tử",
+          "total": 150,
+          "cao_dang": null,
+          "trung_cap": 150,
+          "so_cap": null
+        },
+        {
+          "source_row": 185,
+          "code": "5510312",
+          "name": "Công nghệ KT điện tử truyền thông",
+          "total": 25,
+          "cao_dang": null,
+          "trung_cap": 25,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "NB-CD-002",
+      "school_code": "37022",
+      "source_name": "TRƯỜNG CAO ĐẲNG Y TẾ NINH BÌNH",
+      "source_code": "CDD2701 (CNY)",
+      "summary": {
+        "total": 300,
+        "cao_dang": 280,
+        "trung_cap": 20,
+        "so_cap": null
+      },
+      "programs": [
+        {
+          "source_row": 188,
+          "code": "6720301",
+          "name": "Cao đẳng Điều dưỡng",
+          "total": 140,
+          "cao_dang": 140,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 189,
+          "code": "6720201",
+          "name": "Cao đẳng Dược",
+          "total": 140,
+          "cao_dang": 140,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 190,
+          "code": "5720101",
+          "name": "Y sỹ đa khoa (TC)",
+          "total": 20,
+          "cao_dang": null,
+          "trung_cap": 20,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-cao-dang-cong-nghe-kinh-te-va-che-885",
+      "school_code": "NB-15187",
+      "source_name": "Trường Cao đẳng Công nghệ, Kinh tế và Chế biến lâm sản",
+      "source_code": "CDT2401",
+      "summary": {
+        "total": 689,
+        "cao_dang": 93,
+        "trung_cap": 546,
+        "so_cap": 50
+      },
+      "programs": [
+        {
+          "source_row": 193,
+          "code": "6210422",
+          "name": "Gia công & thiết kế SP Mộc",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 194,
+          "code": "6210101",
+          "name": "Kỹ thuật Điêu khắc gỗ",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 195,
+          "code": "6210412",
+          "name": "Kỹ thuật Sơn mài và Khảm trai",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 196,
+          "code": "6340302",
+          "name": "Kế toán Doanh nghiệp",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 197,
+          "code": "6480209",
+          "name": "Quản trị mạng máy tính",
+          "total": 20,
+          "cao_dang": 20,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 198,
+          "code": "6520226",
+          "name": "Điện dân dụng",
+          "total": 10,
+          "cao_dang": 10,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 199,
+          "code": "6520227",
+          "name": "Điện Công nghiệp",
+          "total": 11,
+          "cao_dang": 11,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 200,
+          "code": "6520205",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "total": 12,
+          "cao_dang": 12,
+          "trung_cap": null,
+          "so_cap": null
+        },
+        {
+          "source_row": 202,
+          "code": "5210422",
+          "name": "Gia công & thiết kế SP Mộc",
+          "total": 90,
+          "cao_dang": null,
+          "trung_cap": 90,
+          "so_cap": null
+        },
+        {
+          "source_row": 203,
+          "code": "5210101",
+          "name": "Kỹ thuật Điêu khắc gỗ",
+          "total": 90,
+          "cao_dang": null,
+          "trung_cap": 90,
+          "so_cap": null
+        },
+        {
+          "source_row": 204,
+          "code": "5210412",
+          "name": "Kỹ thuật Sơn mài và Khảm trai",
+          "total": 60,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 205,
+          "code": "5340302",
+          "name": "Kế toán Doanh nghiệp",
+          "total": 56,
+          "cao_dang": null,
+          "trung_cap": 56,
+          "so_cap": null
+        },
+        {
+          "source_row": 206,
+          "code": "5480209",
+          "name": "Quản trị mạng máy tính",
+          "total": 50,
+          "cao_dang": null,
+          "trung_cap": 50,
+          "so_cap": null
+        },
+        {
+          "source_row": 207,
+          "code": "5480208",
+          "name": "Quản trị CSDL",
+          "total": 50,
+          "cao_dang": null,
+          "trung_cap": 50,
+          "so_cap": null
+        },
+        {
+          "source_row": 208,
+          "code": "5520226",
+          "name": "Điện dân dụng",
+          "total": 50,
+          "cao_dang": null,
+          "trung_cap": 50,
+          "so_cap": null
+        },
+        {
+          "source_row": 209,
+          "code": "5520227",
+          "name": "Điện Công nghiệp",
+          "total": 60,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 210,
+          "code": "5520205",
+          "name": "Kỹ thuật máy lạnh và ĐHKK",
+          "total": 40,
+          "cao_dang": null,
+          "trung_cap": 40,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-trung-cap-cong-nghe-so-8-nam-dinh-462",
+      "school_code": "NB-88920",
+      "source_name": "Trường Trung cấp Công nghệ số 8 Nam Định",
+      "source_code": "TCD2502",
+      "summary": {
+        "total": 690,
+        "cao_dang": null,
+        "trung_cap": 550,
+        "so_cap": 140
+      },
+      "programs": [
+        {
+          "source_row": 216,
+          "code": "5480201",
+          "name": "Công nghệ thông tin",
+          "total": 125,
+          "cao_dang": null,
+          "trung_cap": 90,
+          "so_cap": 35
+        },
+        {
+          "source_row": 217,
+          "code": "5510202",
+          "name": "Công nghệ kỹ thuật ô tô",
+          "total": 40,
+          "cao_dang": null,
+          "trung_cap": 40,
+          "so_cap": 0
+        },
+        {
+          "source_row": 218,
+          "code": "5510303",
+          "name": "Công nghệ, kỹ thuật điện, điện tử",
+          "total": 160,
+          "cao_dang": null,
+          "trung_cap": 125,
+          "so_cap": 35
+        },
+        {
+          "source_row": 219,
+          "code": "5520123",
+          "name": "Hàn",
+          "total": 105,
+          "cao_dang": null,
+          "trung_cap": 70,
+          "so_cap": 35
+        },
+        {
+          "source_row": 220,
+          "code": "5540205",
+          "name": "May thời trang",
+          "total": 260,
+          "cao_dang": null,
+          "trung_cap": 225,
+          "so_cap": 35
+        }
+      ]
+    },
+    {
+      "school_id": "truong-trung-cap-giao-thong-van-tai-tinh-836",
+      "school_code": "NB-39032",
+      "source_name": "Trường Trung cấp GTVT NĐ",
+      "source_code": "TCD2506",
+      "summary": {
+        "total": 250,
+        "cao_dang": null,
+        "trung_cap": null,
+        "so_cap": null
+      },
+      "programs": [
+        {
+          "source_row": 223,
+          "code": "55102016",
+          "name": "Công nghệ ô tô",
+          "total": 153,
+          "cao_dang": null,
+          "trung_cap": 153,
+          "so_cap": null
+        },
+        {
+          "source_row": 224,
+          "code": "5520227",
+          "name": "Điện Công nghiệp",
+          "total": 97,
+          "cao_dang": null,
+          "trung_cap": 97,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-trung-cap-dai-lam-111",
+      "school_code": "NB-59920",
+      "source_name": "Trường Trung cấp Đại Lâm",
+      "source_code": "TCD2503",
+      "summary": {
+        "total": null,
+        "cao_dang": null,
+        "trung_cap": null,
+        "so_cap": null
+      },
+      "programs": [
+        {
+          "source_row": 226,
+          "code": "5510216",
+          "name": "Công nghệ ôt ô",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 175,
+          "so_cap": null
+        },
+        {
+          "source_row": 227,
+          "code": "5540205",
+          "name": "May thời trang",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 245,
+          "so_cap": null
+        },
+        {
+          "source_row": 228,
+          "code": "5810207",
+          "name": "Kỹ thuật chế biến món ăn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        }
+      ]
+    },
+    {
+      "school_id": "truong-trung-cap-ky-thuat-du-lich-cong-d-174",
+      "school_code": "NB-14262",
+      "source_name": "Trường Trung Cấp Kỹ Thuật - Du Lịch Công Đoàn Ninh Bình",
+      "source_code": null,
+      "summary": {
+        "total": null,
+        "cao_dang": null,
+        "trung_cap": 300,
+        "so_cap": null
+      },
+      "programs": [
+        {
+          "source_row": 230,
+          "code": "5520226",
+          "name": "Nghề Điện dân dụng",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 231,
+          "code": "5520223",
+          "name": "Nghề Điện công nghiệp và dân dụng",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 232,
+          "code": "5480202",
+          "name": "Nghề công nghệ thông tin",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 233,
+          "code": "5810103",
+          "name": "Nghề hướng dẫn du lịch",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 60,
+          "so_cap": null
+        },
+        {
+          "source_row": 234,
+          "code": "5810201",
+          "name": "Quản trị khách sạn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 235,
+          "code": "5810206",
+          "name": "Nghiệp vụ nhà hàng",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 236,
+          "code": "5540205",
+          "name": "Nghề may thời trang",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        },
+        {
+          "source_row": 237,
+          "code": "5810207",
+          "name": "Kỹ thuật chế biến món ăn",
+          "total": null,
+          "cao_dang": null,
+          "trung_cap": 30,
+          "so_cap": null
+        }
+      ]
+    }
+  ]
+}

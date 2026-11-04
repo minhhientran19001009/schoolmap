@@ -1,4 +1,4 @@
-import initialJobs from '../data/jobPostings.json'
+import { jobService } from './jobService'
 
 // Comprehensive catalog of enterprises across Ninh Bình & vicinity
 export const ENTERPRISE_INDUSTRIES = [
@@ -12,7 +12,8 @@ export const ENTERPRISE_INDUSTRIES = [
   { id: 'nong_nghiep_tp', name: 'Nông nghiệp & Chế biến thực phẩm', icon: 'fa-solid fa-seedling' },
   { id: 'cntt_phan_mem', name: 'Công nghệ thông tin & Phần mềm', icon: 'fa-solid fa-laptop-code' },
   { id: 'xay_dung', name: 'Xây dựng & Kiến trúc', icon: 'fa-solid fa-trowel-bricks' },
-  { id: 'duoc_hoa_chat', name: 'Dược phẩm, hóa chất & Năng lượng', icon: 'fa-solid fa-flask' }
+  { id: 'duoc_hoa_chat', name: 'Dược phẩm, hóa chất & Năng lượng', icon: 'fa-solid fa-flask' },
+  { id: 'khac', name: 'Lĩnh vực khác', icon: 'fa-solid fa-building' }
 ]
 
 export const ENTERPRISE_REGIONS = [
@@ -522,30 +523,111 @@ const BASE_ENTERPRISES = [
   }
 ]
 
-export const enterpriseService = {
-  // Get all enterprises, merging with live active jobs from jobPostings.json
-  getAll() {
-    return BASE_ENTERPRISES.map(ent => {
-      // Find open jobs matching this enterprise name or alias
-      const matchingJobs = initialJobs.filter(job => {
-        if (!job.company) return false
-        const comp = job.company.toLowerCase()
-        const entName = ent.name.toLowerCase()
-        const shortName = (ent.short_name || '').toLowerCase()
-        return comp.includes(shortName) || entName.includes(comp) || comp.includes(entName)
-      })
+function normalizeEnterpriseName(value) {
+  return String(value || '')
+    .toLocaleLowerCase('vi')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/\bcong ty trach nhiem huu han\b/g, 'cong ty tnhh')
+    .replace(/\bcong ty co phan\b/g, 'cong ty cp')
+    .replace(/\bcty\b/g, 'cong ty')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+const JOB_INDUSTRY_TO_ENTERPRISE = {
+  dien_dien_tu: 'dien_tu',
+  co_khi: 'o_to_co_khi',
+  det_may: 'det_may',
+  du_lich: 'du_lich_dich_vu',
+  nong_nghiep: 'nong_nghiep_tp',
+  cntt: 'cntt_phan_mem',
+  xay_dung: 'xay_dung',
+  y_te: 'duoc_hoa_chat',
+  hoa_chat_nang_luong: 'duoc_hoa_chat',
+}
+
+function enterpriseIdForName(normalizedName) {
+  let hash = 2166136261
+  for (const character of normalizedName) {
+    hash ^= character.charCodeAt(0)
+    hash = Math.imul(hash, 16777619)
+  }
+  return `job-company-${normalizedName.slice(0, 45).replace(/\s+/g, '-')}-${(hash >>> 0).toString(36)}`
+}
+
+function directoryFromJobs() {
+  const groupedJobs = new Map()
+  jobService.getAll().forEach((job) => {
+    const key = normalizeEnterpriseName(job.company)
+    if (!key) return
+    if (!groupedJobs.has(key)) groupedJobs.set(key, [])
+    groupedJobs.get(key).push(job)
+  })
+
+  const existingKeys = new Set(BASE_ENTERPRISES.map((enterprise) => normalizeEnterpriseName(enterprise.name)))
+  const existing = BASE_ENTERPRISES.map((enterprise) => {
+    const jobs = groupedJobs.get(normalizeEnterpriseName(enterprise.name)) || []
+    return { ...enterprise, jobs_count: jobs.length, jobs }
+  })
+
+  const added = [...groupedJobs.entries()]
+    .filter(([key]) => !existingKeys.has(key))
+    .map(([key, jobs]) => {
+      const firstJob = jobs[0]
+      const industry = JOB_INDUSTRY_TO_ENTERPRISE[firstJob.industry] || 'khac'
+      const industryName = ENTERPRISE_INDUSTRIES.find((item) => item.id === industry)?.name || 'Lĩnh vực khác'
+      const address = jobs.find((job) => job.address && job.address !== 'Ninh Bình')?.address || firstJob.address || 'Ninh Bình'
 
       return {
-        ...ent,
-        jobs_count: matchingJobs.length,
-        jobs: matchingJobs
+        id: enterpriseIdForName(key),
+        name: firstJob.company,
+        short_name: null,
+        logo: firstJob.company_logo || 'DN',
+        color: firstJob.company_color || 'bg-blue-700',
+        industry,
+        industry_name: firstJob.source_business_sector || industryName,
+        region: 'all',
+        region_name: 'Ninh Bình',
+        employee_count: null,
+        address,
+        website: null,
+        tax_code: null,
+        phone: null,
+        email: null,
+        is_verified: false,
+        is_fdi: false,
+        partner_schools: [],
+        description: null,
+        jobs_count: jobs.length,
+        jobs,
       }
     })
+
+  return [...existing, ...added]
+}
+
+const DIRECTORY_ENTERPRISES = directoryFromJobs().sort((left, right) =>
+  Number(right.jobs_count > 0) - Number(left.jobs_count > 0)
+  || left.name.localeCompare(right.name, 'vi'),
+)
+
+export const enterpriseService = {
+  getAll() {
+    return DIRECTORY_ENTERPRISES
   },
 
   getById(id) {
     const list = this.getAll()
     return list.find(e => String(e.id) === String(id)) || null
+  },
+
+  getByCompanyName(name) {
+    const normalizedName = normalizeEnterpriseName(name)
+    if (!normalizedName) return null
+    return DIRECTORY_ENTERPRISES.find((enterprise) => normalizeEnterpriseName(enterprise.name) === normalizedName) || null
   },
 
   getIndustries() {
@@ -566,14 +648,14 @@ export const enterpriseService = {
 
     // 1. Search keyword
     if (search && search.trim()) {
-      const q = search.trim().toLowerCase()
+      const q = normalizeEnterpriseName(search)
       result = result.filter(e => 
-        e.name.toLowerCase().includes(q) ||
-        (e.short_name && e.short_name.toLowerCase().includes(q)) ||
-        (e.address && e.address.toLowerCase().includes(q)) ||
-        (e.tax_code && e.tax_code.includes(q)) ||
-        (e.industry_name && e.industry_name.toLowerCase().includes(q)) ||
-        (e.region_name && e.region_name.toLowerCase().includes(q))
+        normalizeEnterpriseName(e.name).includes(q) ||
+        normalizeEnterpriseName(e.short_name).includes(q) ||
+        normalizeEnterpriseName(e.address).includes(q) ||
+        normalizeEnterpriseName(e.tax_code).includes(q) ||
+        normalizeEnterpriseName(e.industry_name).includes(q) ||
+        normalizeEnterpriseName(e.region_name).includes(q)
       )
     }
 

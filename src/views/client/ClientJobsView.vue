@@ -365,7 +365,7 @@
 
       <!-- Tầng 2: hai cột việc làm và một cột cơ sở đào tạo -->
       <div v-else class="grid w-full grid-cols-1 items-start gap-5 xl:grid-cols-3">
-        <section class="space-y-6 xl:col-span-2">
+        <section ref="jobListingsPaneRef" class="space-y-6 xl:col-span-2">
           <template v-if="filteredJobs.length > 0">
             <div class="grid grid-cols-1 gap-3.5 md:grid-cols-2 sm:gap-5">
               <JobCard
@@ -524,7 +524,7 @@
             ref="quickViewPopupRef"
             :data-side="quickViewPlacement.side"
             :style="quickViewPopupStyle"
-            class="job-quick-preview-panel fixed z-[4000] w-[min(38rem,calc(100vw-1.5rem))] select-text">
+            class="job-quick-preview-panel fixed z-[4000] select-text">
             <span
               aria-hidden="true"
               :style="quickViewArrowStyle"
@@ -576,7 +576,7 @@
               </div>
               <div class="text-[11px] sm:text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-shrink-0">
                 <i class="fa-regular fa-clock text-slate-400"></i>
-                <span>Hạn nộp: <strong class="text-slate-700">{{ quickViewJob.deadline || '30/10/2026' }}</strong></span>
+                <span>Hạn nộp: <strong class="text-slate-700">{{ quickViewJob.deadline }}</strong></span>
               </div>
             </div>
 
@@ -748,9 +748,11 @@ const schoolDetailLookupMessage = ref('')
 const quickViewJob = ref(null)
 const quickViewAnchor = ref(null)
 const quickViewPopupRef = ref(null)
+const jobListingsPaneRef = ref(null)
 const quickViewPlacement = ref({
   top: 12,
   left: 12,
+  width: 560,
   side: 'right',
   arrowTop: 40,
 })
@@ -773,6 +775,7 @@ const professionError = ref('')
 const quickViewPopupStyle = computed(() => ({
   top: `${quickViewPlacement.value.top}px`,
   left: `${quickViewPlacement.value.left}px`,
+  width: `${quickViewPlacement.value.width}px`,
   '--quick-preview-enter-x': quickViewPlacement.value.side === 'right' ? '-14px' : '14px',
   transformOrigin: quickViewPlacement.value.side === 'right' ? 'left center' : 'right center',
 }))
@@ -1203,8 +1206,8 @@ function resetFilters() {
 }
 
 const QUICK_VIEW_MARGIN = 12
-const QUICK_VIEW_GAP = 14
-const QUICK_VIEW_DEFAULT_WIDTH = 608
+const QUICK_VIEW_GAP = 12
+const QUICK_VIEW_DEFAULT_WIDTH = 560
 const QUICK_VIEW_ESTIMATED_HEIGHT = 640
 
 function clamp(value, min, max) {
@@ -1218,17 +1221,22 @@ function updateQuickViewPlacement(popupRect = null) {
   const viewportHeight = document.documentElement.clientHeight
   const anchorRect = quickViewAnchor.value.anchorRect
   const titleRect = quickViewAnchor.value.titleRect || anchorRect
+  const paneRect = jobListingsPaneRef.value?.getBoundingClientRect()
+  const safeLeft = Math.max(QUICK_VIEW_MARGIN, (paneRect?.left ?? 0) + QUICK_VIEW_MARGIN)
+  const safeRight = Math.min(viewportWidth - QUICK_VIEW_MARGIN, (paneRect?.right ?? viewportWidth) - QUICK_VIEW_MARGIN)
+  const availableWidth = Math.max(240, safeRight - safeLeft)
   const popupWidth = Math.min(
     popupRect?.width || QUICK_VIEW_DEFAULT_WIDTH,
     viewportWidth - (QUICK_VIEW_MARGIN * 2),
+    availableWidth,
   )
   const popupHeight = Math.min(
     popupRect?.height || QUICK_VIEW_ESTIMATED_HEIGHT,
     viewportHeight - (QUICK_VIEW_MARGIN * 2),
   )
 
-  const spaceRight = viewportWidth - anchorRect.right - QUICK_VIEW_GAP - QUICK_VIEW_MARGIN
-  const spaceLeft = anchorRect.left - QUICK_VIEW_GAP - QUICK_VIEW_MARGIN
+  const spaceRight = safeRight - anchorRect.right - QUICK_VIEW_GAP
+  const spaceLeft = anchorRect.left - safeLeft - QUICK_VIEW_GAP
   let side = 'right'
 
   if (spaceRight < popupWidth && spaceLeft >= popupWidth) {
@@ -1242,8 +1250,8 @@ function updateQuickViewPlacement(popupRect = null) {
     : anchorRect.left - popupWidth - QUICK_VIEW_GAP
   const left = clamp(
     desiredLeft,
-    QUICK_VIEW_MARGIN,
-    viewportWidth - popupWidth - QUICK_VIEW_MARGIN,
+    safeLeft,
+    safeRight - popupWidth,
   )
 
   const titleCenterY = titleRect.top + (titleRect.height / 2)
@@ -1259,7 +1267,7 @@ function updateQuickViewPlacement(popupRect = null) {
     popupHeight - 32,
   )
 
-  quickViewPlacement.value = { top, left, side, arrowTop }
+  quickViewPlacement.value = { top, left, width: popupWidth, side, arrowTop }
 }
 
 async function openQuickViewModal(payload) {
