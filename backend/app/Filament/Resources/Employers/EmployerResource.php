@@ -7,17 +7,17 @@ use App\Filament\Resources\Employers\Pages\EditEmployer;
 use App\Filament\Resources\Employers\Pages\ListEmployers;
 use App\Models\Employer;
 use App\Models\Ward;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\Toggle;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
-use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -40,7 +40,7 @@ class EmployerResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Thông tin doanh nghiệp')->columns(2)->schema([
+            Section::make('Thông tin doanh nghiệp')->columnSpanFull()->columns(['default' => 1, 'md' => 2])->schema([
                 TextInput::make('name')->label('Tên doanh nghiệp')->required()->maxLength(200)->columnSpanFull(),
                 TextInput::make('tax_code')->label('Mã số thuế')->unique(ignoreRecord: true)->maxLength(30),
                 TextInput::make('industry')->label('Lĩnh vực hoạt động')->maxLength(150),
@@ -61,7 +61,6 @@ class EmployerResource extends Resource
                     'ACTIVE' => 'Đang hoạt động',
                     'INACTIVE' => 'Ngừng hoạt động',
                 ]),
-                Toggle::make('is_verified')->label('Đã xác minh')->default(false),
             ]),
         ]);
     }
@@ -77,7 +76,6 @@ class EmployerResource extends Resource
             TextColumn::make('status')->label('Trạng thái')->badge()->formatStateUsing(
                 fn (string $state): string => $state === 'ACTIVE' ? 'Hoạt động' : 'Ngừng hoạt động',
             )->color(fn (string $state): string => $state === 'ACTIVE' ? 'success' : 'gray'),
-            IconColumn::make('is_verified')->label('Xác minh')->boolean(),
         ])->filters([
             SelectFilter::make('status')->label('Trạng thái')->options([
                 'ACTIVE' => 'Đang hoạt động',
@@ -86,6 +84,10 @@ class EmployerResource extends Resource
         ])->recordActions([
             EditAction::make()->label('Chỉnh sửa'),
             DeleteAction::make()->label('Xóa'),
+        ])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa các mục đã chọn'),
+            ]),
         ])->defaultSort('name');
     }
 

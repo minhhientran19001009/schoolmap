@@ -7,6 +7,7 @@ import ClientLayout from '../layouts/ClientLayout.vue'
 import ClientMapView from '../views/client/ClientMapView.vue'
 import ClientJobsView from '../views/client/ClientJobsView.vue'
 import { portalRoleService } from '../services/portalRoleService'
+import { loadPublicDirectory } from '../services/publicDirectoryService'
 
 const routes = [
   // Client Portal Routes
@@ -94,7 +95,7 @@ const router = createRouter({
 })
 
 // Navigation Guard: If user types /admin or any /admin/* URL, instantly navigate to Filament v5
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   const panelPath = ['/admin', '/truong', '/doanh-nghiep'].find(path => to.path === path || to.path.startsWith(path + '/'))
   if (panelPath) {
     window.location.href = window.location.origin.includes('localhost:517')
@@ -112,6 +113,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
+  await loadPublicDirectory()
   next()
 })
 

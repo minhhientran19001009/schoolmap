@@ -27,8 +27,8 @@ async function get(path, params = {}) {
 }
 
 export const supplyDemandService = {
-  getCatalogs() {
-    return get('/api/supply-demand/catalogs')
+  getCatalogs(params = {}) {
+    return get('/api/supply-demand/catalogs', params)
   },
 
   getPortal(filters = {}) {

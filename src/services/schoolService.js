@@ -1,5 +1,4 @@
 import { ref } from 'vue'
-import districts from '../data/ninhbinh_districts.json'
 
 export const ALLOWED_LEVELS = ['gdtx', 'trung_cap', 'trung-cap', 'cao_dang', 'cao-dang', 'dai_hoc', 'dai-hoc']
 
@@ -232,29 +231,17 @@ export const schoolService = {
   },
 
   getDistricts() {
-    return districts
+    const districts = new Map()
+    liveSchools.value.forEach(school => {
+      if (school.district_id && school.district_name) districts.set(school.district_id, { id: school.district_id, name: school.district_name })
+    })
+    return Array.from(districts.values())
   },
 
   async getWards() {
     // Load wards directly from MySQL DB
     const data = await requestApi('/api/wards')
-    if (Array.isArray(data) && data.length > 0) {
-      return data
-    }
-    // Fallback to GIS boundary features
-    try {
-      const gisData = await import('../data/gis/ninh_binh_wards.json')
-      const wardsGeoJSON = gisData.default || gisData
-      return (wardsGeoJSON.features || []).map(f => ({
-        id: f.properties.code,
-        code: f.properties.code,
-        name: f.properties.name,
-        full_name: f.properties.fullName || f.properties.name,
-        unit_type: f.properties.fullName?.startsWith('Phường') ? 'Phường' : (f.properties.fullName?.startsWith('Thị trấn') ? 'Thị trấn' : 'Xã')
-      })).sort((a, b) => a.name.localeCompare(b.name, 'vi'))
-    } catch (e) {
-      return []
-    }
+    return Array.isArray(data) ? data : []
   },
 
   async getPublicSchools(params = {}) {

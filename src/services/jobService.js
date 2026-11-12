@@ -1,4 +1,5 @@
-import sourceJobs from '../data/jobPostings.json'
+import { computed } from 'vue'
+import { publicDirectory } from './publicDirectoryService'
 
 export const CAREER_FIELDS = [
   { id: 'co_khi', name: 'Cơ khí - Chế tạo - Ô tô', icon: 'fa-solid fa-gears', description: 'Gia công, lắp ráp, bảo trì máy móc và công nghệ ô tô.' },
@@ -57,22 +58,30 @@ function inferCareerFieldId(value) {
     || 'giao_duc_dich_vu'
 }
 
-const classifiedJobs = sourceJobs.map((job) => {
-  const inferredFieldId = inferCareerFieldId(`${job.profession} ${job.title} ${job.industry_name}`)
-  const existingFieldId = CAREER_FIELDS.some((item) => item.id === job.industry) ? job.industry : null
-  // Logistics was previously grouped under general business. Other existing
-  // classifications remain authoritative to avoid ambiguous keywords such as
-  // "ô tô" in a sales position or "lái xe" in construction machinery.
-  const fieldId = inferredFieldId === 'giao_thong_logistics' && job.industry === 'kinh_doanh'
-    ? inferredFieldId
-    : (existingFieldId || inferredFieldId)
-  const field = CAREER_FIELDS.find((item) => item.id === fieldId)
+function activeCareerFields() {
+  const remote = publicDirectory.value?.career_fields
+  return Array.isArray(remote) && remote.length > 0 ? remote : CAREER_FIELDS
+}
 
-  return {
-    ...job,
-    industry: fieldId,
-    industry_name: field?.name || job.industry_name,
-  }
+const classifiedJobs = computed(() => {
+  const careerFields = activeCareerFields()
+  return publicDirectory.value.jobs.map((job) => {
+    const inferredFieldId = inferCareerFieldId(`${job.profession} ${job.title} ${job.industry_name}`)
+    const existingFieldId = careerFields.some((item) => item.id === job.industry) ? job.industry : null
+    // Logistics was previously grouped under general business. Other existing
+    // classifications remain authoritative to avoid ambiguous keywords such as
+    // "ô tô" in a sales position or "lái xe" in construction machinery.
+    const fieldId = inferredFieldId === 'giao_thong_logistics' && job.industry === 'kinh_doanh'
+      ? inferredFieldId
+      : (existingFieldId || inferredFieldId)
+    const field = careerFields.find((item) => item.id === fieldId)
+
+    return {
+      ...job,
+      industry: fieldId,
+      industry_name: field?.name || job.industry_name,
+    }
+  })
 })
 
 export const SALARY_RANGES = [
@@ -89,19 +98,22 @@ export const jobService = {
   },
 
   getAll() {
-    return classifiedJobs
+    return classifiedJobs.value
   },
 
   getById(id) {
-    return classifiedJobs.find(j => j.id === id) || null
+    return classifiedJobs.value.find(j => j.id === id) || null
   },
 
   getIndustries() {
-    return INDUSTRIES
+    return [
+      { id: 'all', name: 'Tất cả lĩnh vực nghề nghiệp', icon: 'fa-solid fa-layer-group' },
+      ...activeCareerFields(),
+    ]
   },
 
   getCareerFields(professions = [], schools = [], trainingMajors = []) {
-    const fields = new Map(CAREER_FIELDS.map((field) => [field.id, {
+    const fields = new Map(activeCareerFields().map((field) => [field.id, {
       ...field,
       job_count: 0,
       job_openings: 0,
@@ -173,7 +185,7 @@ export const jobService = {
       })
     }
 
-    classifiedJobs.forEach((job) => {
+    classifiedJobs.value.forEach((job) => {
       const field = fields.get(job.industry) || fields.get(inferCareerFieldId(`${job.profession} ${job.title} ${job.industry_name}`))
       if (!field) return
 
@@ -283,14 +295,14 @@ export const jobService = {
 
   getAllSkills() {
     const skills = new Set()
-    classifiedJobs.forEach(j => {
+    classifiedJobs.value.forEach(j => {
       ;(j.skills || []).forEach(s => skills.add(s))
     })
     return Array.from(skills)
   },
 
   filterJobs({ search = '', wardCode = 'all', industry = 'all', salaryLevel = 'all', skill = 'all' }) {
-    let result = [...classifiedJobs]
+    let result = [...classifiedJobs.value]
 
     // 1. Search keyword (tiêu đề, tên công ty, địa chỉ, ngành)
     if (search && search.trim()) {
@@ -337,7 +349,7 @@ export const jobService = {
 
   getProfessionsSummary({ search = '', industry = 'all' } = {}) {
     const map = new Map()
-    classifiedJobs.forEach(job => {
+    classifiedJobs.value.forEach(job => {
       const p = job.profession || job.title
       if (!map.has(p)) {
         map.set(p, {

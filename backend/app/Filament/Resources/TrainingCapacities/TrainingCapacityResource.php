@@ -6,7 +6,10 @@ use App\Filament\Resources\TrainingCapacities\Pages\CreateTrainingCapacity;
 use App\Filament\Resources\TrainingCapacities\Pages\EditTrainingCapacity;
 use App\Filament\Resources\TrainingCapacities\Pages\ListTrainingCapacities;
 use App\Models\TrainingCapacity;
+use App\Support\SkillList;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -35,7 +38,7 @@ class TrainingCapacityResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Năng lực của cơ sở đào tạo')->columns(2)->schema([
+            Section::make('Năng lực của cơ sở đào tạo')->columnSpanFull()->columns(['default' => 1, 'md' => 2])->schema([
                 Select::make('school_id')->label('Trường / cơ sở')->relationship('school', 'name')->searchable()->preload()->required(),
                 Select::make('reporting_period_id')->label('Kỳ báo cáo')->relationship('period', 'name')->searchable()->preload()->required(),
                 Select::make('training_major_id')->label('Ngành / nghề')->relationship('major', 'name')->searchable()->preload()->required(),
@@ -43,7 +46,14 @@ class TrainingCapacityResource extends Resource
                 TextInput::make('quantity')->label('Năng lực dự kiến')->numeric()->minValue(1)->maxValue(100000)->required(),
                 TextInput::make('location')->label('Khu vực / địa điểm')->placeholder('Tên xã, phường hoặc khu vực')->maxLength(255)->required(),
                 TextInput::make('duration')->label('Thời lượng / hình thức')->maxLength(120),
-                Select::make('skills')->label('Kỹ năng có thể đào tạo')->relationship('skills', 'name')->multiple()->searchable()->preload()->columnSpanFull(),
+                Textarea::make('skills')
+                    ->label('Kỹ năng có thể đào tạo')
+                    ->helperText('Nhập các kỹ năng, phân cách bằng dấu phẩy hoặc xuống dòng.')
+                    ->rows(3)
+                    ->maxLength(3000)
+                    ->formatStateUsing(fn (mixed $state): string => SkillList::toText($state))
+                    ->dehydrateStateUsing(fn (mixed $state): array => SkillList::parse($state))
+                    ->columnSpanFull(),
                 Textarea::make('equipment')->label('Đội ngũ, thiết bị và điều kiện đào tạo')->rows(3)->maxLength(2000)->columnSpanFull(),
                 Textarea::make('note')->label('Ghi chú')->rows(3)->maxLength(2000)->columnSpanFull(),
                 Select::make('status')->label('Trạng thái')->required()->default('ACTIVE')->options(['ACTIVE' => 'Đang hoạt động', 'INACTIVE' => 'Ngừng hoạt động']),
@@ -65,7 +75,11 @@ class TrainingCapacityResource extends Resource
         ])->filters([
             SelectFilter::make('reporting_period_id')->label('Kỳ báo cáo')->relationship('period', 'name'),
             SelectFilter::make('training_major_id')->label('Ngành / nghề')->relationship('major', 'name')->searchable()->preload(),
-        ])->recordActions([EditAction::make(), DeleteAction::make()])->defaultSort('created_at', 'desc');
+        ])->recordActions([EditAction::make(), DeleteAction::make()])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa các mục đã chọn'),
+            ]),
+        ])->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

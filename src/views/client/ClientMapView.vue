@@ -21,13 +21,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, nextTick } from 'vue'
 import SchoolMap from '../../components/map/SchoolMap.vue'
 import SchoolDetailDrawer from '../../components/school/SchoolDetailDrawer.vue'
 import { schoolService, liveSchools } from '../../services/schoolService'
 
 const schools = liveSchools
-const districts = ref(schoolService.getDistricts())
+const districts = computed(() => schoolService.getDistricts())
 const selectedSchool = ref(null)
 const mapRef = ref(null)
 

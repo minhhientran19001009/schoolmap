@@ -155,13 +155,13 @@
             </div>
 
             <div class="min-w-0">
-              <span class="mb-1.5 block text-sm font-bold text-slate-800">Ngành, nghề *</span>
+              <span class="mb-1.5 block text-sm font-bold text-slate-800">Chuyên ngành đào tạo cần tuyển *</span>
               <FormSelectPopover
                 v-model="demandForm.training_major_id"
                 :options="majorOptions"
                 :disabled="isCatalogLoading || isSaving"
-                placeholder="Chọn ngành/nghề"
-                search-placeholder="Tìm tên ngành/nghề..."
+                placeholder="Chọn chuyên ngành đào tạo"
+                search-placeholder="Tìm chuyên ngành đào tạo..."
                 icon="fa-solid fa-graduation-cap"
                 tone="purple"
                 searchable
@@ -233,9 +233,16 @@
             </label>
 
             <label class="sm:col-span-2">
-              <span class="mb-1.5 block text-sm font-bold text-slate-800">Kỹ năng yêu cầu, cách nhau bằng dấu phẩy *</span>
-              <input v-model.trim="demandForm.skills" required maxlength="500" type="text" placeholder="Ví dụ: PLC, Đọc bản vẽ, An toàn điện" class="h-11 w-full rounded-xl border border-slate-200/90 bg-slate-50/70 px-3.5 text-sm text-slate-700 shadow-2xs outline-none transition-all hover:bg-slate-100/70 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-100" />
+              <span class="mb-1.5 block text-sm font-bold text-slate-800">Kỹ năng chi tiết của chuyên ngành *</span>
+              <textarea v-model.trim="demandForm.skills" required maxlength="2400" rows="3" :placeholder="selectedMajor ? `Kỹ năng cần cho ${selectedMajor.name}; phân cách bằng dấu phẩy hoặc xuống dòng` : 'Chọn chuyên ngành rồi nhập kỹ năng yêu cầu'" class="w-full rounded-xl border border-slate-200/90 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-700 shadow-2xs outline-none transition-all hover:bg-slate-100/70 focus:border-purple-500 focus:bg-white focus:ring-2 focus:ring-purple-100"></textarea>
             </label>
+
+            <div v-if="selectedMajor" class="sm:col-span-2 rounded-xl border border-slate-200 bg-slate-50/70 p-3.5">
+              <p class="text-sm font-bold text-slate-800">Cơ sở đào tạo {{ selectedMajor.name }} <span class="font-medium text-purple-600">({{ selectedMajor.training_schools?.length || 0 }})</span></p>
+              <ul class="mt-2 max-h-36 space-y-2 overflow-y-auto text-sm text-slate-600">
+                <li v-for="school in selectedMajor.training_schools" :key="school.id">{{ school.name }}</li>
+              </ul>
+            </div>
 
             <label class="sm:col-span-2">
               <span class="mb-1.5 block text-sm font-bold text-slate-800">Ghi chú / điều kiện phối hợp</span>
@@ -269,7 +276,6 @@ import { useRouter } from 'vue-router'
 import FormSelectPopover from '../../components/form/FormSelectPopover.vue'
 import { businessPortalService } from '../../services/businessPortalService'
 import { portalRoleService } from '../../services/portalRoleService'
-import { schoolService } from '../../services/schoolService'
 import { supplyDemandService } from '../../services/supplyDemandService'
 
 const router = useRouter()
@@ -285,17 +291,6 @@ const catalogError = ref('')
 const formError = ref('')
 const toastMessage = ref('')
 
-const fallbackLevels = [
-  { id: 'duoi_3_thang', name: 'Dưới 3 tháng' },
-  { id: 'so_cap', name: 'Sơ cấp' },
-  { id: 'trung_cap', name: 'Trung cấp' },
-  { id: 'cao_dang', name: 'Cao đẳng' },
-]
-
-const fallbackPeriods = [
-  { id: '2026-Q4', name: 'Quý IV/2026' },
-  { id: '2027-Q1', name: 'Quý I/2027' },
-]
 
 const purposeOptions = [
   { id: 'RECRUITMENT', name: 'Tuyển dụng' },
@@ -319,6 +314,7 @@ function emptyDemandForm() {
 }
 
 const demandForm = reactive(emptyDemandForm())
+const selectedMajor = computed(() => majorOptions.value.find((major) => String(major.id) === String(demandForm.training_major_id)))
 
 const stats = computed(() => [
   { label: 'Doanh nghiệp đang đăng nhập', value: activeEmployer.value ? '01' : '0', unit: activeEmployer.value?.tax_code ? `MST: ${activeEmployer.value.tax_code}` : 'doanh nghiệp', icon: 'fa-solid fa-building', iconClass: 'bg-purple-50 text-purple-600' },
@@ -345,7 +341,7 @@ function purposeLabel(value) {
 
 function resetForm() {
   Object.assign(demandForm, emptyDemandForm())
-  demandForm.training_major_id = String(majorOptions.value[0]?.id || '')
+  demandForm.training_major_id = ''
   demandForm.training_level_id = String(levelOptions.value[0]?.id || '')
   demandForm.reporting_period_id = String(periodOptions.value[0]?.id || '')
   demandForm.location = activeEmployer.value?.address || activeEmployer.value?.region || ''
@@ -372,7 +368,7 @@ function withEmployer(row) {
 }
 
 async function submitDemand() {
-  const skills = demandForm.skills.split(',').map((item) => item.trim()).filter(Boolean)
+  const skills = [...new Set(demandForm.skills.split(/[,;\n]+/).map((item) => item.trim()).filter(Boolean))]
   if (!demandForm.training_major_id || !demandForm.training_level_id || !demandForm.reporting_period_id || !demandForm.purpose || !demandForm.location || Number(demandForm.quantity) < 1 || skills.length === 0) {
     formError.value = 'Vui lòng điền đầy đủ các trường bắt buộc và nhập ít nhất một kỹ năng.'
     return
@@ -418,26 +414,19 @@ async function loadPortalData() {
   isCatalogLoading.value = true
   catalogError.value = ''
   const [catalogsResult, demandsResult] = await Promise.allSettled([
-    supplyDemandService.getCatalogs(),
+    supplyDemandService.getCatalogs({ include_training_schools: 1 }),
     businessPortalService.getDemands(),
   ])
 
   if (catalogsResult.status === 'fulfilled') {
     const catalogs = catalogsResult.value || {}
     majorOptions.value = Array.isArray(catalogs.training_majors) ? catalogs.training_majors : []
-    levelOptions.value = Array.isArray(catalogs.training_levels) && catalogs.training_levels.length ? catalogs.training_levels : fallbackLevels
-    periodOptions.value = Array.isArray(catalogs.reporting_periods) && catalogs.reporting_periods.length ? catalogs.reporting_periods : fallbackPeriods
+    levelOptions.value = Array.isArray(catalogs.training_levels) ? catalogs.training_levels : []
+    periodOptions.value = Array.isArray(catalogs.reporting_periods) ? catalogs.reporting_periods : []
   } else {
-    levelOptions.value = fallbackLevels
-    periodOptions.value = fallbackPeriods
-  }
-
-  if (!majorOptions.value.length) {
-    try {
-      majorOptions.value = await schoolService.getTrainingMajors()
-    } catch (error) {
-      majorOptions.value = []
-    }
+    levelOptions.value = []
+    periodOptions.value = []
+    catalogError.value = catalogsResult.reason?.message || 'Không tải được danh mục từ hệ thống. Vui lòng thử lại.'
   }
 
   if (demandsResult.status === 'fulfilled') {
@@ -458,7 +447,7 @@ async function loadPortalData() {
   }
 
   if (!majorOptions.value.length && !catalogError.value) {
-    catalogError.value = 'Danh mục ngành/nghề chưa tải được. Hãy bảo đảm máy chủ Laravel đang chạy.'
+    catalogError.value = 'Chưa có chuyên ngành được gắn với cơ sở đào tạo trong hệ thống.'
   }
   isCatalogLoading.value = false
 }

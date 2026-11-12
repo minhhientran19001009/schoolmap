@@ -8,7 +8,10 @@ use App\Filament\Business\Resources\ManagedWorkforceDemands\Pages\ListManagedWor
 use App\Models\ReportingPeriod;
 use App\Models\TrainingLevel;
 use App\Models\WorkforceDemand;
+use App\Support\SkillList;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -42,12 +45,19 @@ class ManagedWorkforceDemandResource extends Resource
         return $schema->components([
             Section::make('Khai báo nhu cầu nhân lực')->description('Khai báo nhu cầu theo ngành, trình độ và từng kỳ báo cáo.')->columns(2)->schema([
                 Select::make('reporting_period_id')->label('Kỳ báo cáo')->required()->searchable()->options(fn (): array => ReportingPeriod::query()->where('is_active', true)->orderByDesc('starts_at')->pluck('name', 'id')->all()),
-                Select::make('training_major_id')->label('Ngành / nghề')->relationship('major', 'name', modifyQueryUsing: fn ($query) => $query->where('is_active', true)->orderBy('name'))->searchable()->preload()->required(),
+                Select::make('training_major_id')->label('Chuyên ngành đào tạo cần tuyển')->relationship('major', 'name', modifyQueryUsing: fn ($query) => $query->where('is_active', true)->orderBy('name'))->searchable()->preload()->required(),
                 Select::make('education_level_id')->label('Trình độ')->required()->options(fn (): array => TrainingLevel::query()->where('is_active', true)->orderBy('display_order')->pluck('name', 'id')->all()),
                 Select::make('purpose')->label('Mục đích')->required()->default('RECRUITMENT')->options(['RECRUITMENT' => 'Tuyển dụng', 'NEW_TRAINING' => 'Đào tạo mới', 'RETRAINING' => 'Đào tạo lại']),
                 TextInput::make('quantity')->label('Số người cần')->numeric()->minValue(1)->maxValue(100000)->required(),
                 TextInput::make('location')->label('Khu vực / địa điểm')->maxLength(200),
-                Select::make('skills')->label('Kỹ năng yêu cầu')->relationship('skills', 'name')->multiple()->searchable()->preload()->columnSpanFull(),
+                Textarea::make('skills')
+                    ->label('Kỹ năng chi tiết của chuyên ngành')
+                    ->helperText('Kỹ năng thuộc chuyên ngành đã chọn; phân cách bằng dấu phẩy hoặc xuống dòng.')
+                    ->rows(3)
+                    ->maxLength(3000)
+                    ->formatStateUsing(fn (mixed $state): string => SkillList::toText($state))
+                    ->dehydrateStateUsing(fn (mixed $state): array => SkillList::parse($state))
+                    ->columnSpanFull(),
                 TextInput::make('age_range')->label('Độ tuổi')->maxLength(80),
                 TextInput::make('salary')->label('Thu nhập dự kiến')->maxLength(100),
                 Textarea::make('note')->label('Ghi chú / điều kiện phối hợp')->rows(4)->maxLength(2000)->columnSpanFull(),
@@ -65,7 +75,11 @@ class ManagedWorkforceDemandResource extends Resource
             TextColumn::make('quantity')->label('Số người')->numeric()->alignEnd(),
             TextColumn::make('proposals_sum_quantity')->label('Đã đề xuất')->sum('proposals', 'quantity')->numeric()->default(0)->alignEnd(),
             TextColumn::make('status')->label('Trạng thái')->badge()->formatStateUsing(fn (string $state): string => match ($state) {'PUBLISHED' => 'Đã công bố', 'CLOSED' => 'Đã đóng', default => 'Bản nháp'})->color(fn (string $state): string => match ($state) {'PUBLISHED' => 'success', 'CLOSED' => 'gray', default => 'warning'}),
-        ])->recordActions([EditAction::make(), DeleteAction::make()])->defaultSort('created_at', 'desc');
+        ])->recordActions([EditAction::make(), DeleteAction::make()])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa các mục đã chọn'),
+            ]),
+        ])->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

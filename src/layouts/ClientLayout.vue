@@ -206,6 +206,10 @@
 
     <!-- Main Public Content View -->
     <main class="flex-1 w-full overflow-hidden relative">
+      <div v-if="publicDirectoryError" role="alert" class="border-b border-rose-200 bg-rose-50 px-4 py-2 text-sm text-rose-700">
+        {{ publicDirectoryError }}
+        <button type="button" class="ml-2 font-semibold underline" @click="loadPublicDirectory(true)">Thử lại</button>
+      </div>
       <router-view :key="route.fullPath" />
     </main>
 
@@ -232,6 +236,7 @@
 </template>
 
 <script setup>
+import { publicDirectoryError, loadPublicDirectory } from '../services/publicDirectoryService'
 import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import TopFilterBar from '../components/layout/TopFilterBar.vue'

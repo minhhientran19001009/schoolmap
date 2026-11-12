@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CareerField;
 use App\Models\DemoCareerFieldProposal;
 use App\Models\DemoDemandProposal;
 use App\Models\DemoTrainingCapacity;
@@ -17,22 +18,6 @@ use Illuminate\Validation\ValidationException;
 
 class DemoSchoolPortalController extends Controller
 {
-    private const CAREER_FIELD_IDS = [
-        'co_khi',
-        'dien_dien_tu',
-        'cntt',
-        'xay_dung',
-        'giao_thong_logistics',
-        'det_may',
-        'du_lich',
-        'nong_nghiep',
-        'kinh_doanh',
-        'y_te',
-        'hoa_chat_nang_luong',
-        'van_hoa_nghe_thuat',
-        'giao_duc_dich_vu',
-    ];
-
     public function selectSchool(Request $request): JsonResponse
     {
         $this->ensureEnabled();
@@ -312,7 +297,7 @@ class DemoSchoolPortalController extends Controller
     {
         $school = $this->selectedSchool($request);
         $data = $request->validate([
-            'career_field_id' => ['required', 'string', Rule::in(self::CAREER_FIELD_IDS)],
+            'career_field_id' => ['required', 'string', Rule::in(array_keys(CareerField::options(onlyActive: true)))],
             'quantity' => ['required', 'integer', 'min:1', 'max:100000'],
             'plan' => ['required', 'string', 'min:10', 'max:3000'],
         ]);

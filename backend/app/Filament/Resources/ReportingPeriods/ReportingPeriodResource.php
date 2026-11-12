@@ -6,7 +6,9 @@ use App\Filament\Resources\ReportingPeriods\Pages\CreateReportingPeriod;
 use App\Filament\Resources\ReportingPeriods\Pages\EditReportingPeriod;
 use App\Filament\Resources\ReportingPeriods\Pages\ListReportingPeriods;
 use App\Models\ReportingPeriod;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
@@ -37,7 +39,7 @@ class ReportingPeriodResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Thông tin kỳ báo cáo')->columns(2)->schema([
+            Section::make('Thông tin kỳ báo cáo')->columnSpanFull()->columns(['default' => 1, 'md' => 2])->schema([
                 TextInput::make('code')->label('Mã kỳ')->required()->unique(ignoreRecord: true)->maxLength(30),
                 TextInput::make('name')->label('Tên kỳ')->required()->maxLength(100),
                 DatePicker::make('starts_at')->label('Ngày bắt đầu')->required(),
@@ -58,6 +60,10 @@ class ReportingPeriodResource extends Resource
         ])->recordActions([
             EditAction::make()->label('Chỉnh sửa'),
             DeleteAction::make()->label('Xóa'),
+        ])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa các mục đã chọn'),
+            ]),
         ])->defaultSort('starts_at', 'desc');
     }
 

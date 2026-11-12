@@ -6,7 +6,9 @@ use App\Filament\Resources\EmployerAccounts\Pages\CreateEmployerAccount;
 use App\Filament\Resources\EmployerAccounts\Pages\EditEmployerAccount;
 use App\Filament\Resources\EmployerAccounts\Pages\ListEmployerAccounts;
 use App\Models\User;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -43,7 +45,7 @@ class EmployerAccountResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Thông tin tài khoản')->columns(2)->schema([
+            Section::make('Thông tin tài khoản')->columnSpanFull()->columns(['default' => 1, 'md' => 2])->schema([
                 Select::make('employer_id')->label('Doanh nghiệp')->relationship('employer', 'name')->searchable()->preload()->required()->unique(ignoreRecord: true),
                 TextInput::make('full_name')->label('Người phụ trách')->required()->maxLength(100),
                 TextInput::make('email')->label('Email đăng nhập')->email()->required()->unique(ignoreRecord: true)->maxLength(100),
@@ -61,7 +63,11 @@ class EmployerAccountResource extends Resource
             TextColumn::make('email')->label('Email')->searchable(),
             TextColumn::make('last_login_at')->label('Đăng nhập gần nhất')->dateTime('d/m/Y H:i')->placeholder('Chưa đăng nhập'),
             IconColumn::make('is_active')->label('Hoạt động')->boolean(),
-        ])->recordActions([EditAction::make(), DeleteAction::make()])->defaultSort('employer.name');
+        ])->recordActions([EditAction::make(), DeleteAction::make()])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa tài khoản đã chọn'),
+            ]),
+        ])->defaultSort('employer.name');
     }
 
     public static function getPages(): array

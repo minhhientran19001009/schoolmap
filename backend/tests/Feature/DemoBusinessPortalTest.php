@@ -30,7 +30,17 @@ class DemoBusinessPortalTest extends TestCase
         Schema::create('training_majors', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
+        });
+        Schema::create('schools', function (Blueprint $table): void {
+            $table->string('id')->primary();
+            $table->string('name');
+            $table->string('status')->nullable();
+        });
+        Schema::create('school_training_major', function (Blueprint $table): void {
+            $table->string('school_id');
+            $table->unsignedBigInteger('training_major_id');
         });
         Schema::create('training_levels', function (Blueprint $table): void {
             $table->string('id')->primary();
@@ -64,6 +74,8 @@ class DemoBusinessPortalTest extends TestCase
             ['id' => 702, 'name' => 'Doanh nghiệp B', 'tax_code' => '2700000002', 'industry' => 'Điện tử', 'region' => 'Ninh Bình', 'address' => 'KCN B', 'status' => 'ACTIVE', 'is_verified' => true],
         ]);
         DB::table('training_majors')->insert(['id' => 701, 'name' => 'Công nghệ ô tô']);
+        DB::table('schools')->insert(['id' => 'school-auto', 'name' => 'Trường đào tạo ô tô', 'status' => 'ACTIVE']);
+        DB::table('school_training_major')->insert(['school_id' => 'school-auto', 'training_major_id' => 701]);
         DB::table('training_levels')->insert(['id' => 'cao_dang', 'name' => 'Cao đẳng']);
         DB::table('reporting_periods')->insert(['id' => 701, 'name' => 'Quý IV/2026']);
     }
@@ -89,6 +101,7 @@ class DemoBusinessPortalTest extends TestCase
             'skills' => ['Lắp ráp', 'Đọc bản vẽ'],
         ])->assertCreated()
             ->assertJsonPath('demand.employer_id', 701)
+            ->assertJsonPath('demand.training_major_id', 701)
             ->assertJsonPath('demand.quantity', 80);
 
         $this->postJson('/api/demo/business-portal/select-employer', ['employer_id' => 702])
@@ -100,5 +113,15 @@ class DemoBusinessPortalTest extends TestCase
 
         $this->assertDatabaseHas('demo_workforce_demands', ['employer_id' => 701, 'quantity' => 80]);
         $this->assertDatabaseMissing('demo_workforce_demands', ['employer_id' => 702]);
+    }
+
+    public function test_demand_rejects_a_major_without_a_training_school(): void
+    {
+        DB::table('training_majors')->insert(['id' => 702, 'name' => 'Ngành chưa có trường đào tạo']);
+        $this->withSession(['demo_employer_id' => 701])->postJson('/api/demo/business-portal/demands', [
+            'training_major_id' => 702, 'training_level_id' => 'cao_dang', 'reporting_period_id' => 701,
+            'purpose' => 'RECRUITMENT', 'quantity' => 5, 'location' => 'Ninh Bình', 'skills' => ['Lắp ráp'],
+        ])->assertUnprocessable()->assertJsonValidationErrors('training_major_id');
+        $this->assertDatabaseCount('demo_workforce_demands', 0);
     }
 }

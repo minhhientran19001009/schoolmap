@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\DemoWorkforceDemand;
 use App\Models\Employer;
-use App\Models\Skill;
+use App\Models\TrainingMajor;
+use App\Support\SkillList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
 class DemoBusinessPortalController extends Controller
 {
@@ -83,12 +85,17 @@ class DemoBusinessPortalController extends Controller
             'note' => ['nullable', 'string', 'max:2000'],
         ]);
 
-        $skills = collect($data['skills'])
-            ->map(fn (string $name): string => trim($name))
-            ->filter()
-            ->unique(fn (string $name): string => Skill::normalize($name))
-            ->values()
-            ->all();
+        $offered = TrainingMajor::query()->whereKey($data['training_major_id'])->where('is_active', true)
+            ->whereHas('schools', fn ($query) => $query->where(fn ($q) => $q->whereNull('schools.status')->orWhere('schools.status', '!=', 'INACTIVE')))
+            ->exists();
+        if (! $offered) {
+            throw ValidationException::withMessages(['training_major_id' => 'Chọn chuyên ngành đang được cơ sở đào tạo trong hệ thống giảng dạy.']);
+        }
+
+        $skills = SkillList::parse($data['skills']);
+        if ($skills === []) {
+            throw ValidationException::withMessages(['skills' => 'Nhập ít nhất một kỹ năng chi tiết của chuyên ngành.']);
+        }
 
         $demand = DemoWorkforceDemand::query()->updateOrCreate(
             [
@@ -156,6 +163,7 @@ class DemoBusinessPortalController extends Controller
         return [
             'id' => $demand->getKey(),
             'employer_id' => (int) $demand->employer_id,
+            'training_major_id' => (int) $demand->training_major_id,
             'major' => $demand->major?->name,
             'level' => $demand->trainingLevel?->name,
             'period' => $demand->period?->name,

@@ -7,7 +7,7 @@ Chạy `node scripts/importSourceWorkbooks.cjs` từ thư mục dự án để t
 
 Ô trống và dấu gạch trong báo cáo tuyển sinh được lưu thành `null` và hiển thị là “—”, để không biến dữ liệu thiếu thành số 0. Ngày hạn tuyển dụng và số liên hệ được tạo lại.
 
-Các file Excel gốc không bị sửa. Dataset tuyển dụng hiện là JSON tĩnh phía web. Danh sách doanh nghiệp công khai tự tổng hợp thêm doanh nghiệp từ các tin tuyển dụng, gộp nhiều tin cùng công ty và liên kết với trang chi tiết doanh nghiệp. Việc nhập không tạo tài khoản doanh nghiệp trong cơ sở dữ liệu backend.
+Các file Excel gốc không bị sửa. Từ đợt cập nhật ngày 12/11/2026, doanh nghiệp, tin việc làm và báo cáo tuyển sinh được lưu trong CSDL; frontend đọc API và không import các tệp số liệu JSON này nữa. Tệp JSON chỉ còn dùng làm đầu vào lệnh chuyển đổi và đối chiếu nguồn. Xem [kết quả nhập dữ liệu sạch](ket-qua-nhap-du-lieu-sach-2026-11-12.md).
 
 ## Đồng bộ danh mục ngành/nghề và ngành đào tạo của trường
 

@@ -56,13 +56,14 @@ class SupplyDemandPortalTest extends TestCase
             $table->string('name');
             $table->string('address')->nullable();
             $table->string('ward')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
-        Schema::create('skills', function (Blueprint $table): void {
-            $table->id();
-            $table->string('name');
-            $table->string('normalized_name');
-            $table->boolean('is_active')->default(true);
+        Schema::create('school_training_major', function (Blueprint $table): void {
+            $table->string('school_id');
+            $table->unsignedBigInteger('training_major_id');
+            $table->string('degree_level')->nullable();
+            $table->unsignedInteger('annual_quota')->nullable();
             $table->timestamps();
         });
         Schema::create('workforce_demands', function (Blueprint $table): void {
@@ -75,6 +76,7 @@ class SupplyDemandPortalTest extends TestCase
             $table->unsignedInteger('quantity');
             $table->string('location')->nullable();
             $table->string('salary')->nullable();
+            $table->json('skills')->nullable();
             $table->string('status')->default('PUBLISHED');
             $table->boolean('is_sample')->default(false);
             $table->timestamps();
@@ -88,17 +90,10 @@ class SupplyDemandPortalTest extends TestCase
             $table->unsignedInteger('quantity');
             $table->string('location')->nullable();
             $table->string('duration')->nullable();
+            $table->json('skills')->nullable();
             $table->string('status')->default('ACTIVE');
             $table->boolean('is_sample')->default(false);
             $table->timestamps();
-        });
-        Schema::create('demand_skill', function (Blueprint $table): void {
-            $table->unsignedBigInteger('workforce_demand_id');
-            $table->unsignedBigInteger('skill_id');
-        });
-        Schema::create('capacity_skill', function (Blueprint $table): void {
-            $table->unsignedBigInteger('training_capacity_id');
-            $table->unsignedBigInteger('skill_id');
         });
         Schema::create('demand_proposals', function (Blueprint $table): void {
             $table->id();
@@ -127,26 +122,13 @@ class SupplyDemandPortalTest extends TestCase
             ['id' => 'school-a', 'name' => 'Cơ sở GDNN A', 'address' => 'Ninh Bình'],
             ['id' => 'school-b', 'name' => 'Cơ sở GDNN B', 'address' => 'Tam Điệp'],
         ]);
-        DB::table('skills')->insert([
-            ['id' => 1, 'name' => 'PLC', 'normalized_name' => 'plc', 'is_active' => true],
-            ['id' => 2, 'name' => 'Lắp ráp', 'normalized_name' => 'lap rap', 'is_active' => true],
-        ]);
         DB::table('workforce_demands')->insert([
-            ['id' => 1, 'employer_id' => 1, 'training_major_id' => 1, 'education_level_id' => 'cao_dang', 'reporting_period_id' => 1, 'quantity' => 100, 'location' => 'Gia Viễn', 'status' => 'PUBLISHED', 'is_sample' => false],
-            ['id' => 2, 'employer_id' => 2, 'training_major_id' => 1, 'education_level_id' => 'trung_cap', 'reporting_period_id' => 1, 'quantity' => 80, 'location' => 'Tam Điệp', 'status' => 'PUBLISHED', 'is_sample' => false],
+            ['id' => 1, 'employer_id' => 1, 'training_major_id' => 1, 'education_level_id' => 'cao_dang', 'reporting_period_id' => 1, 'quantity' => 100, 'location' => 'Gia Viễn', 'skills' => json_encode(['PLC', 'Lắp ráp']), 'status' => 'PUBLISHED', 'is_sample' => false],
+            ['id' => 2, 'employer_id' => 2, 'training_major_id' => 1, 'education_level_id' => 'trung_cap', 'reporting_period_id' => 1, 'quantity' => 80, 'location' => 'Tam Điệp', 'skills' => json_encode(['Lắp ráp']), 'status' => 'PUBLISHED', 'is_sample' => false],
         ]);
         DB::table('training_capacities')->insert([
-            ['id' => 1, 'school_id' => 'school-a', 'training_major_id' => 1, 'education_level_id' => 'cao_dang', 'reporting_period_id' => 1, 'quantity' => 60, 'location' => 'Ninh Bình', 'status' => 'ACTIVE', 'is_sample' => false],
-            ['id' => 2, 'school_id' => 'school-b', 'training_major_id' => 1, 'education_level_id' => 'trung_cap', 'reporting_period_id' => 1, 'quantity' => 50, 'location' => 'Tam Điệp', 'status' => 'ACTIVE', 'is_sample' => false],
-        ]);
-        DB::table('demand_skill')->insert([
-            ['workforce_demand_id' => 1, 'skill_id' => 1],
-            ['workforce_demand_id' => 1, 'skill_id' => 2],
-            ['workforce_demand_id' => 2, 'skill_id' => 2],
-        ]);
-        DB::table('capacity_skill')->insert([
-            ['training_capacity_id' => 1, 'skill_id' => 1],
-            ['training_capacity_id' => 2, 'skill_id' => 2],
+            ['id' => 1, 'school_id' => 'school-a', 'training_major_id' => 1, 'education_level_id' => 'cao_dang', 'reporting_period_id' => 1, 'quantity' => 60, 'location' => 'Ninh Bình', 'skills' => json_encode(['PLC']), 'status' => 'ACTIVE', 'is_sample' => false],
+            ['id' => 2, 'school_id' => 'school-b', 'training_major_id' => 1, 'education_level_id' => 'trung_cap', 'reporting_period_id' => 1, 'quantity' => 50, 'location' => 'Tam Điệp', 'skills' => json_encode(['Lắp ráp']), 'status' => 'ACTIVE', 'is_sample' => false],
         ]);
     }
 
@@ -196,5 +178,21 @@ class SupplyDemandPortalTest extends TestCase
         $this->assertSame(25, $statistics['totals']['proposed']);
         $this->assertSame('Cao đẳng', $statistics['priorities'][0]['level']);
         $this->assertSame(40, $statistics['priorities'][0]['gap']);
+    }
+
+    public function test_business_catalog_lists_real_training_schools_and_deduplicates_levels(): void
+    {
+        DB::table('training_majors')->insert(['id' => 2, 'name' => 'Ngành chưa đào tạo', 'slug' => 'chua-dao-tao']);
+        DB::table('schools')->where('id', 'school-b')->update(['status' => 'INACTIVE']);
+        DB::table('school_training_major')->insert([
+            ['school_id' => 'school-a', 'training_major_id' => 1, 'degree_level' => 'cao_dang'],
+            ['school_id' => 'school-a', 'training_major_id' => 1, 'degree_level' => 'trung_cap'],
+            ['school_id' => 'school-b', 'training_major_id' => 1, 'degree_level' => 'cao_dang'],
+        ]);
+        $this->getJson('/api/supply-demand/catalogs?include_training_schools=1')
+            ->assertOk()->assertJsonCount(1, 'training_majors')
+            ->assertJsonPath('training_majors.0.id', 1)
+            ->assertJsonPath('training_majors.0.school_count', 1)
+            ->assertJsonPath('training_majors.0.training_schools.0.id', 'school-a');
     }
 }

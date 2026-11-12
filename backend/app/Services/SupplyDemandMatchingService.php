@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use App\Models\DemandProposal;
-use App\Models\Skill;
 use App\Models\TrainingCapacity;
 use App\Models\WorkforceDemand;
+use App\Support\SkillList;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -42,19 +42,15 @@ class SupplyDemandMatchingService
     /** @return array<int, string> */
     public function skillGap(WorkforceDemand $demand, TrainingCapacity $capacity): array
     {
-        $capacitySkills = $capacity->skills
-            ->map(fn (Skill $skill): string => $skill->normalized_name ?: Skill::normalize($skill->name))
-            ->all();
+        $capacitySkills = array_map(
+            fn (string $skill): string => SkillList::normalize($skill),
+            SkillList::parse($capacity->skills),
+        );
 
-        return $demand->skills
-            ->reject(fn (Skill $skill): bool => in_array(
-                $skill->normalized_name ?: Skill::normalize($skill->name),
-                $capacitySkills,
-                true,
-            ))
-            ->pluck('name')
-            ->values()
-            ->all();
+        return array_values(array_filter(
+            SkillList::parse($demand->skills),
+            fn (string $skill): bool => ! in_array(SkillList::normalize($skill), $capacitySkills, true),
+        ));
     }
 
     public function createProposal(

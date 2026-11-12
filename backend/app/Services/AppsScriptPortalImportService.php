@@ -6,11 +6,11 @@ use App\Models\DemandProposal;
 use App\Models\Employer;
 use App\Models\ReportingPeriod;
 use App\Models\School;
-use App\Models\Skill;
 use App\Models\TrainingCapacity;
 use App\Models\TrainingLevel;
 use App\Models\TrainingMajor;
 use App\Models\WorkforceDemand;
+use App\Support\SkillList;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Throwable;
@@ -167,6 +167,7 @@ class AppsScriptPortalImportService
                 'location' => $this->nullableText($listing['district'] ?? null, 200),
                 'age_range' => $this->nullableText($listing['age'] ?? null, 80),
                 'salary' => $this->nullableText($listing['salary'] ?? null, 100),
+                'skills' => SkillList::parse($listing['skills'] ?? []),
                 'note' => $this->nullableText($listing['note'] ?? null, 2000),
                 'status' => $publish ? 'PUBLISHED' : 'DRAFT',
                 'source' => 'APPS_SCRIPT',
@@ -174,7 +175,6 @@ class AppsScriptPortalImportService
             ],
         );
 
-        $demand->skills()->sync($this->resolveSkillIds($listing['skills'] ?? []));
     }
 
     /** @param array<string, mixed> $listing */
@@ -198,6 +198,7 @@ class AppsScriptPortalImportService
                 'location' => $this->nullableText($listing['location'] ?? null, 255),
                 'duration' => $this->nullableText($listing['duration'] ?? null, 120),
                 'equipment' => $this->nullableText($listing['equipment'] ?? null, 2000),
+                'skills' => SkillList::parse($listing['skills'] ?? []),
                 'note' => $this->nullableText($listing['note'] ?? null, 2000),
                 'status' => $publish ? 'ACTIVE' : 'INACTIVE',
                 'source' => 'APPS_SCRIPT',
@@ -206,7 +207,6 @@ class AppsScriptPortalImportService
             ],
         );
 
-        $capacity->skills()->sync($this->resolveSkillIds($listing['skills'] ?? []));
     }
 
     /** @param array<string, mixed> $proposal */
@@ -311,30 +311,6 @@ class AppsScriptPortalImportService
         }
 
         return $period;
-    }
-
-    /** @return array<int, int> */
-    private function resolveSkillIds(mixed $skills): array
-    {
-        if (! is_array($skills)) {
-            return [];
-        }
-
-        return collect($skills)
-            ->map(fn ($name): string => trim((string) $name))
-            ->filter()
-            ->unique(fn (string $name): string => Skill::normalize($name))
-            ->take(20)
-            ->map(function (string $name): int {
-                $skill = Skill::query()->firstOrCreate(
-                    ['normalized_name' => Skill::normalize($name)],
-                    ['name' => Str::limit($name, 120, ''), 'is_active' => true],
-                );
-
-                return (int) $skill->id;
-            })
-            ->values()
-            ->all();
     }
 
     /** @param array<string, mixed> $record */

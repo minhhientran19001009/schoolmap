@@ -2,17 +2,17 @@
   <div class="w-full h-full overflow-y-auto overflow-x-hidden bg-slate-50 flex flex-col font-sans select-text" @scroll.passive="closeQuickViewModal">
     
     <!-- Hero Search Section (System-Cohesive Light Theme) -->
-    <section class="relative z-20 overflow-visible border-b border-slate-200/90 bg-gradient-to-b from-blue-50/70 via-indigo-50/30 to-slate-50 pt-6 sm:pt-9 pb-7 sm:pb-11 px-3 sm:px-6 flex-shrink-0">
+    <section class="relative z-20 overflow-visible border-b border-slate-200/90 bg-gradient-to-b from-blue-50/70 via-indigo-50/30 to-slate-50 flex-shrink-0" :class="selectedCareerField ? 'px-4 py-6 sm:px-6 sm:py-8 lg:px-8' : 'px-3 pt-6 pb-7 sm:px-6 sm:pt-9 sm:pb-11'">
       <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#93c5fd_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
 
-      <div class="relative max-w-5xl mx-auto text-center space-y-2.5 sm:space-y-3">
+      <div class="relative mx-auto space-y-2.5 sm:space-y-3" :class="selectedCareerField ? 'max-w-[1376px] text-left' : 'max-w-5xl text-center'">
         <!-- Badge -->
         <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/95 text-blue-700 text-[11px] sm:text-xs font-bold shadow-2xs border border-blue-200/80 backdrop-blur-xs">
           <i class="fa-solid fa-briefcase text-blue-600"></i>
           <span>{{ selectedCareerField ? `${selectedCareerFieldJobCount} vị trí đang tuyển thuộc ${selectedCareerField.name}` : 'Kết nối nhu cầu doanh nghiệp với chương trình đào tạo GDNN' }}</span>
         </div>
 
-        <button v-if="selectedCareerField" type="button" class="mx-auto flex w-fit items-center gap-2 rounded-xl px-3 py-2 text-xs font-bold text-blue-700 transition hover:bg-blue-100/70" @click="backToCareerFields">
+        <button v-if="selectedCareerField" type="button" class="flex w-fit items-center gap-2 rounded-xl py-2 text-xs font-bold text-blue-700 transition hover:bg-blue-100/70" @click="backToCareerFields">
           <i class="fa-solid fa-arrow-left"></i>
           Quay lại danh sách lĩnh vực
         </button>
@@ -21,24 +21,51 @@
         <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
           {{ selectedCareerField ? `Việc làm lĩnh vực ${selectedCareerField.name}` : 'Khám phá lĩnh vực nghề nghiệp phù hợp với bạn' }}
         </h1>
-        <p class="text-xs sm:text-sm md:text-base text-slate-600 max-w-2xl mx-auto px-1 leading-relaxed">
+        <p class="text-xs sm:text-sm md:text-base text-slate-600 max-w-2xl px-1 leading-relaxed" :class="selectedCareerField ? '' : 'mx-auto'">
           {{ selectedCareerField
             ? 'Danh sách các vị trí tuyển dụng cụ thể phù hợp với lĩnh vực đã chọn.'
             : 'Tra cứu nhu cầu nhân lực, kỹ năng cần học và các cơ sở giáo dục nghề nghiệp có chương trình đào tạo phù hợp.' }}
         </p>
 
-        <!-- Unified Search & Filter Box (Gộp chung thanh tìm kiếm & bộ lọc) -->
-        <div class="pt-2 sm:pt-3 max-w-5xl mx-auto">
-          <div class="bg-white rounded-2xl shadow-sm hover:shadow-soft transition-shadow p-2 sm:p-2.5 border border-slate-200/90 text-left">
-            
-            <div v-if="selectedCareerField" class="flex flex-col md:flex-row items-stretch md:items-center gap-2 sm:gap-2.5">
+
+      </div>
+    </section>
+
+    <!-- Public directory frame shared with schools and enterprises. -->
+    <main id="job-listings-section" class="max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1">
+
+      <ProfessionExplorer
+        v-if="!selectedCareerField"
+        :professions="careerFieldRows"
+        :period="professionPortal.period"
+        :loading="isProfessionLoading"
+        :error="professionError"
+        @view-school="openSchoolDetailFromQuickView"
+        @view-jobs="openCareerFieldJobs"
+        @reload="loadProfessionData"
+      />
+
+      <!-- Tầng 2: bộ lọc và cơ sở đào tạo bên trái, việc làm bên phải. -->
+      <div v-else class="grid w-full grid-cols-1 items-start gap-5 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6">
+        <aside aria-label="Bộ lọc việc làm và cơ sở đào tạo" class="contents lg:block lg:min-w-0 lg:space-y-4">
+          <div class="relative z-20 order-1 min-w-0 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs">
+            <div class="mb-4 flex items-center justify-between gap-2 border-b border-slate-100 pb-3">
+              <h2 class="flex items-center gap-2 text-sm font-bold text-slate-900">
+                <i class="fa-solid fa-sliders text-blue-600" aria-hidden="true"></i>
+                Bộ lọc việc làm
+              </h2>
+              <button v-if="hasActiveFilter" type="button" class="text-xs font-semibold text-blue-600 hover:text-blue-800" @click="resetFilters">Đặt lại</button>
+            </div>
+            <div class="space-y-3">
               
               <!-- 1. Keyword Input -->
+              <label for="career-job-search" class="block text-xs font-semibold text-slate-600">Tìm việc làm</label>
               <div class="flex-1 w-full relative flex items-center min-w-0">
                 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <input 
+                  id="career-job-search"
                   v-model="searchQuery"
                   @keyup.enter="scrollToJobs"
                   type="text" 
@@ -54,10 +81,9 @@
                 </button>
               </div>
 
-              <div class="hidden md:block w-px h-8 bg-slate-200 flex-shrink-0"></div>
-
               <!-- 2. Ward/Commune Custom Popover Dropdown (Khu vực phường xã trong DB) -->
-              <div ref="wardDropdownRef" class="w-full md:w-56 lg:w-64 relative flex-shrink-0">
+              <div ref="wardDropdownRef" class="w-full relative">
+                <span class="mb-1.5 block text-xs font-semibold text-slate-600">Xã / Phường</span>
                 <!-- Trigger Button -->
                 <button
                   type="button"
@@ -92,7 +118,7 @@
                 <!-- Searchable Popover Dropdown with Ward List -->
                 <div 
                   v-if="isWardMenuOpen"
-                  class="absolute left-0 right-0 md:left-0 md:right-auto md:w-72 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-xl p-2 z-[60] animate-in fade-in select-none">
+                  class="absolute left-0 right-0 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-xl p-2 z-[60] animate-in fade-in select-none">
                   
                   <!-- Mini Search Input for quick ward finding -->
                   <div class="relative mb-1.5">
@@ -111,7 +137,7 @@
                     </button>
                   </div>
 
-                  <div class="max-h-60 overflow-y-auto space-y-0.5 pr-1 no-scrollbar">
+                  <div class="max-h-60 overflow-y-auto space-y-0.5 pr-1">
                     <!-- "All Wards" option -->
                     <div 
                       @click="selectWard('all')"
@@ -154,10 +180,9 @@
                 </div>
               </div>
 
-              <div class="hidden md:block w-px h-8 bg-slate-200 flex-shrink-0"></div>
-
               <!-- 3. Skill Custom Popover Dropdown (Kỹ năng chuyên ngành dạng select) -->
-              <div ref="skillDropdownRef" class="w-full md:w-52 lg:w-60 relative flex-shrink-0">
+              <div ref="skillDropdownRef" class="w-full relative">
+                <span class="mb-1.5 block text-xs font-semibold text-slate-600">Kỹ năng</span>
                 <!-- Trigger Button -->
                 <button
                   type="button"
@@ -192,7 +217,7 @@
                 <!-- Searchable Popover Dropdown with Skill List -->
                 <div 
                   v-if="isSkillMenuOpen"
-                  class="absolute left-0 right-0 md:left-auto md:right-0 md:w-72 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-xl p-2 z-[60] animate-in fade-in select-none">
+                  class="absolute left-0 right-0 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-xl p-2 z-[60] animate-in fade-in select-none">
                   
                   <!-- Mini Search Input for quick skill finding -->
                   <div class="relative mb-1.5">
@@ -211,7 +236,7 @@
                     </button>
                   </div>
 
-                  <div class="max-h-60 overflow-y-auto space-y-0.5 pr-1 no-scrollbar">
+                  <div class="max-h-60 overflow-y-auto space-y-0.5 pr-1">
                     <!-- "All Skills" option -->
                     <div 
                       @click="selectSkill('all')"
@@ -252,122 +277,87 @@
               <button 
                 type="button"
                 @click="scrollToJobs"
-                class="w-full md:w-auto h-11 px-6 sm:px-7 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-xs hover:shadow-soft transition-all flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer active:scale-95">
+                class="w-full h-11 px-6 sm:px-7 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:opacity-95 text-white font-bold text-xs sm:text-sm shadow-xs hover:shadow-soft transition-all flex items-center justify-center gap-2 flex-shrink-0 cursor-pointer active:scale-95">
                 <i class="fa-solid fa-magnifying-glass text-xs"></i>
                 <span>Tìm việc ngay</span>
               </button>
 
             </div>
+          </div>
+        <section aria-label="Cơ sở đào tạo trong lĩnh vực" class="order-3 min-w-0 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs">
+          <div class="flex items-start justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-4 py-3.5">
+            <div class="min-w-0">
+              <h3 class="flex items-center gap-2 text-sm font-black text-slate-900">
+                <i class="fa-solid fa-graduation-cap text-blue-600"></i>
+                <span>Cơ sở đào tạo</span>
+              </h3>
+              <p class="mt-1 line-clamp-2 text-[11px] leading-relaxed text-slate-500">Các cơ sở có ngành/nghề thuộc lĩnh vực {{ selectedCareerField.name }}</p>
+            </div>
+            <span class="shrink-0 rounded-lg bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700">{{ schoolSearchResultLabel }}</span>
+          </div>
 
-            <div v-else class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-2.5">
-              <div class="relative flex min-w-0 flex-1 items-center">
-                <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3.5 text-sm text-slate-400"></i>
-                <input
-                  v-model="professionSearchQuery"
-                  type="text"
-                  placeholder="Tên lĩnh vực, nghề nghiệp, kỹ năng hoặc cơ sở..."
-                  class="h-11 w-full rounded-xl border border-slate-200/90 bg-slate-50/70 pl-10 pr-9 text-xs font-medium text-slate-800 shadow-2xs outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 sm:text-sm"
-                  @keyup.enter="scrollToJobs"
-                />
-                <button v-if="professionSearchQuery" type="button" class="absolute right-2.5 flex h-6 w-6 items-center justify-center text-slate-400 transition hover:text-slate-600" title="Xóa tìm kiếm" @click="professionSearchQuery = ''">
-                  <i class="fa-solid fa-xmark text-xs"></i>
-                </button>
-              </div>
-
-              <div
-                ref="careerFieldDropdownRef"
-                class="relative w-full shrink-0 sm:w-72"
-                @keydown.esc="isCareerFieldMenuOpen = false"
+          <div v-if="selectedCareerField.schools?.length" class="border-b border-slate-100 p-3">
+            <div class="relative">
+              <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
+              <input
+                :value="schoolSearchQuery"
+                type="text"
+                placeholder="Tìm tên hoặc địa điểm cơ sở..."
+                class="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-9 text-xs font-medium text-slate-800 outline-none transition placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+                @input="handleSchoolSearchInput"
+                @keydown.esc.prevent="schoolSearchQuery = ''"
+              />
+              <button
+                v-if="schoolSearchQuery"
+                type="button"
+                class="absolute right-2 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
+                title="Xóa tìm kiếm"
+                @click="schoolSearchQuery = ''"
               >
-                <button
-                  type="button"
-                  class="relative flex h-11 w-full items-center rounded-xl border pl-10 pr-9 text-left text-xs font-semibold shadow-2xs outline-none transition sm:text-sm"
-                  :class="isCareerFieldMenuOpen
-                    ? 'border-blue-400 bg-white text-blue-700 ring-2 ring-blue-100'
-                    : selectedCareerFieldFilter !== 'all'
-                      ? 'border-blue-200 bg-blue-50/40 text-blue-700'
-                      : 'border-slate-200/90 bg-slate-50/70 text-slate-700 hover:bg-slate-100/70'"
-                  :aria-expanded="isCareerFieldMenuOpen"
-                  aria-haspopup="listbox"
-                  @click="toggleCareerFieldMenu"
-                >
-                  <i class="fa-solid fa-layer-group pointer-events-none absolute left-3.5 text-xs text-blue-600"></i>
-                  <span class="block min-w-0 flex-1 truncate">{{ selectedCareerFieldFilterLabel }}</span>
-                  <i
-                    class="fa-solid fa-chevron-down pointer-events-none absolute right-3 text-xs text-slate-400 transition-transform duration-200"
-                    :class="{ 'rotate-180 text-blue-600': isCareerFieldMenuOpen }"
-                  ></i>
-                </button>
-
-                <div
-                  v-if="isCareerFieldMenuOpen"
-                  class="absolute left-0 right-0 top-full z-[70] mt-1.5 rounded-2xl border border-slate-200 bg-white p-2 shadow-xl"
-                  role="listbox"
-                >
-                  <div class="max-h-72 space-y-0.5 overflow-y-auto pr-1">
-                    <button
-                      type="button"
-                      role="option"
-                      class="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left text-xs transition sm:text-sm"
-                      :class="selectedCareerFieldFilter === 'all' ? 'bg-blue-50 font-bold text-blue-700' : 'font-medium text-slate-700 hover:bg-slate-50'"
-                      :aria-selected="selectedCareerFieldFilter === 'all'"
-                      @click="selectCareerFieldFilter('all')"
-                    >
-                      <span class="truncate">Tất cả lĩnh vực nghề nghiệp</span>
-                      <i v-if="selectedCareerFieldFilter === 'all'" class="fa-solid fa-check shrink-0 text-xs text-blue-600"></i>
-                    </button>
-
-                    <div class="my-1 h-px bg-slate-100"></div>
-
-                    <button
-                      v-for="field in careerFieldOptions"
-                      :key="field.id"
-                      type="button"
-                      role="option"
-                      class="flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-xs transition sm:text-sm"
-                      :class="selectedCareerFieldFilter === field.id ? 'bg-blue-50 font-bold text-blue-700' : 'font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-700'"
-                      :aria-selected="selectedCareerFieldFilter === field.id"
-                      :title="field.name"
-                      @click="selectCareerFieldFilter(field.id)"
-                    >
-                      <span class="min-w-0 leading-snug">{{ field.name }}</span>
-                      <i v-if="selectedCareerFieldFilter === field.id" class="fa-solid fa-check shrink-0 text-xs text-blue-600"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <button type="button" class="flex h-11 w-full shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-6 text-xs font-bold text-white shadow-xs transition-all hover:opacity-95 active:scale-95 sm:w-auto sm:text-sm" @click="scrollToJobs">
-                <i class="fa-solid fa-magnifying-glass text-xs"></i>
-                Tìm ngành phù hợp
+                <i class="fa-solid fa-xmark text-xs"></i>
               </button>
             </div>
-
           </div>
-        </div>
 
-      </div>
-    </section>
+          <div v-if="filteredSelectedCareerFieldSchools.length" class="max-h-[320px] space-y-2 overflow-y-auto overscroll-contain p-3 pr-2">
+            <button
+              v-for="school in filteredSelectedCareerFieldSchools"
+              :key="school.id || school.name"
+              type="button"
+              :disabled="isSchoolDetailLoading"
+              class="group flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left transition hover:border-blue-200 hover:bg-blue-50/50 disabled:cursor-wait disabled:opacity-60"
+              @click="openSchoolDetailFromQuickView(school)">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+                <i class="fa-solid fa-school text-xs"></i>
+              </span>
+              <span class="min-w-0 flex-1">
+                <strong class="line-clamp-2 block text-xs leading-snug text-slate-800 transition group-hover:text-blue-700">{{ school.name }}</strong>
+                <span class="mt-1 block truncate text-[10px] text-slate-500" :title="[school.level, school.location].filter(Boolean).join(' · ')">
+                  {{ [school.level, school.location].filter(Boolean).join(' · ') || 'Đang cập nhật thông tin' }}
+                </span>
+              </span>
+              <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-600"></i>
+            </button>
+          </div>
 
-    <!-- 3. Main Content: Full-Width 3-Column Layout with Horizontal Zone Selector (Vieclam24h Exact Style) -->
-    <main id="job-listings-section" class="max-w-7xl w-full mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-1">
+          <div v-else-if="selectedCareerField.schools?.length" class="px-5 py-8 text-center">
+            <span class="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <p class="mt-3 text-xs font-semibold text-slate-600">Không tìm thấy cơ sở phù hợp</p>
+            <button type="button" class="mt-2 text-[11px] font-bold text-blue-600 hover:text-blue-700" @click="schoolSearchQuery = ''">Xóa từ khóa</button>
+          </div>
 
-      <ProfessionExplorer
-        v-if="!selectedCareerField"
-        :professions="filteredCareerFields"
-        :period="professionPortal.period"
-        :loading="isProfessionLoading"
-        :error="professionError"
-        @view-school="openSchoolDetailFromQuickView"
-        @view-jobs="openCareerFieldJobs"
-        @reload="loadProfessionData"
-      />
+          <div v-else class="px-5 py-8 text-center">
+            <span class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-400"><i class="fa-solid fa-school"></i></span>
+            <p class="mt-3 text-xs font-semibold text-slate-600">Chưa có cơ sở đào tạo phù hợp</p>
+          </div>
 
-      <!-- Tầng 2: hai cột việc làm và một cột cơ sở đào tạo -->
-      <div v-else class="grid w-full grid-cols-1 items-start gap-5 xl:grid-cols-3">
-        <section ref="jobListingsPaneRef" class="space-y-6 xl:col-span-2">
+          <p v-if="schoolDetailLookupMessage" class="mx-3 mb-3 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2 text-[11px] text-amber-700">{{ schoolDetailLookupMessage }}</p>
+        </section>
+        </aside>
+        <section ref="jobListingsPaneRef" aria-label="Danh sách việc làm trong lĩnh vực" class="relative z-10 order-2 min-w-0 space-y-4">
+          <h2 class="px-1 text-sm font-bold text-slate-800">Tìm thấy <strong class="text-blue-600">{{ filteredJobs.length }}</strong> việc làm phù hợp</h2>
           <template v-if="filteredJobs.length > 0">
-            <div class="grid grid-cols-1 gap-3.5 md:grid-cols-2 sm:gap-5">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
               <JobCard
                 v-for="job in paginatedJobs"
                 :key="job.id"
@@ -379,9 +369,8 @@
             </div>
 
             <div
-              v-if="totalPages > 1"
-              class="flex flex-col items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-3 shadow-2xs select-none sm:flex-row sm:gap-4 sm:p-4">
-              <div class="order-2 text-center text-xs text-slate-500 sm:order-1 sm:text-left">
+              class="flex flex-col items-center justify-between gap-3 rounded-2xl border border-slate-200/90 bg-white p-3 shadow-2xs select-none xl:flex-row sm:gap-4 sm:p-4">
+              <div class="order-2 flex min-w-0 flex-wrap items-center justify-center gap-2 text-xs text-slate-500 sm:order-1 sm:justify-start">
                 <span class="sm:hidden">
                   <span class="font-bold text-slate-800">{{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, filteredJobs.length) }}</span>
                   <span class="text-slate-400"> / </span>
@@ -391,9 +380,20 @@
                   Hiển thị <span class="font-bold text-slate-800">{{ (currentPage - 1) * pageSize + 1 }} - {{ Math.min(currentPage * pageSize, filteredJobs.length) }}</span>
                   trên <span class="font-bold text-blue-600">{{ filteredJobs.length }}</span> việc làm
                 </span>
+                <div class="flex items-center gap-1.5 sm:ml-2 sm:border-l sm:border-slate-200 sm:pl-3">
+                  <span>Hiển thị:</span>
+                  <FormSelectPopover
+                    :model-value="pageSize"
+                    :options="[9, 12, 18, 24].map(size => ({ id: size, name: size + ' / trang' }))"
+                    icon="fa-solid fa-list"
+                    tone="blue"
+                    class="w-40"
+                    @update:model-value="pageSize = Number($event)"
+                  />
+                </div>
               </div>
 
-              <div class="order-1 flex items-center gap-1 sm:order-2 sm:gap-1.5">
+              <nav v-if="totalPages > 1" aria-label="Phân trang việc làm" class="order-1 flex max-w-full flex-wrap items-center justify-center gap-1 sm:order-2 sm:gap-1.5">
                 <button
                   @click="prevPage"
                   :disabled="currentPage === 1"
@@ -430,7 +430,7 @@
                   <span class="hidden sm:inline">Sau</span>
                   <i class="fa-solid fa-chevron-right text-[10px]"></i>
                 </button>
-              </div>
+              </nav>
             </div>
           </template>
 
@@ -444,75 +444,6 @@
           </div>
         </section>
 
-        <aside class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs xl:sticky xl:top-24">
-          <div class="flex items-start justify-between gap-3 border-b border-slate-100 bg-slate-50/80 px-4 py-3.5">
-            <div class="min-w-0">
-              <h3 class="flex items-center gap-2 text-sm font-black text-slate-900">
-                <i class="fa-solid fa-graduation-cap text-blue-600"></i>
-                <span>Cơ sở đào tạo</span>
-              </h3>
-              <p class="mt-1 line-clamp-2 text-[11px] leading-relaxed text-slate-500">Các cơ sở có ngành/nghề thuộc lĩnh vực {{ selectedCareerField.name }}</p>
-            </div>
-            <span class="shrink-0 rounded-lg bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700">{{ schoolSearchResultLabel }}</span>
-          </div>
-
-          <div v-if="selectedCareerField.schools?.length" class="border-b border-slate-100 p-3">
-            <div class="relative">
-              <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-slate-400"></i>
-              <input
-                :value="schoolSearchQuery"
-                type="text"
-                placeholder="Tìm tên hoặc địa điểm cơ sở..."
-                class="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-9 text-xs font-medium text-slate-800 outline-none transition placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
-                @input="handleSchoolSearchInput"
-                @keydown.esc.prevent="schoolSearchQuery = ''"
-              />
-              <button
-                v-if="schoolSearchQuery"
-                type="button"
-                class="absolute right-2 top-1/2 flex h-6 w-6 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
-                title="Xóa tìm kiếm"
-                @click="schoolSearchQuery = ''"
-              >
-                <i class="fa-solid fa-xmark text-xs"></i>
-              </button>
-            </div>
-          </div>
-
-          <div v-if="filteredSelectedCareerFieldSchools.length" class="max-h-[360px] space-y-2 overflow-y-auto overscroll-contain p-3 pr-2">
-            <button
-              v-for="school in filteredSelectedCareerFieldSchools"
-              :key="school.id || school.name"
-              type="button"
-              :disabled="isSchoolDetailLoading"
-              class="group flex w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-3 text-left transition hover:border-blue-200 hover:bg-blue-50/50 disabled:cursor-wait disabled:opacity-60"
-              @click="openSchoolDetailFromQuickView(school)">
-              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-                <i class="fa-solid fa-school text-xs"></i>
-              </span>
-              <span class="min-w-0 flex-1">
-                <strong class="line-clamp-2 block text-xs leading-snug text-slate-800 transition group-hover:text-blue-700">{{ school.name }}</strong>
-                <span class="mt-1 block truncate text-[10px] text-slate-500" :title="[school.level, school.location].filter(Boolean).join(' · ')">
-                  {{ [school.level, school.location].filter(Boolean).join(' · ') || 'Đang cập nhật thông tin' }}
-                </span>
-              </span>
-              <i class="fa-solid fa-chevron-right shrink-0 text-[10px] text-slate-300 transition group-hover:translate-x-0.5 group-hover:text-blue-600"></i>
-            </button>
-          </div>
-
-          <div v-else-if="selectedCareerField.schools?.length" class="px-5 py-8 text-center">
-            <span class="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <p class="mt-3 text-xs font-semibold text-slate-600">Không tìm thấy cơ sở phù hợp</p>
-            <button type="button" class="mt-2 text-[11px] font-bold text-blue-600 hover:text-blue-700" @click="schoolSearchQuery = ''">Xóa từ khóa</button>
-          </div>
-
-          <div v-else class="px-5 py-8 text-center">
-            <span class="mx-auto flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-400"><i class="fa-solid fa-school"></i></span>
-            <p class="mt-3 text-xs font-semibold text-slate-600">Chưa có cơ sở đào tạo phù hợp</p>
-          </div>
-
-          <p v-if="schoolDetailLookupMessage" class="mx-3 mb-3 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2 text-[11px] text-amber-700">{{ schoolDetailLookupMessage }}</p>
-        </aside>
       </div>
 
       <!-- Popup xem nhanh: neo cạnh tiêu đề của thẻ việc làm đang được hover -->
@@ -733,12 +664,13 @@
 <script setup>
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { CAREER_FIELDS, jobService } from '../../services/jobService'
+import { jobService } from '../../services/jobService'
 import { schoolService } from '../../services/schoolService'
 import { supplyDemandService } from '../../services/supplyDemandService'
 import JobCard from '../../components/job/JobCard.vue'
 import ProfessionExplorer from '../../components/job/ProfessionExplorer.vue'
 import SchoolDetailDrawer from '../../components/school/SchoolDetailDrawer.vue'
+import FormSelectPopover from '../../components/form/FormSelectPopover.vue'
 
 const router = useRouter()
 
@@ -763,11 +695,6 @@ const professionPortal = ref({
   totals: { demand: 0, capacity: 0, gap: 0, proposed: 0 },
   professions: [],
 })
-const professionSearchQuery = ref('')
-const selectedCareerFieldFilter = ref('all')
-const careerFieldOptions = CAREER_FIELDS
-const isCareerFieldMenuOpen = ref(false)
-const careerFieldDropdownRef = ref(null)
 const schoolSearchQuery = ref('')
 const isProfessionLoading = ref(false)
 const professionError = ref('')
@@ -793,9 +720,9 @@ const isWardMenuOpen = ref(false)
 const wardDropdownRef = ref(null)
 const wardSearchQuery = ref('')
 
-// Pagination State (8 jobs per page: 4 rows across the two job columns)
+// Pagination uses the same page sizes as the school directory.
 const currentPage = ref(1)
-const pageSize = ref(8)
+const pageSize = ref(12)
 
 // Skill Dropdown State
 const isSkillMenuOpen = ref(false)
@@ -887,26 +814,8 @@ function clearSkill() {
   selectedSkill.value = 'all'
 }
 
-const selectedCareerFieldFilterLabel = computed(() => {
-  if (selectedCareerFieldFilter.value === 'all') return 'Tất cả lĩnh vực nghề nghiệp'
-  return careerFieldOptions.find((field) => field.id === selectedCareerFieldFilter.value)?.name
-    || 'Tất cả lĩnh vực nghề nghiệp'
-})
 
-function toggleCareerFieldMenu() {
-  isCareerFieldMenuOpen.value = !isCareerFieldMenuOpen.value
-  if (isCareerFieldMenuOpen.value) {
-    isWardMenuOpen.value = false
-    isSkillMenuOpen.value = false
-  }
-}
-
-function selectCareerFieldFilter(fieldId) {
-  selectedCareerFieldFilter.value = fieldId
-  isCareerFieldMenuOpen.value = false
-}
-
-const initialJobs = jobService.getAll()
+const initialJobs = computed(() => jobService.getAll())
 
 function normalizeLookup(value) {
   return String(value || '')
@@ -920,7 +829,7 @@ function normalizeLookup(value) {
 
 function jobsForCareerField(field) {
   if (!field?.id) return []
-  return initialJobs.filter((job) => job.industry === field.id)
+  return initialJobs.value.filter((job) => job.industry === field.id)
 }
 
 const selectedCareerFieldJobCount = computed(() => jobsForCareerField(selectedCareerField.value).length)
@@ -965,28 +874,6 @@ function handleSchoolSearchInput(event) {
   schoolSearchQuery.value = event?.target?.value || ''
 }
 
-const filteredCareerFields = computed(() => {
-  const query = normalizeLookup(professionSearchQuery.value)
-
-  return careerFieldRows.value
-    .filter((field) => {
-      const matchesField = selectedCareerFieldFilter.value === 'all' || field.id === selectedCareerFieldFilter.value
-      if (!matchesField) return false
-      if (!query) return true
-
-      const searchable = [
-        field.name,
-        field.description,
-        ...(field.majors || []),
-        ...(field.skills || []),
-        ...(field.capacity_skills || []),
-        ...(field.schools || []).flatMap((school) => [school.name, school.location, school.address]),
-        ...(field.demands || []).flatMap((demand) => [demand.employer, demand.industry, demand.location]),
-      ]
-
-      return normalizeLookup(searchable.filter(Boolean).join(' ')).includes(query)
-    })
-})
 
 function openCareerFieldJobs(field) {
   selectedCareerField.value = field
@@ -1075,9 +962,6 @@ function handleClickOutside(e) {
   if (skillDropdownRef.value && !skillDropdownRef.value.contains(e.target)) {
     isSkillMenuOpen.value = false
   }
-  if (careerFieldDropdownRef.value && !careerFieldDropdownRef.value.contains(e.target)) {
-    isCareerFieldMenuOpen.value = false
-  }
   if (quickViewJob.value && quickViewPopupRef.value && !quickViewPopupRef.value.contains(e.target)) {
     closeQuickViewModal()
   }
@@ -1085,7 +969,7 @@ function handleClickOutside(e) {
 
 const availableSkills = computed(() => {
   const set = new Set()
-  let pool = selectedCareerField.value ? jobsForCareerField(selectedCareerField.value) : initialJobs
+  let pool = selectedCareerField.value ? jobsForCareerField(selectedCareerField.value) : initialJobs.value
   if (selectedWard.value !== 'all') {
     const wRaw = selectedWard.value.toLowerCase().trim()
     const wClean = wRaw.replace(/^(xã|phường|thị trấn)\s+/i, '').trim()
@@ -1168,7 +1052,7 @@ function nextPage() {
 }
 
 // Reset page to 1 whenever any filter criteria changes
-watch([searchQuery, selectedWard, selectedSkill], () => {
+watch([searchQuery, selectedWard, selectedSkill, pageSize], () => {
   currentPage.value = 1
 })
 
@@ -1194,8 +1078,6 @@ const hasActiveFilter = computed(() => {
 
 function resetFilters() {
   if (!selectedCareerField.value) {
-    professionSearchQuery.value = ''
-    selectedCareerFieldFilter.value = 'all'
     return
   }
 

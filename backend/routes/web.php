@@ -4,8 +4,11 @@ use App\Http\Controllers\Api\DemoBusinessPortalController;
 use App\Http\Controllers\Api\DemoSchoolPortalController;
 use App\Http\Controllers\Api\PublicSchoolController;
 use App\Http\Controllers\Api\SupplyDemandController;
+use App\Http\Controllers\Admin\ExcelImportController;
+use App\Http\Controllers\Api\PublicDirectoryController;
 use App\Models\EducationLevel;
 use App\Models\School;
+use App\Models\SchoolSourceRecord;
 use App\Models\TrainingMajor;
 use App\Services\SchoolExcelService;
 use App\Services\TrainingMajorExcelService;
@@ -24,6 +27,8 @@ Route::prefix('/api/public/schools')->group(function (): void {
     Route::get('/', [PublicSchoolController::class, 'index']);
     Route::get('/catalogs', [PublicSchoolController::class, 'catalogs']);
 });
+
+Route::get('/api/public/directory', [PublicDirectoryController::class, 'index']);
 
 Route::prefix('/api/supply-demand')->group(function (): void {
     Route::get('/catalogs', [SupplyDemandController::class, 'catalogs']);
@@ -329,13 +334,31 @@ Route::post('/admin/training-majors/import-excel', function (Request $request, T
     return $redirect();
 })->middleware(['auth', 'throttle:10,1'])->name('admin.training-majors.import-excel');
 
+Route::post('/admin/employers/import-excel', [ExcelImportController::class, 'employers'])
+    ->middleware(['auth', 'throttle:10,1'])->name('admin.employers.import-excel');
+
+Route::post('/admin/job-postings/import-excel', [ExcelImportController::class, 'jobs'])
+    ->middleware(['auth', 'throttle:10,1'])->name('admin.job-postings.import-excel');
+
+Route::post('/admin/workforce-demands/import-excel', [ExcelImportController::class, 'workforceDemands'])
+    ->middleware(['auth', 'throttle:10,1'])->name('admin.workforce-demands.import-excel');
+
 Route::get('/api/schools/{id}', function ($id) use ($mapSchool) {
+    $canonical = app(\App\Services\SchoolIdentityService::class)->canonicalId($id);
+    if ($canonical !== $id && School::whereKey($canonical)->exists()) {
+        $id = $canonical;
+    }
     $school = School::with(['educationLevels', 'majors'])->where('id', $id)->orWhere('code', $id)->first();
     if (! $school) {
         return response()->json(['error' => 'School not found'], 404);
     }
     $districtName = DB::table('districts')->where('id', $school->district_id)->value('name');
     $arr = $mapSchool($school, $districtName ? [$school->district_id => $districtName] : []);
+    $sourceRecords = SchoolSourceRecord::query()->where('school_id', $school->id)
+        ->where('match_status', 'matched')->get()->keyBy('record_type');
+    $arr['training_source_report'] = $sourceRecords->get('training_report')?->payload;
+    $admission = $sourceRecords->get('admission_report')?->payload;
+    $arr['admission_report'] = $admission ? $admission + ['source_file' => $admission['source_metadata']['source_file'] ?? null] : null;
     $legacyMajorCodes = collect($school->training_majors)
         ->filter(fn (array $major): bool => filled($major['name'] ?? null) && filled($major['major_code'] ?? null))
         ->mapWithKeys(fn (array $major): array => [

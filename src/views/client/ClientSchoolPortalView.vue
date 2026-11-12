@@ -305,8 +305,8 @@
             </label>
 
             <label class="sm:col-span-2">
-              <span class="mb-1.5 block text-sm font-bold text-slate-800">Kỹ năng có thể đào tạo, cách nhau bằng dấu phẩy *</span>
-              <input v-model.trim="capacityForm.skills" required maxlength="500" type="text" placeholder="Ví dụ: PLC, Đọc bản vẽ, An toàn điện" class="h-11 w-full rounded-xl border border-slate-200/90 bg-slate-50/70 px-3.5 text-sm text-slate-700 shadow-2xs outline-none transition-all hover:bg-slate-100/70 focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-100" />
+              <span class="mb-1.5 block text-sm font-bold text-slate-800">Kỹ năng có thể đào tạo *</span>
+              <textarea v-model.trim="capacityForm.skills" required maxlength="3000" rows="3" placeholder="Nhập từng kỹ năng, phân cách bằng dấu phẩy hoặc xuống dòng" class="w-full rounded-xl border border-slate-200/90 bg-slate-50/70 px-3.5 py-3 text-sm text-slate-700 shadow-2xs outline-none transition-all hover:bg-slate-100/70 focus:border-emerald-500 focus:bg-white focus:ring-2 focus:ring-emerald-100"></textarea>
             </label>
 
             <label class="sm:col-span-2">
@@ -426,17 +426,6 @@ const formError = ref('')
 const proposalError = ref('')
 const toastMessage = ref('')
 
-const fallbackLevels = [
-  { id: 'duoi_3_thang', name: 'Dưới 3 tháng' },
-  { id: 'so_cap', name: 'Sơ cấp' },
-  { id: 'trung_cap', name: 'Trung cấp' },
-  { id: 'cao_dang', name: 'Cao đẳng' },
-]
-
-const fallbackPeriods = [
-  { id: '2026-Q4', name: 'Quý IV/2026' },
-  { id: '2027-Q1', name: 'Quý I/2027' },
-]
 
 function emptyCapacityForm() {
   return {
@@ -570,7 +559,7 @@ function withSchool(row) {
 }
 
 async function submitCapacity() {
-  const skills = capacityForm.skills.split(',').map((item) => item.trim()).filter(Boolean)
+  const skills = [...new Set(capacityForm.skills.split(/[,;\n]+/).map((item) => item.trim()).filter(Boolean))]
   if (!capacityForm.training_major_id || !capacityForm.training_level_id || !capacityForm.reporting_period_id || !capacityForm.location || Number(capacityForm.quantity) < 1 || skills.length === 0) {
     formError.value = 'Vui lòng điền đầy đủ các trường bắt buộc và nhập ít nhất một kỹ năng.'
     return
@@ -670,11 +659,12 @@ async function loadPortalData() {
   if (catalogsResult.status === 'fulfilled') {
     const catalogs = catalogsResult.value || {}
     majorOptions.value = Array.isArray(catalogs.training_majors) ? catalogs.training_majors : []
-    levelOptions.value = Array.isArray(catalogs.training_levels) && catalogs.training_levels.length ? catalogs.training_levels : fallbackLevels
-    periodOptions.value = Array.isArray(catalogs.reporting_periods) && catalogs.reporting_periods.length ? catalogs.reporting_periods : fallbackPeriods
+    levelOptions.value = Array.isArray(catalogs.training_levels) ? catalogs.training_levels : []
+    periodOptions.value = Array.isArray(catalogs.reporting_periods) ? catalogs.reporting_periods : []
   } else {
-    levelOptions.value = fallbackLevels
-    periodOptions.value = fallbackPeriods
+    levelOptions.value = []
+    periodOptions.value = []
+    catalogError.value = catalogsResult.reason?.message || 'Không tải được danh mục từ hệ thống. Vui lòng thử lại.'
   }
 
   if (!majorOptions.value.length) {

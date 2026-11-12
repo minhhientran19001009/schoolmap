@@ -4,7 +4,7 @@
     <section class="relative overflow-hidden border-b border-slate-200/90 bg-gradient-to-b from-blue-50/70 via-indigo-50/30 to-slate-50">
       <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#93c5fd_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
       
-      <div class="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <div class="relative mx-auto max-w-[1440px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
           <div class="max-w-2xl">
             <div class="mb-2.5 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/90 px-3.5 py-1 text-xs font-bold text-blue-700 shadow-2xs backdrop-blur-xs">
@@ -36,23 +36,30 @@
     </section>
 
     <!-- 2. Main Content & Focused Filter Panel -->
-    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 space-y-6">
-      <!-- Filter Panel Container -->
-      <div class="rounded-2xl border border-slate-200/90 bg-white p-4 sm:p-5 shadow-xs transition-shadow hover:shadow-soft space-y-3.5">
+    <main class="mx-auto grid max-w-[1440px] grid-cols-1 items-start gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6 lg:px-8">
+      <!-- Filter sidebar: full row on mobile, left column on desktop. -->
+      <aside aria-labelledby="school-filter-heading" class="relative z-20 min-w-0 space-y-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs lg:sticky lg:top-4">
+        <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+          <i class="fa-solid fa-sliders text-sm text-blue-600" aria-hidden="true"></i>
+          <h2 id="school-filter-heading" class="text-sm font-bold text-slate-900">Bộ lọc cơ sở GDNN</h2>
+        </div>
         
         <!-- ROW 1: Search and Primary Controls Row -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-end lg:flex-col lg:items-stretch">
           <!-- Keyword Search Input with Clear Button -->
-          <div class="relative flex-1">
+          <div class="min-w-0 flex-1">
+            <label for="school-directory-search" class="mb-1.5 block text-xs font-semibold text-slate-600">Tìm cơ sở</label>
+            <div class="relative">
             <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400 text-sm">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
             <input 
+              id="school-directory-search"
               v-model="filters.q"
               @input="onSearchInput"
               @keyup.enter="applyFilters"
               type="text"
-              placeholder="Tìm theo tên cơ sở, mã trường, ngành/nghề đào tạo, địa chỉ..."
+              placeholder="Tên, mã trường, địa chỉ..."
               class="w-full h-11 pl-10 pr-9 text-xs sm:text-sm font-medium text-slate-800 placeholder:text-slate-400 bg-slate-50/70 hover:bg-slate-100/70 focus:bg-white rounded-xl border border-slate-200/90 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none transition-all shadow-2xs"
             />
             <button
@@ -62,16 +69,18 @@
               title="Xóa tìm kiếm">
               <i class="fa-solid fa-circle-xmark"></i>
             </button>
+            </div>
           </div>
 
           <!-- Right Controls: Sort Select + Reset Filter -->
-          <div class="flex items-center gap-2 flex-shrink-0">
+          <div class="flex min-w-0 items-end gap-2 sm:w-56 lg:w-full">
             <!-- Custom Styled Sort Popover Dropdown (No native <select> OS menu) -->
-            <div ref="sortDropdownRef" class="relative min-w-[170px] sm:min-w-[195px]">
+            <div ref="sortDropdownRef" class="relative min-w-0 flex-1">
+              <span class="mb-1.5 block text-xs font-semibold text-slate-600">Sắp xếp</span>
               <button
                 type="button"
                 @click="isSortMenuOpen = !isSortMenuOpen"
-                class="w-full h-11 pl-10 pr-8 text-xs sm:text-sm font-medium rounded-xl border transition-all cursor-pointer flex items-center justify-between text-left shadow-2xs select-none"
+                class="relative w-full h-11 pl-10 pr-8 text-xs sm:text-sm font-medium rounded-xl border transition-all cursor-pointer flex items-center justify-between text-left shadow-2xs select-none"
                 :class="isSortMenuOpen 
                   ? 'bg-white border-blue-400 ring-2 ring-blue-100 text-blue-700' 
                   : (filters.sort !== 'name' 
@@ -96,7 +105,7 @@
               <!-- Popover Menu -->
               <div
                 v-if="isSortMenuOpen"
-                class="absolute right-0 top-full mt-1.5 w-full sm:min-w-[200px] bg-white border border-slate-200 rounded-2xl shadow-xl p-1.5 z-50 animate-in fade-in select-none">
+                class="absolute right-0 top-full mt-1.5 w-full bg-white border border-slate-200 rounded-2xl shadow-xl p-1.5 z-50 animate-in fade-in select-none">
                 <div class="space-y-0.5 text-xs">
                   <button
                     v-for="opt in sortOptions"
@@ -124,19 +133,20 @@
               class="h-11 px-3 sm:px-3.5 inline-flex items-center justify-center gap-1.5 rounded-xl border border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 active:scale-95 transition-all text-xs font-bold cursor-pointer whitespace-nowrap shadow-2xs"
               title="Đặt lại bộ lọc về mặc định">
               <i class="fa-solid fa-rotate-left text-[11px]"></i>
-              <span class="hidden sm:inline">Đặt lại</span>
+              <span class="sr-only">Đặt lại</span>
             </button>
           </div>
         </div>
 
         <!-- ROW 2: Only 2 Core Filters Backed by DB: Tất cả xã / phường & Tất cả ngành nghề -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5 sm:gap-3.5">
+        <div class="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-1">
           <!-- 1. Searchable Ward Custom Popover Dropdown (Tất cả xã / phường) -->
           <div ref="wardDropdownRef" class="relative w-full">
+            <span class="mb-1.5 block text-xs font-semibold text-slate-600">Xã / Phường</span>
             <button
               type="button"
               @click="isWardMenuOpen = !isWardMenuOpen"
-              class="w-full h-11 pl-10 pr-8 text-xs sm:text-sm font-medium rounded-xl border transition-all cursor-pointer flex items-center justify-between text-left shadow-2xs select-none"
+              class="relative w-full h-11 pl-10 pr-8 text-xs sm:text-sm font-medium rounded-xl border transition-all cursor-pointer flex items-center justify-between text-left shadow-2xs select-none"
               :class="isWardMenuOpen 
                 ? 'bg-white border-blue-400 ring-2 ring-blue-100 text-blue-700' 
                 : (filters.ward !== 'all' 
@@ -234,11 +244,12 @@
 
           <!-- 2. Searchable Major Custom Popover Dropdown (Tất cả ngành nghề) -->
           <div ref="majorDropdownRef" class="relative w-full">
+            <span class="mb-1.5 block text-xs font-semibold text-slate-600">Ngành / Nghề đào tạo</span>
             <!-- Trigger button matching the other select pixel-perfect -->
             <button
               type="button"
               @click="isMajorMenuOpen = !isMajorMenuOpen"
-              class="w-full h-11 pl-10 pr-8 text-xs sm:text-sm font-medium rounded-xl border transition-all cursor-pointer flex items-center justify-between text-left shadow-2xs select-none"
+              class="relative w-full h-11 pl-10 pr-8 text-xs sm:text-sm font-medium rounded-xl border transition-all cursor-pointer flex items-center justify-between text-left shadow-2xs select-none"
               :class="isMajorMenuOpen 
                 ? 'bg-white border-purple-400 ring-2 ring-purple-100 text-purple-700' 
                 : (filters.major_id !== 'all' 
@@ -334,23 +345,23 @@
         </div>
 
         <!-- ROW 3: Quick Results Indicator & Active Filter Badges -->
-        <div class="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+        <div class="flex flex-col gap-3 border-t border-slate-100 pt-3">
           <!-- Active filter badges or quick hint -->
           <div v-if="hasActiveFilter" class="flex flex-wrap items-center gap-1.5 text-xs text-slate-500">
             <span class="text-[11px] font-medium text-slate-400">Đang lọc:</span>
             
-            <span v-if="filters.q" class="inline-flex items-center gap-1 bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-lg text-[11px]">
-              Từ khóa: <strong>"{{ filters.q }}"</strong>
+            <span v-if="filters.q" class="inline-flex max-w-full items-center gap-1 bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-0.5 rounded-lg text-[11px]">
+              Từ khóa: <strong class="min-w-0 break-words">"{{ filters.q }}"</strong>
               <button @click="clearSearch" class="hover:text-blue-900 ml-0.5 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
             </span>
 
-            <span v-if="filters.ward !== 'all'" class="inline-flex items-center gap-1 bg-indigo-50 text-indigo-700 border border-indigo-200 px-2.5 py-0.5 rounded-lg text-[11px]">
-              Xã/phường: <strong>{{ filters.ward }}</strong>
+            <span v-if="filters.ward !== 'all'" class="inline-flex max-w-full items-center gap-1 bg-indigo-50 text-indigo-700 border border-indigo-200 px-2.5 py-0.5 rounded-lg text-[11px]">
+              Xã/phường: <strong class="min-w-0 break-words">{{ filters.ward }}</strong>
               <button @click="filters.ward = 'all'; applyFilters()" class="hover:text-indigo-900 ml-0.5 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
             </span>
 
-            <span v-if="filters.major_id !== 'all'" class="inline-flex items-center gap-1 bg-purple-50 text-purple-700 border border-purple-200 px-2.5 py-0.5 rounded-lg text-[11px]">
-              Ngành: <strong>{{ getMajorName(filters.major_id) }}</strong>
+            <span v-if="filters.major_id !== 'all'" class="inline-flex max-w-full items-center gap-1 bg-purple-50 text-purple-700 border border-purple-200 px-2.5 py-0.5 rounded-lg text-[11px]">
+              Ngành: <strong class="min-w-0 break-words">{{ getMajorName(filters.major_id) }}</strong>
               <button @click="clearMajorFilter" class="hover:text-purple-900 ml-0.5 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
             </span>
 
@@ -361,68 +372,25 @@
             </button>
           </div>
 
-          <div v-else class="text-xs text-slate-400 flex items-center gap-1.5">
-            <i class="fa-solid fa-sliders text-[11px]"></i>
-            <span>Chọn xã/phường hoặc ngành nghề để lọc danh sách cơ sở GDNN phù hợp</span>
+          <div v-else class="text-xs leading-relaxed text-slate-500">
+            <span>Chọn địa bàn hoặc ngành nghề để tìm cơ sở phù hợp.</span>
           </div>
 
           <!-- Quick Results Indicator -->
-          <div class="text-xs text-slate-500 font-medium flex items-center gap-1.5 flex-shrink-0 self-end sm:self-auto">
+          <div class="text-xs text-slate-500 font-medium flex items-center gap-1.5">
             <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
             <span>Đang tìm thấy <strong class="text-slate-800 font-bold">{{ meta.total || 0 }}</strong> cơ sở phù hợp</span>
           </div>
         </div>
-      </div>
+      </aside>
 
-      <!-- 3. Results Header & Count -->
-      <div class="flex items-center justify-between text-xs sm:text-sm text-slate-500 px-1">
-        <div>
-          <span>Hiển thị </span>
-          <strong class="text-slate-800 font-bold">
-            {{ meta.total === 0 ? 0 : `${meta.from || 1}–${meta.to || meta.total}` }}
-          </strong>
-          <span> trên tổng số </span>
-          <strong class="text-blue-700 font-bold">{{ meta.total || 0 }}</strong>
-          <span> cơ sở GDNN</span>
-        </div>
-
-        <div class="flex items-center gap-2 text-xs">
-          <span class="hidden sm:inline text-slate-500 font-medium">Hiển thị mỗi trang:</span>
-          <div ref="perPageDropdownRef" class="relative">
-            <button
-              type="button"
-              @click="isPerPageMenuOpen = !isPerPageMenuOpen"
-              class="h-8 pl-3 pr-7 text-xs text-slate-700 font-semibold bg-white rounded-lg border border-slate-200/90 hover:border-slate-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-100 outline-none cursor-pointer transition shadow-2xs flex items-center justify-between select-none"
-              :class="{ 'border-blue-400 ring-1 ring-blue-100 text-blue-700': isPerPageMenuOpen }">
-              <span>{{ filters.per_page }}</span>
-              <div class="absolute inset-y-0 right-0 pr-2 flex items-center pointer-events-none text-slate-400 text-[10px]">
-                <i class="fa-solid fa-chevron-down transition-transform duration-200" :class="{ 'rotate-180 text-blue-600': isPerPageMenuOpen }"></i>
-              </div>
-            </button>
-
-            <!-- Popover Menu -->
-            <div
-              v-if="isPerPageMenuOpen"
-              class="absolute right-0 bottom-full mb-1 sm:bottom-auto sm:top-full sm:mt-1 w-24 bg-white border border-slate-200 rounded-xl shadow-lg p-1 z-50 animate-in fade-in select-none">
-              <div class="space-y-0.5 text-xs">
-                <button
-                  v-for="size in [9, 12, 18, 24]"
-                  :key="size"
-                  type="button"
-                  @click="selectPerPage(size)"
-                  :class="filters.per_page === size ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-700 hover:bg-slate-50 font-medium'"
-                  class="w-full px-2 py-1.5 rounded-lg cursor-pointer flex items-center justify-between transition-colors text-left">
-                  <span>{{ size }}</span>
-                  <i v-if="filters.per_page === size" class="fa-solid fa-check text-[10px] text-blue-600"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <section aria-label="Danh sách cơ sở GDNN" :aria-busy="loading" class="relative z-10 min-w-0 space-y-4">
+      <h2 class="px-1 text-sm font-bold text-slate-800">
+        Tìm thấy <strong class="text-blue-600">{{ meta.total || 0 }}</strong> cơ sở GDNN phù hợp
+      </h2>
 
       <!-- 4. Loading Skeleton Grid -->
-      <div v-if="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div v-if="loading" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         <div 
           v-for="i in 6" 
           :key="i"
@@ -435,7 +403,6 @@
             <div class="h-5 w-3/4 bg-slate-200 rounded-md"></div>
             <div class="h-4 w-full bg-slate-100 rounded-md"></div>
           </div>
-          <div class="h-16 bg-slate-50 rounded-xl"></div>
           <div class="h-9 w-full bg-slate-100 rounded-xl"></div>
         </div>
       </div>
@@ -460,11 +427,11 @@
       </div>
 
       <!-- 6. School Cards Grid -->
-      <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div v-else class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         <article
           v-for="school in schools"
           :key="school.id"
-          class="group rounded-2xl border border-slate-200/90 bg-white p-5 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md flex flex-col justify-between relative overflow-hidden">
+          class="group min-w-0 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md flex flex-col justify-between relative overflow-hidden">
           
           <!-- Card Top Bar: Badges -->
           <div>
@@ -493,7 +460,7 @@
             <!-- School Name -->
             <h2 
               @click="openSchoolDetail(school)"
-              class="font-extrabold text-slate-900 text-base leading-snug line-clamp-2 group-hover:text-blue-700 transition-colors cursor-pointer"
+              class="font-bold text-slate-900 text-sm sm:text-base leading-snug group-hover:text-blue-700 transition-colors cursor-pointer"
               :title="school.name">
               {{ school.name }}
             </h2>
@@ -506,52 +473,6 @@
               </span>
             </div>
 
-            <!-- Training Majors Preview Section -->
-            <div class="mt-4 pt-3.5 border-t border-slate-100">
-              <div class="flex items-center justify-between text-xs mb-2">
-                <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                  Ngành nghề nổi bật
-                </span>
-                <span class="text-xs font-semibold text-blue-600">
-                  {{ school.training_major_count || 0 }} ngành
-                </span>
-              </div>
-
-              <!-- Top Majors List (Max 3) -->
-              <div v-if="school.training_major_preview?.length > 0" class="space-y-1.5">
-                <div
-                  v-for="(major, idx) in school.training_major_preview"
-                  :key="idx"
-                  class="flex items-center justify-between gap-2 text-xs py-1 px-2 rounded-lg bg-slate-50/80 hover:bg-slate-100/80 transition-colors">
-                  <div class="flex items-center gap-1.5 min-w-0">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></span>
-                    <span class="truncate font-medium text-slate-700" :title="major.name">
-                      {{ major.name }}
-                    </span>
-                  </div>
-
-                  <!-- Quota if available -->
-                  <span 
-                    v-if="major.annual_quota > 0" 
-                    class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded-md flex-shrink-0"
-                    title="Chỉ tiêu tuyển sinh">
-                    {{ major.annual_quota }} chỉ tiêu
-                  </span>
-                </div>
-
-                <!-- More majors count badge -->
-                <p 
-                  v-if="school.training_major_count > school.training_major_preview.length"
-                  class="text-[11px] text-slate-400 italic pt-0.5 pl-1">
-                  + Còn {{ school.training_major_count - school.training_major_preview.length }} ngành nghề khác...
-                </p>
-              </div>
-
-              <!-- No majors fallback -->
-              <div v-else class="text-[11px] text-slate-400 italic py-1">
-                Đang cập nhật danh mục ngành nghề đào tạo
-              </div>
-            </div>
           </div>
 
           <!-- Card Actions -->
@@ -560,7 +481,7 @@
               <!-- Action 1: View Detail Drawer -->
               <button
                 @click="openSchoolDetail(school)"
-                class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200/80 py-2 px-3 text-xs font-bold transition-all active:scale-95 cursor-pointer"
+                class="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200/80 py-2 px-2 text-xs font-bold transition-all active:scale-95 cursor-pointer"
                 title="Mở hồ sơ chi tiết cơ sở">
                 <i class="fa-solid fa-circle-info text-xs"></i>
                 <span>Xem chi tiết</span>
@@ -569,7 +490,7 @@
               <!-- Action 2: View on Map -->
               <router-link
                 :to="{ path: '/map', query: { school: school.id } }"
-                class="inline-flex items-center justify-center gap-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 py-2 px-3 text-xs font-bold transition-all active:scale-95 cursor-pointer"
+                class="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 py-2 px-2 text-xs font-bold transition-all active:scale-95 cursor-pointer"
                 title="Định vị cơ sở này trên bản đồ số GDNN">
                 <i class="fa-solid fa-map-location-dot text-xs text-indigo-600"></i>
                 <span>Xem bản đồ</span>
@@ -581,17 +502,30 @@
 
       <!-- 7. Server-Side Pagination Controls -->
       <div 
-        v-if="meta.last_page > 1" 
-        class="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200 pt-5">
+        v-if="meta.total > 0"
+        class="flex flex-col items-center justify-between gap-3 rounded-2xl border border-slate-200/90 bg-white p-3 shadow-2xs sm:gap-4 sm:p-4 xl:flex-row">
         
         <!-- Record Range Info -->
-        <p class="text-xs sm:text-sm text-slate-500 order-2 sm:order-1">
-          Trang <strong class="text-slate-800">{{ meta.current_page }}</strong> / {{ meta.last_page }} 
-          (Hiển thị {{ meta.from }}–{{ meta.to }} trong tổng {{ meta.total }} cơ sở)
-        </p>
+        <div class="order-2 flex min-w-0 flex-wrap items-center justify-center gap-2 text-xs text-slate-500 sm:order-1 sm:justify-start">
+          <span>
+            Hiển thị <strong class="text-slate-800">{{ meta.from || 1 }}–{{ meta.to || meta.total }}</strong>
+            trên tổng số <strong class="text-blue-600">{{ meta.total }}</strong> cơ sở GDNN
+          </span>
+          <div class="flex items-center gap-1.5 sm:ml-2 sm:border-l sm:border-slate-200 sm:pl-3">
+            <span>Hiển thị:</span>
+            <FormSelectPopover
+              :model-value="filters.per_page"
+              :options="[9, 12, 18, 24].map(size => ({ id: size, name: size + ' / trang' }))"
+              icon="fa-solid fa-list"
+              tone="blue"
+              class="w-40"
+              @update:model-value="selectPerPage(Number($event))"
+            />
+          </div>
+        </div>
 
         <!-- Pagination Buttons -->
-        <nav class="inline-flex items-center gap-1.5 order-1 sm:order-2" aria-label="Pagination">
+        <nav v-if="meta.last_page > 1" class="inline-flex max-w-full flex-wrap items-center justify-center gap-1.5 order-1 sm:order-2" aria-label="Phân trang danh sách cơ sở">
           <!-- First Page -->
           <button
             @click="goToPage(1)"
@@ -640,6 +574,7 @@
           </button>
         </nav>
       </div>
+      </section>
     </main>
 
     <!-- 8. School Detail Drawer Integration -->
@@ -660,6 +595,7 @@ import { ref, reactive, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { schoolService } from '../../services/schoolService'
 import SchoolDetailDrawer from '../../components/school/SchoolDetailDrawer.vue'
+import FormSelectPopover from '../../components/form/FormSelectPopover.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -734,13 +670,8 @@ function selectSort(val) {
   applyFilters()
 }
 
-// Custom Per-Page Dropdown State
-const isPerPageMenuOpen = ref(false)
-const perPageDropdownRef = ref(null)
-
 function selectPerPage(count) {
   filters.per_page = count
-  isPerPageMenuOpen.value = false
   applyFilters()
 }
 
@@ -897,9 +828,6 @@ function handleClickOutside(e) {
   if (majorDropdownRef.value && !majorDropdownRef.value.contains(e.target)) {
     isMajorMenuOpen.value = false
   }
-  if (perPageDropdownRef.value && !perPageDropdownRef.value.contains(e.target)) {
-    isPerPageMenuOpen.value = false
-  }
 }
 
 // Sync query params when route changes
@@ -1027,7 +955,6 @@ function resetFilters() {
   isWardMenuOpen.value = false
   isMajorMenuOpen.value = false
   isSortMenuOpen.value = false
-  isPerPageMenuOpen.value = false
   syncQueryToUrl()
   fetchSchools()
 }

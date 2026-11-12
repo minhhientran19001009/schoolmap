@@ -1101,7 +1101,15 @@ class HaNamSchoolsSeeder extends Seeder
             ]
         ];
 
+        $identity = app(\App\Services\SchoolIdentityService::class);
+        $existingSchools = School::all(['id', 'name', 'code']);
+        $created = 0;
         foreach ($schools as $data) {
+            // Seeds must not overwrite cleaned records or recreate reviewed aliases.
+            $existing = $identity->findIn($existingSchools, $data['name'], $data['code']);
+            if ($existing) {
+                continue;
+            }
             $levelId = $data['education_level_id'];
             $data['geom'] = DB::raw("Point({$data['lng']}, {$data['lat']})");
             $school = School::updateOrCreate(
@@ -1109,8 +1117,10 @@ class HaNamSchoolsSeeder extends Seeder
                 $data
             );
             $school->educationLevels()->sync([$levelId]);
+            $existingSchools->push($school);
+            $created++;
         }
 
-        $this->command->info('Đã nhập thành công ' . count($schools) . ' trường học (bao gồm khu vực Hà Nam & Ninh Bình)!');
+        $this->command->info('Đã thêm '.$created.' cơ sở; giữ nguyên '.(count($schools) - $created).' cơ sở đã có.');
     }
 }

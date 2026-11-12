@@ -5,6 +5,8 @@ namespace App\Filament\Resources\DemandProposals;
 use App\Filament\Resources\DemandProposals\Pages\EditDemandProposal;
 use App\Filament\Resources\DemandProposals\Pages\ListDemandProposals;
 use App\Models\DemandProposal;
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -33,7 +35,7 @@ class DemandProposalResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Đề xuất của nhà trường')->columns(2)->schema([
+            Section::make('Đề xuất của nhà trường')->columnSpanFull()->columns(['default' => 1, 'md' => 2])->schema([
                 Select::make('workforce_demand_id')->label('Nhu cầu')->relationship('demand', 'id')->disabled(),
                 Select::make('training_capacity_id')->label('Năng lực')->relationship('capacity', 'id')->disabled(),
                 TextInput::make('quantity')->label('Số người đề xuất')->numeric()->disabled(),
@@ -57,7 +59,11 @@ class DemandProposalResource extends Resource
             TextColumn::make('created_at')->label('Thời gian')->dateTime('d/m/Y H:i')->sortable(),
         ])->filters([
             SelectFilter::make('status')->label('Trạng thái')->options(['SUBMITTED' => 'Đã gửi', 'WITHDRAWN' => 'Đã rút lại']),
-        ])->recordActions([EditAction::make()->label('Cập nhật trạng thái')])->defaultSort('created_at', 'desc');
+        ])->recordActions([EditAction::make()->label('Cập nhật trạng thái')])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa các mục đã chọn'),
+            ]),
+        ])->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

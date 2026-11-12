@@ -896,6 +896,11 @@ class SchoolExcelService
             ->values();
         $schoolsByName = $schools->keyBy('name');
         $schoolsByCode = $schools->filter(fn (School $school) => filled($school->code))->keyBy('code');
+        foreach (config('school_identity.merges', []) as $alias) {
+            if ($target = $schools->firstWhere('id', $alias['target'])) {
+                $schoolsByCode->put($alias['code'], $target);
+            }
+        }
 
         // Kiểm tra xem file Excel có cột Website hay không (dựa vào header dòng 3)
         $headerRow = $rows[2] ?? [];
@@ -1045,9 +1050,9 @@ class SchoolExcelService
 
                 // A primary row is found by its stable group code. Child rows
                 // retain their individual record code and are matched by name.
-                $school = ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== '')
-                    ? $schoolsByCode->get($primaryCode)
-                    : $schoolsByName->get($name);
+                $identity = app(SchoolIdentityService::class);
+                $school = $identity->findIn($schools, $name,
+                    ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== '') ? $primaryCode : null);
                 if ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== ''
                     && $school && $school->name !== $name && $schoolsByName->has($name)) {
                     throw new \InvalidArgumentException('Mã nhóm đang thuộc về một cơ sở chính khác.');
@@ -1094,7 +1099,8 @@ class SchoolExcelService
                 $school->faculty_professors = $facultyProfessors;
                 $school->partner_enterprises = !empty($partnersList) ? $partnersList : null;
 
-                if ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== '') {
+                if ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== ''
+                    && $identity->canonicalId($primaryCode) === $primaryCode) {
                     $school->code = $primaryCode;
                 }
                 if ($hasCampusColumns) {
@@ -1111,6 +1117,12 @@ class SchoolExcelService
                 // the same file without another database round trip.
                 $schoolsByName->put($name, $school);
                 $schoolsByCode->put($school->code, $school);
+                if ($hasCampusColumns && $isPrimaryCampus && $primaryCode !== '') {
+                    $schoolsByCode->put($primaryCode, $school);
+                }
+                if ($isNew) {
+                    $schools->push($school);
+                }
 
                 if ($hasCampusColumns && ! $isPrimaryCampus) {
                     $deferredCampusLinks[] = [

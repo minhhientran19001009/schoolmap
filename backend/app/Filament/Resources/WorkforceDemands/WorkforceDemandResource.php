@@ -6,7 +6,10 @@ use App\Filament\Resources\WorkforceDemands\Pages\CreateWorkforceDemand;
 use App\Filament\Resources\WorkforceDemands\Pages\EditWorkforceDemand;
 use App\Filament\Resources\WorkforceDemands\Pages\ListWorkforceDemands;
 use App\Models\WorkforceDemand;
+use App\Support\SkillList;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\Select;
@@ -35,10 +38,10 @@ class WorkforceDemandResource extends Resource
     public static function form(Schema $schema): Schema
     {
         return $schema->components([
-            Section::make('Nhu cầu doanh nghiệp')->columns(2)->schema([
+            Section::make('Nhu cầu doanh nghiệp')->columnSpanFull()->columns(['default' => 1, 'md' => 2])->schema([
                 Select::make('employer_id')->label('Doanh nghiệp')->relationship('employer', 'name')->searchable()->preload()->required(),
                 Select::make('reporting_period_id')->label('Kỳ báo cáo')->relationship('period', 'name')->searchable()->preload()->required(),
-                Select::make('training_major_id')->label('Ngành / nghề')->relationship('major', 'name')->searchable()->preload()->required(),
+                Select::make('training_major_id')->label('Chuyên ngành đào tạo cần tuyển')->relationship('major', 'name')->searchable()->preload()->required(),
                 Select::make('education_level_id')->label('Trình độ')->relationship('trainingLevel', 'name', modifyQueryUsing: fn ($query) => $query->where('is_active', true)->orderBy('display_order'))->searchable()->preload()->required(),
                 Select::make('purpose')->label('Mục đích')->required()->default('RECRUITMENT')->options([
                     'RECRUITMENT' => 'Tuyển dụng',
@@ -46,7 +49,14 @@ class WorkforceDemandResource extends Resource
                     'RETRAINING' => 'Đào tạo lại',
                 ]),
                 TextInput::make('quantity')->label('Số người cần')->numeric()->minValue(1)->maxValue(100000)->required(),
-                Select::make('skills')->label('Kỹ năng yêu cầu')->relationship('skills', 'name')->multiple()->searchable()->preload()->columnSpanFull(),
+                Textarea::make('skills')
+                    ->label('Kỹ năng chi tiết của chuyên ngành')
+                    ->helperText('Kỹ năng thuộc chuyên ngành đã chọn; phân cách bằng dấu phẩy hoặc xuống dòng.')
+                    ->rows(3)
+                    ->maxLength(3000)
+                    ->formatStateUsing(fn (mixed $state): string => SkillList::toText($state))
+                    ->dehydrateStateUsing(fn (mixed $state): array => SkillList::parse($state))
+                    ->columnSpanFull(),
                 TextInput::make('location')->label('Khu vực / địa điểm')->maxLength(200),
                 TextInput::make('age_range')->label('Độ tuổi')->maxLength(80),
                 TextInput::make('salary')->label('Thu nhập dự kiến')->maxLength(100),
@@ -78,7 +88,11 @@ class WorkforceDemandResource extends Resource
             SelectFilter::make('reporting_period_id')->label('Kỳ báo cáo')->relationship('period', 'name'),
             SelectFilter::make('training_major_id')->label('Ngành / nghề')->relationship('major', 'name')->searchable()->preload(),
             SelectFilter::make('status')->label('Trạng thái')->options(['DRAFT' => 'Bản nháp', 'PUBLISHED' => 'Đã công bố', 'CLOSED' => 'Đã đóng']),
-        ])->recordActions([EditAction::make()->label('Chỉnh sửa'), DeleteAction::make()->label('Xóa')])->defaultSort('created_at', 'desc');
+        ])->recordActions([EditAction::make()->label('Chỉnh sửa'), DeleteAction::make()->label('Xóa')])->toolbarActions([
+            BulkActionGroup::make([
+                DeleteBulkAction::make()->label('Xóa các mục đã chọn'),
+            ]),
+        ])->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

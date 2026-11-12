@@ -358,7 +358,38 @@
             </div>
           </section>
 
-          <!-- Historical recruitment outcomes from the supplied workbook; kept separate from annual quota data. -->
+          <section v-if="cleanTrainingReport" class="overflow-hidden rounded-xl border border-blue-200 bg-white shadow-xs">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 p-3.5">
+              <h3 class="flex items-center gap-2 text-sm font-bold text-slate-800"><i class="fa-solid fa-chart-column text-blue-600"></i>Quy mô đào tạo</h3>
+              <div class="inline-flex rounded-xl bg-slate-100 p-1" aria-label="Kỳ số liệu đào tạo">
+                <button v-for="period in [{ id: 'current_scale', name: 'Hiện tại' }, { id: 'planned_2026', name: 'Kế hoạch 2026' }]" :key="period.id" type="button" :aria-pressed="cleanTrainingPeriod === period.id" class="rounded-lg px-3 py-1.5 text-xs font-semibold transition" :class="cleanTrainingPeriod === period.id ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-500 hover:text-slate-800'" @click="cleanTrainingPeriod = period.id">{{ period.name }}</button>
+              </div>
+            </div>
+            <div class="space-y-3 p-3.5 sm:p-4">
+              <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                <div v-for="item in cleanTrainingSummary" :key="item.id" class="rounded-xl border border-blue-100 bg-blue-50/50 p-3">
+                  <p class="text-[11px] font-medium text-slate-500">{{ item.label }}</p>
+                  <p class="mt-1 text-lg font-bold text-blue-800">{{ formatSourceAdmissionValue(item.value) }}</p>
+                </div>
+              </div>
+              <div class="overflow-x-auto rounded-xl border border-slate-200">
+                <table class="w-full min-w-[680px] border-collapse text-left text-xs">
+                  <thead class="border-b border-slate-200 bg-slate-50 text-slate-600">
+                    <tr><th class="px-3 py-3 font-semibold">Ngành / Nghề đào tạo</th><th class="px-3 py-3 text-right font-semibold">Tổng</th><th class="px-3 py-3 text-right font-semibold">Cao đẳng</th><th class="px-3 py-3 text-right font-semibold">Trung cấp</th><th class="px-3 py-3 text-right font-semibold">Sơ cấp và khác</th><th class="px-3 py-3 text-right font-semibold">Chưa phân bổ</th></tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100">
+                    <tr v-for="program in cleanTrainingReport.programs" :key="program.name">
+                      <td class="px-3 py-3"><span class="font-semibold text-slate-800">{{ program.name }}</span><span v-if="program.source_codes?.length" class="mt-1 block text-[10px] text-slate-500">{{ program.source_codes.join(' / ') }}</span></td>
+                      <td class="px-3 py-3 text-right font-bold text-blue-700">{{ formatSourceAdmissionValue(program[cleanTrainingPeriod]?.clean_total) }}</td>
+                      <td v-for="level in ['cao_dang', 'trung_cap', 'so_cap_va_khac', 'unallocated']" :key="level" class="px-3 py-3 text-right text-slate-700">{{ formatSourceAdmissionValue(program[cleanTrainingPeriod]?.[level]) }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- Historical recruitment outcomes loaded from the database. -->
           <section v-if="sourceAdmissionRecord" class="overflow-hidden rounded-xl border border-amber-200 bg-white shadow-xs">
             <div class="flex flex-wrap items-start justify-between gap-2 border-b border-amber-100 bg-amber-50/70 p-3.5">
               <div>
@@ -994,7 +1025,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { LEVEL_MAP } from '../../services/schoolService'
-import admissionResults from '../../data/admissionResults.json'
 
 const props = defineProps({
   school: {
@@ -1005,9 +1035,18 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus', 'fit-campuses'])
 
-const sourceAdmissionRecord = computed(() => admissionResults.institutions.find((record) => (
-  record.school_id === props.school?.id || record.school_code === props.school?.code
-)) || null)
+const sourceAdmissionRecord = computed(() => props.school?.admission_report || null)
+const cleanTrainingReport = computed(() => props.school?.training_source_report || null)
+const cleanTrainingPeriod = ref('current_scale')
+const cleanTrainingSummary = computed(() => {
+  const summary = cleanTrainingReport.value?.summary?.[cleanTrainingPeriod.value]?.computed_from_clean_programs || {}
+  return [
+    { id: 'clean_total', label: 'Tổng quy mô', value: summary.clean_total },
+    { id: 'cao_dang', label: 'Cao đẳng', value: summary.cao_dang },
+    { id: 'trung_cap', label: 'Trung cấp', value: summary.trung_cap },
+    { id: 'so_cap_va_khac', label: 'Sơ cấp và khác', value: summary.so_cap_va_khac },
+  ]
+})
 
 const sourceAdmissionSummary = computed(() => {
   const summary = sourceAdmissionRecord.value?.summary || {}

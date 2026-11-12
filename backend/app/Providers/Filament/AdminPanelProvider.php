@@ -10,6 +10,7 @@ use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
+use Filament\Support\Enums\Width;
 use Filament\View\PanelsRenderHook;
 use Filament\Widgets\AccountWidget;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
@@ -35,6 +36,7 @@ class AdminPanelProvider extends PanelProvider
             ->font('Roboto')
             ->brandName('Quản trị Địa giới Hành chính - Ninh Bình')
             ->sidebarCollapsibleOnDesktop()
+            ->maxContentWidth(Width::Full)
             ->renderHook(
                 PanelsRenderHook::BODY_START,
                 fn () => view('filament.components.loading-bar')

@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CareerField;
 use App\Models\Employer;
 use App\Models\ReportingPeriod;
 use App\Models\TrainingCapacity;
 use App\Models\TrainingLevel;
 use App\Models\TrainingMajor;
 use App\Models\WorkforceDemand;
+use App\Support\SkillList;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -16,13 +18,25 @@ use Illuminate\Support\Str;
 
 class SupplyDemandController extends Controller
 {
-    public function catalogs(): JsonResponse
+    public function catalogs(Request $request): JsonResponse
     {
+        $majors = TrainingMajor::query()->where('is_active', true)->orderBy('name');
+        if ($request->boolean('include_training_schools')) {
+            $activeSchools = fn ($query) => $query->where(fn ($q) => $q->whereNull('schools.status')->orWhere('schools.status', '!=', 'INACTIVE'));
+            $majors->whereHas('schools', $activeSchools)
+                ->with(['schools' => fn ($query) => $activeSchools($query)->select('schools.id', 'schools.name', 'schools.address')->orderBy('schools.name')]);
+        }
+
         return response()->json([
-            'training_majors' => TrainingMajor::query()
-                ->where('is_active', true)
-                ->orderBy('name')
-                ->get(['id', 'name', 'slug']),
+            'training_majors' => $majors->get(['id', 'name', 'slug'])->map(function (TrainingMajor $major): array {
+                $data = $major->only(['id', 'name', 'slug']);
+                if ($major->relationLoaded('schools')) {
+                    $data['training_schools'] = $major->schools->unique('id')->map(fn ($school): array => $school->only(['id', 'name', 'address']))->values()->all();
+                    $data['school_count'] = count($data['training_schools']);
+                }
+
+                return $data;
+            }),
             'training_levels' => TrainingLevel::query()
                 ->where('is_active', true)
                 ->orderBy('display_order')
@@ -31,6 +45,7 @@ class SupplyDemandController extends Controller
                 ->where('is_active', true)
                 ->orderByDesc('starts_at')
                 ->get(['id', 'code', 'name', 'starts_at', 'ends_at']),
+            'career_fields' => CareerField::publicRows(onlyActive: true),
         ]);
     }
 
@@ -63,7 +78,6 @@ class SupplyDemandController extends Controller
                 'employer:id,name,industry,address',
                 'major:id,name,slug',
                 'trainingLevel:id,name',
-                'skills:id,name,normalized_name',
                 'proposals' => fn ($query) => $query->where('status', '!=', 'WITHDRAWN'),
             ])
             ->orderByDesc('created_at')
@@ -79,7 +93,6 @@ class SupplyDemandController extends Controller
                 'school:id,name,address,ward',
                 'major:id,name,slug',
                 'trainingLevel:id,name',
-                'skills:id,name,normalized_name',
                 'proposals' => fn ($query) => $query->where('status', '!=', 'WITHDRAWN'),
             ])
             ->orderByDesc('created_at')
@@ -90,7 +103,7 @@ class SupplyDemandController extends Controller
                 $demand->employer?->name,
                 $demand->major?->name,
                 $demand->location,
-                ...$demand->skills->pluck('name')->all(),
+                ...SkillList::parse($demand->skills),
             ], $search))->values();
 
             $capacities = $capacities->filter(fn (TrainingCapacity $capacity): bool => $this->containsSearch([
@@ -98,7 +111,7 @@ class SupplyDemandController extends Controller
                 $capacity->major?->name,
                 $capacity->location,
                 $capacity->school?->address,
-                ...$capacity->skills->pluck('name')->all(),
+                ...SkillList::parse($capacity->skills),
             ], $search))->values();
         }
 
@@ -134,7 +147,7 @@ class SupplyDemandController extends Controller
                 'remaining' => max(0, $demand->quantity - (int) $demand->proposals->sum('quantity')),
                 'location' => $demand->location,
                 'salary' => $demand->salary,
-                'skills' => $demand->skills->pluck('name')->values(),
+                'skills' => SkillList::parse($demand->skills),
             ])->values(),
             'capacities' => $capacities->map(fn (TrainingCapacity $capacity): array => [
                 'id' => $capacity->id,
@@ -150,7 +163,7 @@ class SupplyDemandController extends Controller
                 'remaining' => max(0, $capacity->quantity - (int) $capacity->proposals->sum('quantity')),
                 'location' => $capacity->location ?: $capacity->school?->address,
                 'duration' => $capacity->duration,
-                'skills' => $capacity->skills->pluck('name')->values(),
+                'skills' => SkillList::parse($capacity->skills),
             ])->values(),
             'employers' => $this->publicEmployers($search),
         ]);
@@ -262,8 +275,8 @@ class SupplyDemandController extends Controller
             ];
             $row['_levels'][$levelId]['demand'] += $quantity;
 
-            foreach ($demand->skills as $skill) {
-                $row['_skills'][$skill->normalized_name ?: $this->normalize($skill->name)] = $skill->name;
+            foreach (SkillList::parse($demand->skills) as $skill) {
+                $row['_skills'][SkillList::normalize($skill)] = $skill;
             }
 
             $row['demands'][] = [
@@ -276,7 +289,7 @@ class SupplyDemandController extends Controller
                 'remaining' => max(0, $quantity - $proposed),
                 'location' => $demand->location,
                 'salary' => $demand->salary,
-                'skills' => $demand->skills->pluck('name')->values()->all(),
+                'skills' => SkillList::parse($demand->skills),
             ];
             unset($row);
         }
@@ -300,8 +313,8 @@ class SupplyDemandController extends Controller
             ];
             $row['_levels'][$levelId]['capacity'] += $quantity;
 
-            foreach ($capacity->skills as $skill) {
-                $row['_capacity_skills'][$skill->normalized_name ?: $this->normalize($skill->name)] = $skill->name;
+            foreach (SkillList::parse($capacity->skills) as $skill) {
+                $row['_capacity_skills'][SkillList::normalize($skill)] = $skill;
             }
 
             $row['_schools'][$schoolKey] ??= [
@@ -318,7 +331,7 @@ class SupplyDemandController extends Controller
             $row['_schools'][$schoolKey]['capacity'] += $quantity;
             $row['_schools'][$schoolKey]['skills'] = collect([
                 ...$row['_schools'][$schoolKey]['skills'],
-                ...$capacity->skills->pluck('name')->all(),
+                ...SkillList::parse($capacity->skills),
             ])->unique(fn (string $skill): string => $this->normalize($skill))->values()->all();
             unset($row);
         }

@@ -5,7 +5,7 @@
     <section class="relative overflow-hidden border-b border-slate-200/90 bg-gradient-to-b from-blue-50/70 via-indigo-50/30 to-slate-50">
       <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#93c5fd_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
       
-      <div class="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+      <div class="relative mx-auto max-w-[1440px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5">
           <div class="max-w-2xl">
             <div class="mb-2.5 inline-flex items-center gap-2 rounded-full border border-blue-200/80 bg-white/90 px-3.5 py-1 text-xs font-bold text-blue-700 shadow-2xs backdrop-blur-xs">
@@ -44,77 +44,42 @@
     </section>
 
     <!-- 2. Main Directory & Filter Section -->
-    <main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 space-y-6">
+    <main class="mx-auto grid max-w-[1440px] grid-cols-1 items-start gap-5 px-4 py-6 sm:px-6 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-6 lg:px-8">
       
-      <!-- Unified Search & Filter Card -->
-      <div class="rounded-2xl border border-slate-200/90 bg-white p-3 shadow-xs sm:p-3.5">
-        <div class="grid grid-cols-1 gap-2.5 md:grid-cols-[minmax(0,1fr)_minmax(280px,380px)]">
-          <div class="relative flex items-center">
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-sm text-slate-400">
-              <i class="fa-solid fa-magnifying-glass"></i>
+      <aside aria-labelledby="enterprise-filter-heading" class="relative z-20 min-w-0 space-y-4 rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs lg:sticky lg:top-4">
+        <div class="flex items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <h2 id="enterprise-filter-heading" class="flex items-center gap-2 text-sm font-bold text-slate-900">
+            <i class="fa-solid fa-sliders text-blue-600" aria-hidden="true"></i>
+            Bộ lọc doanh nghiệp
+          </h2>
+          <button v-if="searchQuery || selectedIndustry !== 'all'" type="button" class="shrink-0 text-xs font-semibold text-blue-600 hover:text-blue-800" @click="resetFilters">Đặt lại</button>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-1">
+          <div class="min-w-0">
+            <label for="enterprise-directory-search" class="mb-1.5 block text-xs font-semibold text-slate-600">Tìm doanh nghiệp</label>
+            <div class="relative">
+              <i class="fa-solid fa-magnifying-glass pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-slate-400" aria-hidden="true"></i>
+              <input id="enterprise-directory-search" v-model="searchQuery" type="search" placeholder="Tên, mã số thuế, địa chỉ..." class="h-11 w-full rounded-xl border border-slate-200/90 bg-slate-50/70 pl-10 pr-9 text-xs font-medium text-slate-800 shadow-2xs outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 sm:text-sm" />
+              <button v-if="searchQuery" type="button" class="absolute right-3 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 hover:bg-slate-200 hover:text-slate-700" title="Xóa tìm kiếm" @click="searchQuery = ''">
+                <i class="fa-solid fa-xmark text-xs"></i>
+              </button>
             </div>
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Tìm doanh nghiệp, mã số thuế, địa chỉ..."
-              class="h-11 w-full rounded-xl border border-slate-200/90 bg-slate-50/70 pl-10 pr-9 text-xs font-medium text-slate-800 shadow-2xs outline-none transition-all placeholder:text-slate-400 hover:bg-slate-100/70 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100 sm:text-sm"
-            />
-            <button
-              v-if="searchQuery"
-              type="button"
-              class="absolute right-3 flex h-5 w-5 items-center justify-center rounded-full text-slate-400 transition hover:bg-slate-200 hover:text-slate-700"
-              title="Xóa tìm kiếm"
-              @click="searchQuery = ''">
-              <i class="fa-solid fa-xmark text-xs"></i>
-            </button>
           </div>
-
-          <div ref="industryDropdownRef" class="relative">
-            <button
-              type="button"
-              :class="industryDropdownOpen ? 'border-blue-400 bg-white text-blue-700 ring-2 ring-blue-100' : (selectedIndustry !== 'all' ? 'border-blue-200 bg-blue-50/40 text-blue-700' : 'border-slate-200/90 bg-slate-50/70 text-slate-700 hover:bg-slate-100/70')"
-              class="relative flex h-11 w-full items-center rounded-xl border pl-10 text-left text-xs font-bold shadow-2xs outline-none transition-all sm:text-sm"
-              :aria-expanded="industryDropdownOpen"
-              @click="industryDropdownOpen = !industryDropdownOpen">
-              <i :class="selectedIndustryOption.icon" class="absolute left-3.5 text-xs text-blue-600"></i>
-              <span class="block truncate" :class="selectedIndustry !== 'all' ? 'pr-14' : 'pr-9'">{{ selectedIndustryOption.name }}</span>
-            </button>
-
-            <button
-              v-if="selectedIndustry !== 'all'"
-              type="button"
-              class="absolute right-8 top-1/2 flex h-5 w-5 -translate-y-1/2 items-center justify-center rounded-full text-slate-400 transition hover:bg-white hover:text-rose-600"
-              title="Xóa lọc lĩnh vực"
-              @click.stop="clearIndustry">
-              <i class="fa-solid fa-xmark text-[10px]"></i>
-            </button>
-            <i class="fa-solid fa-chevron-down pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 text-[10px] text-slate-400 transition-transform duration-200" :class="industryDropdownOpen ? 'rotate-180 text-blue-600' : ''"></i>
-
-            <Transition name="filter-popover">
-              <div v-if="industryDropdownOpen" class="absolute right-0 top-full z-[1000] mt-1.5 w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-xl">
-                <div class="max-h-72 space-y-0.5 overflow-y-auto pr-0.5">
-                  <button
-                    v-for="industry in industries"
-                    :key="industry.id"
-                    type="button"
-                    :class="selectedIndustry === industry.id ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-50'"
-                    class="flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-xs font-semibold transition"
-                    @click="selectIndustry(industry.id)">
-                    <span :class="selectedIndustry === industry.id ? 'bg-white text-blue-600' : 'bg-slate-100 text-slate-500'" class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg">
-                      <i :class="industry.icon" class="text-[11px]"></i>
-                    </span>
-                    <span class="min-w-0 flex-1 truncate">{{ industry.name }}</span>
-                    <i v-if="selectedIndustry === industry.id" class="fa-solid fa-check text-[11px] text-blue-600"></i>
-                  </button>
-                </div>
-              </div>
-            </Transition>
+          <div class="min-w-0">
+            <span class="mb-1.5 block text-xs font-semibold text-slate-600">Lĩnh vực hoạt động</span>
+            <FormSelectPopover v-model="selectedIndustry" :options="industries" icon="fa-solid fa-building" tone="blue" searchable search-placeholder="Tìm lĩnh vực hoạt động..." />
           </div>
         </div>
-      </div>
 
+        <p class="border-t border-slate-100 pt-3 text-xs leading-relaxed text-slate-500">
+          Tìm thấy <strong class="font-bold text-slate-800">{{ filteredEnterprises.length }}</strong> doanh nghiệp phù hợp.
+        </p>
+      </aside>
+
+      <section ref="resultsSection" aria-label="Danh sách doanh nghiệp" class="relative z-10 min-w-0 space-y-4">
       <!-- Results Count Header -->
-      <div class="flex items-center justify-between px-1">
+      <div class="flex flex-wrap items-center justify-between gap-2 px-1">
         <h2 class="text-sm font-bold text-slate-800">
           Tìm thấy <strong class="text-blue-600">{{ filteredEnterprises.length }}</strong> doanh nghiệp phù hợp
         </h2>
@@ -125,7 +90,7 @@
 
       <!-- Enterprise Cards Grid & Pagination -->
       <div v-if="filteredEnterprises.length > 0" class="space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           <EnterpriseCard 
             v-for="ent in paginatedEnterprises" 
             :key="ent.id"
@@ -137,7 +102,7 @@
         <!-- Premium Modern Pagination Bar -->
         <div 
           v-if="totalPages > 1 || filteredEnterprises.length > pageSize"
-          class="bg-white rounded-2xl border border-slate-200/90 p-3 sm:p-4 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 select-none">
+          class="bg-white rounded-2xl border border-slate-200/90 p-3 sm:p-4 shadow-2xs flex flex-col xl:flex-row items-center justify-between gap-3 sm:gap-4 select-none">
           
           <!-- Left info: items counter & Page size selector -->
           <div class="text-xs text-slate-500 order-2 sm:order-1 flex items-center justify-center sm:justify-start gap-2 flex-wrap">
@@ -148,19 +113,19 @@
 
             <div class="hidden sm:flex items-center gap-1.5 ml-2 border-l border-slate-200 pl-3">
               <span class="text-slate-400">Hiển thị:</span>
-              <select 
-                v-model="pageSize" 
-                class="h-7 px-2 text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 rounded-lg outline-none cursor-pointer hover:bg-slate-100">
-                <option :value="6">6 / trang</option>
-                <option :value="9">9 / trang</option>
-                <option :value="12">12 / trang</option>
-                <option :value="18">18 / trang</option>
-              </select>
+              <FormSelectPopover
+                :model-value="pageSize"
+                :options="[6, 9, 12, 18].map(size => ({ id: size, name: size + ' / trang' }))"
+                icon="fa-solid fa-list"
+                tone="blue"
+                class="w-40"
+                @update:model-value="pageSize = Number($event)"
+              />
             </div>
           </div>
 
           <!-- Right: Page Navigation Buttons -->
-          <nav class="flex items-center gap-1 sm:gap-1.5 order-1 sm:order-2" aria-label="Phân trang doanh nghiệp">
+          <nav class="flex max-w-full flex-wrap items-center justify-center gap-1 sm:gap-1.5 order-1 sm:order-2" aria-label="Phân trang doanh nghiệp">
             <!-- Nút Trước -->
             <button 
               @click="prevPage"
@@ -229,6 +194,7 @@
         </button>
       </div>
 
+      </section>
     </main>
 
     <ClientFooter class="mt-auto" />
@@ -237,24 +203,23 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { enterpriseService, ENTERPRISE_INDUSTRIES } from '../../services/enterpriseService'
 import EnterpriseCard from '../../components/enterprise/EnterpriseCard.vue'
+import FormSelectPopover from '../../components/form/FormSelectPopover.vue'
 
 const router = useRouter()
 
 const pageContainer = ref(null)
-const industryDropdownRef = ref(null)
+const resultsSection = ref(null)
 const searchQuery = ref('')
 const selectedIndustry = ref('all')
-const industryDropdownOpen = ref(false)
 
 const currentPage = ref(1)
 const pageSize = ref(9)
 
 const industries = ENTERPRISE_INDUSTRIES
-const selectedIndustryOption = computed(() => industries.find((item) => item.id === selectedIndustry.value) || industries[0])
 
 const filteredEnterprises = computed(() => {
   return enterpriseService.filterEnterprises({
@@ -307,7 +272,7 @@ function nextPage() {
 
 function scrollToTop() {
   if (pageContainer.value) {
-    pageContainer.value.scrollTo({ top: 380, behavior: 'smooth' })
+    pageContainer.value.scrollTo({ top: Math.max(0, (resultsSection.value?.offsetTop || 0) - 16), behavior: 'smooth' })
   }
 }
 
@@ -319,24 +284,7 @@ watch([searchQuery, selectedIndustry, pageSize], () => {
 function resetFilters() {
   searchQuery.value = ''
   selectedIndustry.value = 'all'
-  industryDropdownOpen.value = false
   currentPage.value = 1
-}
-
-function selectIndustry(id) {
-  selectedIndustry.value = id
-  industryDropdownOpen.value = false
-}
-
-function clearIndustry() {
-  selectedIndustry.value = 'all'
-  industryDropdownOpen.value = false
-}
-
-function handleClickOutside(event) {
-  if (industryDropdownRef.value && !industryDropdownRef.value.contains(event.target)) {
-    industryDropdownOpen.value = false
-  }
 }
 
 function goToEnterpriseDetail(enterprise) {
@@ -344,20 +292,4 @@ function goToEnterpriseDetail(enterprise) {
   router.push({ name: 'ClientEnterpriseDetail', params: { id: enterprise.id } })
 }
 
-onMounted(() => document.addEventListener('click', handleClickOutside))
-onBeforeUnmount(() => document.removeEventListener('click', handleClickOutside))
 </script>
-
-<style scoped>
-.filter-popover-enter-active,
-.filter-popover-leave-active {
-  transition: opacity 150ms ease, transform 150ms ease;
-  transform-origin: top right;
-}
-
-.filter-popover-enter-from,
-.filter-popover-leave-to {
-  opacity: 0;
-  transform: translateY(-4px) scale(0.98);
-}
-</style>

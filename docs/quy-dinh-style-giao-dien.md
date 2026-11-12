@@ -99,10 +99,11 @@ Khi một input hoặc select có icon đặt bên trái (`absolute left-0 pl-3.
   - Hiện tại trang danh sách cơ sở tập trung vào 2 bộ lọc cốt lõi thực tế:
     1. **Tất cả xã / phường**: Lấy từ bảng `wards` (đủ 129 xã, phường, thị trấn của Ninh Bình).
     2. **Tất cả ngành nghề**: Lấy từ bảng `training_majors` (118+ ngành nghề thực tế có chỉ tiêu).
-- **Bố cục bộ lọc 2 tầng cân đối**:
-  - **Tầng 1**: Ô tìm kiếm từ khóa linh hoạt (`flex-1`) + Ô sắp xếp A→Z (`min-w-[170px]`) + Nút đặt lại khi có lọc.
-  - **Tầng 2**: Lưới 2 cột chia đôi cân xứng 50% - 50% (`grid grid-cols-1 md:grid-cols-2 gap-3`) cho 2 dropdown Xã/Phường và Ngành nghề.
-  - **Tầng 3**: Thanh chip tag hiển thị các điều kiện đang lọc (nhấn `x` gỡ nhanh) kèm chỉ báo số lượng cơ sở tìm thấy.
+- **Bố cục trang danh sách cơ sở**:
+  - Desktop từ `lg`: cột bộ lọc rộng `280px` bên trái, vùng kết quả `minmax(0,1fr)` bên phải; khung trang rộng tối đa `1440px`.
+  - Sidebar xếp dọc: tìm kiếm, sắp xếp, xã/phường, ngành/nghề; có nhãn rõ ràng, nút đặt lại và chip gỡ các điều kiện lọc. Sidebar dùng `sticky top-4`, có lớp hiển thị cao hơn danh sách để dropdown không bị thẻ trường che.
+  - Tablet/mobile: bộ lọc trở về phía trên danh sách, cùng một cột trang; các ô lọc có thể chia hai cột ở tablet.
+  - Dropdown vẫn có tìm kiếm và thanh cuộn; chip có tên dài phải xuống dòng trong chiều rộng sidebar.
 
 ---
 
@@ -134,19 +135,38 @@ Khi một input hoặc select có icon đặt bên trái (`absolute left-0 pl-3.
 
 ## 5. Quy chuẩn Thẻ Trường học (School Cards Grid)
 
-- **Lưới hiển thị**: `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6`.
+- **Lưới hiển thị** trong vùng bên phải bộ lọc: `grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4`.
+- **Thanh cuối danh sách**: đưa khoảng bản ghi đang hiển thị và chọn số trường mỗi trang vào cùng khối nền trắng với các nút phân trang, đồng bộ trang doanh nghiệp. Phía trên lưới chỉ hiển thị tổng kết quả tìm được. Giữ chọn số trường mỗi trang cả khi kết quả chỉ có một trang; các nút chuyển trang chỉ hiện khi có nhiều trang.
 - **Cấu trúc thẻ**:
   - **Nền & Viền**: `bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md transition-all`.
   - **Đầu thẻ**: Badge cấp học (`#16a34a15`, chữ xanh lá) + Mã trường `#SCH...` ở góc phải.
-  - **Tên trường**: `text-slate-900 font-extrabold text-base line-clamp-2 group-hover:text-blue-700 cursor-pointer`.
+  - **Tên trường**: `text-slate-900 text-sm sm:text-base font-bold leading-snug group-hover:text-blue-700 cursor-pointer`; cho phép xuống dòng để đọc đủ tên.
   - **Địa chỉ**: Có icon ghim `text-slate-400`, `text-xs text-slate-500 line-clamp-2`.
-  - **Xem trước ngành nghề**: Top 3 ngành nghề đào tạo kèm chỉ tiêu (`bg-slate-50 py-1 px-2 rounded-lg`), kèm dòng `+ Còn N ngành khác...`.
-  - **Chỉ tiêu năm**: Dòng tóm tắt tổng chỉ tiêu với số lượng `text-amber-700 font-extrabold`.
+  - **Không hiển thị khối ngành nghề nổi bật, danh sách ngành xem trước hoặc tổng chỉ tiêu/năm trên thẻ**. Người dùng xem thông tin đào tạo đầy đủ trong hồ sơ chi tiết; bộ lọc ngành/nghề vẫn hoạt động.
   - **Hai nút hành động dưới đáy**:
     - Nút 1: *"Xem chi tiết"* (`bg-blue-50 text-blue-700 hover:bg-blue-100 border border-blue-200/80 rounded-xl py-2 font-bold text-xs`).
     - Nút 2: *"Xem bản đồ"* (`bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200 rounded-xl py-2 font-bold text-xs`).
 
 ---
+
+### 5.1. Trang danh sách doanh nghiệp
+
+- Dùng cùng khung trang `max-w-[1440px]` và bố cục `lg:grid-cols-[280px_minmax(0,1fr)]` như danh sách cơ sở GDNN.
+- Bộ lọc bên trái gồm tìm kiếm doanh nghiệp và lĩnh vực hoạt động; có nút đặt lại khi đang lọc. Dropdown lĩnh vực dùng `FormSelectPopover`, có tìm kiếm tiếng Việt và thanh cuộn.
+- Sidebar sticky trên desktop; ở tablet/mobile nằm phía trên danh sách. Vùng kết quả bên phải dùng `min-w-0`, lưới 1/2/3 cột lần lượt ở mặc định/`md`/`xl`.
+- Thẻ doanh nghiệp gọn với logo, tên, số vị trí tuyển dụng và quy mô lao động; dùng `p-4 gap-3`, logo trong khung `56px` để không chiếm quá nhiều chỗ của tên doanh nghiệp.
+- Phân trang cho phép xuống dòng khi hẹp; chọn số bản ghi mỗi trang bằng popover chuẩn, không dùng select của hệ điều hành. Đổi trang cuộn về đầu vùng kết quả theo vị trí thực tế, không cố định số pixel.
+
+### 5.2. Danh sách việc làm trong một lĩnh vực
+
+- Trang danh sách lĩnh vực (tầng 1) chỉ hiển thị tiêu đề và các thẻ lĩnh vực; không đặt thanh tìm kiếm/chọn lĩnh vực trên hero. Các bộ lọc công việc chỉ xuất hiện khi mở một lĩnh vực.
+
+- Tầng danh sách công việc dùng cùng khung `1440px` và cột trái `280px` như trường học, doanh nghiệp; tiêu đề căn trái, bộ lọc không nằm trên hero.
+- Trên desktop, cột trái gồm bộ lọc từ khóa, xã/phường, kỹ năng và khối cơ sở đào tạo liên quan có tìm kiếm, danh sách cuộn. Cột phải là lưới công việc 1/2/3 cột tại mặc định/`md`/`xl`.
+- Trên mobile/tablet, bộ lọc đứng trước danh sách việc làm; khối cơ sở đào tạo đứng sau danh sách. Tránh ép nhiều sidebar nằm ngang trên màn hình nhỏ.
+- Do cột trái gồm cả danh sách cơ sở và bộ lọc, để cuộn tự nhiên thay vì ghim toàn bộ một sidebar dài vượt chiều cao màn hình.
+- Thanh cuối danh sách có khoảng bản ghi, chọn số việc làm mỗi trang và nút phân trang; mặc định 12, lựa chọn 9/12/18/24. Đổi số lượng trở về trang 1. Trường hợp chỉ một trang vẫn cho phép chọn số lượng.
+- Giữ hành vi mở chi tiết cơ sở, chi tiết công việc và popup hover hiện có.
 
 ## 6. Mẫu Code Chuẩn (Template Snippets)
 
@@ -357,4 +377,15 @@ Khi thiết kế giao diện danh sách công việc và ngành nghề đào t�
 ### 10.3. Màu nền chuẩn cho Header và Footer (Màu nền nhạt):
 - **Header**: Bắt buộc sử dụng màu nền nhạt `bg-slate-50/95 backdrop-blur-md` kết hợp đường viền phân tách mờ `border-b border-slate-200/90`. Không dùng màu trắng tinh `bg-white` để tạo cảm giác dịu mắt và tôn bật các nút điều hướng bên trong.
 - **Footer**: Bắt buộc sử dụng màu nền nhạt `bg-slate-50` kết hợp viền trên `border-t border-slate-200/90`. Các khối thẻ chức năng bên trong (như hộp hotline) sử dụng nền trắng `bg-white` để nổi bật trên nền nhạt của footer.
+
+---
+
+## 11. Chiều rộng form thêm, sửa và chi tiết trong Admin Filament
+
+- Admin Panel đặt `maxContentWidth(Width::Full)` để dùng toàn bộ vùng nội dung bên phải sidebar.
+- Các khối `Section`, `Tabs`, `Grid` ở cấp ngoài cùng của form hoặc trang chi tiết phải có `columnSpanFull()` khi khối đó cần phủ toàn chiều ngang. Chỉ đặt `columns(2)` bên trong Section không làm Section tự mở rộng: khối vẫn có thể chỉ chiếm một cột của lưới ngoài, gây trống nửa trang.
+- Chia cột **bên trong** khối để sắp xếp trường thông tin; dùng `columns(['default' => 1, 'md' => 2])` cho form thông thường. Form nhiều trường có thể dùng 3 cột ở `xl`; nội dung dài dùng `columnSpanFull()`.
+- Với nhiều nhóm thông tin đặt song song, Grid ngoài cùng phải có `columnSpanFull()`; các nhóm bên trong có thể chia cột cân đối như form tài khoản nhà trường. Không ép mọi Section lồng nhau chiếm đủ cột vì sẽ phá bố cục nhóm.
+- Dùng thành phần và bố cục chuẩn Filament; không sửa CSS toàn cục hoặc thêm `width: 100vw` cho form vì sẽ lấn sidebar và tràn mobile.
+- Khi thêm trang mới, đối chiếu form tạo và chỉnh sửa tại các độ rộng desktop, tablet, mobile; kiểm tra đủ chiều ngang của khối ngoài và khả năng xuống một cột ở màn hình nhỏ.
 
