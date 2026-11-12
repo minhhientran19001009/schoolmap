@@ -19,6 +19,11 @@ class CleanGdnnImportService
         }
         $schools = DB::table('schools')->get();
         $byId = $schools->keyBy('id');
+        // School IDs generated from imported rows end with a random three-digit
+        // suffix. The same reviewed school can therefore have a different full
+        // ID on local and VPS databases. Keep the stable slug portion as a
+        // secondary identity, but only accept it when it resolves uniquely.
+        $byStableId = $schools->groupBy(fn ($school) => $this->stableSchoolIdKey($school->id));
         $byName = $schools->groupBy(fn ($school) => $this->schoolKey($school->name));
         $byExactName = $schools->groupBy(fn ($school) => $this->exactSchoolKey($school->name));
         $duplicateCodes = collect($clean['institutions'])->filter(fn ($item) => filled($item['code'] ?? null))->groupBy('code')->filter(fn ($items) => $items->count() > 1)->keys()->all();
@@ -35,6 +40,15 @@ class CleanGdnnImportService
                     $candidate = $byId->get($trustedId);
                     if ($type !== 'admission_report' || empty($item['school_code']) || $candidate->code === $item['school_code']) {
                         $school = $candidate;
+                    }
+                }
+                if (! $school && $trustedId) {
+                    $stableMatches = $byStableId->get($this->stableSchoolIdKey($trustedId), collect());
+                    if ($stableMatches->count() === 1) {
+                        // The reviewed source ID is authoritative here. Do not
+                        // require the legacy source code: existing VPS rows can
+                        // legitimately retain a different internal code.
+                        $school = $stableMatches->first();
                     }
                 }
                 // Never use candidate_project_school_id or fuzzy/substring matches.
@@ -197,6 +211,11 @@ class CleanGdnnImportService
         $value = Str::of($value)->ascii()->lower()->value();
         $value = str_replace(['giao duc nghe nghiep', 'giao duc thuong xuyen', 'huong nghiep', '&', 'gtvt'], ['gdnn', 'gdtx', 'hn', ' va ', 'giao thong van tai'], $value);
         $value = preg_replace('/[^a-z0-9]+/', ' ', $value);
+        // Source reports use common abbreviated school/province names. Expand
+        // only complete tokens so unrelated words and school names are not
+        // changed. The resulting key must still resolve to exactly one row.
+        $value = preg_replace('/\bcd\b/', 'cao dang', $value);
+        $value = preg_replace('/\bnd\b/', 'nam dinh', $value);
         $value = preg_replace('/\b(huyen|thi xa|thanh pho)\b/', ' ', $value);
 
         return Str::squish($value);
@@ -205,6 +224,11 @@ class CleanGdnnImportService
     private function exactSchoolKey(string $value): string
     {
         return Str::squish(preg_replace('/[^a-z0-9]+/', ' ', Str::ascii(mb_strtolower($value))));
+    }
+
+    private function stableSchoolIdKey(string $value): string
+    {
+        return preg_replace('/-\d{3}$/', '', $value) ?: $value;
     }
 
     private function majorKey(string $value): string

@@ -102,4 +102,96 @@ class CleanGdnnImportTest extends TestCase
         $this->assertCount(1, $plan['records']);
         $this->assertCount(1, $plan['skipped']);
     }
+
+    public function test_reviewed_source_id_matches_a_unique_database_id_with_a_different_generated_suffix(): void
+    {
+        DB::table('schools')->insert([
+            'id' => 'truong-cao-dang-cong-nghiep-nam-dinh-192',
+            'code' => 'NB-88976',
+            'name' => 'Trường Cao đẳng Công nghiệp Nam Định',
+            'campus_type' => 'MAIN',
+        ]);
+
+        $plan = app(CleanGdnnImportService::class)->plan([
+            'institutions' => [[
+                'source_ref' => 'Sheet!1',
+                'name' => 'Tên nguồn có thể khác tên cơ sở đã đối chiếu',
+                'match_status' => 'matched',
+                'project_school_id' => 'truong-cao-dang-cong-nghiep-nam-dinh-351',
+                'programs' => [],
+            ]],
+            'centers' => [],
+        ], [
+            'institutions' => [[
+                'school_id' => 'truong-cao-dang-cong-nghiep-nam-dinh-351',
+                'school_code' => 'CDT2501',
+                'source_name' => 'Tên báo cáo nguồn',
+                'programs' => [],
+            ]],
+        ]);
+
+        $this->assertCount(2, $plan['records']);
+        $this->assertSame(
+            ['truong-cao-dang-cong-nghiep-nam-dinh-192'],
+            collect($plan['records'])->pluck('school_id')->unique()->values()->all(),
+        );
+    }
+
+    public function test_generated_suffix_matching_never_selects_an_ambiguous_school(): void
+    {
+        DB::table('schools')->insert([
+            ['id' => 'truong-trung-cap-kiem-thu-111', 'code' => 'A', 'name' => 'Trường trùng', 'campus_type' => 'MAIN'],
+            ['id' => 'truong-trung-cap-kiem-thu-222', 'code' => 'B', 'name' => 'Trường trùng', 'campus_type' => 'MAIN'],
+        ]);
+
+        $plan = app(CleanGdnnImportService::class)->plan([
+            'institutions' => [[
+                'source_ref' => 'Sheet!1',
+                'name' => 'Trường trùng',
+                'match_status' => 'matched',
+                'project_school_id' => 'truong-trung-cap-kiem-thu-333',
+                'programs' => [],
+            ]],
+            'centers' => [],
+        ], []);
+
+        $this->assertCount(0, $plan['records']);
+        $this->assertCount(1, $plan['skipped']);
+    }
+
+    public function test_common_source_abbreviations_match_only_one_canonical_school_name(): void
+    {
+        DB::table('schools')->insert([
+            [
+                'id' => 'truong-cao-dang-kinh-te-va-cong-nghe-nam-290',
+                'code' => 'NB-80577',
+                'name' => 'Trường Cao đẳng Kinh tế và Công nghệ Nam Định',
+                'campus_type' => 'MAIN',
+            ],
+            [
+                'id' => 'truong-cao-dang-kinh-te-va-cong-nghe-nam-131',
+                'code' => 'NB-94669',
+                'name' => 'Trường Cao đẳng Kinh tế và Công nghệ Nam Định - Trụ sở chính, Khu B',
+                'campus_type' => 'MAIN',
+            ],
+        ]);
+
+        $plan = app(CleanGdnnImportService::class)->plan([
+            'institutions' => [],
+            'centers' => [],
+        ], [
+            'institutions' => [[
+                'school_id' => 'truong-cao-dang-kinh-te-va-cong-nghe-nam-928',
+                'school_code' => 'NB-80777',
+                'source_name' => 'Trường CĐ Kinh tế và Công nghệ NĐ',
+                'programs' => [],
+            ]],
+        ]);
+
+        $this->assertCount(1, $plan['records']);
+        $this->assertSame(
+            'truong-cao-dang-kinh-te-va-cong-nghe-nam-290',
+            $plan['records'][0]['school_id'],
+        );
+    }
 }
