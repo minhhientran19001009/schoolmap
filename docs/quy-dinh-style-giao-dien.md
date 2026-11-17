@@ -1,5 +1,7 @@
 # QUY ĐỊNH CHUẨN THIẾT KẾ VÀ STYLE GIAO DIỆN DỰ ÁN SCHOOLMAP NINH BÌNH
 
+> Cập nhật 17/11/2026: Bảng đào tạo chính trong Tổng quan hiển thị **quy mô đào tạo**, đơn vị người học. Không lấy chỉ tiêu hằng năm làm quy mô; không lặp thêm một khối quy mô giống nhau bên dưới. Ô trống hiển thị “—”, số 0 giữ là 0; phần chưa phân bổ là cột riêng khi có. Xem [quy trình nhập quy mô](nhap-quy-mo-dao-tao-excel.md).
+
 > **Mục đích**: Tài liệu này quy định toàn bộ tiêu chuẩn về tông màu, kích thước, khoảng cách (padding/margin), cách thiết kế các ô nhập liệu, dropdown select và bố cục trang công khai của hệ thống Bản đồ số GDNN Ninh Bình. 
 > **Quy tắc bắt buộc**: Bất kỳ tính năng mới hoặc chỉnh sửa giao diện nào đều phải tuân thủ nghiêm ngặt tài liệu này để tránh tình trạng lệch style, đè chữ hay vỡ khung giao diện.
 

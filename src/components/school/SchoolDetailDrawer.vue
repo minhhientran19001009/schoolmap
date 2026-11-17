@@ -292,30 +292,30 @@
               <div>
                 <h3 class="flex items-center gap-1.5 text-sm font-bold text-slate-800">
                   <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
-                  Thông tin đào tạo
+                  Quy mô đào tạo
                 </h3>
-                <p class="mt-0.5 text-[11px] text-slate-500">Chỉ tiêu được tổng hợp theo các cấp học đã gán cho cơ sở trong hệ thống.</p>
+                <p class="mt-0.5 text-[11px] text-slate-500">Quy mô theo ngành/nghề và trình độ đào tạo.</p>
               </div>
               <span class="w-fit rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
-                {{ trainingPrograms.length }} ngành / nghề
+                {{ scaleTable.rows.length }} ngành / nghề
               </span>
             </div>
 
-            <div v-if="trainingPrograms.length > 0" class="p-3.5 sm:p-4">
+            <div v-if="scaleTable.rows.length > 0" class="p-3.5 sm:p-4">
               <div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
                 <div class="rounded-xl border border-blue-100 bg-blue-50 p-3">
-                  <div class="text-[11px] font-medium text-slate-500">Tổng chỉ tiêu</div>
-                  <div class="mt-1 text-xl font-black text-blue-800">{{ formatQuota(trainingQuotaSummary.total) }}</div>
-                  <div class="text-[10px] text-blue-600">SV/năm</div>
+                  <div class="text-[11px] font-medium text-slate-500">Tổng quy mô</div>
+                  <div class="mt-1 text-xl font-black text-blue-800">{{ formatSourceAdmissionValue(scaleTable.total) }}</div>
+                  <div class="text-[10px] text-blue-600">Người học</div>
                 </div>
                 <div
-                  v-for="level in trainingSummaryCards"
+                  v-for="level in scaleSummaryCards"
                   :key="level.id"
                   :class="level.cardClass"
                   class="rounded-xl border p-3">
                   <div class="text-[11px] font-medium text-slate-500">{{ level.name }}</div>
-                  <div :class="level.valueClass" class="mt-1 text-xl font-black">{{ formatQuota(level.quota) }}</div>
-                  <div :class="level.unitClass" class="text-[10px]">SV/năm</div>
+                  <div :class="level.valueClass" class="mt-1 text-xl font-black">{{ formatSourceAdmissionValue(level.value) }}</div>
+                  <div :class="level.unitClass" class="text-[10px]">Người học</div>
                 </div>
               </div>
 
@@ -326,7 +326,7 @@
                       <th class="min-w-[360px] px-3 py-3 font-semibold">Ngành / nghề đào tạo</th>
                       <th class="min-w-[88px] px-3 py-3 text-right font-semibold">Tổng</th>
                       <th
-                        v-for="level in trainingSummaryCards"
+                        v-for="level in scaleSummaryCards"
                         :key="level.id"
                         class="min-w-[120px] px-3 py-3 text-right font-semibold">
                         {{ level.name }}
@@ -334,58 +334,30 @@
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-slate-200">
-                    <tr v-for="program in trainingPrograms" :key="program.key" class="align-top transition-colors hover:bg-slate-50/80">
+                    <tr v-for="program in scaleTable.rows" :key="program.key" class="align-top transition-colors hover:bg-slate-50/80">
                       <td class="px-3 py-3">
                         <div class="font-bold leading-snug text-slate-800">{{ program.name }}</div>
-                        <div v-if="program.code" class="mt-1 text-[10px] font-mono font-medium text-slate-500">Mã ngành: {{ program.code }}</div>
+                        <div v-if="program.code" class="mt-1 text-[10px] font-mono text-slate-500">Mã ngành: {{ program.code }}</div>
+                        <div v-if="program.conflict" class="mt-1 text-[10px] text-amber-700">Tổng nguồn chưa khớp số theo trình độ</div>
                       </td>
-                      <td class="px-3 py-3 text-right font-bold text-blue-800">{{ formatQuota(program.total) }}</td>
+                      <td class="px-3 py-3 text-right font-bold text-blue-800">{{ formatSourceAdmissionValue(program.total) }}</td>
                       <td
-                        v-for="level in trainingSummaryCards"
+                        v-for="level in scaleSummaryCards"
                         :key="`${program.key}-${level.id}`"
                         class="px-3 py-3 text-right text-slate-700">
-                        {{ formatQuota(program.quotas[level.id] ?? 0) }}
+                        {{ formatSourceAdmissionValue(program.values[level.id]) }}
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+              <p v-if="!scaleTable.hasReport" class="mt-3 text-[11px] text-slate-500">Chưa cập nhật số liệu quy mô đào tạo.</p>
+              <p v-else-if="scaleTable.hasConflict" class="mt-3 text-[11px] text-amber-700">Một số tổng chưa khớp trong file nguồn, hiển thị “—” để chờ đối chiếu.</p>
             </div>
 
             <div v-else class="m-3.5 rounded-lg border border-dashed border-slate-200 bg-slate-50 py-5 text-center text-[11px] italic text-slate-400">
               <span v-if="school.education_level === 'gdtx'">Chương trình đào tạo GDTX & Phổ thông đang được cập nhật.</span>
               <span v-else>Chưa có danh mục ngành đào tạo trong cơ sở dữ liệu.</span>
-            </div>
-          </section>
-
-          <section v-if="cleanTrainingReport" class="overflow-hidden rounded-xl border border-blue-200 bg-white shadow-xs">
-            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 p-3.5">
-              <h3 class="flex items-center gap-2 text-sm font-bold text-slate-800"><i class="fa-solid fa-chart-column text-blue-600"></i>Quy mô đào tạo</h3>
-              <div class="inline-flex rounded-xl bg-slate-100 p-1" aria-label="Kỳ số liệu đào tạo">
-                <button v-for="period in [{ id: 'current_scale', name: 'Hiện tại' }, { id: 'planned_2026', name: 'Kế hoạch 2026' }]" :key="period.id" type="button" :aria-pressed="cleanTrainingPeriod === period.id" class="rounded-lg px-3 py-1.5 text-xs font-semibold transition" :class="cleanTrainingPeriod === period.id ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-500 hover:text-slate-800'" @click="cleanTrainingPeriod = period.id">{{ period.name }}</button>
-              </div>
-            </div>
-            <div class="space-y-3 p-3.5 sm:p-4">
-              <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                <div v-for="item in cleanTrainingSummary" :key="item.id" class="rounded-xl border border-blue-100 bg-blue-50/50 p-3">
-                  <p class="text-[11px] font-medium text-slate-500">{{ item.label }}</p>
-                  <p class="mt-1 text-lg font-bold text-blue-800">{{ formatSourceAdmissionValue(item.value) }}</p>
-                </div>
-              </div>
-              <div class="overflow-x-auto rounded-xl border border-slate-200">
-                <table class="w-full min-w-[680px] border-collapse text-left text-xs">
-                  <thead class="border-b border-slate-200 bg-slate-50 text-slate-600">
-                    <tr><th class="px-3 py-3 font-semibold">Ngành / Nghề đào tạo</th><th class="px-3 py-3 text-right font-semibold">Tổng</th><th class="px-3 py-3 text-right font-semibold">Cao đẳng</th><th class="px-3 py-3 text-right font-semibold">Trung cấp</th><th class="px-3 py-3 text-right font-semibold">Sơ cấp và khác</th><th class="px-3 py-3 text-right font-semibold">Chưa phân bổ</th></tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-100">
-                    <tr v-for="program in cleanTrainingReport.programs" :key="program.name">
-                      <td class="px-3 py-3"><span class="font-semibold text-slate-800">{{ program.name }}</span><span v-if="program.source_codes?.length" class="mt-1 block text-[10px] text-slate-500">{{ program.source_codes.join(' / ') }}</span></td>
-                      <td class="px-3 py-3 text-right font-bold text-blue-700">{{ formatSourceAdmissionValue(program[cleanTrainingPeriod]?.clean_total) }}</td>
-                      <td v-for="level in ['cao_dang', 'trung_cap', 'so_cap_va_khac', 'unallocated']" :key="level" class="px-3 py-3 text-right text-slate-700">{{ formatSourceAdmissionValue(program[cleanTrainingPeriod]?.[level]) }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
             </div>
           </section>
 
@@ -1025,6 +997,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { LEVEL_MAP } from '../../services/schoolService'
+import { trainingScaleTable } from '../../utils/trainingScale'
 
 const props = defineProps({
   school: {
@@ -1037,17 +1010,16 @@ const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus', 'fit
 
 const sourceAdmissionRecord = computed(() => props.school?.admission_report || null)
 const cleanTrainingReport = computed(() => props.school?.training_source_report || null)
-const cleanTrainingPeriod = ref('current_scale')
-const cleanTrainingSummary = computed(() => {
-  const summary = cleanTrainingReport.value?.summary?.[cleanTrainingPeriod.value]?.computed_from_clean_programs || {}
-  return [
-    { id: 'clean_total', label: 'Tổng quy mô', value: summary.clean_total },
-    { id: 'cao_dang', label: 'Cao đẳng', value: summary.cao_dang },
-    { id: 'trung_cap', label: 'Trung cấp', value: summary.trung_cap },
-    { id: 'so_cap_va_khac', label: 'Sơ cấp và khác', value: summary.so_cap_va_khac },
-  ]
-})
-
+const scaleTable = computed(() => trainingScaleTable(
+  cleanTrainingReport.value,
+  props.school?.education_levels_catalog || [],
+  parseArrayField(props.school?.training_majors),
+))
+const scaleSummaryCards = computed(() => scaleTable.value.columns.map(level => ({
+  ...level,
+  ...(EDUCATION_LEVEL_CARD_STYLES[level.id] || DEFAULT_EDUCATION_LEVEL_CARD_STYLE),
+  value: scaleTable.value.totals[level.id],
+})))
 const sourceAdmissionSummary = computed(() => {
   const summary = sourceAdmissionRecord.value?.summary || {}
   return [
@@ -1215,52 +1187,6 @@ const DEFAULT_EDUCATION_LEVEL_CARD_STYLE = {
   unitClass: 'text-slate-600',
 }
 
-const trainingPrograms = computed(() => {
-  const grouped = new Map()
-
-  displayMajors.value.forEach((major, index) => {
-    const name = String(major?.name || 'Chưa cập nhật tên ngành').trim()
-    const code = getMajorCode(major)
-    const key = `${name.toLocaleLowerCase('vi-VN')}|${code}`
-    const degreeLevel = normalizeTrainingLevel(major?.degree_level)
-    const quota = Number(major?.annual_quota ?? 0)
-    const safeQuota = Number.isFinite(quota) && quota >= 0 ? quota : 0
-
-    if (!grouped.has(key)) {
-      grouped.set(key, {
-        key: `${key}|${index}`,
-        name,
-        code,
-        levels: new Set(),
-        total: 0,
-        quotas: {},
-      })
-    }
-
-    const program = grouped.get(key)
-    program.levels.add(degreeLevel)
-    program.total += safeQuota
-    program.quotas[degreeLevel] = (program.quotas[degreeLevel] ?? 0) + safeQuota
-  })
-
-  return Array.from(grouped.values())
-    .map(program => ({
-      ...program,
-      levels: Array.from(program.levels).sort((a, b) => {
-        const left = TRAINING_LEVEL_ORDER.indexOf(a)
-        const right = TRAINING_LEVEL_ORDER.indexOf(b)
-        return (left === -1 ? 99 : left) - (right === -1 ? 99 : right)
-      }),
-    }))
-    .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
-})
-
-const trainingQuotaSummary = computed(() => {
-  return {
-    total: trainingPrograms.value.reduce((total, program) => total + program.total, 0),
-  }
-})
-
 // Use the complete DB catalog for the cards and table columns. A level must
 // remain visible even when this school currently has no programme for it.
 const schoolEducationLevels = computed(() => {
@@ -1297,38 +1223,6 @@ const schoolEducationLevels = computed(() => {
     .sort((left, right) => left.displayOrder - right.displayOrder || left.name.localeCompare(right.name, 'vi'))
 })
 
-const trainingSummaryCards = computed(() => {
-  const levels = schoolEducationLevels.value
-  const quotasByLevel = {}
-  const total = trainingQuotaSummary.value.total
-
-  displayMajors.value.forEach(major => {
-    const levelId = normalizeEducationLevelId(major?.degree_level)
-    const quota = Number(major?.annual_quota ?? 0)
-    if (!levelId || !Number.isFinite(quota) || quota < 0) return
-    quotasByLevel[levelId] = (quotasByLevel[levelId] ?? 0) + quota
-  })
-
-  const hasMappedQuota = levels.some(level => Object.prototype.hasOwnProperty.call(quotasByLevel, level.id))
-
-  return levels.map(level => {
-    // Historical records for a single-level school sometimes store the
-    // programme's detailed degree (e.g. sơ cấp) instead of its school level
-    // (e.g. GDTX). In that safe case, the whole quota belongs to its only
-    // configured level. Multiple-level schools are never guessed.
-    const quota = hasMappedQuota || levels.length !== 1
-      ? (quotasByLevel[level.id] ?? 0)
-      : total
-    const style = EDUCATION_LEVEL_CARD_STYLES[level.id] || DEFAULT_EDUCATION_LEVEL_CARD_STYLE
-
-    return {
-      ...level,
-      quota,
-      ...style,
-    }
-  })
-})
-
 const previewMajors = computed(() => displayMajors.value.slice(0, 4))
 
 const filteredMajors = computed(() => {
@@ -1363,11 +1257,6 @@ function getEducationLevelLabel(level) {
   }
 
   return labels[normalizeEducationLevelId(level)] || 'Cấp học'
-}
-
-function formatQuota(value) {
-  const quota = Number(value)
-  return Number.isFinite(quota) ? quota.toLocaleString('vi-VN') : '—'
 }
 
 function formatDegreeLevel(level) {

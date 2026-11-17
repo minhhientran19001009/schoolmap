@@ -1,0 +1,6058 @@
+{
+  "checked_at": "2026-11-17T22:20:29.656455+07:00",
+  "workbook": "C:\\Users\\Admin\\Desktop\\tai_lieu\\Copy of BẢNG TH NGÀNH NGHỀ ĐỂ XÂY DỰNG BẢN ĐỒ SỐ GDNNNGDTX.xlsx",
+  "source_sha256": "4ba9126c6554c4286fda5c24fafe89d86d9d537cae00f1efd5c40cd187a27a26",
+  "source_schools": 15,
+  "source_rows": 304,
+  "source_school_major_pairs": 256,
+  "results": [
+    {
+      "source_name": "Trường Cao đẳng Văn hóa Nghệ thuật và Du lịch Nam Định",
+      "source_row": 6,
+      "source_ref": "Mau 1 - KQTS!6:19",
+      "web_name": "Trường Cao đẳng Văn hóa Nghệ thuật và Du lịch Nam Định",
+      "web_id": "truong-cao-dang-van-hoa-nghe-thuat-va-du-470",
+      "scope": "Cùng trường",
+      "source_count": 10,
+      "catalog_count": 10,
+      "matched": 10,
+      "missing": [],
+      "extras": [],
+      "variants": [],
+      "has_training_report": true,
+      "report_count": 10,
+      "report_matched": 10,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng công nghệ kinh tế và chế biến lâm sản",
+      "source_row": 20,
+      "source_ref": "Mau 1 - KQTS!20:29",
+      "web_name": "Trường Cao đẳng Công nghệ, Kinh tế và Chế biến lâm sản",
+      "web_id": "truong-cao-dang-cong-nghe-kinh-te-va-che-629",
+      "scope": "Cùng trường",
+      "source_count": 9,
+      "catalog_count": 9,
+      "matched": 9,
+      "missing": [],
+      "extras": [],
+      "variants": [
+        {
+          "source": [
+            "Gia công và thiết kế sản phẩm mộc"
+          ],
+          "web": "Gia công và Thiết kế sản phẩm Mộc",
+          "rows": [
+            20
+          ]
+        },
+        {
+          "source": [
+            "Điện Công nghiệp"
+          ],
+          "web": "Điện công nghiệp",
+          "rows": [
+            23
+          ]
+        },
+        {
+          "source": [
+            "Kế toán doanh nghiệp"
+          ],
+          "web": "Kế toán Doanh nghiệp",
+          "rows": [
+            26
+          ]
+        },
+        {
+          "source": [
+            "Quản Trị Mạng máy tính"
+          ],
+          "web": "Quản trị mạng Máy tính",
+          "rows": [
+            27
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 9,
+      "report_matched": 9,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng Công nghiệp Nam Định",
+      "source_row": 30,
+      "source_ref": "Mau 1 - KQTS!30:89",
+      "web_name": "Trường Cao đẳng Công nghiệp Nam Định",
+      "web_id": "truong-cao-dang-cong-nghiep-nam-dinh-192",
+      "scope": "Cùng trường",
+      "source_count": 40,
+      "catalog_count": 40,
+      "matched": 40,
+      "missing": [],
+      "extras": [],
+      "variants": [
+        {
+          "source": [
+            "Công nghệ kỹ thuật điện tử, truyền thông"
+          ],
+          "web": "Công nghệ kỹ thuật điện tử truyền thông",
+          "rows": [
+            36
+          ]
+        },
+        {
+          "source": [
+            "Công nghệ kỹ thuật điện, điện tử"
+          ],
+          "web": "Công nghệ kỹ thuật điện - điện tử",
+          "rows": [
+            37,
+            61
+          ]
+        },
+        {
+          "source": [
+            "Nguội lắp rắp cơ khí"
+          ],
+          "web": "Nguội lắp ráp cơ khí",
+          "rows": [
+            42,
+            66
+          ]
+        },
+        {
+          "source": [
+            "Kế toán doanh nghiệp"
+          ],
+          "web": "Kế toán Doanh nghiệp",
+          "rows": [
+            47,
+            72,
+            81
+          ]
+        },
+        {
+          "source": [
+            "Quản trị mạng máy tính"
+          ],
+          "web": "Quản trị mạng Máy tính",
+          "rows": [
+            54
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 40,
+      "report_matched": 40,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng Cơ điện Nông nghiệp và Môi trường",
+      "source_row": 90,
+      "source_ref": "Mau 1 - KQTS!90:136",
+      "web_name": "Trường Cao đẳng Cơ điện Nông nghiệp và Môi trường",
+      "web_id": "truong-cao-dang-co-dien-nong-nghiep-va-m-218",
+      "scope": "Cùng trường; kiểm tra riêng cơ sở con",
+      "source_count": 46,
+      "catalog_count": 7,
+      "matched": 7,
+      "missing": [
+        {
+          "source_rows": [
+            94
+          ],
+          "source_names": [
+            "Kỹ thuật chế biến món ăn"
+          ],
+          "name": "Kỹ thuật chế biến món ăn",
+          "source_codes": [
+            "6810207"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6810207"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 550,
+            "clean_total": 550,
+            "cao_dang": 70,
+            "trung_cap": 450,
+            "so_cap_va_khac": 30,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 366,
+            "clean_total": 366,
+            "cao_dang": 80,
+            "trung_cap": 139,
+            "so_cap_va_khac": 147,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            95
+          ],
+          "source_names": [
+            "Kỹ thuật máy lạnh & ĐHKK"
+          ],
+          "name": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "source_codes": [
+            "6520205"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520205"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 845,
+            "clean_total": 845,
+            "cao_dang": 320,
+            "trung_cap": 435,
+            "so_cap_va_khac": 90,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 389,
+            "clean_total": 389,
+            "cao_dang": 85,
+            "trung_cap": 299,
+            "so_cap_va_khac": 5,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Tên ngành/nghề đã được chuẩn hóa chính tả hoặc cách viết."
+          ]
+        },
+        {
+          "source_rows": [
+            96
+          ],
+          "source_names": [
+            "Cắt gọt kim loại"
+          ],
+          "name": "Cắt gọt kim loại",
+          "source_codes": [
+            "6520121"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520121"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 250,
+            "clean_total": 250,
+            "cao_dang": 100,
+            "trung_cap": 105,
+            "so_cap_va_khac": 45,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 43,
+            "clean_total": 43,
+            "cao_dang": 25,
+            "trung_cap": 18,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            97
+          ],
+          "source_names": [
+            "Lập trình máy tính"
+          ],
+          "name": "Lập trình máy tính",
+          "source_codes": [
+            "6480207"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480207"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": 20,
+            "trung_cap": 15,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 27,
+            "clean_total": 27,
+            "cao_dang": 5,
+            "trung_cap": 22,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            98
+          ],
+          "source_names": [
+            "Kế toán doanh nghiệp"
+          ],
+          "name": "Kế toán doanh nghiệp",
+          "source_codes": [
+            "6340302"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340302"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 490,
+            "clean_total": 490,
+            "cao_dang": 300,
+            "trung_cap": 190,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 159,
+            "clean_total": 159,
+            "cao_dang": 80,
+            "trung_cap": 79,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            99
+          ],
+          "source_names": [
+            "Sửa chữa máy thi công xây dựng"
+          ],
+          "name": "Sửa chữa máy thi công xây dựng",
+          "source_codes": [
+            "6520146"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520146"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 120,
+            "clean_total": 120,
+            "cao_dang": 70,
+            "trung_cap": 50,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 5,
+            "clean_total": 5,
+            "cao_dang": 0,
+            "trung_cap": 5,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            100
+          ],
+          "source_names": [
+            "Công tác xã hội"
+          ],
+          "name": "Công tác xã hội",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 90,
+            "clean_total": 90,
+            "cao_dang": 40,
+            "trung_cap": 50,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            101
+          ],
+          "source_names": [
+            "Bảo trì hệ thống thiết bị cơ khí"
+          ],
+          "name": "Bảo trì hệ thống thiết bị cơ khí",
+          "source_codes": [
+            "6520151"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520151"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 40,
+            "trung_cap": 30,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            102
+          ],
+          "source_names": [
+            "Văn thư hành chính"
+          ],
+          "name": "Văn thư hành chính",
+          "source_codes": [
+            "6320301"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6320301"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 210,
+            "clean_total": 210,
+            "cao_dang": 120,
+            "trung_cap": 90,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            103
+          ],
+          "source_names": [
+            "Kỹ thuật sửa chữa lắp giáp máy tính"
+          ],
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "source_codes": [
+            "6480102"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480102"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 200,
+            "clean_total": 200,
+            "cao_dang": 100,
+            "trung_cap": 100,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 15,
+            "clean_total": 15,
+            "cao_dang": 0,
+            "trung_cap": 15,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Tên ngành/nghề đã được chuẩn hóa chính tả hoặc cách viết."
+          ]
+        },
+        {
+          "source_rows": [
+            104
+          ],
+          "source_names": [
+            "Quản trị mạng máy tính"
+          ],
+          "name": "Quản trị mạng máy tính",
+          "source_codes": [
+            "6480209"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480209"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 80,
+            "clean_total": 80,
+            "cao_dang": 50,
+            "trung_cap": 30,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 4,
+            "clean_total": 4,
+            "cao_dang": 4,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            106
+          ],
+          "source_names": [
+            "Thiết kế đồ hoạ"
+          ],
+          "name": "Thiết kế đồ hoạ",
+          "source_codes": [
+            "6210402"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6210402"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": 60,
+            "trung_cap": 45,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 40,
+            "clean_total": 40,
+            "cao_dang": 19,
+            "trung_cap": 21,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            107
+          ],
+          "source_names": [
+            "Công nghệ thông tin (Ứng dụng phần mềm)"
+          ],
+          "name": "Công nghệ thông tin (Ứng dụng phần mềm)",
+          "source_codes": [
+            "6480202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480202"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 150,
+            "clean_total": 150,
+            "cao_dang": 60,
+            "trung_cap": 90,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 54,
+            "clean_total": 54,
+            "cao_dang": 27,
+            "trung_cap": 27,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            108
+          ],
+          "source_names": [
+            "Kế toán tin học"
+          ],
+          "name": "Kế toán tin học",
+          "source_codes": [
+            "5340306"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5340306"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 75,
+            "clean_total": 75,
+            "cao_dang": 0,
+            "trung_cap": 75,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 1,
+            "clean_total": 1,
+            "cao_dang": 0,
+            "trung_cap": 1,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            110
+          ],
+          "source_names": [
+            "Xây dựng dân dụng và công nghiệp"
+          ],
+          "name": "Xây dựng dân dụng và công nghiệp",
+          "source_codes": [
+            "5580202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5580202"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 0,
+            "trung_cap": 30,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            111
+          ],
+          "source_names": [
+            "Tiếng Nhật"
+          ],
+          "name": "Tiếng Nhật",
+          "source_codes": [
+            "5220212"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5220212"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": 0,
+            "trung_cap": 105,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 20,
+            "clean_total": 20,
+            "cao_dang": 0,
+            "trung_cap": 20,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            113
+          ],
+          "source_names": [
+            "Vận hành máy thi công mặt đường"
+          ],
+          "name": "Vận hành máy thi công mặt đường",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": 0,
+            "trung_cap": 20,
+            "so_cap_va_khac": 15,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 13,
+            "clean_total": 13,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 13,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            114
+          ],
+          "source_names": [
+            "Vận hành cần, cầu trục"
+          ],
+          "name": "Vận hành cần, cầu trục",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 200,
+            "clean_total": 200,
+            "cao_dang": 0,
+            "trung_cap": 50,
+            "so_cap_va_khac": 150,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 331,
+            "clean_total": 331,
+            "cao_dang": 0,
+            "trung_cap": 32,
+            "so_cap_va_khac": 299,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            115
+          ],
+          "source_names": [
+            "Cấp thoát nước"
+          ],
+          "name": "Cấp thoát nước",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 140,
+            "clean_total": 140,
+            "cao_dang": 0,
+            "trung_cap": 60,
+            "so_cap_va_khac": 80,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            116
+          ],
+          "source_names": [
+            "Điện nước"
+          ],
+          "name": "Điện nước",
+          "source_codes": [
+            "5580212"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5580212"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 185,
+            "clean_total": 185,
+            "cao_dang": 0,
+            "trung_cap": 165,
+            "so_cap_va_khac": 20,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 61,
+            "clean_total": 61,
+            "cao_dang": 0,
+            "trung_cap": 61,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            117
+          ],
+          "source_names": [
+            "Vận hành máy xúc"
+          ],
+          "name": "Vận hành máy xúc",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 50,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 55,
+            "clean_total": 55,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 55,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            118
+          ],
+          "source_names": [
+            "Vận hành máy lu"
+          ],
+          "name": "Vận hành máy lu",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 15,
+            "clean_total": 15,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 15,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 19,
+            "clean_total": 19,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 19,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            119
+          ],
+          "source_names": [
+            "Vận hành máy ủi"
+          ],
+          "name": "Vận hành máy ủi",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 15,
+            "clean_total": 15,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 15,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            120
+          ],
+          "source_names": [
+            "Vận hành cần trục"
+          ],
+          "name": "Vận hành cần trục",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 100,
+            "clean_total": 100,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 100,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 37,
+            "clean_total": 37,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 37,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            121
+          ],
+          "source_names": [
+            "Vận hành cầu trục"
+          ],
+          "name": "Vận hành cầu trục",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 50,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 44,
+            "clean_total": 44,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 44,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            122
+          ],
+          "source_names": [
+            "Vận hành xe nâng hàng"
+          ],
+          "name": "Vận hành xe nâng hàng",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 50,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 147,
+            "clean_total": 147,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 147,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            123
+          ],
+          "source_names": [
+            "Vận hành máy xúc lật"
+          ],
+          "name": "Vận hành máy xúc lật",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 10,
+            "clean_total": 10,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 10,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 27,
+            "clean_total": 27,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 27,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            124
+          ],
+          "source_names": [
+            "Hàn 3G; 5G; 6G"
+          ],
+          "name": "Hàn 3G; 5G; 6G",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 15,
+            "clean_total": 15,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 15,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 13,
+            "clean_total": 13,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 13,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            125
+          ],
+          "source_names": [
+            "May công nghiệp"
+          ],
+          "name": "May công nghiệp",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 30,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            126
+          ],
+          "source_names": [
+            "Kỹ thuật pha chế đồ uống"
+          ],
+          "name": "Kỹ thuật pha chế đồ uống",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 10,
+            "clean_total": 10,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 10,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            127
+          ],
+          "source_names": [
+            "Lái xe ôtô"
+          ],
+          "name": "Lái xe ô tô",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 900,
+            "clean_total": 900,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 900,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 789,
+            "clean_total": 789,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 789,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Tên ngành/nghề đã được chuẩn hóa chính tả hoặc cách viết.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            128
+          ],
+          "source_names": [
+            "Thú Y"
+          ],
+          "name": "Thú y",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 30,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 8,
+            "clean_total": 8,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 8,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Tên ngành/nghề đã được chuẩn hóa chính tả hoặc cách viết.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            129
+          ],
+          "source_names": [
+            "Kế toán"
+          ],
+          "name": "Kế toán",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 60,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            130
+          ],
+          "source_names": [
+            "Điện tử dân dụng"
+          ],
+          "name": "Điện tử dân dụng",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 60,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            131
+          ],
+          "source_names": [
+            "Vận hành và sửa chữa máy nông nghiệp"
+          ],
+          "name": "Vận hành và sửa chữa máy nông nghiệp",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 80,
+            "clean_total": 80,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 80,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            132
+          ],
+          "source_names": [
+            "Vận hành máy nâng"
+          ],
+          "name": "Vận hành máy nâng",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 40,
+            "clean_total": 40,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 40,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            133
+          ],
+          "source_names": [
+            "Ký thuật trông rau an toàn"
+          ],
+          "name": "Kỹ thuật trồng rau an toàn",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 30,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Tên ngành/nghề đã được chuẩn hóa chính tả hoặc cách viết.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            134
+          ],
+          "source_names": [
+            "Giám đốc hợp tác xã nông nghiệp"
+          ],
+          "name": "Giám đốc hợp tác xã nông nghiệp",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 60,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            135
+          ],
+          "source_names": [
+            "Sư phạm GDNN"
+          ],
+          "name": "Sư phạm GDNN",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 100,
+            "clean_total": 100,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 100,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 67,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 67,
+            "unallocated": 0,
+            "issues": [
+              "Tổng nhỏ hơn tổng các trình độ; dùng tổng các trình độ và yêu cầu xác minh."
+            ]
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề.",
+            "Số tổng và số theo trình độ chưa khớp hoàn toàn."
+          ]
+        }
+      ],
+      "extras": [],
+      "variants": [],
+      "has_training_report": false,
+      "report_count": 0,
+      "report_matched": 0,
+      "report_missing": [
+        "Điện công nghiệp",
+        "Điện dân dụng",
+        "Công nghệ ô tô",
+        "Hàn",
+        "Kỹ thuật chế biến món ăn",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Cắt gọt kim loại",
+        "Lập trình máy tính",
+        "Kế toán doanh nghiệp",
+        "Sửa chữa máy thi công xây dựng",
+        "Công tác xã hội",
+        "Bảo trì hệ thống thiết bị cơ khí",
+        "Văn thư hành chính",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "Quản trị mạng máy tính",
+        "Kỹ thuật xây dựng",
+        "Thiết kế đồ hoạ",
+        "Công nghệ thông tin (Ứng dụng phần mềm)",
+        "Kế toán tin học",
+        "Tin học văn phòng",
+        "Xây dựng dân dụng và công nghiệp",
+        "Tiếng Nhật",
+        "Vận hành máy thi công nền",
+        "Vận hành máy thi công mặt đường",
+        "Vận hành cần, cầu trục",
+        "Cấp thoát nước",
+        "Điện nước",
+        "Vận hành máy xúc",
+        "Vận hành máy lu",
+        "Vận hành máy ủi",
+        "Vận hành cần trục",
+        "Vận hành cầu trục",
+        "Vận hành xe nâng hàng",
+        "Vận hành máy xúc lật",
+        "Hàn 3G; 5G; 6G",
+        "May công nghiệp",
+        "Kỹ thuật pha chế đồ uống",
+        "Lái xe ô tô",
+        "Thú y",
+        "Kế toán",
+        "Điện tử dân dụng",
+        "Vận hành và sửa chữa máy nông nghiệp",
+        "Vận hành máy nâng",
+        "Kỹ thuật trồng rau an toàn",
+        "Giám đốc hợp tác xã nông nghiệp",
+        "Sư phạm GDNN"
+      ],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường cao đẳng Phát thanh - Truyền hình I",
+      "source_row": 138,
+      "source_ref": "Mau 1 - KQTS!137:149",
+      "web_name": "Trường Cao đẳng Phát thanh - Truyền hình I (VOV)",
+      "web_id": "HN-CD-004",
+      "scope": "Cùng trường; kiểm tra riêng bản ghi Cơ sở 1",
+      "source_count": 9,
+      "catalog_count": 9,
+      "matched": 9,
+      "missing": [],
+      "extras": [],
+      "variants": [
+        {
+          "source": [
+            "Kế toán doanh nghiệp"
+          ],
+          "web": "Kế toán Doanh nghiệp",
+          "rows": [
+            142
+          ]
+        },
+        {
+          "source": [
+            "Công nghệ kỹ thuật điện, điện tử"
+          ],
+          "web": "Công nghệ kỹ thuật điện - điện tử",
+          "rows": [
+            143,
+            144
+          ]
+        },
+        {
+          "source": [
+            "Công nghệ kỹ thuật điện tử, truyền thông"
+          ],
+          "web": "Công nghệ kỹ thuật điện tử truyền thông",
+          "rows": [
+            145,
+            146
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 9,
+      "report_matched": 9,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng nghề số 20/BQP",
+      "source_row": 151,
+      "source_ref": "Mau 1 - KQTS!150:188",
+      "web_name": "Trường Cao đẳng nghề Số 20 - BQP - Vị Khê",
+      "web_id": "truong-cao-dang-nghe-so-20-bqp-vi-khe-509",
+      "scope": "File cấp trường; web chia Vị Khê/Trường Thi, chưa phân bổ ngành theo cơ sở",
+      "source_count": 23,
+      "catalog_count": 2,
+      "matched": 0,
+      "missing": [
+        {
+          "source_rows": [
+            150,
+            151,
+            152
+          ],
+          "source_names": [
+            "Công nghệ ô tô"
+          ],
+          "name": "Công nghệ ô tô",
+          "source_codes": [
+            "6510216",
+            "5510216"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6510216"
+            ],
+            "trung_cap": [
+              "5510216"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 280,
+            "clean_total": 280,
+            "cao_dang": 105,
+            "trung_cap": 70,
+            "so_cap_va_khac": 105,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 220,
+            "clean_total": 220,
+            "cao_dang": 46,
+            "trung_cap": 64,
+            "so_cap_va_khac": 110,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            153,
+            154,
+            155
+          ],
+          "source_names": [
+            "Kỹ thuật máy lạnh và điều hoà không khí"
+          ],
+          "name": "Kỹ thuật máy lạnh và điều hoà không khí",
+          "source_codes": [
+            "6520205",
+            "5520205"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520205"
+            ],
+            "trung_cap": [
+              "5520205"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 250,
+            "clean_total": 250,
+            "cao_dang": 70,
+            "trung_cap": 40,
+            "so_cap_va_khac": 140,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 117,
+            "clean_total": 117,
+            "cao_dang": 31,
+            "trung_cap": 16,
+            "so_cap_va_khac": 70,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            156,
+            157
+          ],
+          "source_names": [
+            "Kỹ thuật lắp đặt điện và điều khiển trong công nghiệp"
+          ],
+          "name": "Kỹ thuật lắp đặt điện và điều khiển trong công nghiệp",
+          "source_codes": [
+            "6520201",
+            "5520201"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520201"
+            ],
+            "trung_cap": [
+              "5520201"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 35,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 67,
+            "clean_total": 67,
+            "cao_dang": 30,
+            "trung_cap": 37,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            158
+          ],
+          "source_names": [
+            "Sửa chữa điện - điện lạnh ô tô"
+          ],
+          "name": "Sửa chữa điện - điện lạnh ô tô",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 105,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 27,
+            "clean_total": 27,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 27,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            159
+          ],
+          "source_names": [
+            "Điện công nghiệp"
+          ],
+          "name": "Điện công nghiệp",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 70,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 67,
+            "clean_total": 67,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 67,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            160,
+            161,
+            162
+          ],
+          "source_names": [
+            "Điện tử công nghiệp"
+          ],
+          "name": "Điện tử công nghiệp",
+          "source_codes": [
+            "6520225",
+            "5520225"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520225"
+            ],
+            "trung_cap": [
+              "5520225"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 140,
+            "clean_total": 140,
+            "cao_dang": 35,
+            "trung_cap": 35,
+            "so_cap_va_khac": 70,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 41,
+            "clean_total": 41,
+            "cao_dang": 27,
+            "trung_cap": null,
+            "so_cap_va_khac": 14,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            163,
+            164
+          ],
+          "source_names": [
+            "Kỹ thuật sửa chữa, lắp ráp máy tính"
+          ],
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "source_codes": [
+            "6480102",
+            "5480102"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480102"
+            ],
+            "trung_cap": [
+              "5480102"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": 25,
+            "trung_cap": 25,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 21,
+            "clean_total": 21,
+            "cao_dang": null,
+            "trung_cap": 21,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            165
+          ],
+          "source_names": [
+            "Công nghệ thông tin"
+          ],
+          "name": "Công nghệ thông tin",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 70,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 14,
+            "clean_total": 14,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 14,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            166,
+            167
+          ],
+          "source_names": [
+            "May thời trang"
+          ],
+          "name": "May thời trang",
+          "source_codes": [
+            "5540205"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5540205"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 160,
+            "clean_total": 160,
+            "cao_dang": null,
+            "trung_cap": 55,
+            "so_cap_va_khac": 105,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 14,
+            "clean_total": 14,
+            "cao_dang": null,
+            "trung_cap": 14,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề.",
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            168
+          ],
+          "source_names": [
+            "Sửa chữa thiết bị may"
+          ],
+          "name": "Sửa chữa thiết bị may",
+          "source_codes": [
+            "5520133"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520133"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": null,
+            "trung_cap": 30,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            169
+          ],
+          "source_names": [
+            "Bảo trì máy may"
+          ],
+          "name": "Bảo trì máy may",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 80,
+            "clean_total": 80,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 80,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 35,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            170,
+            171,
+            172
+          ],
+          "source_names": [
+            "Hàn"
+          ],
+          "name": "Hàn",
+          "source_codes": [
+            "6520123",
+            "5520123"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520123"
+            ],
+            "trung_cap": [
+              "5520123"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 100,
+            "clean_total": 100,
+            "cao_dang": 25,
+            "trung_cap": 25,
+            "so_cap_va_khac": 50,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 13,
+            "clean_total": 13,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 13,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            173
+          ],
+          "source_names": [
+            "Hàn công nghệ cao (CNC)"
+          ],
+          "name": "Hàn công nghệ cao (CNC)",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 105,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 21,
+            "clean_total": 21,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 21,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            174,
+            175
+          ],
+          "source_names": [
+            "Cắt gọt kim loại"
+          ],
+          "name": "Cắt gọt kim loại",
+          "source_codes": [
+            "5520121"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520121"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": null,
+            "trung_cap": 15,
+            "so_cap_va_khac": 35,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề.",
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            176
+          ],
+          "source_names": [
+            "Sửa chữa thiết bị tự động hoá"
+          ],
+          "name": "Sửa chữa thiết bị tự động hoá",
+          "source_codes": [
+            "5520235"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520235"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 15,
+            "clean_total": 15,
+            "cao_dang": null,
+            "trung_cap": 15,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            177,
+            178,
+            179
+          ],
+          "source_names": [
+            "Vận hành máy thi công nền"
+          ],
+          "name": "Vận hành máy thi công nền",
+          "source_codes": [
+            "6520183",
+            "5520183"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520183"
+            ],
+            "trung_cap": [
+              "5520183"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 120,
+            "clean_total": 120,
+            "cao_dang": 25,
+            "trung_cap": 25,
+            "so_cap_va_khac": 70,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 42,
+            "clean_total": 42,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 42,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở.",
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            180,
+            181
+          ],
+          "source_names": [
+            "Điều khiển phương tiện thuỷ nội địa"
+          ],
+          "name": "Điều khiển phương tiện thuỷ nội địa",
+          "source_codes": [
+            "6840108",
+            "5840108"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6840108"
+            ],
+            "trung_cap": [
+              "5840108"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 15,
+            "trung_cap": 15,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            182
+          ],
+          "source_names": [
+            "Sửa chữa cơ khí động cơ"
+          ],
+          "name": "Sửa chữa cơ khí động cơ",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 105,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 34,
+            "clean_total": 34,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 34,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            183
+          ],
+          "source_names": [
+            "Sửa chữa xe máy"
+          ],
+          "name": "Sửa chữa xe máy",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 35,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            184
+          ],
+          "source_names": [
+            "Cốt thép - Hàn"
+          ],
+          "name": "Cốt thép - Hàn",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 30,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            185
+          ],
+          "source_names": [
+            "Tiếng Anh"
+          ],
+          "name": "Tiếng Anh",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 300,
+            "clean_total": 300,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 300,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            186
+          ],
+          "source_names": [
+            "Tiếng Nhật"
+          ],
+          "name": "Tiếng Nhật",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 375,
+            "clean_total": 375,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 375,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 86,
+            "clean_total": 86,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 86,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            187
+          ],
+          "source_names": [
+            "Tiếng Hàn Quốc"
+          ],
+          "name": "Tiếng Hàn Quốc",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 150,
+            "clean_total": 150,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 150,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 19,
+            "clean_total": 19,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 19,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        }
+      ],
+      "extras": [
+        "Đào tạo lái xe ô tô hạng B2, C",
+        "Kỹ thuật cơ khí động lực"
+      ],
+      "variants": [],
+      "has_training_report": false,
+      "report_count": 0,
+      "report_matched": 0,
+      "report_missing": [
+        "Công nghệ ô tô",
+        "Kỹ thuật máy lạnh và điều hoà không khí",
+        "Kỹ thuật lắp đặt điện và điều khiển trong công nghiệp",
+        "Sửa chữa điện - điện lạnh ô tô",
+        "Điện công nghiệp",
+        "Điện tử công nghiệp",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "Công nghệ thông tin",
+        "May thời trang",
+        "Sửa chữa thiết bị may",
+        "Bảo trì máy may",
+        "Hàn",
+        "Hàn công nghệ cao (CNC)",
+        "Cắt gọt kim loại",
+        "Sửa chữa thiết bị tự động hoá",
+        "Vận hành máy thi công nền",
+        "Điều khiển phương tiện thuỷ nội địa",
+        "Sửa chữa cơ khí động cơ",
+        "Sửa chữa xe máy",
+        "Cốt thép - Hàn",
+        "Tiếng Anh",
+        "Tiếng Nhật",
+        "Tiếng Hàn Quốc"
+      ],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng nghề số 20/BQP",
+      "source_row": 151,
+      "source_ref": "Mau 1 - KQTS!150:188",
+      "web_name": "Trường Cao đẳng nghề Số 20 - BQP - Trường Thi",
+      "web_id": "truong-cao-dang-nghe-so-20-bqp-truong-th-471",
+      "scope": "File cấp trường; web chia Vị Khê/Trường Thi, chưa phân bổ ngành theo cơ sở",
+      "source_count": 23,
+      "catalog_count": 24,
+      "matched": 23,
+      "missing": [],
+      "extras": [
+        "Thực hành lái xe & cơ điện"
+      ],
+      "variants": [
+        {
+          "source": [
+            "Kỹ thuật máy lạnh và điều hoà không khí"
+          ],
+          "web": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "rows": [
+            153,
+            154,
+            155
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 23,
+      "report_matched": 23,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng Xây dựng Nam Định",
+      "source_row": 190,
+      "source_ref": "Mau 1 - KQTS!189:212",
+      "web_name": "Trường Cao đẳng Xây dựng Nam Định",
+      "web_id": "truong-cao-dang-xay-dung-nam-dinh-204",
+      "scope": "Cùng trường; kiểm tra riêng cơ sở con",
+      "source_count": 20,
+      "catalog_count": 20,
+      "matched": 20,
+      "missing": [],
+      "extras": [],
+      "variants": [
+        {
+          "source": [
+            "Kế toán doanh nghiệp"
+          ],
+          "web": "Kế toán Doanh nghiệp",
+          "rows": [
+            191,
+            194
+          ]
+        },
+        {
+          "source": [
+            "Quản trị mạng máy tính"
+          ],
+          "web": "Quản trị mạng Máy tính",
+          "rows": [
+            200
+          ]
+        },
+        {
+          "source": [
+            "Thiết kế đồ hoạ"
+          ],
+          "web": "Thiết kế đồ họa",
+          "rows": [
+            202
+          ]
+        },
+        {
+          "source": [
+            "Cấp, thoát nước"
+          ],
+          "web": "Cấp thoát nước",
+          "rows": [
+            204
+          ]
+        },
+        {
+          "source": [
+            "Mộc XD và T.Trí nội thất"
+          ],
+          "web": "Mộc xây dựng và trang trí nội thất",
+          "rows": [
+            205
+          ]
+        },
+        {
+          "source": [
+            "K.thuật Sơn mài & khảm trai"
+          ],
+          "web": "Kỹ thuật Sơn mài và khảm trai",
+          "rows": [
+            210
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 20,
+      "report_matched": 20,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng Cơ điện và Thủy lợi Bắc Bộ tại tỉnh Ninh Bình",
+      "source_row": 214,
+      "source_ref": "Mau 1 - KQTS!213:238",
+      "web_name": "Trường Cao đẳng Cơ điện và Thủy lợi Bắc Bộ – Phân hiệu Ninh Bình",
+      "web_id": "truong-cao-dang-co-dien-va-thuy-loi-bac--458",
+      "scope": "Ứng viên phân hiệu Ninh Bình; cần xác nhận cùng đơn vị",
+      "source_count": 20,
+      "catalog_count": 5,
+      "matched": 4,
+      "missing": [
+        {
+          "source_rows": [
+            213
+          ],
+          "source_names": [
+            "Tài chính - Ngân hàng"
+          ],
+          "name": "Tài chính - Ngân hàng",
+          "source_codes": [
+            "6340202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340202"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 30,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            214
+          ],
+          "source_names": [
+            "Kế toán"
+          ],
+          "name": "Kế toán",
+          "source_codes": [
+            "6340301"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340301"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 30,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 20,
+            "clean_total": 20,
+            "cao_dang": 0,
+            "trung_cap": 20,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            215
+          ],
+          "source_names": [
+            "Kế toán doanh nghiệp"
+          ],
+          "name": "Kế toán doanh nghiệp",
+          "source_codes": [
+            "5340302"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5340302"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 90,
+            "clean_total": 90,
+            "cao_dang": 0,
+            "trung_cap": 90,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 38,
+            "clean_total": 38,
+            "cao_dang": 0,
+            "trung_cap": 38,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            216
+          ],
+          "source_names": [
+            "Quản lý khai thác công trình thủy lợi"
+          ],
+          "name": "Quản lý khai thác công trình thủy lợi",
+          "source_codes": [
+            "5340429"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5340429"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 0,
+            "trung_cap": 60,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 221,
+            "clean_total": 221,
+            "cao_dang": 0,
+            "trung_cap": 30,
+            "so_cap_va_khac": 191,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            217,
+            218
+          ],
+          "source_names": [
+            "Kỹ thuật sửa chữa, lắp ráp máy tính"
+          ],
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "source_codes": [
+            "6480102",
+            "5480102"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480102"
+            ],
+            "trung_cap": [
+              "5480102"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 125,
+            "clean_total": 125,
+            "cao_dang": 20,
+            "trung_cap": 105,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 53,
+            "clean_total": 53,
+            "cao_dang": 0,
+            "trung_cap": 53,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            219
+          ],
+          "source_names": [
+            "Công nghệ thông tin"
+          ],
+          "name": "Công nghệ thông tin",
+          "source_codes": [
+            "6480201"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480201"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 20,
+            "clean_total": 20,
+            "cao_dang": 20,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 26,
+            "clean_total": 26,
+            "cao_dang": 0,
+            "trung_cap": 26,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            220
+          ],
+          "source_names": [
+            "Công nghệ kỹ thuật xây dựng"
+          ],
+          "name": "Công nghệ kỹ thuật xây dựng",
+          "source_codes": [
+            "6510103"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6510103"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 60,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            221
+          ],
+          "source_names": [
+            "Công nghệ kỹ thuật công trình xây dựng"
+          ],
+          "name": "Công nghệ kỹ thuật công trình xây dựng",
+          "source_codes": [
+            "6510104"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6510104"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 60,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 13,
+            "clean_total": 13,
+            "cao_dang": 13,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            222
+          ],
+          "source_names": [
+            "Công trình thủy lợi"
+          ],
+          "name": "Công trình thủy lợi",
+          "source_codes": [
+            "5510107"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5510107"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 0,
+            "trung_cap": 30,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 25,
+            "clean_total": 25,
+            "cao_dang": 0,
+            "trung_cap": 25,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            224,
+            225
+          ],
+          "source_names": [
+            "Công nghệ kỹ thuật trắc địa"
+          ],
+          "name": "Công nghệ kỹ thuật trắc địa",
+          "source_codes": [
+            "6510902",
+            "5510902"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6510902"
+            ],
+            "trung_cap": [
+              "5510902"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 15,
+            "trung_cap": 15,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            226
+          ],
+          "source_names": [
+            "Địa chất công trình"
+          ],
+          "name": "Địa chất công trình",
+          "source_codes": [
+            "5510903"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5510903"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 20,
+            "clean_total": 20,
+            "cao_dang": 0,
+            "trung_cap": 20,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            227
+          ],
+          "source_names": [
+            "Điện công nghiệp và dân dụng"
+          ],
+          "name": "Điện công nghiệp và dân dụng",
+          "source_codes": [
+            "5520223"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520223"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 65,
+            "clean_total": 65,
+            "cao_dang": 0,
+            "trung_cap": 65,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 74,
+            "clean_total": 74,
+            "cao_dang": 0,
+            "trung_cap": 74,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            228,
+            229
+          ],
+          "source_names": [
+            "Điện dân dụng"
+          ],
+          "name": "Điện dân dụng",
+          "source_codes": [
+            "6520226",
+            "5520226"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520226"
+            ],
+            "trung_cap": [
+              "5520226"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 55,
+            "clean_total": 55,
+            "cao_dang": 20,
+            "trung_cap": 35,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 61,
+            "clean_total": 61,
+            "cao_dang": 0,
+            "trung_cap": 61,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            232,
+            233
+          ],
+          "source_names": [
+            "Vận hành và sửa chữa trạm bơm điện"
+          ],
+          "name": "Vận hành và sửa chữa trạm bơm điện",
+          "source_codes": [
+            "6520249",
+            "5520249"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520249"
+            ],
+            "trung_cap": [
+              "5520249"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 45,
+            "clean_total": 45,
+            "cao_dang": 20,
+            "trung_cap": 25,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 103,
+            "clean_total": 103,
+            "cao_dang": 0,
+            "trung_cap": 25,
+            "so_cap_va_khac": 78,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Đã gộp nhiều dòng cùng tên ngành/nghề của một cơ sở."
+          ]
+        },
+        {
+          "source_rows": [
+            235
+          ],
+          "source_names": [
+            "Xây dựng dân dụng và công nghiệp"
+          ],
+          "name": "Xây dựng dân dụng và công nghiệp",
+          "source_codes": [
+            "5580202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5580202"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": 0,
+            "trung_cap": 30,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": 0,
+            "trung_cap": 0,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            236
+          ],
+          "source_names": [
+            "Kỹ thuật chế biến món ăn"
+          ],
+          "name": "Kỹ thuật chế biến món ăn",
+          "source_codes": [
+            "5810207"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810207"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": 0,
+            "trung_cap": 50,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 45,
+            "clean_total": 45,
+            "cao_dang": 0,
+            "trung_cap": 45,
+            "so_cap_va_khac": 0,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        }
+      ],
+      "extras": [
+        "Vận hành trạm bơm điện"
+      ],
+      "variants": [
+        {
+          "source": [
+            "Công nghệ kỹ thuật tài nguyên nước"
+          ],
+          "web": "Công nghệ KT Tài nguyên nước",
+          "rows": [
+            223
+          ]
+        },
+        {
+          "source": [
+            "Cấp, thoát nước"
+          ],
+          "web": "Cấp thoát nước",
+          "rows": [
+            234
+          ]
+        }
+      ],
+      "has_training_report": false,
+      "report_count": 0,
+      "report_matched": 0,
+      "report_missing": [
+        "Tài chính - Ngân hàng",
+        "Kế toán",
+        "Kế toán doanh nghiệp",
+        "Quản lý khai thác công trình thủy lợi",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "Công nghệ thông tin",
+        "Công nghệ kỹ thuật xây dựng",
+        "Công nghệ kỹ thuật công trình xây dựng",
+        "Công trình thủy lợi",
+        "Công nghệ kỹ thuật tài nguyên nước",
+        "Công nghệ kỹ thuật trắc địa",
+        "Địa chất công trình",
+        "Điện công nghiệp và dân dụng",
+        "Điện dân dụng",
+        "Điện công nghiệp",
+        "Vận hành và sửa chữa trạm bơm điện",
+        "Cấp, thoát nước",
+        "Xây dựng dân dụng và công nghiệp",
+        "Kỹ thuật chế biến món ăn",
+        "Tin học ứng dụng"
+      ],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Cao đẳng Kinh tế và Công nghệ tỉnh Ninh Bình",
+      "source_row": 240,
+      "source_ref": "Mau 1 - KQTS!239:283",
+      "web_name": "Trường Cao đẳng Kinh tế Và Công Nghệ Nam Định, trụ sở chính, Khu A",
+      "web_id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-934",
+      "scope": "Ứng viên Khu A thuộc nhóm NCET; cần xác nhận phạm vi sau sáp nhập",
+      "source_count": 44,
+      "catalog_count": 6,
+      "matched": 2,
+      "missing": [
+        {
+          "source_rows": [
+            239
+          ],
+          "source_names": [
+            "Logistics"
+          ],
+          "name": "Logistics",
+          "source_codes": [
+            "6340113",
+            "5340113"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340113"
+            ],
+            "trung_cap": [
+              "5340113"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 30,
+            "trung_cap": 30,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            240
+          ],
+          "source_names": [
+            "Kế toán"
+          ],
+          "name": "Kế toán",
+          "source_codes": [
+            "6340301"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340301"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 70,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 23,
+            "clean_total": 23,
+            "cao_dang": 23,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            241
+          ],
+          "source_names": [
+            "Kế toán doanh nghiệp"
+          ],
+          "name": "Kế toán doanh nghiệp",
+          "source_codes": [
+            "6340302",
+            "5340302"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340302"
+            ],
+            "trung_cap": [
+              "5340302"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 300,
+            "clean_total": 300,
+            "cao_dang": 85,
+            "trung_cap": 215,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 97,
+            "clean_total": 97,
+            "cao_dang": 4,
+            "trung_cap": 93,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            242
+          ],
+          "source_names": [
+            "Quản lý khai thác công trình thuỷ lợi"
+          ],
+          "name": "Quản lý khai thác công trình thuỷ lợi",
+          "source_codes": [
+            "6340429",
+            "5340429"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6340429"
+            ],
+            "trung_cap": [
+              "5340429"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 55,
+            "clean_total": 55,
+            "cao_dang": 25,
+            "trung_cap": 30,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 35,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            243
+          ],
+          "source_names": [
+            "Kỹ thuật sửa chữa, lắp ráp máy tính"
+          ],
+          "name": "Kỹ thuật sửa chữa, lắp ráp máy tính",
+          "source_codes": [
+            "6480102",
+            "5480102"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480102"
+            ],
+            "trung_cap": [
+              "5480102"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 120,
+            "clean_total": 120,
+            "cao_dang": 35,
+            "trung_cap": 85,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            244
+          ],
+          "source_names": [
+            "Công nghệ thông tin (Ứng dụng phần mềm)"
+          ],
+          "name": "Công nghệ thông tin (Ứng dụng phần mềm)",
+          "source_codes": [
+            "6480202",
+            "5480202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480202"
+            ],
+            "trung_cap": [
+              "5480202"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 195,
+            "clean_total": 195,
+            "cao_dang": 95,
+            "trung_cap": 100,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 167,
+            "clean_total": 167,
+            "cao_dang": 32,
+            "trung_cap": 135,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            245
+          ],
+          "source_names": [
+            "Quản trị mạng máy tính"
+          ],
+          "name": "Quản trị mạng máy tính",
+          "source_codes": [
+            "6480209",
+            "5480209"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6480209"
+            ],
+            "trung_cap": [
+              "5480209"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 25,
+            "clean_total": 25,
+            "cao_dang": 25,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            246
+          ],
+          "source_names": [
+            "Xây dựng và hoàn thiện Công trình thủy lợi"
+          ],
+          "name": "Xây dựng và hoàn thiện Công trình thủy lợi",
+          "source_codes": [
+            "6510108",
+            "5510108"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6510108"
+            ],
+            "trung_cap": [
+              "5510108"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 35,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            247
+          ],
+          "source_names": [
+            "Công nghệ kỹ thuật cơ khí"
+          ],
+          "name": "Công nghệ kỹ thuật cơ khí",
+          "source_codes": [
+            "6510201",
+            "5510201"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6510201"
+            ],
+            "trung_cap": [
+              "5510201"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": 25,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 58,
+            "clean_total": 58,
+            "cao_dang": 23,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            249
+          ],
+          "source_names": [
+            "Công nghệ kỹ thuật điện, điện tử"
+          ],
+          "name": "Công nghệ kỹ thuật điện, điện tử",
+          "source_codes": [
+            "5510303"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5510303"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": null,
+            "trung_cap": 70,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 66,
+            "clean_total": 66,
+            "cao_dang": null,
+            "trung_cap": 66,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            250
+          ],
+          "source_names": [
+            "Cắt gọt kim loại"
+          ],
+          "name": "Cắt gọt kim loại",
+          "source_codes": [
+            "6520121",
+            "5520121"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520121"
+            ],
+            "trung_cap": [
+              "5520121"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 130,
+            "clean_total": 130,
+            "cao_dang": 35,
+            "trung_cap": 95,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 2,
+            "clean_total": 2,
+            "cao_dang": 2,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            251
+          ],
+          "source_names": [
+            "Hàn"
+          ],
+          "name": "Hàn",
+          "source_codes": [
+            "6520123",
+            "5520123"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520123"
+            ],
+            "trung_cap": [
+              "5520123"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 235,
+            "clean_total": 235,
+            "cao_dang": 60,
+            "trung_cap": 175,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 1,
+            "clean_total": 1,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 1,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            252
+          ],
+          "source_names": [
+            "Sửa chữa thiết bị may"
+          ],
+          "name": "Sửa chữa thiết bị may",
+          "source_codes": [
+            "6520133",
+            "5520133"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520133"
+            ],
+            "trung_cap": [
+              "5520133"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 35,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            254
+          ],
+          "source_names": [
+            "Điện dân dụng"
+          ],
+          "name": "Điện dân dụng",
+          "source_codes": [
+            "6520226"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520226"
+            ],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 125,
+            "clean_total": 125,
+            "cao_dang": 35,
+            "trung_cap": 90,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 48,
+            "clean_total": 48,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 48,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            255
+          ],
+          "source_names": [
+            "Điện Công nghiệp"
+          ],
+          "name": "Điện Công nghiệp",
+          "source_codes": [
+            "6520227",
+            "5520227"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520227"
+            ],
+            "trung_cap": [
+              "5520227"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 970,
+            "clean_total": 970,
+            "cao_dang": 220,
+            "trung_cap": 750,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 682,
+            "clean_total": 682,
+            "cao_dang": 253,
+            "trung_cap": 429,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            256
+          ],
+          "source_names": [
+            "Vận hành và sửa chữa trạm bơm điện"
+          ],
+          "name": "Vận hành và sửa chữa trạm bơm điện",
+          "source_codes": [
+            "6520249",
+            "5520249"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520249"
+            ],
+            "trung_cap": [
+              "5520249"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 35,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 58,
+            "clean_total": 58,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 58,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            257
+          ],
+          "source_names": [
+            "Cơ điện nông thôn"
+          ],
+          "name": "Cơ điện nông thôn",
+          "source_codes": [
+            "6520262",
+            "5520262"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520262"
+            ],
+            "trung_cap": [
+              "5520262"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 50,
+            "clean_total": 50,
+            "cao_dang": 25,
+            "trung_cap": 25,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            258
+          ],
+          "source_names": [
+            "Cơ điện tử"
+          ],
+          "name": "Cơ điện tử",
+          "source_codes": [
+            "6520263",
+            "5520263"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6520263"
+            ],
+            "trung_cap": [
+              "5520263"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 110,
+            "clean_total": 110,
+            "cao_dang": 30,
+            "trung_cap": 80,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 32,
+            "clean_total": 32,
+            "cao_dang": 5,
+            "trung_cap": 27,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            259
+          ],
+          "source_names": [
+            "May thời trang"
+          ],
+          "name": "May thời trang",
+          "source_codes": [
+            "6540205",
+            "5540205"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6540205"
+            ],
+            "trung_cap": [
+              "5540205"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 560,
+            "clean_total": 560,
+            "cao_dang": 35,
+            "trung_cap": 525,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 80,
+            "clean_total": 80,
+            "cao_dang": 11,
+            "trung_cap": 69,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            260
+          ],
+          "source_names": [
+            "Quản trị du lịch MICE"
+          ],
+          "name": "Quản trị du lịch MICE",
+          "source_codes": [
+            "6810105",
+            "5810105"
+          ],
+          "codes_by_level": {
+            "cao_dang": [
+              "6810105"
+            ],
+            "trung_cap": [
+              "5810105"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": 35,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            261
+          ],
+          "source_names": [
+            "Kỹ thuật điêu khắc gỗ"
+          ],
+          "name": "Kỹ thuật điêu khắc gỗ",
+          "source_codes": [
+            "5210101"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5210101"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            262
+          ],
+          "source_names": [
+            "Đúc, dát đồng mỹ nghệ"
+          ],
+          "name": "Đúc, dát đồng mỹ nghệ",
+          "source_codes": [
+            "5210407"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5210407"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 25,
+            "clean_total": 25,
+            "cao_dang": null,
+            "trung_cap": 25,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            263
+          ],
+          "source_names": [
+            "Báo chí"
+          ],
+          "name": "Báo chí",
+          "source_codes": [
+            "5320103"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5320103"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": null,
+            "trung_cap": 30,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            264
+          ],
+          "source_names": [
+            "Kế toán hành chính sự nghiệp"
+          ],
+          "name": "Kế toán hành chính sự nghiệp",
+          "source_codes": [
+            "5340307"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5340307"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": null,
+            "trung_cap": 60,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            265
+          ],
+          "source_names": [
+            "Công nghệ sinh học"
+          ],
+          "name": "Công nghệ sinh học",
+          "source_codes": [
+            "5420202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5420202"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            266
+          ],
+          "source_names": [
+            "Vận hành máy nông nghiệp"
+          ],
+          "name": "Vận hành máy nông nghiệp",
+          "source_codes": [
+            "5520187"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520187"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 70,
+            "clean_total": 70,
+            "cao_dang": null,
+            "trung_cap": 70,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            267
+          ],
+          "source_names": [
+            "Điện công nghiệp và dân dụng"
+          ],
+          "name": "Điện công nghiệp và dân dụng",
+          "source_codes": [
+            "5520223"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520223"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            268
+          ],
+          "source_names": [
+            "Điện tử dân dụng"
+          ],
+          "name": "Điện tử dân dụng",
+          "source_codes": [
+            "5520224"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520224"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 95,
+            "clean_total": 95,
+            "cao_dang": null,
+            "trung_cap": 95,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            269
+          ],
+          "source_names": [
+            "Điện tử Công nghiệp"
+          ],
+          "name": "Điện tử Công nghiệp",
+          "source_codes": [
+            "5520225"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520225"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            270
+          ],
+          "source_names": [
+            "Công nghệ kỹ thuật chế biến và bảo quản nông sản"
+          ],
+          "name": "Công nghệ kỹ thuật chế biến và bảo quản nông sản",
+          "source_codes": [
+            "5620102"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5620102"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 7,
+            "clean_total": 7,
+            "cao_dang": null,
+            "trung_cap": 7,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            271
+          ],
+          "source_names": [
+            "Trồng trọt và bảo vệ thực vật"
+          ],
+          "name": "Trồng trọt và bảo vệ thực vật",
+          "source_codes": [
+            "5620111"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5620111"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": null,
+            "trung_cap": 105,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 2,
+            "clean_total": 2,
+            "cao_dang": null,
+            "trung_cap": 2,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            272
+          ],
+          "source_names": [
+            "Chăn nuôi - Thú y"
+          ],
+          "name": "Chăn nuôi - Thú y",
+          "source_codes": [
+            "5620120"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5620120"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 105,
+            "clean_total": 105,
+            "cao_dang": null,
+            "trung_cap": 105,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 8,
+            "clean_total": 8,
+            "cao_dang": null,
+            "trung_cap": 8,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            273
+          ],
+          "source_names": [
+            "Nuôi trồng thuỷ sản"
+          ],
+          "name": "Nuôi trồng thuỷ sản",
+          "source_codes": [
+            "5620303"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5620303"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            274
+          ],
+          "source_names": [
+            "Hướng dẫn du lịch"
+          ],
+          "name": "Hướng dẫn du lịch",
+          "source_codes": [
+            "5810103"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810103"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 190,
+            "clean_total": 190,
+            "cao_dang": null,
+            "trung_cap": 190,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            275
+          ],
+          "source_names": [
+            "Quản trị khách sạn"
+          ],
+          "name": "Quản trị khách sạn",
+          "source_codes": [
+            "5810201"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810201"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": null,
+            "trung_cap": 30,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            276
+          ],
+          "source_names": [
+            "Nghiệp vụ lễ tân"
+          ],
+          "name": "Nghiệp vụ lễ tân",
+          "source_codes": [
+            "5810203"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810203"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            277
+          ],
+          "source_names": [
+            "Nghiệp vụ nhà hàng"
+          ],
+          "name": "Nghiệp vụ nhà hàng",
+          "source_codes": [
+            "5810206"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810206"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 30,
+            "clean_total": 30,
+            "cao_dang": null,
+            "trung_cap": 30,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            278
+          ],
+          "source_names": [
+            "Kỹ thuật chế biến món ăn"
+          ],
+          "name": "Kỹ thuật chế biến món ăn",
+          "source_codes": [
+            "5810207"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810207"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 230,
+            "clean_total": 230,
+            "cao_dang": null,
+            "trung_cap": 230,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 110,
+            "clean_total": 110,
+            "cao_dang": null,
+            "trung_cap": 84,
+            "so_cap_va_khac": 26,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            279
+          ],
+          "source_names": [
+            "Chăm sóc sắc đẹp"
+          ],
+          "name": "Chăm sóc sắc đẹp",
+          "source_codes": [
+            "5810404"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810404"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 60,
+            "clean_total": 60,
+            "cao_dang": null,
+            "trung_cap": 60,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 25,
+            "clean_total": 25,
+            "cao_dang": null,
+            "trung_cap": 25,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            280
+          ],
+          "source_names": [
+            "Quản lý đất đai"
+          ],
+          "name": "Quản lý đất đai",
+          "source_codes": [
+            "5850102"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5850102"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 0,
+            "clean_total": 0,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            281
+          ],
+          "source_names": [
+            "May Công nghiệp"
+          ],
+          "name": "May Công nghiệp",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 35,
+            "clean_total": 35,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 72,
+            "clean_total": 72,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 72,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề."
+          ]
+        },
+        {
+          "source_rows": [
+            282
+          ],
+          "source_names": [
+            "Đào tạo lái xe"
+          ],
+          "name": "Đào tạo lái xe",
+          "source_codes": [],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 500,
+            "clean_total": 500,
+            "cao_dang": null,
+            "trung_cap": 35,
+            "so_cap_va_khac": null,
+            "unallocated": 465,
+            "issues": [
+              "Tổng lớn hơn tổng các trình độ; phần chênh được giữ ở cột chưa phân bổ."
+            ]
+          },
+          "planned_2026": {
+            "reported_total": 236,
+            "clean_total": 236,
+            "cao_dang": null,
+            "trung_cap": null,
+            "so_cap_va_khac": 236,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": [
+            "Nguồn không có mã ngành/nghề.",
+            "Số tổng và số theo trình độ chưa khớp hoàn toàn."
+          ]
+        }
+      ],
+      "extras": [
+        "Chế tạo thiết bị cơ khí",
+        "Hàn công nghệ cao",
+        "Kỹ thuật lắp đặt điện",
+        "Lắp đặt ống công nghệ"
+      ],
+      "variants": [
+        {
+          "source": [
+            "Kỹ thuật máy lạnh và điều hoà không khí"
+          ],
+          "web": "Kỹ thuật máy lạnh và ĐHKK",
+          "rows": [
+            253
+          ]
+        }
+      ],
+      "has_training_report": false,
+      "report_count": 0,
+      "report_matched": 0,
+      "report_missing": [
+        "Logistics",
+        "Kế toán",
+        "Kế toán doanh nghiệp",
+        "Quản lý khai thác công trình thuỷ lợi",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "Công nghệ thông tin (Ứng dụng phần mềm)",
+        "Quản trị mạng máy tính",
+        "Xây dựng và hoàn thiện Công trình thủy lợi",
+        "Công nghệ kỹ thuật cơ khí",
+        "Công nghệ ô tô",
+        "Công nghệ kỹ thuật điện, điện tử",
+        "Cắt gọt kim loại",
+        "Hàn",
+        "Sửa chữa thiết bị may",
+        "Kỹ thuật máy lạnh và điều hoà không khí",
+        "Điện dân dụng",
+        "Điện Công nghiệp",
+        "Vận hành và sửa chữa trạm bơm điện",
+        "Cơ điện nông thôn",
+        "Cơ điện tử",
+        "May thời trang",
+        "Quản trị du lịch MICE",
+        "Kỹ thuật điêu khắc gỗ",
+        "Đúc, dát đồng mỹ nghệ",
+        "Báo chí",
+        "Kế toán hành chính sự nghiệp",
+        "Công nghệ sinh học",
+        "Vận hành máy nông nghiệp",
+        "Điện công nghiệp và dân dụng",
+        "Điện tử dân dụng",
+        "Điện tử Công nghiệp",
+        "Công nghệ kỹ thuật chế biến và bảo quản nông sản",
+        "Trồng trọt và bảo vệ thực vật",
+        "Chăn nuôi - Thú y",
+        "Nuôi trồng thuỷ sản",
+        "Hướng dẫn du lịch",
+        "Quản trị khách sạn",
+        "Nghiệp vụ lễ tân",
+        "Nghiệp vụ nhà hàng",
+        "Kỹ thuật chế biến món ăn",
+        "Chăm sóc sắc đẹp",
+        "Quản lý đất đai",
+        "May Công nghiệp",
+        "Đào tạo lái xe"
+      ],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường trung cấp Đại Lâm",
+      "source_row": 285,
+      "source_ref": "Mau 1 - KQTS!285:289",
+      "web_name": "Trường Trung cấp Đại Lâm",
+      "web_id": "truong-trung-cap-dai-lam-800",
+      "scope": "Cùng trường",
+      "source_count": 4,
+      "catalog_count": 4,
+      "matched": 4,
+      "missing": [],
+      "extras": [],
+      "variants": [],
+      "has_training_report": true,
+      "report_count": 4,
+      "report_matched": 4,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Trung cấp Kỹ thuật - Du lịch Công đoàn Ninh Bình",
+      "source_row": 290,
+      "source_ref": "Mau 1 - KQTS!290:298",
+      "web_name": "Trường Trung cấp Kỹ thuật - Du lịch Công đoàn Ninh Bình",
+      "web_id": "truong-trung-cap-ky-thuat-du-lich-cong-d-724",
+      "scope": "Cùng trường",
+      "source_count": 8,
+      "catalog_count": 8,
+      "matched": 8,
+      "missing": [],
+      "extras": [],
+      "variants": [],
+      "has_training_report": true,
+      "report_count": 8,
+      "report_matched": 8,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Trung cấp Công nghệ số 8 Nam Định",
+      "source_row": 299,
+      "source_ref": "Mau 1 - KQTS!299:304",
+      "web_name": "Trường Trung cấp Công nghệ số 8 Nam Định",
+      "web_id": "truong-trung-cap-cong-nghe-so-8-nam-dinh-193",
+      "scope": "Cùng trường",
+      "source_count": 5,
+      "catalog_count": 7,
+      "matched": 5,
+      "missing": [],
+      "extras": [
+        "Bảo trì và sửa chữa ô tô",
+        "Điện công nghiệp"
+      ],
+      "variants": [
+        {
+          "source": [
+            "Công nghệ kỹ thuật điện, điện tử"
+          ],
+          "web": "Công nghệ kỹ thuật điện - điện tử",
+          "rows": [
+            301
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 5,
+      "report_matched": 5,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường trung cấp nghề Quốc Tế",
+      "source_row": 305,
+      "source_ref": "Mau 1 - KQTS!305:314",
+      "web_name": "Trường Trung cấp nghề Quốc tế (IVS)",
+      "web_id": "truong-trung-cap-nghe-quoc-te-ivs-235",
+      "scope": "Cùng trường, web thêm (IVS)",
+      "source_count": 9,
+      "catalog_count": 5,
+      "matched": 4,
+      "missing": [
+        {
+          "source_rows": [
+            305
+          ],
+          "source_names": [
+            "Chăm sóc sắc đẹp"
+          ],
+          "name": "Chăm sóc sắc đẹp",
+          "source_codes": [
+            "5810404"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5810404"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 314,
+            "clean_total": 314,
+            "cao_dang": null,
+            "trung_cap": 314,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 262,
+            "clean_total": 262,
+            "cao_dang": null,
+            "trung_cap": 262,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            306
+          ],
+          "source_names": [
+            "Công nghệ ô tô"
+          ],
+          "name": "Công nghệ ô tô",
+          "source_codes": [
+            "5510216"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5510216"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 160,
+            "clean_total": 160,
+            "cao_dang": null,
+            "trung_cap": 160,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 133,
+            "clean_total": 133,
+            "cao_dang": null,
+            "trung_cap": 133,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            307
+          ],
+          "source_names": [
+            "Công nghệ thông tin (ứng dụng phần mềm )"
+          ],
+          "name": "Công nghệ thông tin (ứng dụng phần mềm )",
+          "source_codes": [
+            "5480202"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5480202"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 121,
+            "clean_total": 121,
+            "cao_dang": null,
+            "trung_cap": 121,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 101,
+            "clean_total": 101,
+            "cao_dang": null,
+            "trung_cap": 101,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            309
+          ],
+          "source_names": [
+            "Điện dân dụng"
+          ],
+          "name": "Điện dân dụng",
+          "source_codes": [
+            "5520226"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520226"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 125,
+            "clean_total": 125,
+            "cao_dang": null,
+            "trung_cap": 125,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 104,
+            "clean_total": 104,
+            "cao_dang": null,
+            "trung_cap": 104,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        },
+        {
+          "source_rows": [
+            310
+          ],
+          "source_names": [
+            "Kỹ thuật máy lạnh và điều hòa không khí"
+          ],
+          "name": "Kỹ thuật máy lạnh và điều hòa không khí",
+          "source_codes": [
+            "5520205"
+          ],
+          "codes_by_level": {
+            "cao_dang": [],
+            "trung_cap": [
+              "5520205"
+            ],
+            "other": []
+          },
+          "current_scale": {
+            "reported_total": 630,
+            "clean_total": 630,
+            "cao_dang": null,
+            "trung_cap": 630,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "planned_2026": {
+            "reported_total": 525,
+            "clean_total": 525,
+            "cao_dang": null,
+            "trung_cap": 525,
+            "so_cap_va_khac": null,
+            "unallocated": 0,
+            "issues": []
+          },
+          "issues": []
+        }
+      ],
+      "extras": [
+        "Công nghệ thông tin"
+      ],
+      "variants": [],
+      "has_training_report": false,
+      "report_count": 0,
+      "report_matched": 0,
+      "report_missing": [
+        "Chăm sóc sắc đẹp",
+        "Công nghệ ô tô",
+        "Công nghệ thông tin (ứng dụng phần mềm )",
+        "Điện công nghiệp",
+        "Điện dân dụng",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Kỹ thuật chế biến món ăn",
+        "May thời trang",
+        "Tiếng Trung Quốc"
+      ],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trường Trung cấp GTVT Ninh Bình",
+      "source_row": 315,
+      "source_ref": "Mau 1 - KQTS!315:322",
+      "web_name": "Trường Trung cấp Giao thông vận tải tỉnh Ninh Bình",
+      "web_id": "truong-trung-cap-giao-thong-van-tai-tinh-811",
+      "scope": "GTVT được mở rộng thành Giao thông vận tải",
+      "source_count": 7,
+      "catalog_count": 8,
+      "matched": 7,
+      "missing": [],
+      "extras": [
+        "Sửa chữa máy tính"
+      ],
+      "variants": [
+        {
+          "source": [
+            "Kế toán doanh nghiệp"
+          ],
+          "web": "Kế toán Doanh nghiệp",
+          "rows": [
+            317
+          ]
+        }
+      ],
+      "has_training_report": true,
+      "report_count": 7,
+      "report_matched": 7,
+      "report_missing": [],
+      "report_extras": []
+    },
+    {
+      "source_name": "Trung tâm GDNN Nam Tam Điệp",
+      "source_row": 324,
+      "source_ref": "Mau 1 - KQTS!324:326",
+      "web_name": "Trung tâm GDNN Nam Tam Điệp",
+      "web_id": "trung-tam-gdnn-nam-tam-diep-802",
+      "scope": "Cùng trung tâm",
+      "source_count": 2,
+      "catalog_count": 5,
+      "matched": 2,
+      "missing": [],
+      "extras": [
+        "Đào tạo lái xe mô tô A1, A2",
+        "Lái xe ô tô B1, B2, C",
+        "Nghiệp vụ nhà hàng khách sạn"
+      ],
+      "variants": [],
+      "has_training_report": true,
+      "report_count": 2,
+      "report_matched": 2,
+      "report_missing": [],
+      "report_extras": []
+    }
+  ],
+  "additional_profiles": [
+    {
+      "id": "HN-CD-004",
+      "name": "Trường Cao đẳng Phát thanh - Truyền hình I (VOV)",
+      "parent_school_id": null,
+      "catalog": [
+        "Báo chí",
+        "Công nghệ kỹ thuật điện - điện tử",
+        "Công nghệ kỹ thuật điện tử truyền thông",
+        "Công nghệ thông tin",
+        "Kế toán",
+        "Kế toán Doanh nghiệp",
+        "Quan hệ công chúng",
+        "Tin học ứng dụng",
+        "Tiếng Anh"
+      ],
+      "report": [
+        "Báo chí",
+        "Công nghệ kỹ thuật điện tử, truyền thông",
+        "Công nghệ kỹ thuật điện, điện tử",
+        "Công nghệ thông tin",
+        "Kế toán",
+        "Kế toán doanh nghiệp",
+        "Quan hệ công chúng",
+        "Tin học ứng dụng",
+        "Tiếng Anh"
+      ]
+    },
+    {
+      "id": "trung-tam-gdnn-nam-tam-diep-802",
+      "name": "Trung tâm GDNN Nam Tam Điệp",
+      "parent_school_id": null,
+      "catalog": [
+        "Lái xe ô tô B1, B2, C",
+        "Nghiệp vụ nhà hàng khách sạn",
+        "Đào tạo lái xe Mô tô",
+        "Đào tạo lái xe mô tô A1, A2",
+        "Đào tạo lái xe Ô tô"
+      ],
+      "report": [
+        "Đào tạo lái xe Mô tô",
+        "Đào tạo lái xe Ô tô"
+      ]
+    },
+    {
+      "id": "truong-cao-dang-co-dien-nong-nghiep-va-m-218",
+      "name": "Trường Cao đẳng Cơ điện Nông nghiệp và Môi trường",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ ô tô",
+        "Hàn",
+        "Kỹ thuật xây dựng",
+        "Tin học văn phòng",
+        "Vận hành máy thi công nền",
+        "Điện công nghiệp",
+        "Điện dân dụng"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-co-dien-nong-nghiep-va-m-664",
+      "name": "Trường Cao đẳng Cơ điện Nông nghiệp và Môi trường – Cơ sở 2",
+      "parent_school_id": "truong-cao-dang-co-dien-nong-nghiep-va-m-218",
+      "catalog": [
+        "Đào tạo nghề trình độ cao đẳng & liên kết thực hành sản xuất"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-co-dien-va-thuy-loi-bac--458",
+      "name": "Trường Cao đẳng Cơ điện và Thủy lợi Bắc Bộ – Phân hiệu Ninh Bình",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ KT Tài nguyên nước",
+        "Cấp thoát nước",
+        "Tin học ứng dụng",
+        "Vận hành trạm bơm điện",
+        "Điện công nghiệp"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-cong-nghe-kinh-te-va-che-629",
+      "name": "Trường Cao đẳng Công nghệ, Kinh tế và Chế biến lâm sản",
+      "parent_school_id": null,
+      "catalog": [
+        "Gia công và Thiết kế sản phẩm Mộc",
+        "Kế toán Doanh nghiệp",
+        "Kỹ thuật Sơn mài và khảm trai",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Kỹ thuật Điêu khắc gỗ",
+        "Quản trị cơ sở dữ liệu",
+        "Quản trị mạng Máy tính",
+        "Điện công nghiệp",
+        "Điện dân dụng"
+      ],
+      "report": [
+        "Gia công và thiết kế sản phẩm mộc",
+        "Kế toán doanh nghiệp",
+        "Kỹ thuật Sơn mài và khảm trai",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Kỹ thuật Điêu khắc gỗ",
+        "Quản Trị Mạng máy tính",
+        "Quản trị cơ sở dữ liệu",
+        "Điện Công nghiệp",
+        "Điện dân dụng"
+      ]
+    },
+    {
+      "id": "truong-cao-dang-cong-nghiep-nam-dinh-192",
+      "name": "Trường Cao đẳng Công nghiệp Nam Định",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ chế tạo vỏ tàu thủy",
+        "Công nghệ kỹ thuật cơ khí",
+        "Công nghệ kỹ thuật cơ điện tử",
+        "Công nghệ kỹ thuật môi trường",
+        "Công nghệ kỹ thuật nhiệt",
+        "Công nghệ kỹ thuật điều khiển và tự động hóa",
+        "Công nghệ kỹ thuật điện - điện tử",
+        "Công nghệ kỹ thuật điện tử truyền thông",
+        "Công nghệ may",
+        "Công nghệ thông tin",
+        "Công nghệ ô tô",
+        "Cắt gọt kim loại",
+        "Hàn",
+        "Kinh doanh thương mại và dịch vụ",
+        "Kế toán",
+        "Kế toán Doanh nghiệp",
+        "Kế toán hành chính sự nghiệp",
+        "Kỹ thuật lắp đặt ống công nghệ",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "May công nghiệp",
+        "May thời trang",
+        "Nguội lắp ráp cơ khí",
+        "Nguội sửa chữa máy công cụ",
+        "Quản lý và bán hàng siêu thị",
+        "Quản trị cơ sở dữ liệu",
+        "Quản trị kinh doanh",
+        "Quản trị mạng Máy tính",
+        "Sửa chữa thiết bị may",
+        "Thiết kế thời trang",
+        "Thiết kế đồ họa",
+        "Tin học văn phòng",
+        "Tin học ứng dụng",
+        "Truyền thông và mạng máy tính",
+        "Tài chính - Ngân hàng",
+        "Điện công nghiệp",
+        "Điện công nghiệp và dân dụng",
+        "Điện dân dụng",
+        "Điện tử công nghiệp",
+        "Điện tử công nghiệp và dân dụng"
+      ],
+      "report": [
+        "Công nghệ chế tạo vỏ tàu thủy",
+        "Công nghệ kỹ thuật cơ khí",
+        "Công nghệ kỹ thuật cơ điện tử",
+        "Công nghệ kỹ thuật môi trường",
+        "Công nghệ kỹ thuật nhiệt",
+        "Công nghệ kỹ thuật điều khiển và tự động hóa",
+        "Công nghệ kỹ thuật điện tử, truyền thông",
+        "Công nghệ kỹ thuật điện, điện tử",
+        "Công nghệ may",
+        "Công nghệ thông tin",
+        "Công nghệ ô tô",
+        "Cắt gọt kim loại",
+        "Hàn",
+        "Kinh doanh thương mại và dịch vụ",
+        "Kế toán",
+        "Kế toán doanh nghiệp",
+        "Kế toán hành chính sự nghiệp",
+        "Kỹ thuật lắp đặt ống công nghệ",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "May công nghiệp",
+        "May thời trang",
+        "Nguội lắp ráp cơ khí",
+        "Nguội sửa chữa máy công cụ",
+        "Quản lý và bán hàng siêu thị",
+        "Quản trị cơ sở dữ liệu",
+        "Quản trị kinh doanh",
+        "Quản trị mạng máy tính",
+        "Sửa chữa thiết bị may",
+        "Thiết kế thời trang",
+        "Thiết kế đồ họa",
+        "Tin học văn phòng",
+        "Tin học ứng dụng",
+        "Truyền thông và mạng máy tính",
+        "Tài chính - Ngân hàng",
+        "Điện công nghiệp",
+        "Điện công nghiệp và dân dụng",
+        "Điện dân dụng",
+        "Điện tử công nghiệp",
+        "Điện tử công nghiệp và dân dụng"
+      ]
+    },
+    {
+      "id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-131",
+      "name": "Trường Cao đẳng Kinh tế và Công nghệ Nam Định - Trụ sở chính, Khu B",
+      "parent_school_id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-934",
+      "catalog": [
+        "Điện tử - Tin học"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-186",
+      "name": "Trường Cao đẳng Kinh tế và Công nghệ Nam Định cơ sở Đoàn Khuê",
+      "parent_school_id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-934",
+      "catalog": [
+        "Kế toán doanh nghiệp & Quản trị kinh doanh"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-290",
+      "name": "Trường Cao đẳng kinh tế và công nghệ Nam Định",
+      "parent_school_id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-934",
+      "catalog": [
+        "May thời trang & Thủ công mỹ nghệ"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-934",
+      "name": "Trường Cao đẳng Kinh tế Và Công Nghệ Nam Định, trụ sở chính, Khu A",
+      "parent_school_id": null,
+      "catalog": [
+        "Chế tạo thiết bị cơ khí",
+        "Công nghệ ô tô",
+        "Hàn công nghệ cao",
+        "Kỹ thuật lắp đặt điện",
+        "Kỹ thuật máy lạnh và ĐHKK",
+        "Lắp đặt ống công nghệ"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-kinh-te-va-cong-nghe-tin-714",
+      "name": "Trường Cao đẳng Kinh tế và Công nghệ tỉnh Ninh Bình – Địa điểm Cát Thành – Trực Ninh",
+      "parent_school_id": "truong-cao-dang-kinh-te-va-cong-nghe-nam-934",
+      "catalog": [
+        "May công nghiệp & Kỹ thuật điện"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-nghe-so-20-bqp-truong-th-471",
+      "name": "Trường Cao đẳng nghề Số 20 - BQP - Trường Thi",
+      "parent_school_id": "truong-cao-dang-nghe-so-20-bqp-vi-khe-509",
+      "catalog": [
+        "Bảo trì máy may",
+        "Công nghệ thông tin",
+        "Công nghệ ô tô",
+        "Cắt gọt kim loại",
+        "Cốt thép - Hàn",
+        "Hàn",
+        "Hàn công nghệ cao (CNC)",
+        "Kỹ thuật lắp đặt điện và điều khiển trong công nghiệp",
+        "Kỹ thuật máy lạnh và điều hòa không khí",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "May thời trang",
+        "Sửa chữa cơ khí động cơ",
+        "Sửa chữa thiết bị may",
+        "Sửa chữa thiết bị tự động hoá",
+        "Sửa chữa xe máy",
+        "Sửa chữa điện - điện lạnh ô tô",
+        "Thực hành lái xe & cơ điện",
+        "Tiếng Anh",
+        "Tiếng Hàn Quốc",
+        "Tiếng Nhật",
+        "Vận hành máy thi công nền",
+        "Điều khiển phương tiện thuỷ nội địa",
+        "Điện công nghiệp",
+        "Điện tử công nghiệp"
+      ],
+      "report": [
+        "Bảo trì máy may",
+        "Công nghệ thông tin",
+        "Công nghệ ô tô",
+        "Cắt gọt kim loại",
+        "Cốt thép - Hàn",
+        "Hàn",
+        "Hàn công nghệ cao (CNC)",
+        "Kỹ thuật lắp đặt điện và điều khiển trong công nghiệp",
+        "Kỹ thuật máy lạnh và điều hoà không khí",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "May thời trang",
+        "Sửa chữa cơ khí động cơ",
+        "Sửa chữa thiết bị may",
+        "Sửa chữa thiết bị tự động hoá",
+        "Sửa chữa xe máy",
+        "Sửa chữa điện - điện lạnh ô tô",
+        "Tiếng Anh",
+        "Tiếng Hàn Quốc",
+        "Tiếng Nhật",
+        "Vận hành máy thi công nền",
+        "Điều khiển phương tiện thuỷ nội địa",
+        "Điện công nghiệp",
+        "Điện tử công nghiệp"
+      ]
+    },
+    {
+      "id": "truong-cao-dang-nghe-so-20-bqp-vi-khe-509",
+      "name": "Trường Cao đẳng nghề Số 20 - BQP - Vị Khê",
+      "parent_school_id": null,
+      "catalog": [
+        "Kỹ thuật cơ khí động lực",
+        "Đào tạo lái xe ô tô hạng B2, C"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-cao-dang-van-hoa-nghe-thuat-va-du-470",
+      "name": "Trường Cao đẳng Văn hóa Nghệ thuật và Du lịch Nam Định",
+      "parent_school_id": null,
+      "catalog": [
+        "Biểu diễn nhạc cụ truyền thống",
+        "Hướng dẫn du lịch",
+        "Hội họa",
+        "Khoa học thư viện",
+        "Nghệ thuật biểu diễn Chèo",
+        "Nghệ thuật biểu diễn Kịch nói",
+        "Organ",
+        "Thanh nhạc",
+        "Thiết kế đồ họa",
+        "Thư viện"
+      ],
+      "report": [
+        "Biểu diễn nhạc cụ truyền thống",
+        "Hướng dẫn du lịch",
+        "Hội họa",
+        "Khoa học thư viện",
+        "Nghệ thuật biểu diễn Chèo",
+        "Nghệ thuật biểu diễn Kịch nói",
+        "Organ",
+        "Thanh nhạc",
+        "Thiết kế đồ họa",
+        "Thư viện"
+      ]
+    },
+    {
+      "id": "truong-cao-dang-xay-dung-nam-dinh-204",
+      "name": "Trường Cao đẳng Xây dựng Nam Định",
+      "parent_school_id": null,
+      "catalog": [
+        "C.nghệ Kỹ thuật C.trình XD",
+        "Chạm khắc đá",
+        "Công nghệ Kỹ thuật C.trình XD",
+        "Cấp thoát nước",
+        "Cốt thép - Hàn",
+        "Hàn",
+        "Kế toán Doanh nghiệp",
+        "Kỹ thuật Sơn mài và khảm trai",
+        "Kỹ thuật xây dựng",
+        "Kỹ thuật Điêu khắc gỗ",
+        "Mộc Mỹ nghệ",
+        "Mộc XD và T.Trí nội thất",
+        "Mộc dân dụng",
+        "Mộc xây dựng và trang trí nội thất",
+        "Nề hoàn thiện",
+        "Quản lý Xây dựng",
+        "Quản trị mạng Máy tính",
+        "Thiết kế đồ họa",
+        "Thương mại điện tử",
+        "Tin học văn phòng",
+        "XD dân dụng và C.nghiệp",
+        "Điện dân dụng"
+      ],
+      "report": [
+        "Chạm khắc đá",
+        "Công nghệ Kỹ thuật C.trình XD",
+        "Cấp, thoát nước",
+        "Cốt thép - Hàn",
+        "Hàn",
+        "Kế toán doanh nghiệp",
+        "Kỹ thuật sơn mài và khảm trai",
+        "Kỹ thuật xây dựng",
+        "Kỹ thuật Điêu khắc gỗ",
+        "Mộc Mỹ nghệ",
+        "Mộc dân dụng",
+        "Mộc xây dựng và trang trí nội thất",
+        "Nề hoàn thiện",
+        "Quản lý Xây dựng",
+        "Quản trị mạng máy tính",
+        "Thiết kế đồ hoạ",
+        "Thương mại điện tử",
+        "Tin học văn phòng",
+        "XD dân dụng và C.nghiệp",
+        "Điện dân dụng"
+      ]
+    },
+    {
+      "id": "truong-cao-dang-xay-dung-nam-dinh-co-so--176",
+      "name": "Trường Cao đẳng Xây dựng Nam Định - Cơ sở 2",
+      "parent_school_id": "truong-cao-dang-xay-dung-nam-dinh-204",
+      "catalog": [
+        "Thực nghiệm sản xuất vật liệu & kiểm định công trình"
+      ],
+      "report": []
+    },
+    {
+      "id": "truong-trung-cap-cong-nghe-so-8-nam-dinh-193",
+      "name": "Trường Trung cấp Công nghệ số 8 Nam Định",
+      "parent_school_id": null,
+      "catalog": [
+        "Bảo trì và sửa chữa ô tô",
+        "Công nghệ kỹ thuật ô tô",
+        "Công nghệ kỹ thuật điện - điện tử",
+        "Công nghệ thông tin",
+        "Hàn",
+        "May thời trang",
+        "Điện công nghiệp"
+      ],
+      "report": [
+        "Công nghệ kỹ thuật ô tô",
+        "Công nghệ kỹ thuật điện, điện tử",
+        "Công nghệ thông tin",
+        "Hàn",
+        "May thời trang"
+      ]
+    },
+    {
+      "id": "truong-trung-cap-dai-lam-800",
+      "name": "Trường Trung cấp Đại Lâm",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ ô tô",
+        "Kỹ thuật chế biến món ăn",
+        "Lái xe ô tô các hạng",
+        "May thời trang"
+      ],
+      "report": [
+        "Công nghệ ô tô",
+        "Kỹ thuật chế biến món ăn",
+        "Lái xe ô tô các hạng",
+        "May thời trang"
+      ]
+    },
+    {
+      "id": "truong-trung-cap-giao-thong-van-tai-tinh-811",
+      "name": "Trường Trung cấp Giao thông vận tải tỉnh Ninh Bình",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ ô tô",
+        "Hàn điện",
+        "Khai thác vận tải đường bộ",
+        "Kế toán Doanh nghiệp",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "Sửa chữa máy tính",
+        "Vận hành máy xúc, ủi, lu",
+        "Điện công nghiệp"
+      ],
+      "report": [
+        "Công nghệ ô tô",
+        "Hàn điện",
+        "Khai thác vận tải đường bộ",
+        "Kế toán doanh nghiệp",
+        "Kỹ thuật sửa chữa, lắp ráp máy tính",
+        "Vận hành máy xúc, ủi, lu",
+        "Điện công nghiệp"
+      ]
+    },
+    {
+      "id": "truong-trung-cap-ky-thuat-du-lich-cong-d-724",
+      "name": "Trường Trung cấp Kỹ thuật - Du lịch Công đoàn Ninh Bình",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ thông tin",
+        "Hướng dẫn du lịch",
+        "Kỹ thuật chế biến món ăn",
+        "May thời trang",
+        "Nghiệp vụ nhà hàng",
+        "Quản trị khách sạn",
+        "Điện công nghiệp và dân dụng",
+        "Điện dân dụng"
+      ],
+      "report": [
+        "Công nghệ thông tin",
+        "Hướng dẫn du lịch",
+        "Kỹ thuật chế biến món ăn",
+        "May thời trang",
+        "Nghiệp vụ nhà hàng",
+        "Quản trị khách sạn",
+        "Điện công nghiệp và dân dụng",
+        "Điện dân dụng"
+      ]
+    },
+    {
+      "id": "truong-trung-cap-nghe-quoc-te-ivs-235",
+      "name": "Trường Trung cấp nghề Quốc tế (IVS)",
+      "parent_school_id": null,
+      "catalog": [
+        "Công nghệ thông tin",
+        "Kỹ thuật chế biến món ăn",
+        "May thời trang",
+        "Tiếng Trung Quốc",
+        "Điện công nghiệp"
+      ],
+      "report": []
+    }
+  ]
+}

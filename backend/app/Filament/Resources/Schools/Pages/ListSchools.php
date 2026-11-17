@@ -56,6 +56,21 @@ class ListSchools extends ListRecords
                 ->modalCancelActionLabel('Hủy')
                 ->modalFooterActionsAlignment(Alignment::End),
 
+            Action::make('importTrainingScale')
+                ->label('Nhập quy mô đào tạo')
+                ->icon(Heroicon::OutlinedChartBar)
+                ->color('info')
+                ->formWrapper(false)
+                ->modalHeading('Nhập quy mô đào tạo từ Excel')
+                ->modalDescription('Tải file có các sheet QM_Tong_hop và QM_Theo_nganh. Chỉ cập nhật báo cáo quy mô; giữ nguyên chỉ tiêu, mã ngành và thông tin trường.')
+                ->modalWidth(Width::Large)
+                ->modalContent(view('filament.resources.schools.import-excel', ['trainingScale' => true]))
+                ->modalSubmitAction(fn (Action $action): Action => $action
+                    ->label('Kiểm tra / nhập quy mô')
+                    ->submit('school-scale-excel-import-form')
+                    ->formId('school-scale-excel-import-form'))
+                ->modalCancelActionLabel('Hủy'),
+
             CreateAction::make()->label('Thêm Trường học mới'),
         ];
     }

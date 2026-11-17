@@ -252,6 +252,22 @@ Route::post('/admin/schools/import-excel', function (Request $request, SchoolExc
     }
 
     $uploadedFile = $request->file('excel_file');
+    if ($request->input('import_type') === 'training_scale') {
+        $result = app(\App\Services\TrainingScaleExcelService::class)->importFromFile(
+            $uploadedFile->getRealPath(), $request->boolean('dry_run'),
+        );
+        $notification = Notification::make();
+        if (! $result['success']) {
+            $notification->title('Chưa nhập quy mô đào tạo')->body(implode(' ', $result['errors']))->danger();
+        } else {
+            $notification->title($result['dry_run'] ? 'Đối chiếu quy mô thành công — chưa ghi dữ liệu' : 'Đã cập nhật quy mô đào tạo')
+                ->body("Báo cáo mới: {$result['created']}; cập nhật: {$result['updated']}; không đổi: {$result['unchanged']}. Tổng {$result['programs']} dòng ngành/nghề.")
+                ->success();
+        }
+        $notification->send();
+
+        return redirect()->route('filament.admin.resources.schools.index');
+    }
     $result = $excelService->importFromFile($uploadedFile->getRealPath());
 
     if (! $result['success']) {
