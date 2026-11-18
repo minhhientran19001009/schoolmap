@@ -2,6 +2,12 @@
 
 > Cập nhật 17/11/2026: Bảng đào tạo chính trong Tổng quan hiển thị **quy mô đào tạo**, đơn vị người học. Không lấy chỉ tiêu hằng năm làm quy mô; không lặp thêm một khối quy mô giống nhau bên dưới. Ô trống hiển thị “—”, số 0 giữ là 0; phần chưa phân bổ là cột riêng khi có. Xem [quy trình nhập quy mô](nhap-quy-mo-dao-tao-excel.md).
 
+> Responsive quy mô đào tạo (18/11/2026): Lưới 6 ô dùng container query theo chiều rộng thực tế của khối: dưới 520px là 2 cột, từ 520px là 3 cột, từ 880px là 6 cột. Không dùng 5 cột khiến một ô lẻ ở hàng cuối. Nếu có ô Chưa phân bổ (tổng 7 ô), Tổng quy mô thành dải ngang riêng, 6 ô còn lại chia đều. Các ô thống nhất font, khoảng cách và chiều cao theo hàng. Bảng ngành cuộn ngang bên trong khối, giữ cố định cột tên ngành; không gây tràn ngang toàn ngăn chi tiết trên mobile/tablet.
+
+> Popup trường trên bản đồ (18/11/2026): Bấm ghim trường chỉ mở popup tóm tắt gồm tên, cấp học, mã trường, địa chỉ, lãnh đạo và hai nút Thông tin/Chỉ đường. Không hiển thị nút Bán kính 3km, ngành/nghề hoặc thống kê học sinh–giáo viên–lớp học trong popup. Chỉ nút Thông tin mới mở ngăn chi tiết bên phải. Ghim tạm, tìm kiếm trường, danh sách trong popup xã và liên kết `?school=` cùng ưu tiên popup tóm tắt; các liên kết chuyển cơ sở trong hồ sơ vẫn giữ thao tác chi tiết theo ngữ cảnh.
+
+> Hiệu ứng ngăn chi tiết trường (18/11/2026): `SchoolDetailDrawer` tự quản lý hai Transition riêng: `school-detail-slide` đặt trực tiếp trên khung chi tiết và `school-detail-backdrop` trên nền mờ. Trang gọi luôn mount component, không đặt `v-if` hoặc Transition ngoài component làm mất hiệu ứng đóng; điều kiện hiển thị nằm trong từng Transition nội bộ. Khung giữ nguyên độ rõ, trượt từ ngoài mép phải (`translateX(calc(100% + 32px))`) về 0 trong 480ms, trượt ra trong 300ms. Nền mờ fade riêng 300ms; không fade toàn bộ lớp bao chứa khung. Chỉ animate `transform`/`opacity`, không animate chiều rộng hoặc vị trí `right`. Áp dụng desktop, tablet, mobile; `prefers-reduced-motion: reduce` bỏ trượt, giảm thời gian còn 1ms. Reset tab và các modal con khi đổi/đóng hồ sơ; không gắn key theo dữ liệu khiến API bổ sung dữ liệu làm ngăn mở lại.
+
 > **Mục đích**: Tài liệu này quy định toàn bộ tiêu chuẩn về tông màu, kích thước, khoảng cách (padding/margin), cách thiết kế các ô nhập liệu, dropdown select và bố cục trang công khai của hệ thống Bản đồ số GDNN Ninh Bình. 
 > **Quy tắc bắt buộc**: Bất kỳ tính năng mới hoặc chỉnh sửa giao diện nào đều phải tuân thủ nghiêm ngặt tài liệu này để tránh tình trạng lệch style, đè chữ hay vỡ khung giao diện.
 

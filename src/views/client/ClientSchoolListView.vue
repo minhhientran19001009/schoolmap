@@ -579,7 +579,6 @@
 
     <!-- 8. School Detail Drawer Integration -->
     <SchoolDetailDrawer
-      v-if="selectedSchool"
       :school="selectedSchool"
       @close="closeSchoolDetail"
       @buffer-analyze="handleBufferAnalyze"

@@ -614,12 +614,7 @@ function renderMarkers(schools) {
     const marker = L.marker([school.lat, school.lng], { icon: customIcon })
     marker.schoolData = school
     
-    // Direct click on marker opens the right-hand detail drawer
-    marker.on('click', () => {
-      emit('view-detail', school)
-    })
-
-    // Bind rich popup matching reference layout
+    // Leaflet opens the preview on marker click. Details require its Info button.
     marker.bindPopup(buildPopupHtml(school), {
       maxWidth: 320,
       minWidth: 260
@@ -671,7 +666,6 @@ function showFocusedSchoolMarker(school) {
     zIndexOffset: 1000,
   }).addTo(map)
   focusedSchoolMarker.schoolData = school
-  focusedSchoolMarker.on('click', () => emit('view-detail', school))
   focusedSchoolMarker.bindPopup(buildPopupHtml(school), { maxWidth: 320, minWidth: 260 })
   focusedSchoolMarker.on('popupopen', () => setupPopupEventListeners(school))
 }
@@ -769,100 +763,46 @@ function buildPieGradient(counts, total) {
 
 function buildPopupHtml(s) {
   const levelConfig = LEVEL_MAP[s.education_level] || { label: s.education_level, color: '#3b82f6' }
-  const students = (s.student_count || 0).toLocaleString('vi-VN')
-  const teachers = (s.teacher_count || 0)
-  const classes = (s.class_count || 0)
-  const majorPreview = Array.isArray(s.training_major_summary) ? s.training_major_summary : []
-  const extraMajorCount = Math.max(0, Number(s.training_major_count || 0) - majorPreview.length)
-  const majorsHtml = majorPreview.length > 0 ? `
-      <div class="mt-2.5 rounded-xl border border-emerald-100 bg-emerald-50/50 p-2">
-        <div class="mb-1.5 flex items-center justify-between">
-          <span class="flex items-center gap-1 text-[10px] font-bold text-emerald-800">
-            <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
-            Ngành / nghề đào tạo
-          </span>
-          <span class="rounded bg-white px-1.5 py-0.5 text-[10px] font-semibold text-emerald-700">${s.training_major_count || majorPreview.length}</span>
-        </div>
-        <div class="space-y-1.5">
-          ${majorPreview.map(major => {
-            const code = escapePopupHtml(major.code || '')
-            const quota = Number(major.annual_quota || 0)
-            return `
-              <div class="rounded-lg bg-white/90 px-2 py-1.5">
-                <div class="text-[11px] font-semibold leading-snug text-slate-700">${escapePopupHtml(major.name)}</div>
-                <div class="mt-1 flex flex-wrap items-center gap-1 text-[9px]">
-                  ${code ? `<span class="rounded bg-slate-100 px-1 py-0.5 font-mono font-semibold text-slate-600">Mã: ${code}</span>` : ''}
-                  <span class="rounded bg-blue-50 px-1 py-0.5 font-semibold text-blue-700">${formatTrainingLevel(major.degree_level)}</span>
-                  ${quota > 0 ? `<span class="text-slate-500">${quota.toLocaleString('vi-VN')} SV/năm</span>` : ''}
-                </div>
-              </div>`
-          }).join('')}
-        </div>
-        ${extraMajorCount > 0 ? `<div class="mt-1.5 text-right text-[10px] font-medium text-emerald-700">+ ${extraMajorCount} ngành, nghề khác</div>` : ''}
-      </div>` : ''
+  const address = s.address || [s.ward, s.district_name].filter(Boolean).join(', ')
 
   return `
     <div class="p-3.5 select-none">
       <!-- Title -->
-      <h3 class="font-bold text-slate-800 text-sm leading-snug mb-1">
-        ${s.name}
+      <h3 class="font-bold text-slate-800 text-sm leading-snug mb-1 pr-4 break-words">
+        ${escapePopupHtml(s.name)}
       </h3>
 
       <div class="mb-2 flex flex-wrap items-center gap-1.5 text-[10px]">
-        <span class="rounded bg-blue-50 px-1.5 py-0.5 font-semibold text-blue-700">${levelConfig.label || 'Cơ sở giáo dục'}</span>
+        <span class="rounded bg-blue-50 px-1.5 py-0.5 font-semibold text-blue-700">${escapePopupHtml(levelConfig.label || 'Cơ sở giáo dục')}</span>
         ${s.code ? `<span class="rounded bg-slate-100 px-1.5 py-0.5 font-mono font-semibold text-slate-600">Mã trường: ${escapePopupHtml(s.code)}</span>` : ''}
       </div>
 
       <!-- Address -->
       <p class="text-[11px] text-slate-500 flex items-start gap-1.5 mb-1">
         <i class="fa-solid fa-location-dot text-slate-400 mt-0.5"></i>
-        <span>${s.address || `${s.ward}, ${s.district_name}`}</span>
+        <span class="break-words">${escapePopupHtml(address || 'Đang cập nhật địa chỉ')}</span>
       </p>
 
       <!-- Principal -->
       ${s.principal ? `
         <p class="text-[11px] text-slate-500 flex items-center gap-1.5 mb-2">
           <i class="fa-solid fa-user-tie text-slate-400"></i>
-          <span>${String(s.principal).replace(/^HT:\s*/i, '')}</span>
+          <span>${escapePopupHtml(String(s.principal).replace(/^HT:\s*/i, ''))}</span>
         </p>
       ` : ''}
 
-      ${majorsHtml}
-
-      <!-- Stats Grid -->
-      <div class="grid grid-cols-3 gap-1.5 my-2.5 bg-slate-50 p-2 rounded-xl border border-slate-100 text-center">
-        <div class="p-1">
-          <div class="text-xs font-bold text-blue-700 font-mono">${students}</div>
-          <div class="text-[10px] text-slate-400">Học sinh</div>
-        </div>
-        <div class="p-1 border-x border-slate-200/80">
-          <div class="text-xs font-bold text-emerald-700 font-mono">${teachers}</div>
-          <div class="text-[10px] text-slate-400">Giáo viên</div>
-        </div>
-        <div class="p-1">
-          <div class="text-xs font-bold text-purple-700 font-mono">${classes}</div>
-          <div class="text-[10px] text-slate-400">Lớp học</div>
-        </div>
-      </div>
-
       <!-- Actions -->
-      <div class="grid grid-cols-2 gap-1.5 pt-1">
-        <button id="btn-popup-detail-${s.id}" class="w-full py-1.5 px-2 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-semibold flex items-center justify-center gap-1 transition-colors">
+      <div class="mt-3 grid grid-cols-2 gap-2 border-t border-slate-100 pt-3">
+        <button type="button" id="btn-popup-detail-${escapePopupHtml(s.id)}" class="min-h-10 w-full py-2 px-2 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-semibold flex items-center justify-center gap-1 transition-colors">
           <i class="fa-solid fa-circle-info text-[11px]"></i>
-          <span>Hồ sơ & ngành nghề</span>
+          <span>Thông tin</span>
         </button>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}" target="_blank" class="w-full py-1.5 px-2 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold flex items-center justify-center gap-1 transition-colors text-decoration-none">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${s.lat},${s.lng}`)}" target="_blank" rel="noopener noreferrer" class="min-h-10 w-full py-2 px-2 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-semibold flex items-center justify-center gap-1 transition-colors text-decoration-none">
           <i class="fa-solid fa-diamond-turn-right text-[11px]"></i>
           <span>Chỉ đường</span>
         </a>
       </div>
 
-      <div class="mt-1.5">
-        <button id="btn-popup-buffer-${s.id}" class="w-full py-1 rounded-md bg-purple-50 text-purple-700 hover:bg-purple-100 text-[11px] font-medium flex items-center justify-center gap-1 transition-colors">
-          <i class="fa-solid fa-bullseye text-[10px]"></i>
-          <span>Bán kính 3km</span>
-        </button>
-      </div>
     </div>
   `
 }
@@ -876,40 +816,22 @@ function escapePopupHtml(value) {
     .replace(/'/g, '&#039;')
 }
 
-function formatTrainingLevel(level) {
-  const labels = {
-    dai_hoc: 'Đại học',
-    cao_dang: 'Cao đẳng',
-    trung_cap: 'Trung cấp',
-    so_cap: 'Sơ cấp',
-    gdtx: 'GDTX - GDNN',
-  }
-
-  return labels[level] || 'Chưa cập nhật'
-}
-
 function setupPopupEventListeners(school) {
   setTimeout(() => {
     const btnDetail = document.getElementById(`btn-popup-detail-${school.id}`)
     if (btnDetail) {
       btnDetail.onclick = (e) => {
         e.preventDefault()
+        e.stopPropagation()
+        map?.closePopup()
         emit('view-detail', school)
-      }
-    }
-
-    const btnBuffer = document.getElementById(`btn-popup-buffer-${school.id}`)
-    if (btnBuffer) {
-      btnBuffer.onclick = (e) => {
-        e.preventDefault()
-        triggerBufferForSchool(school)
       }
     }
 
   }, 50)
 }
 
-function flyToSchool(school, openDetail = true) {
+function flyToSchool(school, openDetail = false) {
   if (!school.lat || !school.lng || !map) return
   
   if (openDetail) {
@@ -1027,7 +949,7 @@ onMounted(() => {
   window.__openSchoolFromWardPopup = (schoolId) => {
     const s = props.schools.find(item => item.id === schoolId)
     if (s) {
-      emit('view-detail', s)
+      flyToSchool(s)
     }
   }
   initMap()

@@ -103,7 +103,6 @@
           class="w-full px-2 py-1.5 rounded-lg text-[11px] text-left flex items-center justify-between cursor-pointer">
           <span class="min-w-0 flex-1 pr-1">
             <span class="block leading-4 whitespace-normal break-words" :title="major.name">{{ major.name }}</span>
-            <span v-if="major.code" class="mt-0.5 block font-mono text-[9px] font-medium text-slate-400">Mã: {{ major.code }}</span>
           </span>
           <span class="flex items-center gap-1 flex-shrink-0 ml-1">
             <span

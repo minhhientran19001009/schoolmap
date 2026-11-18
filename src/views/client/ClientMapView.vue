@@ -9,8 +9,7 @@
     />
 
     <!-- School Detail Drawer (Right Sidebar View) -->
-    <SchoolDetailDrawer 
-      v-if="selectedSchool"
+    <SchoolDetailDrawer
       :school="selectedSchool"
       @close="selectedSchool = null"
       @buffer-analyze="handleBufferAnalyze"
@@ -71,7 +70,6 @@ onMounted(async () => {
   if (schoolParam) {
     const s = schools.value.find(item => item.id === schoolParam || item.code === schoolParam)
     if (s) {
-      openDetailModal(s)
       nextTick(() => {
         mapRef.value?.flyToSchool(s)
       })

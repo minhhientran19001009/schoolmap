@@ -650,7 +650,6 @@
     </main>
 
     <SchoolDetailDrawer
-      v-if="selectedSchoolDetail"
       :school="selectedSchoolDetail"
       @close="selectedSchoolDetail = null"
       @view-related-campus="openSchoolDetailFromQuickView"

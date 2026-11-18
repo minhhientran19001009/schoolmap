@@ -33,7 +33,7 @@ export default function CompanyDirectory({records,loading,error,onReload,onCreat
         <div className="company-workforce"><strong>{nf.format(e.workers)}</strong><span>lao động BHXH · 07/2026</span></div>
         <p className="company-scope">{e.id==='song-hong'?'Hồ sơ công ty, không phải toàn hệ thống':e.id==='honda-ha-nam'?'Hồ sơ chi nhánh Hà Nam':'Một hồ sơ; không cộng các chi nhánh'}</p>
         {e.collaboration&&<span className="company-contact-tag"><Phone size={14}/> Có đầu mối công khai</span>}
-        <div className="company-actions"><Button variant="outline" onClick={()=>setDetail(e)}>Xem hồ sơ & nguồn</Button><Button variant="ghost" onClick={()=>create(e)}><Plus size={16}/>Tạo nhu cầu</Button></div>
+        <div className="company-actions"><Button variant="outline" onClick={()=>setDetail(e)}>Xem hồ sơ</Button><Button variant="ghost" onClick={()=>create(e)}><Plus size={16}/>Tạo nhu cầu</Button></div>
       </article>)}</div>
       {!results.length&&<Empty className="empty-state"><EmptyHeader><Search size={26}/><EmptyTitle>{error&&!records.length?'Chưa tải được danh bạ':'Không có doanh nghiệp phù hợp'}</EmptyTitle><EmptyDescription>{error&&!records.length?'Chọn Thử lại để tiếp tục.':'Thử tên khác hoặc đặt lại bộ lọc.'}</EmptyDescription></EmptyHeader></Empty>}
     </>}

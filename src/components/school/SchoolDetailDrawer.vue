@@ -1,16 +1,19 @@
 <template>
   <div>
     <!-- Backdrop overlay: focus the school profile on every screen size -->
+    <Transition name="school-detail-backdrop" appear>
     <div 
       v-if="school"
       @click="$emit('close')"
-      class="fixed inset-0 z-[1190] bg-slate-900/35 backdrop-blur-[1.5px] animate-in fade-in duration-200">
+      class="fixed inset-0 z-[1190] bg-slate-900/35 backdrop-blur-[1.5px]">
     </div>
+    </Transition>
 
     <!-- Main Right Sidebar Drawer -->
+    <Transition name="school-detail-slide" appear>
     <div 
       v-if="school"
-      class="fixed top-0 right-0 bottom-0 z-[1200] w-full sm:w-[640px] lg:w-[760px] xl:w-[900px] 2xl:w-[980px] bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.15)] flex flex-col border-l border-slate-200 transition-all duration-300 ease-in-out select-none">
+      class="school-detail-panel fixed top-0 right-0 bottom-0 z-[1200] w-full sm:w-[640px] lg:w-[760px] xl:w-[900px] 2xl:w-[980px] bg-white shadow-[-10px_0_30px_rgba(0,0,0,0.15)] flex flex-col border-l border-slate-200 select-none">
       
       <!-- Top Header (Inspired by reference screenshot) -->
       <div class="relative bg-gradient-to-r from-blue-700 via-indigo-700 to-blue-800 text-white p-4 sm:p-5 flex-shrink-0 shadow-md">
@@ -287,64 +290,64 @@
 
 
           <!-- 3. Thông tin đào tạo -->
-          <section class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
-            <div class="flex flex-col gap-2 border-b border-slate-100 p-3.5 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <h3 class="flex items-center gap-1.5 text-sm font-bold text-slate-800">
+          <section class="training-scale min-w-0 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xs">
+            <div class="flex items-start justify-between gap-3 border-b border-slate-100 p-3 sm:p-4">
+              <div class="min-w-0">
+                <h3 class="flex items-center gap-1.5 text-sm font-bold text-slate-800 sm:text-base">
                   <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
                   Quy mô đào tạo
                 </h3>
-                <p class="mt-0.5 text-[11px] text-slate-500">Quy mô theo ngành/nghề và trình độ đào tạo.</p>
+                <p class="mt-1 text-[11px] leading-relaxed text-slate-500 sm:text-xs">Quy mô theo ngành/nghề và trình độ đào tạo.</p>
               </div>
-              <span class="w-fit rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
+              <span class="shrink-0 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold text-emerald-700 sm:text-[11px]">
                 {{ scaleTable.rows.length }} ngành / nghề
               </span>
             </div>
 
-            <div v-if="scaleTable.rows.length > 0" class="p-3.5 sm:p-4">
-              <div class="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 xl:grid-cols-5">
-                <div class="rounded-xl border border-blue-100 bg-blue-50 p-3">
-                  <div class="text-[11px] font-medium text-slate-500">Tổng quy mô</div>
-                  <div class="mt-1 text-xl font-black text-blue-800">{{ formatSourceAdmissionValue(scaleTable.total) }}</div>
-                  <div class="text-[10px] text-blue-600">Người học</div>
+            <div v-if="scaleTable.rows.length > 0" class="min-w-0 p-3 sm:p-4">
+              <div class="scale-summary mb-4" :class="{ 'scale-summary--extra': scaleSummaryCards.length === 6 }">
+                <div class="scale-summary-card scale-summary-total border-blue-100 bg-blue-50">
+                  <div class="scale-summary-label text-slate-500">Tổng quy mô</div>
+                  <div class="scale-summary-value text-blue-800">{{ formatSourceAdmissionValue(scaleTable.total) }}</div>
+                  <div class="scale-summary-unit text-blue-600">Người học</div>
                 </div>
                 <div
                   v-for="level in scaleSummaryCards"
                   :key="level.id"
                   :class="level.cardClass"
-                  class="rounded-xl border p-3">
-                  <div class="text-[11px] font-medium text-slate-500">{{ level.name }}</div>
-                  <div :class="level.valueClass" class="mt-1 text-xl font-black">{{ formatSourceAdmissionValue(level.value) }}</div>
-                  <div :class="level.unitClass" class="text-[10px]">Người học</div>
+                  class="scale-summary-card">
+                  <div class="scale-summary-label text-slate-500">{{ level.name }}</div>
+                  <div :class="level.valueClass" class="scale-summary-value">{{ formatSourceAdmissionValue(level.value) }}</div>
+                  <div :class="level.unitClass" class="scale-summary-unit">Người học</div>
                 </div>
               </div>
 
-              <div class="overflow-x-auto rounded-xl border border-slate-200">
-                <table class="min-w-[720px] w-full border-collapse text-left text-xs">
+              <div class="max-w-full overflow-x-auto overscroll-x-contain rounded-xl border border-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-500" tabindex="0" role="region" aria-label="Bảng quy mô đào tạo, cuộn ngang để xem các trình độ">
+                <table class="w-full min-w-[680px] border-separate border-spacing-0 text-left text-[11px] sm:text-xs">
                   <thead class="border-b border-slate-300 bg-slate-50 text-slate-600">
                     <tr>
-                      <th class="min-w-[360px] px-3 py-3 font-semibold">Ngành / nghề đào tạo</th>
-                      <th class="min-w-[88px] px-3 py-3 text-right font-semibold">Tổng</th>
+                      <th class="sticky left-0 z-10 w-[180px] min-w-[180px] border-b border-r border-slate-200 bg-slate-50 px-3 py-3 font-semibold sm:w-[240px] sm:min-w-[240px]">Ngành / nghề đào tạo</th>
+                      <th class="min-w-[80px] border-b border-slate-200 px-3 py-3 text-right font-semibold">Tổng</th>
                       <th
                         v-for="level in scaleSummaryCards"
                         :key="level.id"
-                        class="min-w-[120px] px-3 py-3 text-right font-semibold">
+                        class="min-w-[104px] border-b border-slate-200 px-3 py-3 text-right font-semibold">
                         {{ level.name }}
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="divide-y divide-slate-200">
-                    <tr v-for="program in scaleTable.rows" :key="program.key" class="align-top transition-colors hover:bg-slate-50/80">
-                      <td class="px-3 py-3">
-                        <div class="font-bold leading-snug text-slate-800">{{ program.name }}</div>
+                  <tbody>
+                    <tr v-for="program in scaleTable.rows" :key="program.key" class="group align-top transition-colors hover:bg-slate-50">
+                      <td class="sticky left-0 z-10 border-b border-r border-slate-200 bg-white px-3 py-3 group-hover:bg-slate-50">
+                        <div class="break-words font-semibold leading-relaxed text-slate-800">{{ program.name }}</div>
                         <div v-if="program.code" class="mt-1 text-[10px] font-mono text-slate-500">Mã ngành: {{ program.code }}</div>
                         <div v-if="program.conflict" class="mt-1 text-[10px] text-amber-700">Tổng nguồn chưa khớp số theo trình độ</div>
                       </td>
-                      <td class="px-3 py-3 text-right font-bold text-blue-800">{{ formatSourceAdmissionValue(program.total) }}</td>
+                      <td class="border-b border-slate-200 px-3 py-3 text-right font-bold tabular-nums text-blue-800">{{ formatSourceAdmissionValue(program.total) }}</td>
                       <td
                         v-for="level in scaleSummaryCards"
                         :key="`${program.key}-${level.id}`"
-                        class="px-3 py-3 text-right text-slate-700">
+                        class="border-b border-slate-200 px-3 py-3 text-right tabular-nums text-slate-700">
                         {{ formatSourceAdmissionValue(program.values[level.id]) }}
                       </td>
                     </tr>
@@ -358,56 +361,6 @@
             <div v-else class="m-3.5 rounded-lg border border-dashed border-slate-200 bg-slate-50 py-5 text-center text-[11px] italic text-slate-400">
               <span v-if="school.education_level === 'gdtx'">Chương trình đào tạo GDTX & Phổ thông đang được cập nhật.</span>
               <span v-else>Chưa có danh mục ngành đào tạo trong cơ sở dữ liệu.</span>
-            </div>
-          </section>
-
-          <!-- Historical recruitment outcomes loaded from the database. -->
-          <section v-if="sourceAdmissionRecord" class="overflow-hidden rounded-xl border border-amber-200 bg-white shadow-xs">
-            <div class="flex flex-wrap items-start justify-between gap-2 border-b border-amber-100 bg-amber-50/70 p-3.5">
-              <div>
-                <h3 class="flex items-center gap-1.5 text-sm font-bold text-slate-800">
-                  <i class="fa-solid fa-chart-column text-amber-600"></i>
-                  Kết quả tuyển sinh theo báo cáo nguồn
-                </h3>
-                <p class="mt-0.5 text-[11px] text-slate-600">Quy mô tuyển sinh theo bậc đào tạo</p>
-              </div>
-              <span class="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-600">Báo cáo tuyển sinh</span>
-            </div>
-            <div class="p-3.5 sm:p-4">
-              <div class="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-                <div v-for="item in sourceAdmissionSummary" :key="item.id" class="rounded-lg border border-slate-200 bg-slate-50 p-2.5">
-                  <div class="text-[10px] font-medium text-slate-500">{{ item.label }}</div>
-                  <div class="mt-0.5 text-base font-bold text-slate-800">
-                    {{ formatSourceAdmissionValue(item.value) }}<span v-if="item.value !== null && item.value !== undefined" class="ml-1 text-[10px] font-medium text-slate-500">người</span>
-                  </div>
-                </div>
-              </div>
-              <div class="overflow-x-auto rounded-lg border border-slate-200">
-                <table class="min-w-[620px] w-full border-collapse text-left text-[11px]">
-                  <thead class="border-b border-slate-200 bg-slate-50 text-slate-600">
-                    <tr>
-                      <th class="px-3 py-2.5 font-semibold">Ngành / nghề theo file</th>
-                      <th class="px-3 py-2.5 text-right font-semibold">Tổng</th>
-                      <th class="px-3 py-2.5 text-right font-semibold">Cao đẳng</th>
-                      <th class="px-3 py-2.5 text-right font-semibold">Trung cấp</th>
-                      <th class="px-3 py-2.5 text-right font-semibold">Sơ cấp</th>
-                    </tr>
-                  </thead>
-                  <tbody class="divide-y divide-slate-100">
-                    <tr v-for="program in sourceAdmissionRecord.programs" :key="`${program.source_row}-${program.name}`">
-                      <td class="px-3 py-2.5">
-                        <div class="font-semibold text-slate-800">{{ program.name }}</div>
-                        <div v-if="program.code" class="mt-0.5 font-mono text-[10px] text-slate-500">Mã: {{ program.code }}</div>
-                      </td>
-                      <td class="px-3 py-2.5 text-right font-semibold text-blue-800">{{ formatSourceAdmissionValue(program.total) }}</td>
-                      <td class="px-3 py-2.5 text-right text-slate-700">{{ formatSourceAdmissionValue(program.cao_dang) }}</td>
-                      <td class="px-3 py-2.5 text-right text-slate-700">{{ formatSourceAdmissionValue(program.trung_cap) }}</td>
-                      <td class="px-3 py-2.5 text-right text-slate-700">{{ formatSourceAdmissionValue(program.so_cap) }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="mt-2 text-[10px] text-slate-500">Dấu “—” giữ nguyên ô trống hoặc dấu gạch trong nguồn. {{ sourceAdmissionRecord.source_file }}</p>
             </div>
           </section>
 
@@ -782,6 +735,8 @@
 
     </div>
 
+    </Transition>
+
     <!-- ============================================================== -->
     <!-- MODAL SLIDER: PHOTO LIGHTBOX CAROUSEL                         -->
     <!-- ============================================================== -->
@@ -995,7 +950,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { LEVEL_MAP } from '../../services/schoolService'
 import { trainingScaleTable } from '../../utils/trainingScale'
 
@@ -1008,7 +963,6 @@ const props = defineProps({
 
 const emit = defineEmits(['close', 'buffer-analyze', 'view-related-campus', 'fit-campuses'])
 
-const sourceAdmissionRecord = computed(() => props.school?.admission_report || null)
 const cleanTrainingReport = computed(() => props.school?.training_source_report || null)
 const scaleTable = computed(() => trainingScaleTable(
   cleanTrainingReport.value,
@@ -1020,20 +974,9 @@ const scaleSummaryCards = computed(() => scaleTable.value.columns.map(level => (
   ...(EDUCATION_LEVEL_CARD_STYLES[level.id] || DEFAULT_EDUCATION_LEVEL_CARD_STYLE),
   value: scaleTable.value.totals[level.id],
 })))
-const sourceAdmissionSummary = computed(() => {
-  const summary = sourceAdmissionRecord.value?.summary || {}
-  return [
-    { id: 'total', label: 'Tổng theo nguồn', value: summary.total },
-    { id: 'cao_dang', label: 'Cao đẳng', value: summary.cao_dang },
-    { id: 'trung_cap', label: 'Trung cấp', value: summary.trung_cap },
-    { id: 'so_cap', label: 'Sơ cấp', value: summary.so_cap },
-  ]
-})
-
 function formatSourceAdmissionValue(value) {
   return value === null || value === undefined ? '—' : new Intl.NumberFormat('vi-VN').format(value)
 }
-
 // Dynamic level icon matching map pin
 const levelIcon = computed(() => {
   return LEVEL_MAP[props.school?.education_level]?.icon || 'fa-solid fa-graduation-cap'
@@ -1066,6 +1009,20 @@ const relatedCampuses = computed(() => {
 })
 
 const campusSearchQuery = ref('')
+
+// Keep the component mounted for leave animations, but reset each new profile.
+watch(() => props.school?.id, (id, previousId) => {
+  if (id === previousId) return
+  activeTab.value = 'general'
+  currentEnterpriseIndex.value = 0
+  isEnterprisesModalOpen.value = false
+  enterpriseSearchQuery.value = ''
+  isMajorsModalOpen.value = false
+  majorSearchQuery.value = ''
+  isGalleryModalOpen.value = false
+  currentGalleryIndex.value = 0
+  campusSearchQuery.value = ''
+})
 
 const mainCampusesCount = computed(() => {
   return relatedCampuses.value.filter(c => c.campus_type === 'MAIN').length
@@ -1370,3 +1327,128 @@ onUnmounted(() => {
   window.removeEventListener('keydown', handleKeydown)
 })
 </script>
+
+<style scoped>
+.school-detail-slide-enter-active {
+  transition: transform 480ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform;
+}
+
+.school-detail-slide-leave-active {
+  transition: transform 300ms cubic-bezier(0.4, 0, 1, 1);
+  will-change: transform;
+}
+
+.school-detail-slide-enter-from,
+.school-detail-slide-leave-to {
+  transform: translate3d(calc(100% + 32px), 0, 0);
+}
+
+.school-detail-slide-enter-to,
+.school-detail-slide-leave-from {
+  transform: translate3d(0, 0, 0);
+}
+
+.school-detail-backdrop-enter-active,
+.school-detail-backdrop-leave-active {
+  transition: opacity 300ms ease;
+}
+
+.school-detail-backdrop-enter-from,
+.school-detail-backdrop-leave-to {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .school-detail-slide-enter-active,
+  .school-detail-slide-leave-active,
+  .school-detail-backdrop-enter-active,
+  .school-detail-backdrop-leave-active {
+    transition-duration: 1ms;
+  }
+
+  .school-detail-slide-enter-from,
+  .school-detail-slide-leave-to {
+    transform: none;
+  }
+}
+
+.training-scale {
+  container: training-scale / inline-size;
+}
+
+.scale-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem;
+}
+
+.scale-summary-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.375rem;
+  border-width: 1px;
+  border-radius: 0.75rem;
+  padding: 0.875rem;
+}
+
+.scale-summary-label {
+  min-height: 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.scale-summary-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.scale-summary-unit {
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+/* Keep six level cards balanced when the extra unallocated column is present. */
+.scale-summary--extra .scale-summary-total {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 0.75rem;
+  row-gap: 0.25rem;
+}
+
+.scale-summary--extra .scale-summary-total .scale-summary-label {
+  min-height: 0;
+}
+
+.scale-summary--extra .scale-summary-total .scale-summary-value {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+}
+
+.scale-summary--extra .scale-summary-total .scale-summary-unit {
+  grid-column: 1;
+}
+
+/* Use available drawer width, not the width of the page behind the drawer. */
+@container training-scale (min-width: 520px) {
+  .scale-summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@container training-scale (min-width: 880px) {
+  .scale-summary {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+</style>
